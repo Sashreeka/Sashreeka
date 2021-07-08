@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from 'react-router-dom';
 import "./Navigation.css";
 
 function Navigation() {
@@ -6,7 +7,7 @@ function Navigation() {
 
     <nav className="navbar navbar-expand-lg navbar-light">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">Sashreeka</a>
+          <Link className="navbar-brand" to="/">Sashreeka</Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -14,26 +15,26 @@ function Navigation() {
             <div className="mr-auto"></div>
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">Home</a>
+                <Link className="nav-link active" aria-current="page" to="/">Home</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Organic Fertilizer</a>
+                <Link className="nav-link" to="/fertilizer">Organic Fertilizer</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Shop Now</a>
+                <Link className="nav-link" to="/store">Shop Now</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">About</a>
+                <Link className="nav-link" to="/about">About</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Contact</a>
+                <Link className="nav-link" to="/contact">Contact</Link>
               </li>
               <li>
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="/signup">
               <div className="nav-sign-in">
                 <div className="signin">Sign in</div>
               </div>
-              </a>
+              </Link>
               </li>
             </ul>
           </div>
