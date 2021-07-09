@@ -9,6 +9,7 @@ import Contact from "./components/static/Contact";
 import Store from "./components/store/Store";
 import Handbook from "./components/handbook/Handbook";
 import Signup from "./components/authentication/Signup";
+import Footer from "./components/common/footer/footer";
 
 
 function App() {
@@ -42,7 +43,7 @@ function App() {
         </Route>
       </Switch>
         
-
+      <Footer/>
       </BrowserRouter>
      
     </div>
