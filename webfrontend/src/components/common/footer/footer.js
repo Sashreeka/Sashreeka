@@ -42,6 +42,7 @@ function Footer(){
                   <h4 className="text-uppercase font-weight-bold">Quick Links</h4>
                   <hr className="undertopic"></hr>
                   <ul className="list-unstyled">
+                    <li className="my-3"><a href="#">Organic Fertilizer shop</a></li>
                     <li className="my-3"><a href="#">Organic Fertilizer Hand book</a></li>
                     <li className="my-3"><a href="#">Get started as a Delivary Agent</a></li>
                     
