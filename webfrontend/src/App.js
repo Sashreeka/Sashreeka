@@ -10,6 +10,7 @@ import Store from "./components/store/Store";
 import Handbook from "./components/handbook/Handbook";
 import Signup from "./components/authentication/Signup";
 
+
 function App() {
   return (
     <div className="App">
@@ -43,7 +44,7 @@ function App() {
         
 
       </BrowserRouter>
-      
+     
     </div>
   );
 }
