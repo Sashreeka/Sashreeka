@@ -1,0 +1,42 @@
+footer .row a{
+    padding: 20px;
+}
+
+footer hr{
+    color: greenyellow;
+    width: 125px;
+    height: 4px;
+    margin: auto;
+}
+
+
+footer a{
+    text-decoration: none;
+    color: rgb(54, 87, 41);
+
+}
+
+footer a:hover{
+    color:white;
+}
+
+
+footer .footer-part2{
+    background-color: #63B75D;
+    padding: 3vw;
+    padding-bottom: 10px;
+}
+
+footer img{
+    width: 15vw;
+}
+
+footer .footerlast{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #539e4e;
+    font-size: x-small;
+    letter-spacing: 0.7px;
+    padding: 20px;
+}
