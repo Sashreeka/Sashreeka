@@ -53,7 +53,7 @@ function Footer(){
                   <hr className="undertopic"></hr>
                   <ul className="list-unstyled">
                   <li className="my-2"><a href="#"><img src=""/>Farmer App</a></li>
-                  <li className="my-2"><a href="#"><img src=""/>Delivary Agent App</a></li>
+                  <li className="my-2"><a href="#"><img src=""/>Delivery Agent App</a></li>
                     <li className="my-2"><a href="#"><img src={playstore}/></a></li>
                   </ul>
                 </div>
