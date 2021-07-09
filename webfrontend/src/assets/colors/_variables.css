@@ -1,0 +1,9 @@
+/* CSS variables */
+
+:root{
+    --primary-color:#9BE564;
+    --secondary-color:#63B75D;
+    --text-Dark:#000000;
+    --text-Light:#8C8C8C;
+    --background-1:#ffffff;
+}
