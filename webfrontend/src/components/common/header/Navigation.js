@@ -15,7 +15,7 @@ function Navigation() {
             <div className="mr-auto"></div>
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/">Home</Link>
+                <Link className="nav-link active" aria-current="page" to="/"><i class="fas fa-home"></i>Home</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/fertilizer">Organic Fertilizer</Link>
