@@ -39,6 +39,21 @@ export default Home = ()=>{
                 </View>
             </View>
 
+            {/* Categories */}
+            <View style={styles.categoriesWrapper}>
+                <Text style={styles.categoriesTitle}>Categories</Text>
+                <View style={styles.categoriesListWrapper}>
+                <FlatList
+                data={categoriesData}
+                renderItem={renderCategoryItem}
+                keyExtractor={item => item.id}
+                horizontal={true}
+                /> 
+                
+                </View> 
+            </View>
+
+            {/* items list */}
             
             </ScrollView>
         </View>
