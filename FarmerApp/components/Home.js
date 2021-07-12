@@ -12,7 +12,26 @@ Feather.loadFont();
 
 export default Home = ()=>{
 
-    
+    const renderCategoryItem=({ item })=>{
+        return(
+            // <View style={styles.categoriesListWrapper}>
+            <View style={[styles.categoryItemWrapper, {
+                backgroundColor:item.selected ? colors.secondaryT50 : colors.background,
+                marginLeft: item.id==1 ? 20 : 0,
+            },
+            ]}>
+               <Image source={item.image} style={styles.categoryItemImage}/>
+               <Text style={styles.categoryItemTitle}>{item.title}</Text>
+               <View style={styles.categorySelectWrapper}>
+                   {/* <Feather
+                   name="shevron-right"
+                   size={8}
+                   style={styles.categorySelectIcon}
+                   /> */}
+               </View>
+            </View>
+        );
+    };
 
     return(
         <View style={styles.container}>
