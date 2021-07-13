@@ -1,0 +1,58 @@
+.Store_bar {
+    background-color: #9BE564;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    justify-content: space-around;
+}
+
+.Search_bar{
+    flex-grow: 4;
+}
+
+.Search_input{
+    width: 80%;
+    height: 35px;
+    left: 279px;
+    top: 19px;
+    background: #FFFFFF;
+    box-shadow: inset 0px 1px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 17.5px;
+    padding-left: 10px;
+}
+
+input{
+    outline: none; 
+    border:none;
+}
+
+input:focus {
+    outline: none;
+}
+
+button{
+    border:none;
+}
+
+.Search_button{
+    background: #9BE564;
+    color: #FFFFFF;
+    font-size: 20px;
+}
+
+.shopping_details{
+    background-color: #9BE564;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.shopping_details p{
+    margin: 0px;
+}
+
+.shopping_cart{
+    background: #9BE564;
+    color: #FFFFFF;
+    font-size: 20px;
+}
