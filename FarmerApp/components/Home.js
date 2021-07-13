@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect} from 'react';
 import {FlatList,StatusBar,View, Text, StyleSheet,SafeAreaView,Image, ScrollView} from "react-native";
 import Feather from "react-native-vector-icons/Feather";
 import fontAwsome from "react-native-vector-icons/FontAwesome";
@@ -7,10 +7,27 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import categoriesData from '../assets/data/categoriesData';
 import itemsData from '../assets/data/itemsData';
 import colors from '../assets/colors/colors';
+import Axios from "axios";
 
 Feather.loadFont();
 
+
+
 export default Home = ()=>{
+
+    const [ferlilizerlist,setferlilizerlist] = useState([]);
+
+    useEffect(()=>{
+        Axios.get('http://192.168.1.21:3001/api/get').then((response)=>{
+          console.log(response.data[0].description);
+          console.log(response.data[0].id);
+          console.log(response.data[0].name);
+          setferlilizerlist(response.data);
+        });
+      },[]);
+
+
+    //   console.log(moviereviewlist);
 
     const renderCategoryItem=({ item })=>{
         return(
@@ -49,9 +66,9 @@ export default Home = ()=>{
                 <Text style={styles.titlesTitle}>Organic Fertilizer</Text>
             </View>
 
-            {/* <ScrollView contentInsetAdjustmentBehavior="automatic" showsVerticalScrollIndicator={false}
+            <ScrollView contentInsetAdjustmentBehavior="automatic" showsVerticalScrollIndicator={false}
             key={Math.random}
-            > */}
+            >
             {/* Search */}
             <View style={styles.searchWrapper}>
                 <Feather name="search" size={16} color={colors.textDark}/>
@@ -73,11 +90,20 @@ export default Home = ()=>{
                 
                 </View> 
             </View>
+           {
+               ferlilizerlist.map((val)=>{
+                   return <Text key={val.id}>
+                       {val.name}
+                   </Text>
+               })
+           }
+            
+           
 
             {/* items list */}
-            <View style={styles.itemsWrapper}>
+            {/* <View style={styles.itemsWrapper}>
                 <Text style={styles.itemsTitle}>Shop Items</Text>
-                {itemsData.map((item)=>(
+                {moviereviewlist.map((item)=>(
                      <View 
                      key={item.id}
                      style={[styles.itemsCardwrapper,
@@ -88,7 +114,7 @@ export default Home = ()=>{
                          <View style={styles.itemCardWrapOuter}>
                             <View>
                                 <View style={styles.itemWrapperMain}>
-                                    <Text style={styles.itemTitleMain}>{item.title}</Text>  
+                                    <Text style={styles.itemTitleMain}>{item.name}</Text>  
                                 </View>
                                 <View style={styles.itemDescriptionWrapper}>
                                     <Text style={styles.itemDescription}>{item.description}</Text>
@@ -107,8 +133,8 @@ export default Home = ()=>{
                  </View>
                 )   
                 )}
-            </View>
-            {/* </ScrollView> */}
+            </View> */}
+            </ScrollView>
         </View>
         
     );
