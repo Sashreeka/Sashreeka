@@ -12,7 +12,7 @@ import { StyleSheet,
   } from 'react-native';
   //import Header from './Header';
 
-export default function ProfileScreen() {
+export default function ProfileScreen({navigation}) {
     return (
         <View style={styles.container}>
          <StatusBar backgroundColor="#444"/>
@@ -20,7 +20,7 @@ export default function ProfileScreen() {
             <Text>Profile Screen</Text>
             <Button 
                 title="Click Here"
-                onPress={()=>alert('Button Clicked')}
+                onPress={()=> navigation.navigate('Home')}
             />
             
         </View>

@@ -10,13 +10,13 @@ import { StyleSheet,
     Button 
   } from 'react-native';
 
-export default function SupportScreen() {
+export default function SupportScreen({navigation}) {
     return (
         <View style={styles.container}>
             <Text>Support Screen</Text>
             <Button 
                 title="Click Here"
-                onPress={()=>alert('Button Clicked')}
+                onPress={()=>navigation.navigate('Home')}
             />
             
         </View>

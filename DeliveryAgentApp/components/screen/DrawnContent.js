@@ -25,11 +25,12 @@ import { StyleSheet,
 
   export function DrawerContent(props)
   {
-      const [isDarkTheme,setDarkTheme]=useState(false);
+      const [isAvailable,setisAvailable]=useState(null);
 
       const {signOut}=useContext(AuthContext);
       const toggleTheme = ()=>{
-          setDarkTheme(!isDarkTheme);
+        setisAvailable('Not Available');
+          console.log(isAvailable)
       }
       return(
           <View style={{flex:1}}>
@@ -50,10 +51,10 @@ import { StyleSheet,
                                 />
                                 <View style={{marginLeft:15,flexDirection:'column'}}>
                                     <Title style={styles.title}>Ishan Reshmika</Title>
-                                    <Caption style={styles.caption}>Software Engineer</Caption>
+                                    <Caption style={styles.caption}>{isAvailable}</Caption>
                                 </View>
                             </View>
-                            <View style={styles.row}>
+                            {/* <View style={styles.row}>
                                     <View style={styles.section}>
                                         <Paragraph style={[styles.paragarph,styles.caption]}>100</Paragraph>
                                         <Caption style={styles.caption}>Following</Caption>
@@ -63,7 +64,7 @@ import { StyleSheet,
                                         <Caption style={styles.caption}>Follower</Caption>
                                     </View>
 
-                            </View>
+                            </View> */}
                             
 
                        </View>
@@ -99,7 +100,7 @@ import { StyleSheet,
                             }
                             label="Profile"
                             onPress={()=>{
-                                props.navigation.navigate("Profile")
+                                props.navigation.navigate("ProfileScreen")
 
                             }}
 
@@ -108,15 +109,15 @@ import { StyleSheet,
                             icon={
                                 ({color,size})=>(
                                     <Icon
-                                        name="bookmark-outline"
+                                        name="wallet"
                                         color={color}
                                         size={size}
                                     />
                                 )
                             }
-                            label="BookMarks"
+                            label="Payment"
                             onPress={()=>{
-                                props.navigation.navigate('BookmarkScreen')
+                                props.navigation.navigate('PaymentScreen')
 
                             }}
 
@@ -162,17 +163,17 @@ import { StyleSheet,
                                     
 
                        </Drawer.Section>
-                       <Drawer.Section title="Preferences">
+                       {/* <Drawer.Section title="Preferences"> */}
                             <TouchableRipple onPress={()=>{toggleTheme()}}>
                                 <View style={styles.preference}>
-                                    <Text>Dark Theme</Text>
+                                    <Text style={{color:'#217756',marginLeft:6}}>Available</Text>
                                     <View pointerEvents="none">
-                                        <Switch value={isDarkTheme}/>
+                                        <Switch value={isAvailable}/>
                                     </View>
                                 </View>
                             </TouchableRipple>
 
-                       </Drawer.Section>
+                       {/* </Drawer.Section> */}
                     </View>
 
               </DrawerContentScrollView>
@@ -188,6 +189,7 @@ import { StyleSheet,
                         )
                     }
                     label="Sign Out"
+                    
                     onPress={()=>{
                         signOut()
                     }}
@@ -216,6 +218,7 @@ import { StyleSheet,
       caption:{
           fontSize:14,
           lineHeight:14,
+          color:'#217756'
       },
       row:{
           marginTop:20,
@@ -239,6 +242,7 @@ import { StyleSheet,
           marginBottom:15,
           borderTopColor:'#f4f4f4',
           borderTopWidth:1,
+          marginLeft:5,
       },
       preference:{
           flexDirection:'row',
