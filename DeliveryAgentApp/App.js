@@ -22,13 +22,11 @@ import { DrawerContent } from './components/screen/DrawnContent';
 import SupportScreen from './components/screen/SupportScreen';
 import SettingsScreen from './components/screen/SettingScreen';
 
-import BookmarkScreen from './components/screen/BookmarkScreen';
+import PaymentScreen from './components/screen/PaymentScreen';
+import ProfileScreen from './components/screen/ProfileScreen';
 
 
-//import SupportScreen from './components/screen/SupportScreen';
-//import SettingsScreen from './components/screen/SettingsScreen';
-//import BookmarkScreen from './components/screen/BookmarkScreen';
-//import { AuthContext } from './components/context';
+
 
 import { AuthContext } from './components/context/context';
 
@@ -149,6 +147,8 @@ export default function App({navigation}) {
         }
        
 
+      }else{
+        alert('Username Or Password Invalid')
       }
       
      // console.log(telephone,password);
@@ -235,9 +235,10 @@ export default function App({navigation}) {
 
         <Drawer.Navigator drawerContent={props => <DrawerContent {...props}/>}>
             <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
+            <Drawer.Screen name="ProfileScreen" component={ProfileScreen} />
             <Drawer.Screen name="SupportScreen" component={SupportScreen} />
             <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
-            <Drawer.Screen name="BookmarkScreen" component={BookmarkScreen}/>
+            <Drawer.Screen name="PaymentScreen" component={PaymentScreen}/>
             
         </Drawer.Navigator>)
         :

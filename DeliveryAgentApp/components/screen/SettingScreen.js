@@ -10,13 +10,13 @@ import { StyleSheet,
     Button 
   } from 'react-native';
 
-export default function SettingsScreen() {
+export default function SettingsScreen({navigation}) {
     return (
         <View style={styles.container}>
             <Text>Settings Screen</Text>
             <Button 
                 title="Click Here"
-                onPress={()=>alert('Button Clicked')}
+                onPress={()=> navigation.navigate('Home')}
             />
             
         </View>
