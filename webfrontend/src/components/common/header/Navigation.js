@@ -1,6 +1,7 @@
 import React from "react";
-import {Link} from 'react-router-dom';
+//import {Link} from 'react-router-dom';
 import "./Navigation.css";
+import {MenuItems} from "./MenuItems"
 
 function Navigation() {
   return (
@@ -11,11 +12,22 @@ function Navigation() {
 
       </div>
       <ul>
-        <li>
-          
-        </li>
-      </ul>
+        {MenuItems.map((item,index)=>{
 
+        return (
+          <li key={index}>
+            <a className={item.cName} href={item.url}>
+              {item.title}
+            </a>
+          </li>
+        )
+        
+        
+        })}
+
+         
+      </ul>
+        
     </nav>
     /*<nav className="navbar navbar-expand-lg navbar-light">
         <div className="container-fluid">
