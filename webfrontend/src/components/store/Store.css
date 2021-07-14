@@ -4,6 +4,7 @@
     flex-direction: row;
     padding: 10px;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .Search_bar{
@@ -55,4 +56,12 @@ button{
     background: #9BE564;
     color: #FFFFFF;
     font-size: 20px;
+}
+
+.shopping_cart:hover{
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+}
+
+.Search_button:hover{
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
 }
