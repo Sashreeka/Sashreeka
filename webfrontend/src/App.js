@@ -10,7 +10,8 @@ import Store from "./components/store/Store";
 import Handbook from "./components/handbook/Handbook";
 import Signup from "./components/authentication/Signup";
 import Footer from "./components/common/footer/footer";
-
+import Admin from "./components/company/Admin/Admin";
+import UserList from "./components/company/Admin/pages/userList/UserList";
 
 function App() {
   return (
@@ -20,6 +21,16 @@ function App() {
       <Switch>
         <Route path="/about">
           <About />
+        </Route>
+
+        <Route path="/admin">
+          <Admin/>
+
+        </Route>
+
+        <Route path="/admin/user">
+          <UserList/>
+
         </Route>
         
         <Route path="/contact">
