@@ -1,11 +1,43 @@
-import React from "react";
-import {Link} from 'react-router-dom';
+import React, {Component} from "react";
+//import {Link} from 'react-router-dom';
 import "./Navigation.css";
+import {MenuItems} from "./MenuItems"
+import { render } from "@testing-library/react";
+//import { render } from "@testing-library/react";
+class Navigation extends Component{
 
-function Navigation() {
+  state={ clicked :false}
+  handleClick = () =>{
+    this.setState({clicked :!this.state.clicked})
+  }
+  render(){
   return (
+    
+    <nav className="NavbarItems">
+      <h1 className="navbar-logo">Shashreeka</h1>
+      <div className="menu-icon" onClick={this.handleClick}>
+        <i className={this.state.Clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
 
-    <nav className="navbar navbar-expand-lg navbar-light">
+      </div>
+      
+      <ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'}>
+        {MenuItems.map((item,index)=>{
+          return (
+            <li key={index}>
+              <a className={item.cName} href={item.url}>
+              {item.title}
+              </a>
+            </li>
+        )
+        
+        
+        })}
+
+         
+      </ul>
+        
+    </nav>
+    /*<nav className="navbar navbar-expand-lg navbar-light">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">Sashreeka</Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,9 +72,13 @@ function Navigation() {
           </div>
            
         </div>
-    </nav>
+    </nav>*/
     
-  );
+  )
 }
+}
+
+
+
 
 export default Navigation;
