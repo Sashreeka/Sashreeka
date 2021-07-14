@@ -51,7 +51,7 @@ import { StyleSheet,
                                 />
                                 <View style={{marginLeft:15,flexDirection:'column'}}>
                                     <Title style={styles.title}>Ishan Reshmika</Title>
-                                    <Caption style={styles.caption}>{isAvailable}</Caption>
+                                    <Caption style={styles.caption}>{}</Caption>
                                 </View>
                             </View>
                             {/* <View style={styles.row}>
