@@ -1,4 +1,4 @@
-import React,{createRef, useState} from 'react';
+import React,{createRef, useState, useEffect} from 'react';
 import { StyleSheet, 
     Text, 
     View, 
@@ -21,12 +21,28 @@ import { StyleSheet,
 
   import MapView from 'react-native-maps';
 
+  import axios from 'axios';
+
   //import { ModalScreen } from './ModalScreen';
   
 
   const deviceHeight=Dimensions.get('window').height
 
 const HomeScreen = ({navigation})=>{
+
+  const [orderList,setOrderList]=useState([]);
+
+  useEffect(()=>{
+    axios.get('http://192.168.1.12:3001/api/order').then((response)=>{
+      if(response)
+      {
+       console.log(response.data);
+       setOrderList(response.data)
+      }else{
+        console.log('error');
+      }
+     })
+  },[])
 
   const data=[
     {
@@ -80,6 +96,9 @@ const HomeScreen = ({navigation})=>{
    
 
   ]
+
+
+
 
   // let popupRef=createRef()
 
@@ -151,16 +170,32 @@ const HomeScreen = ({navigation})=>{
               <Text>Hello ishan</Text>
 
               <FlatList
-                data={data}
+                data={orderList}
                 
                 renderItem={({item})=>{
-                  return <View style={styles.flatItem} key={item.id}>
+                  const seperate=item.item.split(', ');
+                       console.log(seperate)
+                  return <View style={styles.flatItem} key={item.telephone}>
                       <View>
 
                       <Image
                       style={{width:100, height:100}}
                         source={require('../../assets/ishan.png')}
                       />
+                      <Text>{item.city}-{item.customer_name}</Text>
+                      <Text>{item.address}</Text>
+                      <Text>{item.telephone}</Text>
+                      {/* <Text>{item.item}</Text> */}
+                      {
+                        seperate.map((product,index) =>
+                      {
+                        return   <Text key={index}>{product}</Text>
+                      }
+                      )
+                      }
+                    
+                      
+                    
 
                       </View>
                       <View>
@@ -183,12 +218,12 @@ const HomeScreen = ({navigation})=>{
 
 
               <MapView
-    initialRegion={{
-      latitude: 37.78825,
-      longitude: -122.4324,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-    }}
+                  initialRegion={{
+                    latitude: 37.78825,
+                    longitude: -122.4324,
+                    latitudeDelta: 0.0922,
+                    longitudeDelta: 0.0421,
+                  }}
   />
               
 
@@ -197,7 +232,9 @@ const HomeScreen = ({navigation})=>{
                 
                 renderItem={({item})=>{
                   return <View style={styles.flatItem} key={item.id}>
-                  <Text>{item.name} {item.age}</Text>
+                 <TouchableOpacity onPress={()=>alert(item.id)}>
+                 <Text>{item.name} {item.age}</Text>
+                 </TouchableOpacity>
 
                   </View>
                 }}
@@ -225,7 +262,7 @@ export default HomeScreen;
     },
     flatItem:{
       width:'90%',
-      height:50,
+      height:250,
       borderRadius:20,
       borderBottomEndRadius:20,
       borderBottomLeftRadius:20,

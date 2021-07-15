@@ -143,15 +143,19 @@ const HomeStackScreen= ({navigation})=>(
   
     }}>
       <DetailsStack.Screen name="Details" component={DetailsScreen} 
+      
   
       options={{
-        headerLeft: ()=>(
-          <Ionicons name="menu" size={25} color='#217756' backgroundColor='#1f65ff' style={{marginLeft:5}}
-          onPress={()=>navigation.openDrawer()} />
-        )
+        // headerLeft: ()=>(
+        //   <Ionicons name="menu" size={25} color='#217756' backgroundColor='#1f65ff' style={{marginLeft:5}}
+        //   onPress={()=>navigation.openDrawer()} />
+        // ),
+        headerShown: false
+
       }}
         
       />
+      
      
     </DetailsStack.Navigator>
   

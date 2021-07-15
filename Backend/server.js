@@ -30,6 +30,16 @@ app.get("/api/get",(req,res)=>{
     
 })
 
+app.get("/api/order",(req,res)=>{
+    // console.log('hi anu');
+     const sqlget="select * from orders";
+     db.query(sqlget,(err,result)=>{
+         console.log(result);
+         res.send(result);
+     })
+     
+ })
+
 
 app.listen(3001,()=>{
     console.log("running port 3001");

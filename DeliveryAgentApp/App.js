@@ -131,8 +131,8 @@ export default function App({navigation}) {
 
   const authContext=useMemo(()=>({
     signIn: async (telephone,password)=>{
-      if(telephone =='119' && password=='pass')
-      {
+      // if(telephone =='119' && password=='pass')
+      // {
         setUserToken('ishan');
         setIsLoading(false);
         try{
@@ -147,9 +147,9 @@ export default function App({navigation}) {
         }
        
 
-      }else{
-        alert('Username Or Password Invalid')
-      }
+      // }else{
+      //   alert('Username Or Password Invalid')
+      // }
       
      // console.log(telephone,password);
     
