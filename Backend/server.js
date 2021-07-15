@@ -5,8 +5,6 @@ const bcrypt=require('bcrypt');
 const bodyParser=require('body-parser');
 const cors=require('cors');
 
-
-
 const app=express();
 
 const db=mysql.createPool({
@@ -22,7 +20,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 app.get("/api/get",(req,res)=>{
    // console.log('hi anu');
-    const sqlget="select * from fertilizer";
+    const sqlget="select * from organic";
     db.query(sqlget,(err,result)=>{
         console.log(result);
         res.send(result);
