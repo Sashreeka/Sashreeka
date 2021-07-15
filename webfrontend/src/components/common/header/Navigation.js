@@ -1,12 +1,12 @@
 import React, {Component} from "react";
-//import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import "./Navigation.css";
-import {MenuItems} from "./MenuItems"
-import { render } from "@testing-library/react";
+//import {MenuItems} from "./MenuItems"
+//import { render } from "@testing-library/react";
 //import { render } from "@testing-library/react";
 class Navigation extends Component{
 
-  state={ clicked :false}
+  /*state={ clicked :false}
   handleClick = () =>{
     this.setState({clicked :!this.state.clicked})
   }
@@ -36,8 +36,10 @@ class Navigation extends Component{
          
       </ul>
         
-    </nav>
-    /*<nav className="navbar navbar-expand-lg navbar-light">
+    </nav>*/
+    render(){
+      return (
+    <nav className="navbar navbar-expand-lg navbar-light">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">Sashreeka</Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,7 +74,7 @@ class Navigation extends Component{
           </div>
            
         </div>
-    </nav>*/
+    </nav>
     
   )
 }
