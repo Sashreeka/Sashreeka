@@ -4,6 +4,7 @@ import "./Store.css";
 function Store() {
     return(
         <div>
+            {/*Search bar*/}
             <div className="Store_bar">
                 <div className="Search_bar">
                     <form>
@@ -18,6 +19,9 @@ function Store() {
                 </div>
             </div>
 
+            {/*Fertilizer categories*/}
+            <h3 className="fer-topic">Fertilizer Categories</h3>
+            <hr/>
             <div className="fer-cat">
                 <div className="fer-cat-item">
                     <div className="fer-cat-image">
@@ -74,8 +78,73 @@ function Store() {
                 </div>
             </div>
 
-            <h1>This is Store</h1>
-            <p>Shashreeka recognized that the growing demand for organic crop farming required an increased focus on providing an all-natural solution to boost soil nutrition. Rather than make unproven claims about our fertilizer, we focus on education, testing, and proper use to document results. This process may be slower, but it ensures that we support the growth of sustainable agriculture around the world.</p>
+            {/*Popular products*/}
+            <h3 className="fer-topic">Popular products</h3>
+            <hr/>
+
+            <div className="fer-products_row">
+                <button className="rightLeft"><i class="fas fa-chevron-left"></i></button>
+                
+                <div className = "fer-product-container">
+                    <div className="fer-product-avatar">
+                        <img src={require('../../assets/images/fer-pro-1.jpg').default}></img>
+                    </div>
+                    <div className="fer-product-description">
+                        <h6>Grade-A Black Compost</h6>
+                        <div className="rating">
+                            <div class="clip-star"></div>
+                            <div class="clip-star"></div>
+                            <div class="clip-star"></div>
+                            <div class="clip-star"></div>
+                            <div class="clip-star"></div>
+                        </div>
+                        <div className="fer-price">
+                            <h6>Rs. 850.00 <i class="fas fa-tag"></i></h6>
+                            <button>Add<i class="fas fa-cart-arrow-down"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div className = "fer-product-container">
+                    <div className="fer-product-avatar">
+                        <img src={require('../../assets/images/fer-pro-2.jpg').default}></img>
+                    </div>
+                    <div className="fer-product-description">
+                        <h6>Grade-A Dark Compost</h6>
+                        <div className="rating">
+                            <div class="clip-star"></div>
+                            <div class="clip-star"></div>
+                            <div class="clip-star"></div>
+                            <div class="clip-star"></div>
+                            <div class="clip-star"></div>
+                        </div>
+                        <div className="fer-price">
+                            <h6>Rs. 2100.00 <i class="fas fa-tag"></i></h6>
+                            <button>Add<i class="fas fa-cart-arrow-down"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div className = "fer-product-container">
+                    <div className="fer-product-avatar">
+                        <img src={require('../../assets/images/fer-pro-3.jpg').default}></img>
+                    </div>
+                    <div className="fer-product-description">
+                        <h6>Grade-A Dark Compost</h6>
+                        <div className="rating">
+                            <div class="clip-star"></div>
+                            <div class="clip-star"></div>
+                            <div class="clip-star"></div>
+                            <div class="clip-star"></div>
+                            <div class="clip-star"></div>
+                        </div>
+                        <div className="fer-price">
+                            <h6>Rs. 2100.00 <i class="fas fa-tag"></i></h6>
+                            <button>Add<i class="fas fa-cart-arrow-down"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
