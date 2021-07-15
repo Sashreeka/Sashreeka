@@ -1,76 +1,153 @@
-import React,{useState} from 'react';
+import React,{createRef, useState, useEffect} from 'react';
 import { StyleSheet, 
     Text, 
     View, 
     FlatList,
     Image,
     TouchableOpacity,
+    SafeAreaView,
     Alert,
-    Modal,
+    
     Button ,
-    ScrollView
+    ScrollView,
+    StatusBar,
+    TouchableWithoutFeedback,
+    Dimensions,
+   
   } from 'react-native';
+
+  import * as Animatable from 'react-native-animatable';
+  import Modal from 'react-native-modal';
+
+  import MapView from 'react-native-maps';
+
+  import axios from 'axios';
+
+  //import { ModalScreen } from './ModalScreen';
   
 
+  const deviceHeight=Dimensions.get('window').height
+
 const HomeScreen = ({navigation})=>{
+
+  const [orderList,setOrderList]=useState([]);
+
+  useEffect(()=>{
+    axios.get('http://192.168.1.12:3001/api/order').then((response)=>{
+      if(response)
+      {
+       console.log(response.data);
+       setOrderList(response.data)
+      }else{
+        console.log('error');
+      }
+     })
+  },[])
 
   const data=[
     {
       'id':'1',
       'name':'ishan',
-      'age':23
+      'age':23,
+      'image':'https://writestylesonline.com/wp-content/uploads/2021/02/Michele-Round-Circle-2020.png',
     },
     {
       'id':'2',
       'name':'ishan',
-      'age':23
+      'age':23,
+      'image':'https://writestylesonline.com/wp-content/uploads/2021/02/Michele-Round-Circle-2020.png',
     },
     {
       'id':'3',
       'name':'ishan',
-      'age':23
+      'age':23,
+      'image':'https://writestylesonline.com/wp-content/uploads/2021/02/Michele-Round-Circle-2020.png',
     },
     {
       'id':'4',
       'name':'ishan',
-      'age':23
+      'age':23,
+      'image':'https://writestylesonline.com/wp-content/uploads/2021/02/Michele-Round-Circle-2020.png'
     },
     {
       'id':'5',
       'name':'ishan',
-      'age':23
+      'age':23,
+      'image':'https://writestylesonline.com/wp-content/uploads/2021/02/Michele-Round-Circle-2020.png'
     },
     {
       'id':'6',
       'name':'ishan',
-      'age':23
+      'age':23,
+      'image':'https://writestylesonline.com/wp-content/uploads/2021/02/Michele-Round-Circle-2020.png'
     },
     {
       'id':'7',
       'name':'ishan',
-      'age':23
+      'age':23,
+      'image':'https://writestylesonline.com/wp-content/uploads/2021/02/Michele-Round-Circle-2020.png'
     },
     {
       'id':'8',
       'name':'ishan',
-      'age':23
+      'age':23,
+      'image':'https://writestylesonline.com/wp-content/uploads/2021/02/Michele-Round-Circle-2020.png'
     },
    
 
   ]
+
+
+
+
+  // let popupRef=createRef()
+
+  // const onShowPopup =()=>{
+  //   popupRef.show()
+  // }
+
+  // const onClosePopup = ()=>{
+  //   popupRef.close()
+  // }
+
+
+
   const [openModal,setOpenModal]=useState(false);
   const [openModal1,setOpenModal1]=useState(false);
     return(
       <ScrollView>
-      <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
+      <View style={styles.container}>
         <Text style={{marginVertical:60}}>Home Screen</Text>
         <Text style={{marginVertical:60}}>Home Screen</Text>
         <Text style={{marginVertical:60}}>Home Screen</Text>
         <Text style={{marginVertical:60}}>Home Screen</Text>
         <Text style={{marginVertical:60}}>Home Screen</Text>
        
+{/* 
+        <StatusBar barStyle="dark-content"/>
+        <SafeAreaView style={styles.container}>
+          <TouchableWithoutFeedback onPress={onShowPopup}>
+            <Text style={styles.txtSize}>Show popup</Text>
+          </TouchableWithoutFeedback>
 
-        
+          <ModalScreen
+
+
+            ref={(target)=> popupRef = target}
+            onTouchOutside={onClosePopup}
+            title="Hello ishan"
+
+            data={data}
+         />
+
+
+
+
+         
+        </SafeAreaView>
+         */}
+
+         
         <Button title="go to details Screen"
           onPress={()=>
           //  navigation.navigate("ModalScreen")
@@ -84,16 +161,46 @@ const HomeScreen = ({navigation})=>{
           }
         />
 
-           <Modal visible={openModal}>
-              <View>
+           <Modal visible={openModal} 
+          //  customBackdrop={<View style={{flex: 1}} />}
+           onBackdropPress={() => setOpenModal(false)}
+           
+           >
+              <Animatable.View animation="bounce" style={{flex:1,maxHeight:deviceHeight* 0.7, marginTop:180, justifyContent:"flex-end",borderTopLeftRadius:10,}}>
               <Text>Hello ishan</Text>
 
               <FlatList
-                data={data}
+                data={orderList}
                 
                 renderItem={({item})=>{
-                  return <View style={styles.flatItem} key={item.id}>
-                  <Text>{item.name} {item.age}</Text>
+                  const seperate=item.item.split(', ');
+                       console.log(seperate)
+                  return <View style={styles.flatItem} key={item.telephone}>
+                      <View>
+
+                      <Image
+                      style={{width:100, height:100}}
+                        source={require('../../assets/ishan.png')}
+                      />
+                      <Text>{item.city}-{item.customer_name}</Text>
+                      <Text>{item.address}</Text>
+                      <Text>{item.telephone}</Text>
+                      {/* <Text>{item.item}</Text> */}
+                      {
+                        seperate.map((product,index) =>
+                      {
+                        return   <Text key={index}>{product}</Text>
+                      }
+                      )
+                      }
+                    
+                      
+                    
+
+                      </View>
+                      <View>
+                      <Text>{item.name} {item.age}</Text>
+                      </View>
 
                   </View>
                 }}
@@ -101,20 +208,33 @@ const HomeScreen = ({navigation})=>{
               <Button title="back"
                 onPress={()=>setOpenModal(false)}
               />
-              </View>
+              </Animatable.View>
             </Modal>
 
 
             <Modal visible={openModal1}>
-              <View>
+              <View style={{maxHeight:deviceHeight* 0.4}}>
               <Text>Hello secons</Text>
+
+
+              <MapView
+                  initialRegion={{
+                    latitude: 37.78825,
+                    longitude: -122.4324,
+                    latitudeDelta: 0.0922,
+                    longitudeDelta: 0.0421,
+                  }}
+  />
+              
 
               <FlatList
                 data={data}
                 
                 renderItem={({item})=>{
                   return <View style={styles.flatItem} key={item.id}>
-                  <Text>{item.name} {item.age}</Text>
+                 <TouchableOpacity onPress={()=>alert(item.id)}>
+                 <Text>{item.name} {item.age}</Text>
+                 </TouchableOpacity>
 
                   </View>
                 }}
@@ -138,10 +258,11 @@ export default HomeScreen;
       backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
+    
     },
     flatItem:{
       width:'90%',
-      height:50,
+      height:250,
       borderRadius:20,
       borderBottomEndRadius:20,
       borderBottomLeftRadius:20,
@@ -152,6 +273,9 @@ export default HomeScreen;
       alignItems:'center'
 
 
+    },
+    txtSize:{
+      fontSize:20,
     }
   
    

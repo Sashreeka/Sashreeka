@@ -160,7 +160,7 @@ export default function SigninScreen({navigation}) {
                  onPress={()=>{signIn(data.telephone,data.password)}}
                  >
                     <LinearGradient
-                     colors={['#08d4c4','#01ab9d']}
+                     colors={['#80B953','#2C9984']}
                     // colors={['#217756','#FFFFFF']}
                     style={styles.signIn}
                     >

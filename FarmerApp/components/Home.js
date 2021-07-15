@@ -19,8 +19,8 @@ export default Home = ()=>{
 
     useEffect(()=>{
         Axios.get('http://192.168.1.21:3001/api/get').then((response)=>{
-          console.log(response.data[0].description);
-          console.log(response.data[0].id);
+          console.log(response.data[0].caption);
+          console.log(response.data[0].fertilizerId);
           console.log(response.data[0].name);
           setferlilizerlist(response.data);
         });
@@ -90,20 +90,68 @@ export default Home = ()=>{
                 
                 </View> 
             </View>
-           {
+
+            {/* testcode map funation */}
+           {/* {
                ferlilizerlist.map((val)=>{
                    return <Text key={val.id}>
                        {val.name}
                    </Text>
                })
-           }
+           } */}
             
-           
+
+            {/* item list */}
+            <View style={styles.itemsWrapper}>
+                <Text style={styles.itemsTitle}>Shop Items</Text>
+                {
+               ferlilizerlist.map((val)=>{
+                   return (
+                  
+
+                       <View 
+                     key={val.fertilizerId}
+                     style={[styles.itemsCardwrapper,
+                     {
+                         marginTop:val.fertilizerId==1 ? 10 : 20,
+                     }
+                     ]}>
+                         <View style={styles.itemCardWrapOuter}>
+                            <View>
+                                <View style={styles.itemWrapperMain}>
+                                    <Text style={styles.itemTitleMain}>{val.name}</Text>  
+                                </View>
+                                <View style={styles.itemDescriptionWrapper}>
+                                    <Text style={styles.itemDescription}>{val.caption}</Text>
+                                    {/* <Text style={styles.itemUnitWeight}>{val.UnitWeight}</Text> */}
+                                </View>
+                                <View style={styles.itemADDbutton}>
+                                    <Text>ADD<Feather name="plus" size={15} color='#000'/>
+                                    </Text>
+                                </View>
+                            </View>
+                            <View styles={styles.itemcardRight}>
+                                
+                                <Image source={val.photo} styles={styles.itemcardimage}/>
+                            </View>
+                         </View>
+                         
+                 </View>
+
+                   )
+               })
+           }
+            </View>
+
+{/* ********************************************************************* */}
+
+
 
             {/* items list */}
             {/* <View style={styles.itemsWrapper}>
                 <Text style={styles.itemsTitle}>Shop Items</Text>
-                {moviereviewlist.map((item)=>(
+                {fertilizerlist.map((item)=>(
+                    
                      <View 
                      key={item.id}
                      style={[styles.itemsCardwrapper,
