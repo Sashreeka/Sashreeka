@@ -13,6 +13,8 @@ import { StyleSheet,
     StatusBar,
     TouchableWithoutFeedback,
     Dimensions,
+    ImageBackground
+    
    
   } from 'react-native';
 
@@ -22,9 +24,21 @@ import { StyleSheet,
   import MapView from 'react-native-maps';
 
   import axios from 'axios';
+  import { Ionicons,Feather,FontAwesome,FontAwesome5 } from '@expo/vector-icons';
+  import Slider from '@react-native-community/slider';
+
+  import DetailsScreen from './DetailsScreen';
+
+  //import Animatable from 'react-native-animatable';
 
   //import { ModalScreen } from './ModalScreen';
-  
+  import {  
+   
+    TouchableRipple,
+    Switch 
+  } from 'react-native-paper';
+
+
 
   const deviceHeight=Dimensions.get('window').height
 
@@ -117,38 +131,222 @@ const HomeScreen = ({navigation})=>{
     return(
       <ScrollView>
       <View style={styles.container}>
-        <Text style={{marginVertical:60}}>Home Screen</Text>
-        <Text style={{marginVertical:60}}>Home Screen</Text>
-        <Text style={{marginVertical:60}}>Home Screen</Text>
-        <Text style={{marginVertical:60}}>Home Screen</Text>
-        <Text style={{marginVertical:60}}>Home Screen</Text>
+
+      <View style={styles.header}>
+
+          <Ionicons name="menu" size={25} color='#217756'  style={{marginLeft:5,marginTop:5}}
+              onPress={()=>navigation.openDrawer()} />
+
+          <TouchableRipple>
+               <View style={{flexDirection:'row',marginStart:190,marginTop:10,}}>
+                   <Text style={{color:'#217756',fontWeight:'bold',fontSize:16}}>Available</Text>
+                       <View style={{
+
+                         marginStart:6,
+                         marginTop:-2,
+                       }} pointerEvents="none">
+                             <Switch/>
+                        </View>
+                </View>
+            </TouchableRipple>
+          <Image
+          style={styles.profileImage}
+            source={require('../../assets/ishan.png')}
+           
+          />
+
+    </View>
+     
+
+
+     <ScrollView horizontal={true}
+     style={{
+      marginTop:50,
+     }}
+     >
+       <View style={[styles.categoryItemWrapper,{
+          backgroundColor:  '#f9f9fb',
+          marginStart:15,
+         
+
+       }
+            ]}>
+             <ImageBackground source={require('../../assets/d.png')} resizeMode="cover" style={styles.image}/>
+                  {/* <Text style={styles.text}>Inside</Text>
+            </ImageBackground> */}
+               {/* <Image source={require('../../assets/d.png')} style={styles.categoryItemImage}/> */}
+               <Text style={styles.categoryItemTitle}>title</Text>
+
+
+            </View>
+            <View style={[styles.categoryItemWrapper, {
+                backgroundColor:  '#f9f9fb',
+         
+            },
+            ]}>
+               {/* <Image source={require('../../assets/logo.png')} style={styles.categoryItemImage}/> */}
+               <Text style={styles.categoryItemTitle}>title</Text>
+               
+
+            </View>
+
+            <View style={[styles.categoryItemWrapper, {
+                backgroundColor:  '#f9f9fb',
+          
+            },
+            ]}>
+               {/* <Image source={require('../../assets/logo.png')} style={styles.categoryItemImage}/> */}
+               <Text style={styles.categoryItemTitle}>title</Text>
+              
+
+            </View>
+
+            <View style={[styles.categoryItemWrapper, {
+                backgroundColor:  '#f9f9fb',
+           //     marginLeft: item.id==1 ? 20 : 0,
+            },
+            ]}>
+               {/* <Image source={require('../../assets/logo.png')} style={styles.categoryItemImage}/> */}
+               <Text style={styles.categoryItemTitle}>title</Text>
+            
+
+            </View>
+
+
+       </ScrollView>
+
+       <TouchableOpacity
+       onPress={()=>{
+         navigation.navigate('DetailsScreen');
+       }}
+       >
+
+       <View style={[styles.todayWrapper, {
+                backgroundColor:  '#fff',
+                marginTop:-30,
+               // justifyContent:'center',
+                alignItems:'center',
+                marginLeft:18
+          
+            },
+            ]}>
+
+
+
+            <View style={styles.todayFirstRow}>
+              <Text style={styles.todayFirstRowTitle} >Today</Text>
+              <Text style={styles.todayFirstRowDel}>Deliveries</Text>
+              <View
+              style={styles.todayFirstRowIcon}
+             >
+              <Text>9</Text>
+
+              </View>
+             
+
+               
+            
+
+            </View>
+
+            <View style={styles.todaySecondRow}>
+                 {/* <Image source={require('../../assets/logo.png')} style={styles.categoryItemImage}/> */}
+
+
+            <Animatable.Image
+            animation="fadeIn"
+              source={require('../../assets/vector.png')}
+              style={styles.todaySecondRowImg1}
+              
+            />
+
+            <View style={styles.todaySecondRowNew}>
+
+            <Animatable.Image
+              animation="bounce"
+              source={require('../../assets/line.png')}
+              style={styles.todaySecondRowImg2}
+            />
+              <View style={styles.todaySecondRowNewText}>
+                  <Text style={styles.todaySecondRowNewText1}>Colombo</Text>
+                  <Text style={styles.todaySecondRowNewText2}>Galle</Text>
+                   <Text style={styles.todaySecondRowNewText3}>Matara</Text>
+              </View>
+
+            </View>
+
+         
+               {/* <Slider
+                style={{width: "90%", height: 20}}
+                minimumValue={1}
+                maximumValue={100}
+                minimumTrackTintColor="#217756"
+                maximumTrackTintColor="#000000"
+              />
+               <Text style={styles.categoryItemTitle}>title</Text> */}
+
+            </View>
+
+              
+              
+              
+
+            </View>
+
+
+
+
+       </TouchableOpacity>
+                  
        
-{/* 
-        <StatusBar barStyle="dark-content"/>
-        <SafeAreaView style={styles.container}>
-          <TouchableWithoutFeedback onPress={onShowPopup}>
-            <Text style={styles.txtSize}>Show popup</Text>
-          </TouchableWithoutFeedback>
-
-          <ModalScreen
 
 
-            ref={(target)=> popupRef = target}
-            onTouchOutside={onClosePopup}
-            title="Hello ishan"
+            <ScrollView horizontal={true}>
+                <TouchableOpacity  onPress={()=>
+          //  navigation.navigate("ModalScreen")
+          setOpenModal(true)
+          }>
+                    <View style={[styles.DeliveryItemWrapper, {
+                              backgroundColor:  '#f9f9fb',
+                        //     marginLeft: item.id==1 ? 20 : 0,
+                          },
+                          ]}>
+                            {/* <Image source={require('../../assets/logo.png')} style={styles.categoryItemImage}/> */}
+                            <Text style={styles.DeliveryItemWrapperTitle1}>UPCOMING</Text>
+                            <FontAwesome5 name="box-open" size={44} color="#217756" 
+                               style={styles.DeliveryItemWrapperIcon1}
+                            />
+                            <Text style={styles.DeliveryItemWrappersunTitle1}>Quick Delivery- 23 July</Text>
 
-            data={data}
-         />
+                    </View>
+                    </TouchableOpacity>   
 
+                  <TouchableOpacity
+                          onPress={()=>
+                  //  navigation.navigate("ModalScreen")
+                  setOpenModal1(true)
+                  }
+                  >            
 
+                    <View style={[styles.DeliveryItemWrapper, {
+                            backgroundColor: '#f9f9fb',
+                      
+                        },
+                        ]}>
+                          
+                          <Text style={styles.DeliveryItemWrapperTitle2}>HISTORY</Text>
+                          <FontAwesome name="history" size={44} color="#217756" 
+                            style={styles.DeliveryItemWrapperIcon2}
+                          />
+                          <Text style={styles.DeliveryItemWrappersunTitle2}>Previous Deliveries</Text>
 
+                    </View>
+
+                    </TouchableOpacity>               
+              </ScrollView>
 
          
-        </SafeAreaView>
-         */}
-
-         
-        <Button title="go to details Screen"
+        {/* <Button title="go to details Screen"
           onPress={()=>
           //  navigation.navigate("ModalScreen")
           setOpenModal(true)
@@ -159,15 +357,19 @@ const HomeScreen = ({navigation})=>{
           //  navigation.navigate("ModalScreen")
           setOpenModal1(true)
           }
-        />
+        /> */}
+
+
+
+
 
            <Modal visible={openModal} 
           //  customBackdrop={<View style={{flex: 1}} />}
            onBackdropPress={() => setOpenModal(false)}
            
            >
-              <Animatable.View animation="bounce" style={{flex:1,maxHeight:deviceHeight* 0.7, marginTop:180, justifyContent:"flex-end",borderTopLeftRadius:10,}}>
-              <Text>Hello ishan</Text>
+              {/* <Animatable.View animation="fadeInDownBig" style={{flex:1,maxHeight:deviceHeight* 0.6, marginTop:180, justifyContent:"flex-end",borderTopLeftRadius:10,}}> */}
+              <Animatable.View animation="fadeInUpBig" style={{flex:1,maxHeight:deviceHeight* 0.6, marginTop:220, marginBottom:-28, justifyContent:"flex-end",borderTopLeftRadius:10,}}>
 
               <FlatList
                 data={orderList}
@@ -205,9 +407,9 @@ const HomeScreen = ({navigation})=>{
                   </View>
                 }}
               />
-              <Button title="back"
+              {/* <Button title="back"
                 onPress={()=>setOpenModal(false)}
-              />
+              /> */}
               </Animatable.View>
             </Modal>
 
@@ -217,14 +419,6 @@ const HomeScreen = ({navigation})=>{
               <Text>Hello secons</Text>
 
 
-              <MapView
-                  initialRegion={{
-                    latitude: 37.78825,
-                    longitude: -122.4324,
-                    latitudeDelta: 0.0922,
-                    longitudeDelta: 0.0421,
-                  }}
-  />
               
 
               <FlatList
@@ -255,28 +449,263 @@ export default HomeScreen;
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
+      height:deviceHeight,
+     
+     
+     
+      backgroundColor:  '#B7F785',
+    
     
     },
+    image: {
+      flex: 1,
+      justifyContent: "center",
+      height:130,
+      marginTop:10,
+      width:140
+    },
+    text: {
+      color: "white",
+      fontSize: 42,
+      lineHeight: 84,
+      fontWeight: "bold",
+      textAlign: "center",
+      backgroundColor: "#000000c0"
+    },
+    header:{
+
+      flexDirection:'row',
+      paddingHorizontal:10,
+      justifyContent:'space-between',
+      alignItems:'center',
+      paddingTop:10,
+
+    },
+    profileImage:{
+
+      width:40,
+      height:40,
+      marginStart:5,
+      borderRadius:40,
+    },
     flatItem:{
-      width:'90%',
-      height:250,
+      width:'100%',
+      height:200,
       borderRadius:20,
-      borderBottomEndRadius:20,
-      borderBottomLeftRadius:20,
-      borderTopRightRadius:20,
-      borderTopLeftRadius:20,
-      margin:10,
-      backgroundColor:'red',
-      alignItems:'center'
+      // borderBottomEndRadius:20,
+      // borderBottomLeftRadius:20,
+      // borderTopRightRadius:20,
+      // borderTopLeftRadius:20,
+      
+      backgroundColor:'#f9f9fb',  
+      alignItems:'center',
+    
 
 
     },
     txtSize:{
       fontSize:20,
+    },
+    categoryItemWrapper:{
+      //  backgroundColor:colors.secondaryT50,
+        display:'flex',
+        marginRight:10,
+        borderRadius:20,
+        height:150,
+        width:150,
+        // padding:10,
+        alignItems:"center",
+        justifyContent:"center",
+        shadowColor:"black",
+        shadowOffset:{
+            width:1,
+            height:2,
+        },
+        shadowOpacity:0.05,
+        shadowRadius:20,
+        elevation:2,
+  
+     },
+  
+     categoryItemImage:{
+         marginTop:25,
+         alignSelf:"center",
+         marginHorizontal:27,
+         width:100,
+         height:100,
+     },
+  
+     categoryItemTitle:{
+        //  display:"flex",
+        //  textAlign:"center",
+        textAlign:'center',
+       
+         fontSize:16,
+         fontWeight:"600",
+         marginBottom:-90,
+        //  textTransform:'uppercase',
+     },
+
+     todayWrapper:{
+      //  backgroundColor:colors.secondaryT50,
+        display:'flex',
+        // marginRight:20,
+        borderRadius:20,
+        width:370,
+        padding:10,
+        height:110,
+        marginStart:20,
+      
+       
+        // alignItems:"center",
+        // justifyContent:"center",
+        shadowColor:"black",
+        shadowOffset:{
+            width:1,
+            height:1,
+        },
+        shadowOpacity:0.05,
+        shadowRadius:20,
+        elevation:2,
+  
+     },
+
+     todayFirstRow:{
+       flexDirection:'row',
+       marginTop:7,
+
+      
+
+     },
+     todayFirstRowTitle:{
+       color:'#217756',
+       fontSize:18,
+       fontWeight:'bold',
+       marginLeft:-10,
+      
+       
+     },
+     todayFirstRowDel:{
+      color:'#217756',
+      fontSize:16,
+      marginStart:180,
+
+
+     },
+     todayFirstRowIcon:{
+      marginStart:10,
+      alignItems:'center', 
+      justifyContent:'center',  
+      backgroundColor:'#F7AF93',     
+      width:25,
+      height:21, 
+      marginTop:2,
+      borderRadius:21, 
+     },
+     todaySecondRow:{
+       flexDirection:"row",
+       marginTop:20,
+       
+     },
+     todaySecondRowNew:{
+
+      flexDirection:'column'
+     },
+
+     todaySecondRowNewText:{
+
+      flexDirection:'row',
+     
+     },
+     todaySecondRowImg1:{
+       marginStart:-70,
+     },
+     todaySecondRowImg2:{
+      marginStart:50,
+    },
+    todaySecondRowNewText1:{
+      marginLeft:40,
+      color:'#217756'
+    },
+    todaySecondRowNewText2:{
+      marginLeft:20,
+      color:'#217756',
+    },
+    todaySecondRowNewText3:{
+      marginLeft:40,
+      color:'#217756',
+    },
+
+    DeliveryItemWrapper:{
+
+       //  backgroundColor:colors.secondaryT50,
+       display:'flex',
+       // marginRight:20,
+       borderRadius:20,
+       width:174,
+       padding:10,
+       height:115,
+       marginStart:20,
+       marginTop:40,
+     
+      
+       // alignItems:"center",
+       // justifyContent:"center",
+       shadowColor:"black",
+       shadowOffset:{
+           width:1,
+           height:1,
+       },
+       shadowOpacity:0.05,
+       shadowRadius:20,
+       elevation:2,
+
+    },
+    DeliveryItemWrapperTitle1:{
+      color:'#217756',
+       fontSize:18,
+       fontWeight:'bold',
+      
+       marginLeft:25,
+
+
+
+    },
+    DeliveryItemWrapperTitle2:{
+      color:'#217756',
+       fontSize:18,
+       fontWeight:'bold',
+      
+       marginLeft:30,
+
+
+
+    },
+    DeliveryItemWrapperIcon1:{
+      marginTop:2,
+      marginLeft:45,
+
+    },
+    DeliveryItemWrapperIcon2:{
+
+      marginTop:2,
+      marginLeft:47,
+    },
+    DeliveryItemWrappersunTitle1:{
+      fontSize:12,
+      fontWeight:'bold',
+      marginLeft:8,
+
+
+    },
+    DeliveryItemWrappersunTitle2:{
+      fontSize:12,
+      color:'#C4C4C4',
+      marginLeft:20,
+
     }
+
+
   
    
   });

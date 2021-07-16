@@ -15,45 +15,43 @@ import { StyleSheet,
   import {
     Switch
   }from 'react-native-paper';
-  import { Ionicons } from '@expo/vector-icons';
+
+  
+
 
 
   const DetailsScreen = ({navigation})=>{
+
+
+    const data=[
+      {
+        'id':'1',
+        'name':"ishan"
+      },
+      {
+        'id':'2',
+        'name':"ishan"
+      },
+      {
+        'id':'3',
+        'name':"ishan"
+      },
+      {
+        'id':'4',
+        'name':"ishan"
+      },
+    ]
     return(
+      <ScrollView>
       <View style={{flex:1, backgroundColor:'#f9f9fb'}}>
-       <Ionicons name="menu" size={25} color='#217756' backgroundColor='#1f65ff' style={{marginLeft:5}}
-          onPress={()=>navigation.openDrawer()} />
-       <Image
-         source={require('../../assets/logo.png')}
-         style={{width:50,
-         height:50,
-         marginStart:340,
-         marginTop:-10,
+
+
+      
+      
+
+
+    
        
-
-         }}
-       />
-
-       <ScrollView>
-       <View style={[styles.categoryItemWrapper, {
-                backgroundColor:  '#b6f7859c',
-           //     marginLeft: item.id==1 ? 20 : 0,
-            },
-            ]}>
-               <Image source={require('../../assets/logo.png')} style={styles.categoryItemImage}/>
-               <Text style={styles.categoryItemTitle}>title</Text>
-               <View style={styles.categorySelectWrapper}>
-                   {/* <Feather
-                   name="shevron-right"
-                   size={8}
-                   style={styles.categorySelectIcon}
-                   /> */}
-               </View>
-
-            </View>
-
-
-       </ScrollView>
                        
         <Button
           title="Go to details screen...again"
@@ -70,6 +68,8 @@ import { StyleSheet,
           onPress={()=>navigation.goBack()}
         />
       </View>
+
+      </ScrollView>
     );
   }
   export default DetailsScreen;
@@ -86,20 +86,21 @@ import { StyleSheet,
     categoryItemWrapper:{
     //  backgroundColor:colors.secondaryT50,
       display:'flex',
-      marginRight:20,
+      marginRight:10,
       borderRadius:20,
-      width:130,
-      padding:10,
+      height:120,
+      width:150,
+      // padding:10,
       alignItems:"center",
       justifyContent:"center",
       shadowColor:"black",
       shadowOffset:{
           width:1,
-          height:2,
+          height:1,
       },
       shadowOpacity:0.05,
       shadowRadius:10,
-      elevation:2,
+      elevation:1,
 
    },
 
@@ -107,6 +108,8 @@ import { StyleSheet,
        marginTop:25,
        alignSelf:"center",
        marginHorizontal:27,
+       width:100,
+       height:100,
    },
 
    categoryItemTitle:{
@@ -117,6 +120,7 @@ import { StyleSheet,
        marginTop:10,
        textTransform:'uppercase',
    },
+  
 
   
    

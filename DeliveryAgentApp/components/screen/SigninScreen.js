@@ -101,7 +101,7 @@ export default function SigninScreen({navigation}) {
                 animation='bounceIn'>
                 <Feather
                   name="check-circle"
-                  color="green"
+                  color="#217756"
                   size={20}
                 />
                 </Animatable.View>
@@ -113,7 +113,7 @@ export default function SigninScreen({navigation}) {
               <View style={styles.action}>
                 <FontAwesome
                   name="lock"
-                  color="#05375a"
+                  color="#217756"
                   size={20}
                 />
                 <TextInput
