@@ -1,0 +1,2 @@
+Order - Payment - On DELETE CASCADE
+Staff - Role - ON DELETE RESTRICT
