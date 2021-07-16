@@ -33,6 +33,8 @@ import { AuthContext } from './components/context/context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import LoginStack from './components/stack/LoginStack';
+
+import DetailsScreen from './components/screen/DetailsScreen';
 const Drawer = createDrawerNavigator();
 
 
@@ -239,6 +241,7 @@ export default function App({navigation}) {
             <Drawer.Screen name="SupportScreen" component={SupportScreen} />
             <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
             <Drawer.Screen name="PaymentScreen" component={PaymentScreen}/>
+            <Drawer.Screen name="DetailsScreen" component={DetailsScreen}/>
             
         </Drawer.Navigator>)
         :

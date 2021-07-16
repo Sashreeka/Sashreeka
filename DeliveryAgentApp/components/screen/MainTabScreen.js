@@ -4,7 +4,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 
 const Tab = createMaterialBottomTabNavigator();
 
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons,MaterialCommunityIcons } from '@expo/vector-icons';
 import HomeScreen from './HomeScreen';
 import DetailsScreen from './DetailsScreen';
 import ProfileScreen from './ProfileScreen';
@@ -43,10 +43,10 @@ const MainTabScreen = ()=>(
         name="Details"
         component={DetailsStackScreen}
         options={{
-          tabBarLabel: 'Details',
+          tabBarLabel: 'Today',
           tabBarColor:'#fff',
           tabBarIcon: ({ color }) => (
-            <Ionicons name="notifications" color={color} size={26} />
+            <MaterialCommunityIcons name="truck-delivery" color={color} size={30} />
           ),
         }}
       />
@@ -106,11 +106,12 @@ const HomeStackScreen= ({navigation})=>(
     }}>
       <HomeStack.Screen name="Home" component={HomeScreen} 
       options={{
-        headerLeft: ()=>(
-          <Ionicons name="menu" size={25} color='#217756' backgroundColor='#009387' style={{marginLeft:10}}
+        // headerLeft: ()=>(
+        //   <Ionicons name="menu" size={25} color='#217756' backgroundColor='#009387' style={{marginLeft:10}}
           
-          onPress={()=>navigation.openDrawer()} />
-        )
+        //   onPress={()=>navigation.openDrawer()} />
+        // )
+        headerShown:false
       }}
         
       />
@@ -142,15 +143,16 @@ const HomeStackScreen= ({navigation})=>(
           }
   
     }}>
-      <DetailsStack.Screen name="Details" component={DetailsScreen} 
+      <DetailsStack.Screen name="Today Delivery" component={DetailsScreen} 
       
   
       options={{
-        // headerLeft: ()=>(
-        //   <Ionicons name="menu" size={25} color='#217756' backgroundColor='#1f65ff' style={{marginLeft:5}}
-        //   onPress={()=>navigation.openDrawer()} />
-        // ),
-        headerShown: false
+        headerLeft: ()=>(
+          <Ionicons name="menu" size={25} color='#217756' backgroundColor='#1f65ff' style={{marginLeft:5}}
+          onPress={()=>navigation.openDrawer()} />
+        ),
+       
+      
 
       }}
         
