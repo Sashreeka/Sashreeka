@@ -64,7 +64,7 @@ class Navigation extends Component{
                 <Link className="nav-link" to="/contact">Contact</Link>
               </li>
               <li>
-              <Link className="nav-link" to="/signup">
+              <Link className="nav-link" to="/signin">
               <div className="nav-sign-in">
                 <div className="signin">Sign in</div>
               </div>

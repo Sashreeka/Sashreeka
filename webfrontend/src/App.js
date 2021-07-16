@@ -9,6 +9,7 @@ import Contact from "./components/static/Contact";
 import Store from "./components/store/Store";
 import Handbook from "./components/handbook/Handbook";
 import Signup from "./components/authentication/Signup";
+import Signin from "./components/authentication/Signin";
 import Footer from "./components/common/footer/footer";
 import Admin from "./components/company/Admin/Admin";
 import UserList from "./components/company/Admin/pages/userList/UserList";
@@ -47,6 +48,10 @@ function App() {
         
         <Route path="/signup">
           <Signup />
+        </Route>
+
+        <Route path="/signin">
+          <Signin />
         </Route>
 
         <Route path="/">
