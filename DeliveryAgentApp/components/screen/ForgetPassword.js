@@ -11,6 +11,7 @@ import {
 // import Constants from 'expo-constants';
 import * as Animatable from 'react-native-animatable';
 import Collapsible from 'react-native-collapsible';
+import {Entypo} from '@expo/vector-icons';
 
 import axios from 'axios';
 
@@ -21,7 +22,8 @@ import axios from 'axios';
 export default function ForgetPassword() {
 
 
-  const [collapsed,setCollapsed]=useState(true)
+  const [collapsed,setCollapsed]=useState(true);
+  const [details, setDetails]=useState([])
 
   const toggleExpanded = () => {
     setCollapsed( !collapsed);
@@ -30,20 +32,25 @@ export default function ForgetPassword() {
   };
   
  
+  
 
-    useEffect(()=>{
+    // useEffect(()=>{
 
-      axios.get('http://192.168.1.12:3001/api/order').then((response)=>{
-      if(response)
-      {
+    //   axios.get('http://192.168.1.12:3001/api/order').then((response)=>{
+    //   if(response)
+    //   {
      
-     
-      }else{
-        console.log('error');
-      }
-     })
+    //     setDetails(response.data);
+    //     console.log(response.data)
 
-    },[])
+       
+     
+    //   }else{
+    //     console.log('error');
+    //   }
+    //  })
+
+    // },[])
 
 
 
@@ -67,18 +74,24 @@ export default function ForgetPassword() {
 
           <TouchableOpacity onPress={toggleExpanded}>
             <View style={header}>
-              <Text style={headerText}>Single Collapsible</Text>
+              <Text style={headerText}>Polonnaruwa- Mr.P.B.N.Bandara</Text>
             </View>
           </TouchableOpacity>
           <Collapsible collapsed={collapsed} align="center">
             <View style={content}>
+            <Entypo name="calendar" size={24} color="black" />
               <Text>
-                Bacon ipsum dolor amet chuck turducken landjaeger tongue spare
-                ribs
+
+              Sri Wiccrama Rajasinghe Mawatha, Polonnaruwa
+              </Text>
+
+              <Text>
+
+              Compost Fertilizer 10kg x 50
               </Text>
               <Button
-                title="click"
-                onPress={()=>{console.log("Pressed")}}
+                title="Delivered"
+                onPress={()=>{alert('Are you sure, You get the money')}}
               />
             </View>
           </Collapsible>

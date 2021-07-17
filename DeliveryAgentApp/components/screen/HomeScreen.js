@@ -27,6 +27,7 @@ import { StyleSheet,
   import { Ionicons,Feather,FontAwesome,FontAwesome5 } from '@expo/vector-icons';
   import Slider from '@react-native-community/slider';
 
+  import Collapsible from 'react-native-collapsible';
   import DetailsScreen from './DetailsScreen';
 
   //import Animatable from 'react-native-animatable';
@@ -38,6 +39,7 @@ import { StyleSheet,
     Switch 
   } from 'react-native-paper';
 
+  import {Entypo} from '@expo/vector-icons';
 
 
   const deviceHeight=Dimensions.get('window').height
@@ -46,17 +48,17 @@ const HomeScreen = ({navigation})=>{
 
   const [orderList,setOrderList]=useState([]);
 
-  useEffect(()=>{
-    axios.get('http://192.168.1.12:3001/api/order').then((response)=>{
-      if(response)
-      {
-       console.log(response.data);
-       setOrderList(response.data)
-      }else{
-        console.log('error');
-      }
-     })
-  },[])
+  // useEffect(()=>{
+  //   axios.get('http://192.168.1.12:3001/api/order').then((response)=>{
+  //     if(response)
+  //     {
+  //      console.log(response.data);
+  //      setOrderList(response.data)
+  //     }else{
+  //       console.log('error');
+  //     }
+  //    })
+  // },[])
 
   const data=[
     {
@@ -128,6 +130,17 @@ const HomeScreen = ({navigation})=>{
 
   const [openModal,setOpenModal]=useState(false);
   const [openModal1,setOpenModal1]=useState(false);
+
+  const [collapsed,setCollapsed]=useState(true);
+  const [details, setDetails]=useState([])
+
+  const toggleExpanded = () => {
+    setCollapsed( !collapsed);
+  //  this.setState({ collapsed: !this.state.collapsed });
+  console.log(collapsed);
+  };
+
+  const {headerList,headerText,content}=styles
     return(
       <ScrollView>
       <View style={styles.container}>
@@ -322,9 +335,7 @@ const HomeScreen = ({navigation})=>{
                     </TouchableOpacity>   
 
                   <TouchableOpacity
-                          onPress={()=>
-                  //  navigation.navigate("ModalScreen")
-                  setOpenModal1(true)
+                          onPress={()=>setOpenModal1(true)
                   }
                   >            
 
@@ -364,52 +375,88 @@ const HomeScreen = ({navigation})=>{
 
 
            <Modal visible={openModal} 
-          //  customBackdrop={<View style={{flex: 1}} />}
+         
            onBackdropPress={() => setOpenModal(false)}
            
            >
               {/* <Animatable.View animation="fadeInDownBig" style={{flex:1,maxHeight:deviceHeight* 0.6, marginTop:180, justifyContent:"flex-end",borderTopLeftRadius:10,}}> */}
               <Animatable.View animation="fadeInUpBig" style={{flex:1,maxHeight:deviceHeight* 0.6, marginTop:220, marginBottom:-28, justifyContent:"flex-end",borderTopLeftRadius:10,}}>
-
-              <FlatList
-                data={orderList}
-                
-                renderItem={({item})=>{
-                  const seperate=item.item.split(', ');
-                       console.log(seperate)
-                  return <View style={styles.flatItem} key={item.telephone}>
-                      <View>
-
-                      <Image
-                      style={{width:100, height:100}}
-                        source={require('../../assets/ishan.png')}
-                      />
-                      <Text>{item.city}-{item.customer_name}</Text>
-                      <Text>{item.address}</Text>
-                      <Text>{item.telephone}</Text>
-                      {/* <Text>{item.item}</Text> */}
-                      {
-                        seperate.map((product,index) =>
-                      {
-                        return   <Text key={index}>{product}</Text>
-                      }
-                      )
-                      }
-                    
-                      
+                  <ScrollView >
                     
 
+                  <View
+                  style={{marginBottom:30}}
+                  >
+                    <TouchableOpacity onPress={toggleExpanded}>
+                      <View style={headerList}>
+                        <Text style={headerText}>Polonnaruwa- Mr.P.B.N.Bandara</Text>
                       </View>
-                      <View>
-                      <Text>{item.name} {item.age}</Text>
-                      </View>
+                    </TouchableOpacity>
+                    <Collapsible collapsed={collapsed} align="center">
+                      <View style={content}>
+                      <Entypo name="calendar" size={24} color="black" />
+                        <Text>
 
-                  </View>
-                }}
-              />
-              {/* <Button title="back"
+                        Sri Wiccrama Rajasinghe Mawatha, Polonnaruwa
+                        </Text>
+
+                        <Text>
+
+                        Compost Fertilizer 10kg x 50
+                        </Text>
+                        <Button
+                          title="Delivered"
+                          onPress={()=>{alert('Are you sure, You get the money')}}
+                        />
+                      </View>
+                    </Collapsible>
+
+                    </View>
+
+
+
+                    <TouchableOpacity onPress={toggleExpanded}>
+                      <View style={headerList}>
+                        <Text style={headerText}>Polonnaruwa- Mr.P.B.N.Bandara</Text>
+                      </View>
+                    </TouchableOpacity>
+                    <Collapsible collapsed={collapsed} align="center">
+                      <View style={content}>
+                      <Entypo name="calendar" size={24} color="black" />
+                        <Text>
+
+                        Sri Wiccrama Rajasinghe Mawatha, Polonnaruwa
+                        </Text>
+
+                        <Text>
+
+                        Compost Fertilizer 10kg x 50
+                        </Text>
+                        <Button
+                          title="Delivered"
+                          onPress={()=>{alert('Are you sure, You get the money')}}
+                        />
+                      </View>
+                    </Collapsible>
+
+
+                  
+                  </ScrollView>
+
+
+
+
+                  
+
+
+
+              
+
+
+              
+              <Button title="back"
                 onPress={()=>setOpenModal(false)}
-              /> */}
+              />
               </Animatable.View>
             </Modal>
 
@@ -472,6 +519,30 @@ export default HomeScreen;
       textAlign: "center",
       backgroundColor: "#000000c0"
     },
+    headerList: {
+      backgroundColor: '#217756',
+      padding: 20,
+      borderRadius:20,
+
+    },
+    headerText: {
+      textAlign: 'center',
+      fontSize: 16,
+      fontWeight: '500',
+      color:'#fff',
+      fontWeight:'bold',
+
+    },
+    content: {
+      padding: 20,
+      backgroundColor: '#fff',
+      borderBottomLeftRadius:20,
+      borderBottomRightRadius:20,
+    },
+  
+
+
+
     header:{
 
       flexDirection:'row',
@@ -709,3 +780,42 @@ export default HomeScreen;
   
    
   });
+
+
+
+  // <FlatList
+  //               data={orderList}
+                
+  //               renderItem={({item})=>{
+  //                 const seperate=item.item.split(', ');
+  //                      console.log(seperate)
+  //                 return <View style={styles.flatItem} key={item.telephone}>
+  //                     <View>
+
+  //                     <Image
+  //                     style={{width:100, height:100}}
+  //                       source={require('../../assets/ishan.png')}
+  //                     />
+  //                     <Text>{item.city}-{item.customer_name}</Text>
+  //                     <Text>{item.address}</Text>
+  //                     <Text>{item.telephone}</Text>
+  //                     {/* <Text>{item.item}</Text> */}
+  //                     {
+  //                       seperate.map((product,index) =>
+  //                     {
+  //                       return   <Text key={index}>{product}</Text>
+  //                     }
+  //                     )
+  //                     }
+                    
+                      
+                    
+
+  //                     </View>
+  //                     <View>
+  //                     <Text>{item.name} {item.age}</Text>
+  //                     </View>
+
+  //                 </View>
+  //               }}
+  //             />
