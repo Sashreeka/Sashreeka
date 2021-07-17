@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 17, 2021 at 08:25 PM
+-- Generation Time: Jul 17, 2021 at 10:20 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.3.28
 
@@ -306,6 +306,30 @@ CREATE TABLE `role` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(10) NOT NULL,
+  `phoneNumber` varchar(10) NOT NULL,
+  `password` text NOT NULL,
+  `userCategory` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `phoneNumber`, `password`, `userCategory`) VALUES
+(1, '0777333333', '111', 'farmer'),
+(2, '0777444444', '111', 'farmer'),
+(3, '0777111111', '111', 'admin'),
+(4, '0777222222', '111', 'deliveryAgent'),
+(5, '0777555555', '111', 'staff');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `vehicle`
 --
 
@@ -448,6 +472,12 @@ ALTER TABLE `role`
   ADD PRIMARY KEY (`roleId`);
 
 --
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`,`phoneNumber`);
+
+--
 -- Indexes for table `vehicle`
 --
 ALTER TABLE `vehicle`
@@ -518,6 +548,12 @@ ALTER TABLE `rate`
 --
 ALTER TABLE `role`
   MODIFY `roleId` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `vehicle`
