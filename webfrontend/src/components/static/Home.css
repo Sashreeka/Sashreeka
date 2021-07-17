@@ -1,0 +1,42 @@
+.hero{
+    width:100%;
+    min-height:100vh;
+
+}
+.row{
+    display: flex;
+    width:100%;
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+}
+.col-2 img{
+    width:100%;
+
+}
+.col-1 ,.col-2{
+    flex-basis:50px;
+    overflow:hidden;
+
+}
+.col-1 .h1{
+   color:rgb(76, 150, 76)
+   
+   
+}
+.col-1 h3{
+    color:rgb(74, 211, 74)
+}
+.link1:link, .link1:visited {
+    background-color:rgb(15, 107, 15);
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 20px;
+  }
+  
+  .link1:hover, .link1:active {
+    background-color:rgb(74, 211, 74);
+  }
