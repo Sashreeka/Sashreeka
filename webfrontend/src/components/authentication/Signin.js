@@ -1,13 +1,27 @@
-import React from 'react';
+import React from "react";
 
+// CSS file
+import "./Signin.css";
 
 function Signin() {
-    return(
-        <div>
-            <h1>This is Login page</h1>
-            <p>Shashreeka recognized that the growing demand for organic crop farming required an increased focus on providing an all-natural solution to boost soil nutrition. Rather than make unproven claims about our fertilizer, we focus on education, testing, and proper use to document results. This process may be slower, but it ensures that we support the growth of sustainable agriculture around the world.</p>
-        </div>
-    )
+  return (
+    // CAn returen only a one single element
+    // <React.Fragment>
+    <div>
+      <h1>This is Login page</h1>
+      <div className="formBox">
+        <form className="loginForm">
+          <label>Username</label>
+          <input type="email" name="email" required />
+          <br />
+          <label>Password</label>
+          <input type="password" name="password" required />
+          {/* <Button>LOGIN</Button> */}
+        </form>
+      </div>
+    </div>
+    // </React.Fragment>
+  );
 }
 
 export default Signin;
