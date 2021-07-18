@@ -1,8 +1,20 @@
 import React from 'react';
 import "./Store.css";
+import Carousel from 'react-elastic-carousel';
 
 function Store() {
+    const breakPoints = [
+        {width: 200, itemsToShow: 1},
+        {width: 350, itemsToShow: 2},
+        {width: 500, itemsToShow: 3},
+        {width: 650, itemsToShow: 4},
+        {width: 800, itemsToShow: 5},
+        {width: 950, itemsToShow: 6},
+        {width: 1050, itemsToShow: 7},
+
+    ];
     return(
+        
         <div>
             {/*Search bar*/}
             <div className="Store_bar">
@@ -23,59 +35,97 @@ function Store() {
             <h3 className="fer-topic">Fertilizer Categories</h3>
             <hr/>
             <div className="fer-cat">
-                <div className="fer-cat-item">
-                    <div className="fer-cat-image">
-                        <img src={require('../../assets/images/fer-cat-1.jpg').default}></img>
+                <Carousel breakPoints={breakPoints}>
+                    <div className="fer-cat-item">
+                        <div className="fer-cat-image">
+                            <img src={require('../../assets/images/fer-cat-1.jpg').default}></img>
+                        </div>
+                        <div className="fer-cat-name">
+                            <h4>Paddy</h4>
+                        </div>
                     </div>
-                    <div className="fer-cat-name">
-                        <h4>Paddy</h4>
-                    </div>
-                </div>
 
-                <div className="fer-cat-item">
-                    <div className="fer-cat-image">
-                        <img src={require('../../assets/images/fer-cat-2.jpg').default} />
+                    <div className="fer-cat-item">
+                        <div className="fer-cat-image">
+                            <img src={require('../../assets/images/fer-cat-1.jpg').default}></img>
+                        </div>
+                        <div className="fer-cat-name">
+                            <h4>Paddy</h4>
+                        </div>
                     </div>
-                    <div className="fer-cat-name">
-                        <h4>Paddy</h4>
-                    </div>
-                </div>
 
-                <div className="fer-cat-item">
-                    <div className="fer-cat-image">
-                        <img src={require('../../assets/images/fer-cat-3.jpg').default}></img>
+                    <div className="fer-cat-item">
+                        <div className="fer-cat-image">
+                            <img src={require('../../assets/images/fer-cat-1.jpg').default}></img>
+                        </div>
+                        <div className="fer-cat-name">
+                            <h4>Paddy</h4>
+                        </div>
                     </div>
-                    <div className="fer-cat-name">
-                        <h4>Paddy</h4>
-                    </div>
-                </div>
 
-                <div className="fer-cat-item">
-                    <div className="fer-cat-image">
-                        <img src={require('../../assets/images/fer-cat-4.jpg').default}></img>
+                    <div className="fer-cat-item">
+                        <div className="fer-cat-image">
+                            <img src={require('../../assets/images/fer-cat-1.jpg').default}></img>
+                        </div>
+                        <div className="fer-cat-name">
+                            <h4>Paddy</h4>
+                        </div>
                     </div>
-                    <div className="fer-cat-name">
-                        <h4>Paddy</h4>
-                    </div>
-                </div>
 
-                <div className="fer-cat-item">
-                    <div className="fer-cat-image">
-                        <img src={require('../../assets/images/fer-cat-5.jpg').default}></img>
+                    <div className="fer-cat-item">
+                        <div className="fer-cat-image">
+                            <img src={require('../../assets/images/fer-cat-1.jpg').default}></img>
+                        </div>
+                        <div className="fer-cat-name">
+                            <h4>Paddy</h4>
+                        </div>
                     </div>
-                    <div className="fer-cat-name">
-                        <h4>Paddy</h4>
-                    </div>
-                </div>
 
-                <div className="fer-cat-item">
-                    <div className="fer-cat-image">
-                        <img src={require('../../assets/images/fer-cat-6.jpg').default}></img>
+                    <div className="fer-cat-item">
+                        <div className="fer-cat-image">
+                            <img src={require('../../assets/images/fer-cat-2.jpg').default} />
+                        </div>
+                        <div className="fer-cat-name">
+                            <h4>Paddy</h4>
+                        </div>
                     </div>
-                    <div className="fer-cat-name">
-                        <h4>Paddy</h4>
+
+                    <div className="fer-cat-item">
+                        <div className="fer-cat-image">
+                            <img src={require('../../assets/images/fer-cat-3.jpg').default}></img>
+                        </div>
+                        <div className="fer-cat-name">
+                            <h4>Paddy</h4>
+                        </div>
                     </div>
-                </div>
+
+                    <div className="fer-cat-item">
+                        <div className="fer-cat-image">
+                            <img src={require('../../assets/images/fer-cat-4.jpg').default}></img>
+                        </div>
+                        <div className="fer-cat-name">
+                            <h4>Paddy</h4>
+                        </div>
+                    </div>
+
+                    <div className="fer-cat-item">
+                        <div className="fer-cat-image">
+                            <img src={require('../../assets/images/fer-cat-5.jpg').default}></img>
+                        </div>
+                        <div className="fer-cat-name">
+                            <h4>Paddy</h4>
+                        </div>
+                    </div>
+
+                    <div className="fer-cat-item">
+                        <div className="fer-cat-image">
+                            <img src={require('../../assets/images/fer-cat-6.jpg').default}></img>
+                        </div>
+                        <div className="fer-cat-name">
+                            <h4>Paddy</h4>
+                        </div>
+                    </div>
+                </Carousel>
             </div>
 
             {/*Popular products*/}

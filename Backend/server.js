@@ -1,45 +1,110 @@
 const express=require('express');
-const mysql=require('mysql');
-const jwt=require('jsonwebtoken');
-const bcrypt=require('bcrypt');
 const bodyParser=require('body-parser');
 const cors=require('cors');
+const jwt=require('jsonwebtoken')
 
 const app=express();
+const mysql=require('mysql');
 
-const db=mysql.createPool({
+const db = mysql.createPool({
     host: "localhost",
     user: "root",
     password: "",
-    database: "shashreeka",
-});
+    database: "sashreeka_db",
+  });
+// const db=mysql.createPool({
+//     host: "localhost",
+//     user: "root",
+//     password: "",
+//     database: "sashreeka_db",
+// });
 
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
-app.get("/api/get",(req,res)=>{
-   // console.log('hi anu');
-    const sqlget="select * from organic";
-    db.query(sqlget,(err,result)=>{
-        console.log(result);
-        res.send(result);
+
+
+
+//login
+app.post('/user/login',(req,res)=>{
+    const phoneNumber=req.body.phoneNumber;
+    const password=req.body.password;
+    const sqlSelect="SELECT * FROM user WHERE phoneNumber=? AND  password=?";
+    db.query(sqlSelect,[phoneNumber,password],
+        (err,result) => {
+
+        if(err){
+            res.send({err: err});
+            console.log(err)
+        }
+
+        if(result.length > 0){
+           // res.send(result);
+          res.send(result);
+         //  bcrypt.compare(password, result[0].password, (error,response)=>{
+            //    if(response){
+                // res.send(result);
+                //  console.log(result[0].phoneNumber);
+                //  console.log(result[0].userCategory);
+
+                //  const payload={
+                //      "phoneNumber":result[0].phoneNumber,
+                //      "userCategory": result[0].userCategory
+                  
+                //  }
+
+                //  jwt.sign(payload,'secret',{expiresIn:'10h'},(err,token)=>{
+                //     res.json({
+                //         token: token,
+                //         message: userCategory,
+                        
+                //     })
+                //     console.log(token)
+                //  })
+
+            //    }else{
+            //     res.send({message:"Wrong username/Password combination"});
+            //    }
+         //  })
+
+        }else{
+
+            res.send({message:"User doesn't exist"});
+        }
+
     })
-    
 })
 
-app.get("/api/order",(req,res)=>{
-    // console.log('hi anu');
-     const sqlget="select * from orders";
-     db.query(sqlget,(err,result)=>{
-         console.log(result);
-         res.send(result);
-     })
+
+
+
+
+
+
+// app.get("/api/get",(req,res)=>{
+//    // console.log('hi anu');
+//     const sqlget="select * from organic";
+//     db.query(sqlget,(err,result)=>{
+//         console.log(result);
+//         res.send(result);
+//     })
+    
+// })
+
+// app.get("/api/order",(req,res)=>{
+//     // console.log('hi anu');
+//      const sqlget="select * from orders";
+//      db.query(sqlget,(err,result)=>{
+//          console.log(result);
+//          res.send(result);
+//      })
      
- })
+//  })
+// const loginRoutes=require("./routes/LoginRoutes");
+//  app.use(loginRoutes);
 
-
-app.listen(3001,()=>{
+app.listen(4000,()=>{
     console.log("running port 3001");
 })
 

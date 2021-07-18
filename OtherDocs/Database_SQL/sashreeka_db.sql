@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2021 at 07:05 AM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.3.12
+-- Generation Time: Jul 17, 2021 at 10:20 PM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 7.3.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sashreeka`
+-- Database: `sashreeka_db`
 --
 
 -- --------------------------------------------------------
@@ -159,9 +158,24 @@ CREATE TABLE `fertilizer` (
   `photo` text NOT NULL,
   `stock` int(11) NOT NULL,
   `reOrderLevel` int(11) NOT NULL,
-  `measurementUnit` int(3) NOT NULL,
+  `measurementUnit` varchar(3) NOT NULL,
   `caption` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `fertilizer`
+--
+
+INSERT INTO `fertilizer` (`fertilizerId`, `name`, `description`, `offer`, `unitPrice`, `unitWeight`, `photo`, `stock`, `reOrderLevel`, `measurementUnit`, `caption`) VALUES
+(1, 'Rock Phospate', 'It is sedimentary rock which contains high amount of phosphate minerals. It is used naturally to fix phosphate levels of soil.\r\nFlowers love an application of rock phosphate early in the season and will reward you with big, vibrant blooms. Roses really like rock dust and develop a stronger root system and more buds when it is used. You can also use rock phosphate to encourage healthy tree and lawn root system development.', 0, 3790, 9, '', 30, 10, 'kg', 'contains high amount of phosphate minerals. It is '),
+(2, 'Vermicompost', 'It is a product of organic material degradation using various species of worms, to create a heterogeneous mixture of decomposing food waste.\r\n', 5, 1540, 5, '', 50, 15, 'kg', 'mixture of decomposing food waste.'),
+(3, 'Manure', 'It is made from animal excreta(cow dung & goat droppings). Cattle Manure is a good source of nitrogen and organic carbon while goat manure is rich in nitrogen and potash.', 5, 1000, 5, '', 45, 10, 'kg', 'made from animal excreta(cow dung & goat droppings'),
+(4, 'Chicken Litter', 'It consists of chicken manure and sawdust. It has high levels of nitrogen and potash. Consider superior for conditioning of soil for harvest than chemical fertilizers.\r\n\r\nA good soil amendment, chicken manure adds organic matter and increases the water holding capacity and beneficial biota in soil. A good fertilizer; chicken manure provides Nitrogen, Phosphorus and Potassium to you plants (more than horse, cow or steer manure).', 0, 1500, 5, '', 25, 5, 'kg', 'consists of chicken manure and sawdust'),
+(5, 'Liter Seaweed', 'A unique combination of pure seaweed extract\r\nCan be sprayed directly onto foliage, or applied as a root drench\r\nPrevents yellowing (chlorosis) of leaves, especially in acid-low (calcifuge) plants', 5, 3050, 4, '', 20, 5, 'L', 'Fertilizer from seaweed'),
+(6, 'MorBloom', 'Derived from Atlantic fish, phosphoric acid and potash, Alaska MorBloom stimulates exceptional budding and blooming on all flowering plants. Brightens colors in flowers and foliage and promotes vigorous root growth, too!\r\n\r\nAvailable in quart and gallon sizes.\r\n\r\nDIRECTIONS FOR USE:\r\nMix 1-3 Tbsp per gallon of water to encourage budding in flowers, vegetables and ornamental houseplants. Apply every three weeks during the growing season.\r\n\r\nDerived from phosphoric acid, muriate of potash and seagoing fish emulsion.', 10, 4990, 10, '', 20, 5, 'L', 'stimulates blooming on flowering plants'),
+(7, 'Bio Gold', 'Bio Gold is a liquid formulation containing a group of beneficial microorganisms such as nitrogen fixing and plant disease controlling bacteria.', 5, 2679, 4, '', 50, 15, 'L', 'nitrogen fixing, plant disease controlling bacteri'),
+(8, 'Bio Vaccine', 'The product is made with natural bio control fungal agent Trichoderma viride. It is simply helps to prevent the plant from rot & wilt diseases at any time. Once applied, Trichoderma viride grows over the pathogens that cause root rot, stem rot, seed rot, fruit rot and wilt diseases and killing by destroying the pathogen cell structure.', 10, 2780, 4, '', 40, 6, 'L', 'helps to prevent the plant from rot & wilt disease'),
+(9, 'Bio Phos', 'Phosphorous is an important nutrient for plants and microorganisms. Bio Phos® is a liquid formulation containing phosphorous solubilizing bacterium Bacillus Megatherium.', 5, 2670, 4, '', 30, 5, 'L', 'formulation containing phosphorous');
 
 -- --------------------------------------------------------
 
@@ -288,6 +302,30 @@ CREATE TABLE `role` (
   `addOffers` tinyint(4) NOT NULL DEFAULT 0,
   `roleName` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(10) NOT NULL,
+  `phoneNumber` varchar(10) NOT NULL,
+  `password` text NOT NULL,
+  `userCategory` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `phoneNumber`, `password`, `userCategory`) VALUES
+(1, '0777333333', '111', 'farmer'),
+(2, '0777444444', '111', 'farmer'),
+(3, '0777111111', '111', 'admin'),
+(4, '0777222222', '111', 'deliveryAgent'),
+(5, '0777555555', '111', 'staff');
 
 -- --------------------------------------------------------
 
@@ -434,6 +472,12 @@ ALTER TABLE `role`
   ADD PRIMARY KEY (`roleId`);
 
 --
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`,`phoneNumber`);
+
+--
 -- Indexes for table `vehicle`
 --
 ALTER TABLE `vehicle`
@@ -485,7 +529,7 @@ ALTER TABLE `farmer`
 -- AUTO_INCREMENT for table `fertilizer`
 --
 ALTER TABLE `fertilizer`
-  MODIFY `fertilizerId` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `fertilizerId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `fertilizercategory`
@@ -504,6 +548,12 @@ ALTER TABLE `rate`
 --
 ALTER TABLE `role`
   MODIFY `roleId` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `vehicle`

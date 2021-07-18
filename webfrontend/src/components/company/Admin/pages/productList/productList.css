@@ -1,16 +1,20 @@
-.userListCon{
+.productListCon{
     display: flex;
     margin-top: 10px;
+    margin-left: 10px;
 }
-.userList{
+.productList{
     flex: 4;
 }
-.userListUser{
+
+.productListItem{
     display: flex;
     align-items: center;
 
 }
-.userListImg{
+
+
+.productListImg{
     width: 32px;
     height: 32px;
     border-radius: 50%;
@@ -18,7 +22,7 @@
     margin-right: 10px;
 }
 
-.userListEdit{
+.productListEdit{
 
     border: none;
     border-radius: 10px;
@@ -29,7 +33,7 @@
     cursor: pointer;
 }
 
-.userListDelete{
+.productListDelete{
     color: red;
     cursor: pointer;
     
