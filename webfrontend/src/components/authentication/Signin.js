@@ -24,16 +24,17 @@ function Signin() {
             localStorage.setItem('userCategory',userCategory)
             localStorage.setItem('phoneNumber',phoneNumber)
 
-            if(userCategory ==='farmer')
-            {
-                window.location.href='/admin'
-            }else if(userCategory ==='deliveryAgent')
+            if(userCategory ==='admin')
             {
                 window.location.href='/'
             }
+            else if(userCategory ==='deliveryAgent')
+            {
+                window.location.href='/users'
+            }
             else if(userCategory ==='admin')
             {
-                window.location.href='/'
+                window.location.href='/users'
             }
            // console.log(response.data.userCategory)
     
