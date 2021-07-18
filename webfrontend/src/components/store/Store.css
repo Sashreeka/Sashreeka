@@ -76,8 +76,8 @@ button{
 
 .fer-cat{
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+   /* flex-wrap: wrap;
+    justify-content: space-around;*/
 }
 
 .fer-cat-item{
