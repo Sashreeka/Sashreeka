@@ -1,8 +1,3 @@
 Order - Payment - On DELETE CASCADE
 Staff - Role - ON DELETE RESTRICT
 
-packages:
-https://www.npmjs.com/package/react-elastic-carousel
-
-npm install --save react-elastic-carousel
-npm install --save styled-components

@@ -41,7 +41,7 @@ import { StyleSheet,
                             <View style={{flexDirection:'row',marginTop:15}}>
                                 <Avatar.Image
                                      source={
-                                         require('../../assets/images/bio1.png')
+                                         require('../../assets/images/profileimg_girl.jpg')
                                       //  {
                                     //     uri:'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
                                     // }
@@ -50,7 +50,7 @@ import { StyleSheet,
                                     size={50}
                                 />
                                 <View style={{marginLeft:15,flexDirection:'column'}}>
-                                    <Title style={styles.title}>Ishan Reshmika</Title>
+                                    <Title style={styles.title}>Anuki De Alwis</Title>
                                     <Caption style={styles.caption}>{}</Caption>
                                 </View>
                             </View>
@@ -159,21 +159,10 @@ import { StyleSheet,
 
                         />
 
-                             
-                                    
+                    
 
                        </Drawer.Section>
-                       {/* <Drawer.Section title="Preferences"> */}
-                            <TouchableRipple onPress={()=>{toggleTheme()}}>
-                                <View style={styles.preference}>
-                                    <Text style={{color:'#217756',marginLeft:6}}>Available</Text>
-                                    <View pointerEvents="none">
-                                        <Switch value={isAvailable}/>
-                                    </View>
-                                </View>
-                            </TouchableRipple>
 
-                       {/* </Drawer.Section> */}
                     </View>
 
               </DrawerContentScrollView>
