@@ -10,7 +10,7 @@ export default function Sidebar() {
         <div className="sidebar">
             <div className="sidebarWrapper">
                 <div className="sidebarMenu">
-                    <h3 className="sidebarTitle">Dashboard</h3>
+                    <h3 className="sidebarTitleNew">Dashboard</h3>
                     <ul className="sidebarList">
                         <Link to="/" className="link" >
                             <li className="sidebarListItem active">
@@ -36,7 +36,7 @@ export default function Sidebar() {
 
             <div className="sidebarWrapper">
                 <div className="sidebarMenu">
-                    <h3 className="sidebarTitle">Quick Menu</h3>
+                    <h3 className="sidebarTitleNew">Quick Menu</h3>
                     <ul className="sidebarList">
                     <Link to="/users" className="link">
                          <li className="sidebarListItem">
@@ -74,7 +74,7 @@ export default function Sidebar() {
 
             <div className="sidebarWrapper">
                 <div className="sidebarMenu">
-                    <h3 className="sidebarTitle">Notification</h3>
+                    <h3 className="sidebarTitleNew">Notification</h3>
                     <ul className="sidebarList">
                         <li className="sidebarListItem">
                             <MailOutline className="sidebarIcon"/>
@@ -98,7 +98,7 @@ export default function Sidebar() {
 
             <div className="sidebarWrapper">
                 <div className="sidebarMenu">
-                    <h3 className="sidebarTitle">Staff</h3>
+                    <h3 className="sidebarTitleNew">Staff</h3>
                     <ul className="sidebarList">
                         <li className="sidebarListItem">
                             <WorkOutline className="sidebarIcon"/>
