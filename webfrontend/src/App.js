@@ -7,6 +7,7 @@ import Home from "./components/static/Home";
 import About from "./components/static/About";
 import Contact from "./components/static/Contact";
 import Store from "./components/store/Store";
+import SearchStore from "./components/store/SearchStore";
 import Handbook from "./components/handbook/Handbook";
 import Signup from "./components/authentication/Signup";
 import Signin from "./components/authentication/Signin";
@@ -87,6 +88,10 @@ function App() {
 
               <Route path="/store">
                 <Store />
+              </Route>
+
+              <Route path="/searchstore">
+                <SearchStore />
               </Route>
 
               <Route path="/fertilizer">

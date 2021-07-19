@@ -6,6 +6,10 @@
 .fer-store-content{
     width:87%;
 }
+
+.fa-leaf{
+    color: #9BE564;
+}
 /*Search bar*/
 .Store_bar {
     background-color: #9BE564;
@@ -176,8 +180,8 @@ button.sc-bdnxRM.cGKbZh.rec.rec-arrow.rec.rec-arrow-left{
 }
 
 button.sc-bdnxRM.ehkxHv.rec.rec-arrow.rec.rec-arrow-left{
-    background-color: #f2f2f2;
-    color: #f2f2f2;
+    background-color: #ffffff;
+    color: #ffffff;
     background: none !important;
     border: none;
     box-shadow: none;
@@ -185,8 +189,8 @@ button.sc-bdnxRM.ehkxHv.rec.rec-arrow.rec.rec-arrow-left{
 }
 
 button.sc-bdnxRM.ehkxHv.rec.rec-arrow.rec.rec-arrow-right {
-    background-color: #f2f2f2;
-    color: #f2f2f2;
+    background-color: #ffffff;
+    color: #ffffff;
     background: none !important;
     border: none;
     box-shadow: none;
@@ -293,7 +297,7 @@ h6{
 }
 
 .fer-product-container:hover{
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 8px 2px #9BE564;
 }
 
 .offer-price-text h6{
@@ -304,4 +308,77 @@ h6{
 .offer-nor-price h6{
     color: red;
     text-decoration: line-through;
+}
+
+/* Search fertilizer store */
+.fer-search-results{
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.store-search-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.store-serch-filter{
+    flex: 1;
+}
+
+.search-result-container{
+    flex: 4;
+    border-left: 1px solid #9BE564;
+}
+
+.filter-option-box{
+    left: 317px;
+    top: 522px;
+    Width:93%;
+    background: #FFFFFF;
+    border: 1px solid #9BE564;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 4px 2px #9BE564;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding:8px;
+}
+
+.filter-option-box p{
+    font-size: 130%;
+    font-weight:bold;
+}
+
+.filter-options {
+    padding:5px;
+    border-top: 1px solid #9BE564;
+}
+
+.filter-category-box{
+    left: 317px;
+    top: 522px;
+    Width:93%;
+    background: #FFFFFF;
+    border: 1px solid #9BE564;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 4px 2px #9BE564;
+    border-radius: 8px;
+    padding:8px;
+}
+
+.filter-category-box p{
+    font-size: 130%;
+    font-weight:bold;
+}
+
+.filter-options-fercat{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:5px;
+    border-top: 1px solid #9BE564;
+}
+
+.filter-options-fercat button{
+    background-color: #ffffff;
+    color:#212529;
 }

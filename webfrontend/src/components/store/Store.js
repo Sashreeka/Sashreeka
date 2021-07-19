@@ -5,6 +5,7 @@ import FerCatItem from './storeComponents/FerCatItem';
 import FerProductItem from './storeComponents/FerProductItem';
 import FerProOffer from './storeComponents/FerProOffer';
 import Slider from 'infinite-react-carousel';
+import { Link } from "react-router-dom";
 
 function Store() {
     const settings = {
@@ -50,7 +51,9 @@ function Store() {
                     <div className="Search_bar">
                         <form>
                             <input type='text' className="Search_input" placeholder="Search store..."></input>
-                            <button type="submit" className="Search_button"><i className="fas fa-search"></i></button>
+                            <Link to="/searchstore">
+                                <button type="submit" className="Search_button"><i className="fas fa-search"></i></button>
+                            </Link>
                         </form>
                     </div>
                         
@@ -71,7 +74,7 @@ function Store() {
                     
 
                 {/*Fertilizer categories*/}
-                <h3 className="fer-topic">Fertilizer Categories</h3>
+                <h3 className="fer-topic"><i class="fas fa-leaf"></i> Fertilizer Categories</h3>
                 <hr/>
                 <div className="fer-cat">
                     <Carousel breakPoints={breakPoints}>
@@ -89,7 +92,7 @@ function Store() {
                 </div>
 
                 {/*Popular products*/}
-                <h3 className="fer-topic">Popular products</h3>
+                <h3 className="fer-topic"><i class="fas fa-leaf"></i> Popular products</h3>
                 <hr/>
                 <div className="fer-products_row">
                     <Carousel breakPoints={breakPoints1}>
@@ -110,7 +113,7 @@ function Store() {
                 </div>
 
                 {/*New arrival*/}
-                <h3 className="fer-topic">New Arrivals</h3>
+                <h3 className="fer-topic"><i class="fas fa-leaf"></i> New Arrivals</h3>
                 <hr/>
                 <div className="fer-products_row">
                     <Carousel breakPoints={breakPoints1}>
@@ -131,7 +134,7 @@ function Store() {
                 </div>
 
                 {/*Offers*/}
-                <h3 className="fer-topic">Exclusive Offers</h3>
+                <h3 className="fer-topic"><i class="fas fa-leaf"></i> Exclusive Offers</h3>
                 <hr/>
                 <div className="fer-products_row">
                     <Carousel breakPoints={breakPoints1}>
