@@ -1,0 +1,95 @@
+
+  .home {
+    width: 100%;
+    height: 200vh;
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: row;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  }
+ 
+  .Container1 {
+    width: auto;
+    top: 10px;
+    right: 10px;
+    height: 100px;
+  }
+  
+  .Container1 h1 {
+    justify-content: center;
+    align-items: center;
+    font-size: 70px;
+    height: 60px;
+    font-weight: 50;
+    color:#63B75D;
+  }
+  .Container1 h3{
+      color: #8C8C8C;
+      font-size:40px;
+  }
+  .Container1 p {
+    padding: 0;
+    font-size: 20px;
+    font-weight: lighter;
+    color: black;
+  }
+  
+  .Container1 .button-button1 {
+    color: black;
+    border-style: solid;
+    border-radius: 15px;
+    cursor: pointer;
+    justify-content: center;
+    background-color:#63B75D;
+    border-color: #63B75D;
+    height: 50px;
+    width: 180px;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 20px;
+    
+  }
+  
+  .Container1 .button-button1:hover {
+    background-color: #2a4e0f;
+    cursor: pointer;
+    transition: 0.3s ease-in;
+  }
+
+  .Container1 .button-button2 {
+    color: black;
+    border-style: solid;
+    border-radius: 15px;
+    cursor: pointer;
+    justify-content: center;
+    background-color:#FFFFFF;
+    border-color: #63B75D;
+    height: 50px;
+    width: 180px;
+    color:#63B75D ;
+    text-decoration: none;
+    font-size: 20px;
+    
+    
+    
+  }
+  
+  .Container1 .button-button2:hover {
+    background-color:#EDEDED;
+    cursor: pointer;
+    transition: 0.3s ease-in;
+  }
+  
+  @media only screen and (max-width: 650px) {
+    .home {
+      justify-content: center;
+      align-items: center;
+    }
+    
+  
+    
+  }

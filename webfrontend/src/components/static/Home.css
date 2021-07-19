@@ -1,100 +1,151 @@
+/*body{
+    background:white;
+}
 
-  .home {
-    width: 100%;
-    height: 200vh;
+section{
+    min-height: 100vh;
+    padding:0 9%;
+    padding-top: 0.1rem;
+    padding-bottom: 2rem;
+}
+
+.btn{
+    display: inline-block;
+    margin-top: 1rem;
+    padding:.6rem 3rem;
+    border-radius: 5rem;
+    background-color:#2e8f17;
+    font-size: 1.2rem;
+    color:white;
+    cursor: pointer;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+    transition: all .3s linear;
+}
+
+.btn:hover{
+    transform: scale(1.1);
+}
+.home{
     display: flex;
-    justify-content: center;
-    align-items: left;
-    flex-direction: row;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  }
- 
-  .headerContainer {
-    width: auto;
-    top: 10px;
-    right: 10px;
-    height: 100px;
-  }
-  
-  .headerContainer h1 {
-    justify-content: center;
     align-items: center;
-    font-size: 70px;
-    height: 60px;
-    font-weight: 50;
-    color: black;
-  }
-  
-  .headerContainer p {
-    padding: 0;
-    font-size: 20px;
-    font-weight: lighter;
-    color: black;
-  }
-  
-  .headerContainer button {
-    color: black;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
     justify-content: center;
-    background-color: #121619;
-    height: 50px;
-    width: 180px;
-    color: white;
-    text-decoration: none;
-    font-size: 20px;
-  }
-  
-  .headerContainer button:hover {
-    background-color: #07090a;
-    cursor: pointer;
-    transition: 0.3s ease-in;
-  }
-  
-  @media only screen and (max-width: 650px) {
-    .home {
-      justify-content: center;
-      align-items: center;
+    background-size: cover;
+    background-position: top;
+}
+
+.home .image img{
+    width:40vw;
+    animation: float 3s linear infinite;
+}
+
+@keyframes float{
+    0%, 100%{
+        transform: translateY(0rem);
     }
+    50%{
+        transform: translateY(-3.5rem);
+    }
+}
+
+.home .content h3{
+    font-size: 3.5rem;
+    color:#006600
+    ;
+    text-transform: uppercase;
+}
+
+.home .content h4{
+    color:#2e8f17;
+    text-transform: uppercase;
+    font-size:2rem;
+}
+
+.home .content p{
+    font-size: 1.2rem;
+    color:#666;
+    padding:0.5rem 0;
+}
+/*
+.features .box-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     
-  
-    .headerContainer {
-      margin-left: 0px;
-      border-radius: 10px;
-      padding: 10px;
-      width: 80%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      background-color: #121619;
-      color: white;
-    }
-  
-    .headerContainer h1 {
-      font-size: 40px;
-      height: 30px;
-      color: white;
-    }
-  
-    .headerContainer p {
-      font-size: 30px;
-      color: white;
-    }
-  
-    .headerContainer button {
-      background-color: white;
-      color: #121619;
-      margin-bottom: 30px;
-      border-radius: 15px;
-    }
-  
-    .headerContainer button:hover {
-      background-color: rgb(225, 225, 225);
-      color: #121619;
-    }
-  }
+    flex-direction: row;
+    
+}
+
+.features .box-container .box{
+    flex:1 1 20rem;
+    background:#fff;
+    border-radius: .5rem;
+    border:.1rem solid rgba(0,0,0,.2);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+    margin:1.5rem;
+    padding:3rem 2rem;
+    border-radius: .5rem;
+    text-align: center;
+    transition: .2s linear;
+    width:200px;
+    height: 650px;
+}
+
+.features .box-container .box img{
+    height: 15rem;
+}
+
+.features .box-container .box h3{
+    font-size: 1.5rem;
+    color:#333;
+    padding-top: 1rem;
+}
+
+.features .box-container .box p{
+    font-size: 1rem;
+    color:#666;
+    padding: 1rem 0;
+}
+.about{
+    
+    background-size: cover;
+    background-position: center;
+    padding-bottom: 4rem;
+    
+     ;
+}
+
+.about .column{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.about .column .image{
+    flex:1 1 40rem;
+}
+
+.about .column .image img{
+    width:100%;
+}
+
+.about .column .content{
+    flex:1 1 40rem;
+}
+
+.about .column .content h3{
+    font-size: 2.5rem;
+    color:#666;
+}
+
+.about .column .content p{
+    font-size: 1rem;
+    color:#666;
+    padding:0.5rem 0;
+}
+
+.about .column .content .buttons a:last-child{
+    margin-left: 2rem;
+    margin-top: 10px;
+}
+*/
