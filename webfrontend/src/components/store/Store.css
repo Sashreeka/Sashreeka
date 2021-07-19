@@ -1,3 +1,11 @@
+.fer-store-web{
+    display: flex;
+    justify-content: center;
+} 
+
+.fer-store-content{
+    width:87%;
+}
 /*Search bar*/
 .Store_bar {
     background-color: #9BE564;
