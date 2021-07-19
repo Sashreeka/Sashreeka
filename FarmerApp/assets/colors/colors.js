@@ -6,7 +6,8 @@ const colors={
     secondary:"#B7F785",
     textlight:"#969696",
     textDark:"#000000",
-    secondaryT50:"#b6f7859c"
+    secondaryT50:"#b6f7859c",
+    ratingStarColor:"#FACE32",
 };
 
 export default colors;
