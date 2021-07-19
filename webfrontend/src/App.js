@@ -24,6 +24,7 @@ import NewUser from "./components/company/Admin/pages/newPage/NewUser";
 import ProductList from "./components/company/Admin/pages/productList/ProductList";
 import Product from "./components/company/Admin/pages/product/Product";
 import NewProduct from "./components/company/Admin/pages/newProduct/NewProduct";
+import Sales from "./components/company/Admin/pages/sales/Sales";
 
 
 function App() {
@@ -60,6 +61,10 @@ function App() {
               <Route path="/newproduct">
                 <NewProduct />
               </Route>
+
+            <Route path="/sales">
+              <Sales/>
+            </Route>
 
              
             </Switch>

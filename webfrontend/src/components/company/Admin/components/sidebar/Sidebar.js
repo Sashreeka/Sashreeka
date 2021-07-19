@@ -38,10 +38,12 @@ export default function Sidebar() {
                             <Timeline className="sidebarIcon"/>
                             Analytics
                         </li> */}
+                        <Link to="/sales" className="link">
                         <li className="sidebarListItem">
                             <BarChartIcon className="sidebarIcon"/>
                             Sales
                         </li>
+                        </Link>
                     </ul>
 
                 </div>
