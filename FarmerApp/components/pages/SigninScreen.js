@@ -20,6 +20,7 @@ import { StyleSheet,
   import { MaterialIcons } from '@expo/vector-icons';
   import { FontAwesome } from '@expo/vector-icons';
   import { Feather } from '@expo/vector-icons';
+  import colors from '../../assets/colors/colors';
 
  // import { AuthContext } from '../context/context';
   //import { AuthContext } from '../context';
@@ -78,7 +79,7 @@ export default function SigninScreen({navigation}) {
 
     return (
         <View style={styles.container}>
-          <StatusBar backgroundColor="#009387" barStyle="light-content"/>
+          <StatusBar backgroundColor={colors.primary} barStyle="light-content"/>
           <View style={styles.header}>
               <Text style={styles.text_header}>Welcome!</Text>
           </View>
@@ -150,9 +151,7 @@ export default function SigninScreen({navigation}) {
               </View>
 
              
-              <Text style={styles.forget} 
-             onPress={()=>navigation.navigate('ForgetPassword')}
-              >Forget Password</Text>
+              
               
 
               
@@ -182,6 +181,13 @@ export default function SigninScreen({navigation}) {
                     
 
                 </View>
+
+
+                <Text style={styles.forget} 
+                  onPress={()=>navigation.navigate('ForgetPassword')}
+                >Forget Password</Text>
+
+
           </Animatable.View>
             
             
@@ -193,7 +199,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     // backgroundColor:'#B7F785'
-   backgroundColor: '#009387',
+   backgroundColor: colors.secondary,
   // backgroundColor:'#05375a'
     
   },
@@ -218,7 +224,7 @@ const styles = StyleSheet.create({
 
   // },
   text_header:{
-    color:'#fff',
+    color:'#000',
     fontSize:30,
     fontWeight:'bold',
   },
@@ -255,7 +261,8 @@ const styles = StyleSheet.create({
     fontWeight:'bold',
   },
   forget:{
-      fontSize:16,
+      fontSize:14,
+      paddingTop:10,
   }
 
 

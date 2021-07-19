@@ -22,7 +22,7 @@ export default Home = ({navigation})=>{
         Axios.get('http://192.168.1.21:4000/api/get').then((response)=>{
           console.log(response.data[0].caption);
           console.log(response.data[0].fertilizerId);
-          console.log(response.data[0].name);
+          console.log(response.data[0].photo);
           setferlilizerlist(response.data);
         });
       },[]);
@@ -121,25 +121,24 @@ export default Home = ({navigation})=>{
                      style={[styles.itemsCardwrapper,
                      {
                          marginTop:val.fertilizerId==1 ? 10 : 20,
+                         
                      }
                      ]}>
                          <View style={styles.itemCardWrapOuter}>
-                            <View>
+                            <View style={styles.itemcardLeft}>
                                 <View style={styles.itemWrapperMain}>
                                     <Text style={styles.itemTitleMain}>{val.name}</Text>  
                                 </View>
                                 <View style={styles.itemDescriptionWrapper}>
                                     <Text style={styles.itemDescription}>{val.caption}</Text>
-                                    {/* <Text style={styles.itemUnitWeight}>{val.UnitWeight}</Text> */}
                                 </View>
                                 <View style={styles.itemADDbutton}>
-                                    <Text>ADD<Feather name="plus" size={15} color='#000'/>
+                                    <Text style={styles.itemADDbuttonText}>ADD<Feather name="plus" size={15} color='#000'/>
                                     </Text>
                                 </View>
                             </View>
-                            <View styles={styles.itemcardRight}>
-                                
-                                {/* <Image source={val.photo} styles={styles.itemcardimage}/> */}
+                            <View style={styles.itemcardRight}>
+                                <Image source={{uri: `${val.photo}` }} style={styles.itemcardimage}/>
                             </View>
                          </View>
                          
@@ -198,6 +197,8 @@ export default Home = ({navigation})=>{
 
 
 const styles=StyleSheet.create({
+
+    // **************************************************
     container:{
         flex:1,
     },
@@ -351,18 +352,18 @@ const styles=StyleSheet.create({
         color: colors.textlight,
         fontWeight:'700',
     },
-    itemDescription:{
 
-    },
 
     itemDescriptionWrapper:{
        marginTop:10,
+       marginBottom:20,
 
     },
 
     itemDescription:{
         fontSize:14,
         color:colors.textDark,
+       
     },
 
     itemUnitWeight:{
@@ -377,21 +378,38 @@ const styles=StyleSheet.create({
         justifyContent:"center",
         padding:10,
         borderRadius:15,
+        
+    },
+    itemADDbuttonText:{
+        color:"black",
+        fontWeight:"bold",
     },
 
     itemCardWrapOuter:{
+        // backgroundColor:"red",
         flexDirection:"row",
+        flexWrap:'wrap',
+        marginRight:20,
+        justifyContent:"space-around",
+    },
+    
+    itemcardLeft:{
+        // backgroundColor:'yellow',
+        width:"55%",
+    },
+    itemcardRight:{
+        // backgroundColor:'blue',
+        width:"45%",
+        alignItems:"flex-end",
+    },
+    
+    itemcardimage:{
+        width:140,
+        height:150,
+        resizeMode:"contain",
     
     },
-
-    itemcardRight:{
-        marginTop:20,
-    },
-    itemcardimage:{
-        width:210,
-        height:125,
-        resizeMode:"contain",
-
-    },
+    
+    
 
 })
