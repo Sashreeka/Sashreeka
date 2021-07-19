@@ -30,7 +30,7 @@ function Home() {
 
     </section>
    
-{/*
+
 <section class="features" id="features">
 
     
@@ -61,12 +61,12 @@ function Home() {
     </div>
 
 </section>
-
+{/*}
 <section class="about" id="about">
 
     
 
-    {/*<div class="column">
+    <div class="column">
 
         <div class="image">
             <img src={aboutImg1}/>
