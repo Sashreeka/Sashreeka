@@ -68,15 +68,14 @@ app.post("/user/login", (req, res) => {
   });
 });
 
-app.get("/api/get",(req,res)=>{
-   // console.log('hi anu');
-    const sqlget="select * from fertilizer";
-    db.query(sqlget,(err,result)=>{
-        console.log(result);
-        res.send(result);
-    })
-    
-})
+app.get("/api/get", (req, res) => {
+  // console.log('hi anu');
+  const sqlget = "select * from fertilizer";
+  db.query(sqlget, (err, result) => {
+    console.log(result);
+    res.send(result);
+  });
+});
 
 // app.get("/api/order",(req,res)=>{
 //     // console.log('hi anu');
@@ -98,28 +97,84 @@ app.listen(4000, () => {
 app.post("/user/registerAgent", (req, res) => {
   const phoneNumber = req.body.phoneNumber;
   const password = req.body.password;
+  const email = req.body.email;
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const address = req.body.address;
+  const nic = req.body.nic;
+  const drivingLicence = req.body.drivingLicence;
+
   const sqlRegisterAgent =
-    "INSERT INTO user (phoneNumber, password, userCategory) VALUE (?,?,'deliveryAgent')";
-  db.query(sqlRegisterAgent, [phoneNumber, password], (err, result) => {
-    if (err) {
-      res.send({ err: err });
-      console.log(err);
+    "INSERT INTO deliveryagent (phoneNumber, password,email, firstName, lastName, address, nic, drivingLicence) VALUE (?,?,?,?,?,?,?,?)";
+  db.query(
+    sqlRegisterAgent,
+    [
+      phoneNumber,
+      password,
+      email,
+      firstName,
+      lastName,
+      address,
+      nic,
+      drivingLicence,
+    ],
+    (err, result) => {
+      if (err) {
+        res.send({ err: err });
+        console.log(err);
+      }
     }
-  });
+  );
 });
 //delivery Agent Register........................................
 
 //Farmer Register........................................
+
 app.post("/user/registerFarmer", (req, res) => {
   const phoneNumber = req.body.phoneNumber;
   const password = req.body.password;
+  const email = req.body.email;
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const address = req.body.address;
+
   const sqlRegisterFarmer =
-    "INSERT INTO user (phoneNumber, password, userCategory) VALUE (?,?,'farmer')";
-  db.query(sqlRegisterFarmer, [phoneNumber, password], (err, result) => {
-    if (err) {
-      res.send({ err: err });
-      console.log(err);
+    "INSERT INTO farmer (phoneNumber, password,email, firstName, lastName, address) VALUE (?,?,?,?,?,?)";
+  db.query(
+    sqlRegisterFarmer,
+    [phoneNumber, password, email, firstName, lastName, address],
+    (err, result) => {
+      if (err) {
+        res.send({ err: err });
+        console.log(err);
+      }
     }
-  });
+  );
 });
 //Farmer Register........................................
+
+//Company Staff Register........................................
+app.post("/user/registerStaff", (req, res) => {
+  const phoneNumber = req.body.phoneNumber;
+  const password = req.body.password;
+  const email = req.body.email;
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const address = req.body.address;
+  const nic = req.body.nic;
+  const roleId = req.body.roleId;
+
+  const sqlRegisterAgent =
+    "INSERT INTO compantstaff (phoneNumber, password,email, firstName, lastName, address, nic,roleId, appointedDate) VALUE (?,?,?,?,?,?,?,?,NOW())";
+  db.query(
+    sqlRegisterAgent,
+    [phoneNumber, password, email, firstName, lastName, address, nic, roleId],
+    (err, result) => {
+      if (err) {
+        res.send({ err: err });
+        console.log(err);
+      }
+    }
+  );
+});
+//Company Staff Register........................................

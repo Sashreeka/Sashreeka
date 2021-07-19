@@ -1,25 +1,32 @@
-body {
+/* body {
   font-family: Verdana, Geneva, sans-serif;
   font-size: 14px;
-  background: #f2f2f2;
-}
-.clearfix:after {
+  background: red;
+} */
+/* background: #f2f2f2; */
+
+.clearfix_Register:after {
   content: "";
   display: block;
   clear: both;
   visibility: hidden;
   height: 0;
 }
-.form_wrapper {
-  background: #fff;
-  width: 400px;
+
+.smallTextRegister {
+  font-size: 8px;
+  margin-top: 2px;
+}
+.form_wrapper_Register {
+  background: #f5f5f5;
+  width: 425px;
   max-width: 100%;
   box-sizing: border-box;
   padding: 25px;
-  margin: 8% auto 0;
+  margin: 10px auto 0;
   position: relative;
   z-index: 1;
-  border-top: 5px solid #f5ba1a;
+  border-top: 5px solid green;
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
@@ -33,42 +40,55 @@ body {
   animation: expand 0.8s 0.6s ease-out forwards;
   opacity: 0;
 }
-.form_wrapper h2 {
+.form_wrapper_Register h2 {
   font-size: 1.5em;
   line-height: 1.5em;
   margin: 0;
 }
-.form_wrapper .title_container {
+.form_wrapper_Register .title_container_Register {
   text-align: center;
   padding-bottom: 15px;
 }
-.form_wrapper h3 {
+.form_wrapper_Register h3 {
   font-size: 1.1em;
   font-weight: normal;
   line-height: 1.5em;
   margin: 0;
 }
-.form_wrapper label {
+.form_wrapper_Register label {
   font-size: 12px;
 }
-.form_wrapper .row {
+.form_wrapper_Register .row_Register {
   margin: 10px -15px;
 }
-.form_wrapper .row > div {
+.form_wrapper_Register .row_Register > div {
   padding: 0 15px;
   box-sizing: border-box;
 }
-.form_wrapper .col_half {
+.form_wrapper_Register .col_half {
   width: 50%;
   float: left;
 }
-.form_wrapper .input_field {
+
+/* .half_Register {
+  width: 35%;
+}
+.full_Register {
+  width: 100%;
+} */
+
+.full_name_Register {
+  display: flex;
+}
+
+.form_wrapper_Register .inputField_Register {
   position: relative;
   margin-bottom: 20px;
   -webkit-animation: bounce 0.6s ease-out;
   animation: bounce 0.6s ease-out;
 }
-.form_wrapper .input_field > span {
+
+.form_wrapper_Register .inputField_Register > span {
   position: absolute;
   left: 0;
   top: 0;
@@ -78,15 +98,13 @@ body {
   text-align: center;
   width: 30px;
 }
-.form_wrapper .input_field > span > i {
+.form_wrapper_Register .inputField_Register > span > i {
   padding-top: 10px;
 }
-.form_wrapper .textarea_field > span > i {
+.form_wrapper_Register .textarea_field > span > i {
   padding-top: 10px;
 }
-.form_wrapper input[type="text"],
-.form_wrapper input[type="email"],
-.form_wrapper input[type="password"] {
+.form_wrapper_Register .input_Register {
   width: 100%;
   padding: 8px 10px 9px 35px;
   height: 35px;
@@ -98,21 +116,42 @@ body {
   -ms-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-.form_wrapper input[type="text"]:hover,
-.form_wrapper input[type="email"]:hover,
-.form_wrapper input[type="password"]:hover {
+.form_wrapper_Register .input_Register:hover {
   background: #fafafa;
 }
-.form_wrapper input[type="text"]:focus,
-.form_wrapper input[type="email"]:focus,
-.form_wrapper input[type="password"]:focus {
+.form_wrapper_Register .input_Register:focus {
   -webkit-box-shadow: 0 0 2px 1px rgba(255, 169, 0, 0.5);
   -moz-box-shadow: 0 0 2px 1px rgba(255, 169, 0, 0.5);
   box-shadow: 0 0 2px 1px rgba(255, 169, 0, 0.5);
   border: 1px solid #f5ba1a;
   background: #fafafa;
 }
-.form_wrapper input[type="submit"] {
+
+.form_wrapper_Register .input_halfRegister {
+  width: 99%;
+  padding: 8px 2px 9px 35px;
+  height: 35px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  outline: none;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  /* background: red; */
+}
+.form_wrapper_Register .input_halfRegister:hover {
+  background: #fafafa;
+}
+.form_wrapper_Register .input_halfRegister:focus {
+  -webkit-box-shadow: 0 0 2px 1px rgba(255, 169, 0, 0.5);
+  -moz-box-shadow: 0 0 2px 1px rgba(255, 169, 0, 0.5);
+  box-shadow: 0 0 2px 1px rgba(255, 169, 0, 0.5);
+  border: 1px solid #f5ba1a;
+  background: #fafafa;
+}
+
+/* .form_wrapper_Register .button_Register {
   background: #f5ba1a;
   height: 35px;
   line-height: 35px;
@@ -127,32 +166,35 @@ body {
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-}
-.form_wrapper input[type="submit"]:hover {
+} */
+.form_wrapper_Register input[type="submit"]:hover {
   background: #e1a70a;
 }
-.form_wrapper input[type="submit"]:focus {
+.form_wrapper_Register input[type="submit"]:focus {
   background: #e1a70a;
 }
-.form_wrapper input[type="checkbox"],
-.form_wrapper input[type="radio"] {
-  border: 0;
+.form_wrapper_Register .checkbox_Register,
+.form_wrapper_Register input[type="radio"] {
+  /* border: 0;
   clip: rect(0 0 0 0);
   height: 1px;
   margin: -1px;
   overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
+  padding: 5px; */
+  /* position: absolute; */
+  /* width: 1px; */
+  display: block;
 }
-.form_container .row .col_half.last {
+
+.form_container_Register .row_Register .col_half.last {
   border-left: 1px solid #ccc;
 }
-.checkbox_option label {
+/* 
+.checkbox_Register label {
   margin-right: 1em;
   position: relative;
 }
-.checkbox_option label:before {
+.checkbox_Register label:before {
   content: "";
   display: inline-block;
   width: 0.5em;
@@ -165,7 +207,7 @@ body {
   background-clip: content-box;
   transition: all 0.2s ease;
 }
-.checkbox_option label:after {
+.checkbox_Register label:after {
   border-right: 2px solid #000;
   border-top: 2px solid #000;
   content: "";
@@ -178,13 +220,13 @@ body {
   width: 7px;
   display: none;
 }
-.checkbox_option input:hover + label:before {
+.checkbox_Register input:hover + label:before {
   border-color: #000;
 }
-.checkbox_option input:checked + label:before {
+.checkbox_Register input:checked + label:before {
   border-color: #000;
 }
-.checkbox_option input:checked + label:after {
+.checkbox_Register input:checked + label:after {
   -moz-animation: check 0.8s ease 0s running;
   -webkit-animation: check 0.8s ease 0s running;
   animation: check 0.8s ease 0s running;
@@ -192,7 +234,7 @@ body {
   width: 7px;
   height: 20px;
   border-color: #000;
-}
+} */
 .radio_option label {
   margin-right: 1em;
 }
@@ -271,6 +313,42 @@ body {
 .credit a {
   color: #e1a70a;
 }
+
+/* background-color: #04AA6D; */
+.button_Register {
+  background: linear-gradient(180deg, #80b953 2.08%, #2c9984 95.83%);
+  border-radius: 10px;
+  color: black;
+  padding: 3px 5px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 90%;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+
+  /* background: #f5ba1a;
+  height: 35px;
+  line-height: 35px;
+  width: 100%;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out; */
+}
+
+.button_Register:hover {
+  opacity: 0.8;
+}
+
 @-webkit-keyframes check {
   0% {
     height: 0;
@@ -386,7 +464,7 @@ body {
   }
 }
 @media (max-width: 600px) {
-  .form_wrapper .col_half {
+  .form_wrapper_Register .col_half {
     width: 100%;
     float: none;
   }
@@ -394,7 +472,7 @@ body {
     width: 50%;
     float: left;
   }
-  .form_container .row .col_half.last {
+  .form_container_Register .row_Register .col_half.last {
     border-left: none;
   }
   .remember_me {

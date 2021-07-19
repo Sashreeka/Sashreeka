@@ -4,32 +4,36 @@ import axios from "axios";
 // import { Link } from 'react-dom' ;
 
 // CSS file
-import "./FarmerRegister.css";
+import "./StaffRegister.css";
 
-function FarmerRegister() {
+function StaffRegister() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [nic, setNic] = useState("");
+  const [drivingLicence, setDrivingLicence] = useState("");
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
 
-  const registerFarmer = () => {
+  const registerStaff = () => {
     // console.log(phoneNumber);
     // console.log(password);
 
     axios
-      .post("http://localhost:4000/user/registerFarmer", {
+      .post("http://localhost:4000/user/registerStaff", {
         phoneNumber: phoneNumber,
         password: password,
         email: email,
         firstName: firstName,
         lastName: lastName,
+        nic: nic,
+        drivingLicence: drivingLicence,
         address: address,
         passwordCheck: passwordCheck,
       })
-      //   console.log("Inside register agent function")
+      //   console.log("Inside register Staff function")
       .then((response) => {
         // console.log(response.data.token);
         // console.log(response.data.message);
@@ -41,14 +45,14 @@ function FarmerRegister() {
       });
   };
 
-  // UI of registration of delivery agent
+  // UI of registration of delivery Staff
   return (
     <div>
-      {/* <h1>This is Farmer Register</h1> */}
+      {/* <h1>This is Delivery Staff Register</h1> */}
       <div className="form_wrapper_Register">
         <div className="form_container_Register">
           <div className="title_container_Register">
-            <h2>Register as a Farmer</h2>
+            <h2>Registration of a Staff Member</h2>
           </div>
           <div className="row_Register clearfix_Register">
             <div className="">
@@ -119,7 +123,7 @@ function FarmerRegister() {
                   />
                 </div>
 
-                {/* <div className="full_name_Register">
+                <div className="full_name_Register">
                   <div className="inputField_Register">
                     {" "}
                     <span>
@@ -151,7 +155,7 @@ function FarmerRegister() {
                       }}
                     />
                   </div>
-                </div> */}
+                </div>
 
                 <div className="inputField_Register">
                   {" "}
@@ -217,7 +221,7 @@ function FarmerRegister() {
                 <button
                   className="button_Register"
                   type="submit"
-                  onClick={registerFarmer}
+                  onClick={registerStaff}
                 >
                   Register
                 </button>
@@ -230,4 +234,4 @@ function FarmerRegister() {
   );
 }
 
-export default FarmerRegister;
+export default StaffRegister;
