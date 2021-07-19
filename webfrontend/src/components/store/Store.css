@@ -13,7 +13,7 @@
 }
 
 .Search_input{
-    width: 80%;
+    width: 80% !important;
     height: 35px;
     left: 279px;
     top: 19px;
@@ -33,6 +33,7 @@ input:focus {
 }
 
 button{
+    margin:0;
     border:none;
 }
 
@@ -40,6 +41,7 @@ button{
     background: #9BE564;
     color: #FFFFFF;
     font-size: 20px;
+    width:auto;
 }
 
 .shopping_details{
@@ -57,6 +59,7 @@ button{
     background: #9BE564;
     color: #FFFFFF;
     font-size: 20px;
+    width:auto;
 }
 
 .shopping_cart:hover{
@@ -114,24 +117,30 @@ button{
 
 button.sc-bdnxRM.cGKbZh.rec.rec-arrow.rec.rec-arrow-right{
     background-color: #9BE564;
+    margin-right: 5px;
 }
 
 button.sc-bdnxRM.cGKbZh.rec.rec-arrow.rec.rec-arrow-left{
     background-color: #9BE564;
+    margin-left: 5px;
 }
 
 button.sc-bdnxRM.ehkxHv.rec.rec-arrow.rec.rec-arrow-left{
-    background-color: #ffffff;
-    color: #ffffff;
+    background-color: #f2f2f2;
+    color: #f2f2f2;
+    background: none !important;
     border: none;
     box-shadow: none;
+    margin-left: 5px;
 }
 
 button.sc-bdnxRM.ehkxHv.rec.rec-arrow.rec.rec-arrow-right {
-    background-color: #ffffff;
-    color: #ffffff;
+    background-color: #f2f2f2;
+    color: #f2f2f2;
+    background: none !important;
     border: none;
     box-shadow: none;
+    margin-right: 5px;
 }
 
 .sc-dlnjwi.dTGAUq.rec.rec-slider-container{
@@ -225,6 +234,7 @@ h6{
     font-weight: bold;
     color: #FFFFFF;
     padding: 3px;
+    width:fit-content;
 }
 
 .fer-price button:hover{
