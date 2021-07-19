@@ -4,17 +4,18 @@ import {Text} from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-
 import Home from "./components/Home";
 import Main from "./components/Main";
 import ItemPage from './components/ItemPage';
 import OrderHistory from './components/OrderHistory';
 import OrderHistoryInside from './components/OrderHistoryInside';
 import CheckoutPage from './components/CheckoutPage';
-//import SplashScreen from './components/pages/SplashScreen';
 
-//import SigninScreen from './components/pages/SigninScreen';
+import MainStack from './components/stack/MainStack';
+import DrowerStack from './components/stack/DrowerStack'; 
 import LoginStack from './components/stack/LoginStack';
+//import SplashScreen from './components/pages/SplashScreen';
+//import SigninScreen from './components/pages/SigninScreen';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { DrawerContent } from './components/pages/DrawerContent';
 import { AuthContext } from './components/context/context';
@@ -111,15 +112,7 @@ export default function App() {
 
     { userToken !== null ?(
 
-      <Drawer.Navigator drawerContent={props => <DrawerContent {...props}/>} >
-            <Drawer.Screen name="Home" component={Home} />
-            {/* <Drawer.Screen name="ProfileScreen" component={ProfileScreen} />
-            <Drawer.Screen name="SupportScreen" component={SupportScreen} />
-            <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
-            <Drawer.Screen name="PaymentScreen" component={PaymentScreen}/>
-            <Drawer.Screen name="DetailsScreen" component={DetailsScreen}/>
-             */}
-        </Drawer.Navigator> ):(
+      < DrowerStack/> ):(
           <LoginStack/> 
         )
 
