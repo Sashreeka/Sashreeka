@@ -5,6 +5,7 @@ import fIcon1 from '../../assets/images/Home/f-icon1.jpg';
 import fIcon2 from '../../assets/images/Home/f-icon2.jpeg';
 import fIcon3 from '../../assets/images/Home/f-icon3.jpg';
 import aboutImg1 from '../../assets/images/Home/about-img1.jpg';
+import aboutImg2 from '../../assets/images/Home/about-img2.png';
 //import img2 from '../../assets/images/Home/img2.jpeg';
 //import {Link} from 'react-router-dom'
 
@@ -80,6 +81,32 @@ function Home() {
                 <a href="#" class="btn">View Products </a>
                 
             </div>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="about1" id="about1">
+
+    
+
+    <div class="column">
+
+        
+
+        <div class="content1">
+            <h3>Organic Fertilizer is Dominating</h3>
+            <p>Chemical fertilizer is harmful for body. Chemical fertilizer is harmful for bodyChemical fertilizer is harmful for body. Chemical fertilizer is harmful for bodyChemical fertilizer is harmful for body. Chemical fertilizer is harmful for bodyChemical fertilizer is harmful for body. Chemical.</p>
+            <p>This is your opprtunity to grow green with organic fertilizer</p>
+            <div class="buttons">
+                <a href="#" class="btn">View Products </a>
+                
+            </div>
+        </div>
+
+        <div class="image1">
+            <img src={aboutImg2}/>
         </div>
 
     </div>
