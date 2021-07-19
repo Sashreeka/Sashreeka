@@ -4,8 +4,21 @@ import Carousel from 'react-elastic-carousel';
 import FerCatItem from './storeComponents/FerCatItem';
 import FerProductItem from './storeComponents/FerProductItem';
 import FerProOffer from './storeComponents/FerProOffer';
+import Slider from 'infinite-react-carousel';
 
 function Store() {
+    const settings = {
+        centerPadding: 10,
+        dots: true,
+        overScan: 5,
+        slidesPerRow: 1,
+        virtualList: true,
+        autoplay: true,
+        autoplaySpeed: 3500,
+        arrows: false,
+        duration: 10
+    };
+
     const breakPoints = [
         {width: 200, itemsToShow: 1},
         {width: 350, itemsToShow: 2},
@@ -48,13 +61,13 @@ function Store() {
                 </div>
 
                 {/*corousal*/}
-                <Carousel className="shop-corousal-container" enableAutoPlay autoPlaySpeed={4000}>
+                <Slider {...settings}>
                     <img className="shop-corousal" src={require('../../assets/images/shop-slide-1.jpg').default}></img>
                     <img className="shop-corousal" src={require('../../assets/images/shop-slide-2.jpg').default}></img>
                     <img className="shop-corousal" src={require('../../assets/images/shop-slide-3.jpg').default}></img>
                     <img className="shop-corousal" src={require('../../assets/images/shop-slide-4.jpg').default}></img>
                     <img className="shop-corousal" src={require('../../assets/images/shop-slide-5.jpg').default}></img>
-                </Carousel>    
+                </Slider>    
                     
 
                 {/*Fertilizer categories*/}

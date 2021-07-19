@@ -1,1 +1,10 @@
 npm install axios
+
+packages:
+https://www.npmjs.com/package/react-elastic-carousel
+
+npm install --save react-elastic-carousel
+npm install --save styled-components
+
+https://www.npmjs.com/package/infinite-react-carousel
+npm install infinite-react-carousel --save
