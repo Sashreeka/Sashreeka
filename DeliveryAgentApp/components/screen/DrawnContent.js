@@ -23,9 +23,30 @@ import { StyleSheet,
   //import { AuthContext } from '../context';
   import  Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+  
+
+   
   export function DrawerContent(props)
   {
-      const [isAvailable,setisAvailable]=useState(null);
+     const [isAvailable,setisAvailable]=useState('UnAvailable');
+
+     const [isEnabled, setIsEnabled] = useState(false);
+     const toggleSwitch = () =>{ 
+        
+      setIsEnabled(previousState => !previousState);
+  
+      if(isEnabled){
+          setisAvailable('UnAvailable')
+          console.log(isAvailable);
+  
+      }else{
+          setisAvailable('Available')
+          console.log(isAvailable);
+  
+      }    
+  }
+     
+
 
       const {signOut}=useContext(AuthContext);
       const toggleTheme = ()=>{
@@ -51,7 +72,7 @@ import { StyleSheet,
                                 />
                                 <View style={{marginLeft:15,flexDirection:'column'}}>
                                     <Title style={styles.title}>Ishan Reshmika</Title>
-                                    <Caption style={styles.caption}>{}</Caption>
+                                    <Caption style={styles.caption}>{isAvailable}</Caption>
                                 </View>
                             </View>
                             {/* <View style={styles.row}>
@@ -163,15 +184,36 @@ import { StyleSheet,
                                     
 
                        </Drawer.Section>
+
+                      
+
+                        <View style={{marginRight:40,}}>
+                            <Text style={{color:'#217756',marginLeft:20,marginTop:20,fontSize:14}}>{isAvailable}</Text>
+                            <View
+                            style={{
+                                marginTop:-18,
+                                // marginLeft:30,
+                            }}
+                            >
+                                    <Switch
+                                    trackColor={{ false: "#767577", true: "#73CEAB" }}
+                                    thumbColor={isEnabled ? "#217756" : "#f4f3f4"}
+                                    ios_backgroundColor="#3e3e3e"
+                                    onValueChange={toggleSwitch}
+                                    value={isEnabled}
+                                    
+                                />
+                        </View>
+                    </View>
                        {/* <Drawer.Section title="Preferences"> */}
-                            <TouchableRipple onPress={()=>{toggleTheme()}}>
+                            {/* <TouchableRipple onPress={()=>{toggleTheme()}}>
                                 <View style={styles.preference}>
                                     <Text style={{color:'#217756',marginLeft:6}}>Available</Text>
                                     <View pointerEvents="none">
                                         <Switch value={isAvailable}/>
                                     </View>
                                 </View>
-                            </TouchableRipple>
+                            </TouchableRipple> */}
 
                        {/* </Drawer.Section> */}
                     </View>
