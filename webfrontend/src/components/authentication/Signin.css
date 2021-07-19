@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  color: red;
+  margin-left: 30px;
+  font-size: medium;
+}
+
+.formBox {
+  box-sizing: border-box;
+  border: black;
+  /* float: right; */
+}
+
+.loginForm {
+  color: blue;
+  margin: 30px;
+}
+
+.loginForm label {
+  color: green;
+  margin: 10px;
+  padding: 10px;
+}
+
+.loginForm input {
+  background: yellow;
+  padding: 10px;
+}
+
+a {
+  text-decoration: none;
+}

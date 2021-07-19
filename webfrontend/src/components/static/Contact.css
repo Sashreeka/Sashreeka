@@ -1,0 +1,19 @@
+.u-full-width {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.content {
+  width: 48%;
+  padding: 10px;
+}
+
+.button {
+  position: relative;
+  padding: 8px 20px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+  color: #ffffff;
+}
