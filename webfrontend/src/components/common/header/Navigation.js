@@ -31,6 +31,8 @@ function Navigation() {
         localStorage.setItem("userCategory", userCategory);
         localStorage.setItem("phoneNumber", phoneNumber);
 
+        modal.style.display = "none";
+
         if (userCategory === "admin") {
           window.location.href = "/";
         } else if (userCategory === "deliveryAgent") {
@@ -50,9 +52,15 @@ function Navigation() {
       });
   };
 
+ 
+
   // Get the modal of login pop up window
   var modal = document.getElementById("loginWindow");
 
+   const signup = () => {
+     modal.style.display = "none";
+   };
+   
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = function (event) {
     if (event.target == modal) {
@@ -166,6 +174,7 @@ function Navigation() {
             </label>
             {/* <i className="fas fa-mobile-alt"></i> */}
             <input
+              className="loginInput"
               type="text"
               name="phoneNumber"
               placeholder="phoneNumber"
@@ -178,6 +187,7 @@ function Navigation() {
               <b>Password</b>
             </label>
             <input
+              className="loginInput"
               type="text"
               name="password"
               placeholder="password"
@@ -189,12 +199,16 @@ function Navigation() {
             <button className="signIn" onClick={login}>
               Sign In
             </button>
-            <Link className="signUp" to="/regFarmer">
+            {/* <Link className="signUp" to="/regFarmer" onClick={signup}>
               Sign Up
-            </Link>
-            {/* <a href="/deliveryAgent">
-              <button className="signUp">Sign Up</button>
-            </a> */}
+            </Link> */}
+
+            <a href="/regFarmer">
+              <button className="signUp" onClick={signup}>
+                Sign Up
+              </button>
+            </a>
+
             {/* </br> */}
             <Link className="psw" to="#">
               Forgot password?

@@ -113,9 +113,9 @@ app.post("/user/registerAgent", (req, res) => {
 app.post("/user/registerFarmer", (req, res) => {
   const phoneNumber = req.body.phoneNumber;
   const password = req.body.password;
-  const sqlRegisterAgent =
+  const sqlRegisterFarmer =
     "INSERT INTO user (phoneNumber, password, userCategory) VALUE (?,?,'farmer')";
-  db.query(sqlRegisterAgent, [phoneNumber, password], (err, result) => {
+  db.query(sqlRegisterFarmer, [phoneNumber, password], (err, result) => {
     if (err) {
       res.send({ err: err });
       console.log(err);

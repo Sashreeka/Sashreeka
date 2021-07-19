@@ -34,7 +34,7 @@ function FarmerRegister() {
   // UI of registration of delivery agent
   return (
     <div>
-      {/* <h1>This is Delivery Agent Register</h1> */}
+      {/* <h1>This is Farmer Register</h1> */}
       <div className="form_wrapper">
         <div className="form_container">
           <div className="title_container">

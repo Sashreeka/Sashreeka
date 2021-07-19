@@ -53,7 +53,7 @@
 */
 
 .nav-sign-in {
-  margin: -5px;
+  /* margin: -5px; */
   width: 117px;
   height: 36px;
   background: #9be564;
@@ -99,11 +99,11 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
 }
 
 /* Full-width input fields */
-input[type="text"],
-input[type="password"] {
+.loginInput {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
