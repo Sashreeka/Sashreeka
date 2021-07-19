@@ -9,7 +9,7 @@ import WidgetSm from '../../components/widget/WidgetSm';
 
 export default function Home() {
     return (
-        <div className="home"> 
+        <div className="adminHome"> 
 
         <FeaturedInfo/>
         <Chart data={UserData} title="User Analytics" grid dataKey="Active User"/>
