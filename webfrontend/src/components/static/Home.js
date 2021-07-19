@@ -61,7 +61,7 @@ function Home() {
     </div>
 
 </section>
-{/*}
+
 <section class="about" id="about">
 
     
@@ -84,7 +84,7 @@ function Home() {
 
     </div>
 
-</section>*/}
+</section>
 
 </div>
 
