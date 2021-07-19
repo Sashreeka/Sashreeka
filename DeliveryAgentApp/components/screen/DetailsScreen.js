@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { StyleSheet, 
     Text, 
     View, 
@@ -9,41 +9,442 @@ import { StyleSheet,
     Modal,
     Button ,
     TouchableRipple,
-    ScrollView
+    Dimensions,
+    ScrollView,
+    
   } from 'react-native';
 
   import {
     Switch
   }from 'react-native-paper';
 
-  
+  import * as Animatable from 'react-native-animatable';
+  import { LinearGradient } from 'expo-linear-gradient';
+  import { Ionicons,Feather,FontAwesome,FontAwesome5,AntDesign } from '@expo/vector-icons';
 
+  import Collapsible from 'react-native-collapsible';
+  const deviceHeight=Dimensions.get('window').height
+  const deviceWidth=Dimensions.get('window').width
 
+  import {Entypo} from '@expo/vector-icons';
 
   const DetailsScreen = ({navigation})=>{
 
+    const [collapsed,setCollapsed]=useState(true);
+    const [details, setDetails]=useState([])
+  
+    const toggleExpanded = () => {
+      setCollapsed( !collapsed);
+    //  this.setState({ collapsed: !this.state.collapsed });
+    console.log(collapsed);
+    };
 
-    const data=[
-      {
-        'id':'1',
-        'name':"ishan"
-      },
-      {
-        'id':'2',
-        'name':"ishan"
-      },
-      {
-        'id':'3',
-        'name':"ishan"
-      },
-      {
-        'id':'4',
-        'name':"ishan"
-      },
-    ]
+
+   
     return(
       <ScrollView>
       <View style={{flex:1, backgroundColor:'#f9f9fb'}}>
+        <View style={styles.header}>
+          <Image
+          style={styles.map}
+            source={require('../../assets/map.png')}
+          />
+        </View>
+        <View style={styles.footer}>
+
+
+
+
+
+            <View style={styles.todayFirstRow}>
+              <Text style={styles.todayFirstRowTitle} >Today</Text>
+              <Text style={styles.todayFirstRowDel}>Deliveries</Text>
+              <View
+              style={styles.todayFirstRowIcon}
+             >
+              <Text>9</Text>
+
+              </View>
+             
+
+               
+            
+
+            </View>
+
+            <View style={styles.todaySecondRow}>
+               
+
+
+            <Animatable.Image
+            animation="fadeIn"
+              source={require('../../assets/vector.png')}
+              style={styles.todaySecondRowImg1}
+              
+            />
+
+            <View style={styles.todaySecondRowNew}>
+
+            <Animatable.Image
+              animation="bounce"
+              source={require('../../assets/line.png')}
+              style={styles.todaySecondRowImg2}
+            />
+              <View style={styles.todaySecondRowNewText}>
+                  <Text style={styles.todaySecondRowNewText1}>Colombo</Text>
+                  <Text style={styles.todaySecondRowNewText2}>Galle</Text>
+                   <Text style={styles.todaySecondRowNewText3}>Matara</Text>
+              </View>
+
+            </View>
+
+            </View>
+
+              
+            <ScrollView>
+
+
+            
+            <Animatable.View
+                  animation="fadeInUpBig"
+                 
+
+                  >
+                    <TouchableOpacity onPress={toggleExpanded}>
+                      <View style={styles.headerList}>
+                        <Text style={styles.headerText}>Polonnaruwa- Mr.P.B.N.Bandara</Text>
+                      </View>
+                    </TouchableOpacity>
+                    <Collapsible collapsed={collapsed} align="center">
+                      <View style={styles.content}>
+
+                      <View>
+
+                      <Entypo name="calendar" size={65} color="#217756"  />
+                      <Text style={{
+                        marginLeft:20,
+                        marginTop:-40,
+                        fontSize:14,
+                        fontWeight:'bold',
+
+                      }}>Jul</Text>
+                      <Text style={{
+                        marginLeft:22,
+                       marginTop:-5,
+                        fontSize:12,
+                      }}>24</Text>
+
+                      </View>
+
+                      
+                       <View style={{flexDirection:'column'}}>
+                       <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:10,textDecorationLine: 'underline',textDecorationColor:'#000'}}>Sri Wiccrama Rajasinghe Mawatha, Polonnaruwa</Text>
+                       <View style={{flexDirection:'row'}}>
+                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>Tel:</Text>
+                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>0715822452</Text>
+
+                       </View>
+                       <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0,fontWeight:'bold'}}>Order Details</Text>
+
+                       <View style={styles.order}>
+                       <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0}}>1.Compost Fertilizer</Text>
+                       <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0}}>10kg x 5</Text>
+
+                       </View>
+                       <View style={styles.order}>
+                       <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0}}>2.Compost Fertilizer</Text>
+                       <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0}}>10kg x 5</Text>
+
+                       </View>
+
+                       <View style={styles.order}>
+                       <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0}}>3.Compost Fertilizer</Text>
+                       <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0}}>10kg x 5</Text>
+
+                       </View>
+
+
+
+                       
+                       <View style={{flexDirection:'row'}}>
+                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0}}>Total Amount(Rs):</Text>
+                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>750</Text>
+                         <View
+                         style={{
+                           borderRadius:10,
+                           backgroundColor:'#fff',
+                           color:'#217756',
+                           marginLeft:50,
+                           paddingLeft:10,
+                           paddingRight:10,
+                         }}>
+                           <Text>Paid</Text>
+                         </View>
+
+                       </View>
+
+
+                  <LinearGradient
+                     colors={['#80B953','#2C9984']}
+                    // colors={['#217756','#FFFFFF']}
+                    style={styles.orderbtn}
+                    >
+                     <TouchableOpacity
+                      >
+
+                        <Text
+                        style={{color:'#fff'}}>Order Delivery</Text>
+                        </TouchableOpacity>
+                    
+
+
+                    </LinearGradient>
+
+                      
+                      
+                       
+                      
+                       
+                       </View>
+                      
+                        
+                      </View>
+                    </Collapsible>
+
+                    </Animatable.View>
+
+
+
+
+
+                    <Animatable.View
+                  animation="fadeInUpBig"
+                 
+
+                  >
+                    <TouchableOpacity onPress={toggleExpanded}>
+                      <View style={styles.headerList}>
+                        <Text style={styles.headerText}>Polonnaruwa- Mr.P.B.N.Bandara</Text>
+                      </View>
+                    </TouchableOpacity>
+                    <Collapsible collapsed={collapsed} align="center">
+                      <View style={styles.content}>
+
+                      <View>
+
+                      <Entypo name="calendar" size={65} color="#217756"  />
+                      <Text style={{
+                        marginLeft:20,
+                        marginTop:-40,
+                        fontSize:14,
+                        fontWeight:'bold',
+
+                      }}>Jul</Text>
+                      <Text style={{
+                        marginLeft:22,
+                       marginTop:-5,
+                        fontSize:12,
+                      }}>24</Text>
+
+                      </View>
+
+                      
+                       <View style={{flexDirection:'column'}}>
+                       <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:10,textDecorationLine: 'underline',textDecorationColor:'#000'}}>Sri Wiccrama Rajasinghe Mawatha, Polonnaruwa</Text>
+                       <View style={{flexDirection:'row'}}>
+                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>Tel:</Text>
+                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>0715822452</Text>
+
+                       </View>
+                       <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0,fontWeight:'bold'}}>Order Details</Text>
+
+                       <View style={styles.order}>
+                       <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0}}>1.Compost Fertilizer</Text>
+                       <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0}}>10kg x 5</Text>
+
+                       </View>
+                     
+
+
+
+                       
+                       <View style={{flexDirection:'row'}}>
+                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0}}>Total Amount(Rs):</Text>
+                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>750</Text>
+                         <View
+                         style={{
+                           borderRadius:10,
+                           backgroundColor:'#fff',
+                           color:'#217756',
+                           marginLeft:50,
+                           paddingLeft:10,
+                           paddingRight:10,
+                         }}>
+                           <Text>Paid</Text>
+                         </View>
+
+                       </View>
+
+
+                  <LinearGradient
+                     colors={['#80B953','#2C9984']}
+                    // colors={['#217756','#FFFFFF']}
+                    style={styles.orderbtn}
+                    >
+                     <TouchableOpacity
+                      >
+
+                        <Text
+                        style={{color:'#fff'}}>Order Delivery</Text>
+                        </TouchableOpacity>
+                    
+
+
+                    </LinearGradient>
+
+                      
+                      
+                       
+                      
+                       
+                       </View>
+                      
+                        
+                      </View>
+                    </Collapsible>
+
+                    </Animatable.View>
+
+
+
+
+
+                    <Animatable.View
+                  animation="fadeInUpBig"
+                 
+
+                  >
+                    <TouchableOpacity onPress={toggleExpanded}>
+                      <View style={styles.headerList}>
+                        <Text style={styles.headerText}>Polonnaruwa- Mr.P.B.N.Bandara</Text>
+                      </View>
+                    </TouchableOpacity>
+                    <Collapsible collapsed={collapsed} align="center">
+                      <View style={styles.content}>
+
+                      <View>
+
+                      <Entypo name="calendar" size={65} color="#217756"  />
+                      <Text style={{
+                        marginLeft:20,
+                        marginTop:-40,
+                        fontSize:14,
+                        fontWeight:'bold',
+
+                      }}>Jul</Text>
+                      <Text style={{
+                        marginLeft:22,
+                       marginTop:-5,
+                        fontSize:12,
+                      }}>24</Text>
+
+                      </View>
+
+                      
+                       <View style={{flexDirection:'column'}}>
+                       <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:10,textDecorationLine: 'underline',textDecorationColor:'#000'}}>Sri Wiccrama Rajasinghe Mawatha, Polonnaruwa</Text>
+                       <View style={{flexDirection:'row'}}>
+                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>Tel:</Text>
+                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>0715822452</Text>
+
+                       </View>
+                       <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0,fontWeight:'bold'}}>Order Details</Text>
+
+                       <View style={styles.order}>
+                       <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0}}>1.Compost Fertilizer</Text>
+                       <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0}}>10kg x 5</Text>
+
+                       </View>
+                       <View style={styles.order}>
+                       <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0}}>2.Compost Fertilizer</Text>
+                       <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0}}>10kg x 5</Text>
+
+                       </View>
+
+
+
+
+                       
+                       <View style={{flexDirection:'row'}}>
+                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0}}>Total Amount(Rs):</Text>
+                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>750</Text>
+                         <View
+                         style={{
+                           borderRadius:10,
+                           backgroundColor:'#fff',
+                           color:'#217756',
+                           marginLeft:50,
+                           paddingLeft:10,
+                           paddingRight:10,
+                         }}>
+                           <Text>Paid</Text>
+                         </View>
+
+                       </View>
+
+
+                  <LinearGradient
+                     colors={['#80B953','#2C9984']}
+                    // colors={['#217756','#FFFFFF']}
+                    style={styles.orderbtn}
+                    >
+                     <TouchableOpacity
+                      >
+
+                        <Text
+                        style={{color:'#fff'}}>Order Delivery</Text>
+                        </TouchableOpacity>
+                    
+
+
+                    </LinearGradient>
+
+                      
+                      
+                       
+                      
+                       
+                       </View>
+                      
+                        
+                      </View>
+                    </Collapsible>
+
+                    </Animatable.View>
+
+
+
+
+
+                 
+
+                    </ScrollView>  
+              
+
+           
+
+
+
+
+
+
+
+          
+            
+         
+
+
+        </View>
 
 
       
@@ -53,20 +454,7 @@ import { StyleSheet,
     
        
                        
-        <Button
-          title="Go to details screen...again"
-          onPress={()=>navigation.push("Details")}
-        />
-  
-      <Button
-          title="Go to Home"
-          onPress={()=>navigation.navigate("Home")}
-        />
-  
-    <Button
-          title="Go back"
-          onPress={()=>navigation.goBack()}
-        />
+       
       </View>
 
       </ScrollView>
@@ -79,50 +467,269 @@ import { StyleSheet,
     container: {
       flex: 1,
       backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
+      // alignItems: 'center',
+      // justifyContent: 'center',
     },
+    header:{
+      flex:2,
+
+    },
+    map:{
+
+      width:'100%',
+
     
-    categoryItemWrapper:{
-    //  backgroundColor:colors.secondaryT50,
-      display:'flex',
-      marginRight:10,
+
+    },
+    order:{
+      flexDirection:'row',
+      borderRadius:10,
+      backgroundColor:'#fff',
+      marginLeft:30,
+      marginRight:50,
+      marginBottom:5,
+
+
+
+    },
+    orderbtn:{
+
+      backgroundColor:'red',
       borderRadius:20,
-      height:120,
-      width:150,
-      // padding:10,
-      alignItems:"center",
-      justifyContent:"center",
-      shadowColor:"black",
-      shadowOffset:{
-          width:1,
-          height:1,
-      },
-      shadowOpacity:0.05,
-      shadowRadius:10,
-      elevation:1,
+      width:120,
+      padding:5,
+      alignItems:'center',
+      marginLeft:125,
+      marginTop:7,
+      marginBottom:10,
 
-   },
 
-   categoryItemImage:{
-       marginTop:25,
-       alignSelf:"center",
-       marginHorizontal:27,
-       width:100,
-       height:100,
-   },
+    },
+    footer:{
+      flex:3,
+      backgroundColor:'#fff',
+      borderTopLeftRadius:30,
+      borderTopRightRadius:30,
+      marginTop:-70,
+      marginBottom:110,
 
-   categoryItemTitle:{
-       display:"flex",
-       textAlign:"center",
-       fontSize:16,
-       fontWeight:"600",
-       marginTop:10,
-       textTransform:'uppercase',
-   },
+     
+
+
+
+    },
+
+    txtSize:{
+      fontSize:20,
+    },
+
+
+     todayWrapper:{
+      //  backgroundColor:colors.secondaryT50,
+        display:'flex',
+        // marginRight:20,
+        borderRadius:20,
+        width:370,
+        padding:10,
+        height:110,
+        marginStart:20,
+      
+       
+        // alignItems:"center",
+        // justifyContent:"center",
+        shadowColor:"black",
+        shadowOffset:{
+            width:1,
+            height:1,
+        },
+        shadowOpacity:0.05,
+        shadowRadius:20,
+        elevation:2,
+  
+     },
+
+     todayFirstRow:{
+       flexDirection:'row',
+       marginTop:17,
+       marginLeft:40,
+
+      
+
+     },
+     todayFirstRowTitle:{
+       color:'#217756',
+       fontSize:18,
+       fontWeight:'bold',
+       marginLeft:-10,
+      
+       
+     },
+     todayFirstRowDel:{
+      color:'#217756',
+      fontSize:16,
+      marginStart:180,
+
+
+     },
+     todayFirstRowIcon:{
+      marginStart:10,
+      alignItems:'center', 
+      justifyContent:'center',  
+      backgroundColor:'#F7AF93',     
+      width:25,
+      height:21, 
+      marginTop:2,
+      borderRadius:21, 
+     },
+     todaySecondRow:{
+       flexDirection:"row",
+       marginTop:20,
+       marginLeft:100,
+       marginBottom:30,
+       
+     },
+     todaySecondRowNew:{
+
+      flexDirection:'column'
+     },
+
+     todaySecondRowNewText:{
+
+      flexDirection:'row',
+     
+     },
+     todaySecondRowImg1:{
+       marginStart:-70,
+     },
+     todaySecondRowImg2:{
+      marginStart:50,
+    },
+    todaySecondRowNewText1:{
+      marginLeft:40,
+      color:'#217756'
+    },
+    todaySecondRowNewText2:{
+      marginLeft:20,
+      color:'#217756',
+    },
+    todaySecondRowNewText3:{
+      marginLeft:40,
+      color:'#217756',
+    },
+
+    DeliveryItemWrapper:{
+
+       //  backgroundColor:colors.secondaryT50,
+       display:'flex',
+       // marginRight:20,
+       borderRadius:20,
+       width:174,
+       padding:10,
+       height:115,
+       marginStart:20,
+       marginTop:40,
+     
+      
+       // alignItems:"center",
+       // justifyContent:"center",
+       shadowColor:"black",
+       shadowOffset:{
+           width:1,
+           height:1,
+       },
+       shadowOpacity:0.05,
+       shadowRadius:20,
+       elevation:2,
+
+    },
+    DeliveryItemWrapperTitle1:{
+      color:'#217756',
+       fontSize:18,
+       fontWeight:'bold',
+      
+       marginLeft:25,
+
+
+
+    },
+    DeliveryItemWrapperTitle2:{
+      color:'#217756',
+       fontSize:18,
+       fontWeight:'bold',
+      
+       marginLeft:30,
+
+
+
+    },
+    DeliveryItemWrapperIcon1:{
+      marginTop:2,
+      marginLeft:45,
+
+    },
+    DeliveryItemWrapperIcon2:{
+
+      marginTop:2,
+      marginLeft:47,
+    },
+    DeliveryItemWrappersunTitle1:{
+      fontSize:12,
+      fontWeight:'bold',
+      marginLeft:8,
+
+
+    },
+    DeliveryItemWrappersunTitle2:{
+      fontSize:12,
+      color:'#C4C4C4',
+      marginLeft:20,
+
+    },
+    headerList: {
+      backgroundColor: '#F0F0F0',
+      padding: 20,
+      borderRadius:20,
+      borderColor:"#000",
+      margin:10,
+
+    },
+    headerText: {
+      textAlign: 'center',
+      fontSize: 16,
+      fontWeight: '500',
+      color:'#000000',
+      fontWeight:'bold',
+
+    },
+    historyTText: {
+     
+      fontSize: 16,
+      fontWeight: '500',
+      color:'#000000',
+      fontWeight:'bold',
+      marginLeft:10,
+      marginTop:5,
+
+    },
+    content: {
+      padding: 10,
+      marginLeft:5,
+      marginRight:5,
+      marginTop:2,
+      paddingTop:10,
+      backgroundColor:'#F0F0F0',
+      borderRadius:15,
+      
+      
+      // borderBottomLeftRadius:20,
+      // borderBottomRightRadius:20,
+      flexDirection:'row',
+    },
   
 
-  
+
+    
+   
    
   });
   //#80B953, #2C9984

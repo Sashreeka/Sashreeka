@@ -151,6 +151,7 @@ const HomeStackScreen= ({navigation})=>(
           <Ionicons name="menu" size={25} color='#217756' backgroundColor='#1f65ff' style={{marginLeft:5}}
           onPress={()=>navigation.openDrawer()} />
         ),
+        headerShown:false
        
       
 

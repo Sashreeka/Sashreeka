@@ -76,9 +76,20 @@ export default function SigninScreen({navigation}) {
 
     return (
         <View style={styles.container}>
-          <StatusBar backgroundColor="#009387" barStyle="light-content"/>
+          <StatusBar backgroundColor="#89b963" barStyle="light-content"/>
           <View style={styles.header}>
-              <Text style={styles.text_header}>Welcome!</Text>
+          <Text style={styles.text_header}>Signin</Text>
+          <Animatable.Image
+            animation="bounceIn"
+           duration={2000}
+          style={styles.headerImage}
+          resizeMode="stretch"
+            source={
+              require('../../assets/iconn.png')
+              
+            }
+          />
+             
           </View>
           <Animatable.View style={styles.footer}
           animation="fadeInUpBig"
@@ -88,7 +99,7 @@ export default function SigninScreen({navigation}) {
                 <FontAwesome
                   name="mobile"
                   color="#05375a"
-                  size={25}
+                  size={30}
                 />
                 <TextInput
                   placeholder="0768610084"
@@ -114,7 +125,7 @@ export default function SigninScreen({navigation}) {
                 <FontAwesome
                   name="lock"
                   color="#217756"
-                  size={20}
+                  size={24}
                 />
                 <TextInput
                   placeholder="*******"
@@ -147,7 +158,7 @@ export default function SigninScreen({navigation}) {
               </View>
 
              
-              <Text style={styles.forget} onPress={()=>navigation.navigate('ForgetPassword')}>Forget Password</Text>
+              <Text style={styles.forget} onPress={()=>navigation.navigate('ForgetPassword')}>Forget Password?</Text>
               
 
               
@@ -184,19 +195,22 @@ export default function SigninScreen({navigation}) {
     )
 }
 
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     // backgroundColor:'#B7F785'
-   backgroundColor: '#009387',
+  // backgroundColor: '#009387',
+  backgroundColor:'#ABE87C',
   // backgroundColor:'#05375a'
     
   },
   header:{
-    flex:1,
-    justifyContent:'flex-end',
+    flex:2,
+    justifyContent:'center',
    paddingHorizontal:20,
-   paddingBottom:50,
+  //paddingBottom:-40,
   },
   footer:{
     flex:3,
@@ -207,6 +221,14 @@ const styles = StyleSheet.create({
     paddingHorizontal:20,
 
   },
+  headerImage:{
+
+    width:200,
+    height:200,
+    marginStart:80,
+    marginTop:0,
+
+  },
   // logo:{
   //   width:height_logo,
   //   height:height_logo,
@@ -214,8 +236,9 @@ const styles = StyleSheet.create({
   // },
   text_header:{
     color:'#fff',
-    fontSize:30,
+    fontSize:26,
     fontWeight:'bold',
+    marginTop:100,
   },
   text_footer:{
     color:"#05375a",
@@ -251,6 +274,9 @@ const styles = StyleSheet.create({
   },
   forget:{
       fontSize:16,
+      color: '#ACB3BF',
+      textAlign:'right',
+      marginTop:8,
   }
 
 

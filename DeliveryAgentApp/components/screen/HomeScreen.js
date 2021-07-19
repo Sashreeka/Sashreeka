@@ -24,7 +24,7 @@ import { StyleSheet,
   import MapView from 'react-native-maps';
 
   import axios from 'axios';
-  import { Ionicons,Feather,FontAwesome,FontAwesome5 } from '@expo/vector-icons';
+  import { Ionicons,Feather,FontAwesome,FontAwesome5,AntDesign } from '@expo/vector-icons';
   import Slider from '@react-native-community/slider';
 
   import Collapsible from 'react-native-collapsible';
@@ -43,6 +43,7 @@ import { StyleSheet,
 
 
   const deviceHeight=Dimensions.get('window').height
+  const deviceWidth=Dimensions.get('window').width
 
 const HomeScreen = ({navigation})=>{
 
@@ -143,6 +144,7 @@ const HomeScreen = ({navigation})=>{
   const {headerList,headerText,content}=styles
     return(
       <ScrollView>
+      <StatusBar backgroundColor="#89b963" barStyle="light-content"/>
       <View style={styles.container}>
 
       <View style={styles.header}>
@@ -374,6 +376,16 @@ const HomeScreen = ({navigation})=>{
 
 
 
+
+
+
+
+
+
+
+
+
+
            <Modal visible={openModal} 
          
            onBackdropPress={() => setOpenModal(false)}
@@ -382,18 +394,70 @@ const HomeScreen = ({navigation})=>{
               {/* <Animatable.View animation="fadeInDownBig" style={{flex:1,maxHeight:deviceHeight* 0.6, marginTop:180, justifyContent:"flex-end",borderTopLeftRadius:10,}}> */}
               <Animatable.View animation="fadeInUpBig" style={{
                 flex:1,
-                maxHeight:deviceHeight* 0.6, 
-                marginTop:220, marginBottom:-28, 
+                maxHeight:deviceHeight* 0.7, 
+                marginTop:100, marginBottom:-72, 
                 justifyContent:"flex-end",
                 borderTopLeftRadius:20,
                 borderTopRightRadius:20,
-                backgroundColor:"#fff",
+                backgroundColor:'#f9f9fb',
+                marginLeft:-16,
                 // marginLeft:-17,
                 // marginRight:50,
-                width:'100%',
+                width:deviceWidth* 0.98,
+                
                 
                 }}>
 
+
+        <View style={{
+                  flexDirection:'row',
+                  marginTop:18,
+              }}>
+                  <Text style={{
+                    color:'#217756',
+                    fontSize:16,
+                    fontWeight:'bold',
+                    marginLeft:16,
+                    marginTop:15
+                  }} >UPCOMING</Text>
+
+
+                <AntDesign name="close" size={24} color="black"
+                 onPress={()=>setOpenModal(false)}
+                style={{
+                  marginTop:-15,
+                  marginLeft:90,
+                }} />
+
+
+
+                  <Text style={{
+                     color:'#217756',
+                      fontSize:14,
+                      marginStart:70,
+                      marginTop:15
+                  }}>Deliveries</Text>
+                  <View
+                  style={{
+                    marginStart:10,
+                    alignItems:'center', 
+                    justifyContent:'center',  
+                    backgroundColor:'#F7AF93',     
+                    width:25,
+                    height:21, 
+                    marginTop:17,
+                    borderRadius:21, 
+                  }}
+                >
+                  <Text>9</Text>
+
+                  </View>
+           
+
+             
+          
+
+          </View>
 
     
 
@@ -404,47 +468,19 @@ const HomeScreen = ({navigation})=>{
 
 
 
-                <View style={{
-                    flexDirection:'row',
-                    marginTop:18,
-                }}>
-                    <Text style={{
-                      color:'#217756',
-                      fontSize:16,
-                      fontWeight:'bold',
-                      marginLeft:10,
-                    }} >UPCOMING</Text>
-                    <Text style={{
-                       color:'#217756',
-                        fontSize:14,
-                        marginStart:170,
-                    }}>Deliveries</Text>
-                    <View
-                    style={{
-                      marginStart:10,
-                      alignItems:'center', 
-                      justifyContent:'center',  
-                      backgroundColor:'#F7AF93',     
-                      width:25,
-                      height:21, 
-                      marginTop:2,
-                      borderRadius:21, 
-                    }}
-                  >
-                    <Text>9</Text>
-
-                    </View>
              
 
                
             
 
-            </View>
+         
                   <ScrollView  style={{marginTop:20}}>
                     
 
-                  <View
+                  <Animatable.View
+                  animation="fadeInUpBig"
                   style={{marginBottom:5}}
+
                   >
                     <TouchableOpacity onPress={toggleExpanded}>
                       <View style={headerList}>
@@ -454,11 +490,29 @@ const HomeScreen = ({navigation})=>{
                     <Collapsible collapsed={collapsed} align="center">
                       <View style={content}>
 
-                      <Entypo name="calendar" size={45} color="black" style={{height:80}}  />
+                      <View>
+
+                      <Entypo name="calendar" size={65} color="#217756"  />
+                      <Text style={{
+                        marginLeft:20,
+                        marginTop:-40,
+                        fontSize:14,
+                        fontWeight:'bold',
+
+                      }}>Jul</Text>
+                      <Text style={{
+                        marginLeft:22,
+                       marginTop:-5,
+                        fontSize:12,
+                      }}>24</Text>
+
+                      </View>
+
+                      
                        <View style={{flexDirection:'column'}}>
-                       <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10}}>Sri Wiccrama Rajasinghe Mawatha, Polonnaruwa</Text>
+                       <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:10,}}>Sri Wiccrama Rajasinghe Mawatha, Polonnaruwa</Text>
                        <Text style={{color:'#8C8C8C',fontSize:14,marginLeft:10}}>Tel : 0715822454</Text>
-                       <Text style={{color:'#000',fontSize:14,fontWeight:"bold",marginLeft:10}}>Delivery Date : 2021-07-23</Text>
+                       
                       
                        
                        </View>
@@ -466,63 +520,15 @@ const HomeScreen = ({navigation})=>{
                       </View>
                     </Collapsible>
 
-                    </View>
+                    </Animatable.View>
 
 
 
 
-                    <View
-                  style={{marginBottom:5}}
-                  >
-                    <TouchableOpacity onPress={toggleExpanded}>
-                      <View style={headerList}>
-                        <Text style={headerText}>Polonnaruwa- Mr.P.B.N.Bandara</Text>
-                      </View>
-                    </TouchableOpacity>
-                    <Collapsible collapsed={collapsed} align="center">
-                      <View style={content}>
-
-                      <Entypo name="calendar" size={45} color="black" style={{width:55,height:100}} />
-                       <View style={{flexDirection:'column'}}>
-                       <Text style={{color:'#8C8C8C',fontSize:13}}>Sri Wiccrama Rajasinghe Mawatha, Polonnaruwa</Text>
-                       <Text style={{color:'#000',fontSize:14,fontWeight:"bold"}}>Order Items</Text>
-                       <Text>Compost Fertilizer 10kg x 50</Text>
-                       <Button
-                          title="Delivered"
-                          onPress={()=>{alert('Are you sure, You get the money')}}
-                        />
-                       </View>
-                        
-                      </View>
-                    </Collapsible>
-
-                    </View>
 
 
+                  
 
-                    <TouchableOpacity onPress={toggleExpanded}>
-                      <View style={headerList}>
-                        <Text style={headerText}>Polonnaruwa- Mr.P.B.N.Bandara</Text>
-                      </View>
-                    </TouchableOpacity>
-                    <Collapsible collapsed={collapsed} align="center">
-                      <View style={content}>
-                      <Entypo name="calendar" size={24} color="black" />
-                        <Text>
-
-                        Sri Wiccrama Rajasinghe Mawatha, Polonnaruwa
-                        </Text>
-
-                        <Text>
-
-                        Compost Fertilizer 10kg x 50
-                        </Text>
-                        <Button
-                          title="Delivered"
-                          onPress={()=>{alert('Are you sure, You get the money')}}
-                        />
-                      </View>
-                    </Collapsible>
 
 
                   
@@ -539,12 +545,344 @@ const HomeScreen = ({navigation})=>{
 
 
               
-              <Button title="back"
-                onPress={()=>setOpenModal(false)}
-              />
+          
               </Animatable.View>
             </Modal>
 
+
+
+
+
+
+{/* history modal */}
+
+
+            <Modal visible={openModal1} 
+         
+         onBackdropPress={() => setOpenModal1(false)}
+         
+         >
+            {/* <Animatable.View animation="fadeInDownBig" style={{flex:1,maxHeight:deviceHeight* 0.6, marginTop:180, justifyContent:"flex-end",borderTopLeftRadius:10,}}> */}
+            <Animatable.View animation="fadeInUpBig" style={{
+              flex:1,
+              maxHeight:deviceHeight* 0.7, 
+              marginTop:100,
+               marginBottom:-72, 
+              justifyContent:"flex-end",
+              borderTopLeftRadius:20,
+              borderTopRightRadius:20,
+              backgroundColor:'#f9f9fb',
+              marginLeft:-16,
+              // marginLeft:-17,
+              // marginRight:50,
+              width:deviceWidth* 0.98,
+              
+              
+              }}>
+
+
+  
+
+
+
+
+
+
+
+
+              <View style={{
+                  flexDirection:'row',
+                  marginTop:18,
+              }}>
+                  <Text style={{
+                    color:'#217756',
+                    fontSize:16,
+                    fontWeight:'bold',
+                    marginLeft:16,
+                    marginTop:5
+                  }} >HISTORY</Text>
+
+
+                <AntDesign name="close" size={24} color="black"
+                 onPress={()=>setOpenModal1(false)}
+                style={{
+                  marginTop:-15,
+                  marginLeft:90,
+                }} />
+
+
+
+                  <Text style={{
+                     color:'#217756',
+                      fontSize:14,
+                      marginStart:80,
+                      marginTop:5
+                  }}>Deliveries</Text>
+                  <View
+                  style={{
+                    marginStart:10,
+                    alignItems:'center', 
+                    justifyContent:'center',  
+                    backgroundColor:'#F7AF93',     
+                    width:25,
+                    height:21, 
+                    marginTop:7,
+                    borderRadius:21, 
+                  }}
+                >
+                  <Text>9</Text>
+
+                  </View>
+           
+
+             
+          
+
+          </View>
+
+          <View style={{
+            flexDirection:'row',
+            marginLeft:20,
+            marginRight:90,
+            marginTop:10,
+            height:40,
+            borderRadius:40,
+            backgroundColor:'#F4F4F4',
+            shadow:5,
+            alignItems:'center',
+            justifyContent:"center",
+            width:deviceWidth* 0.5,
+
+
+          }}>
+          
+        <Text
+
+          style={{
+            marginLeft:-30
+          }}
+
+          >
+          Sort By
+          
+          </Text>
+          <FontAwesome name="sort-desc" size={24} color="black" 
+            style={{
+              marginTop:-7,
+              marginLeft:90,
+            }}
+          />
+
+
+          </View>
+
+
+
+                <ScrollView  style={{marginTop:20}}>
+                  
+
+                <Animatable.View
+                animation="fadeInUpBig"
+                style={{marginBottom:5}}
+
+                >
+                 
+                    <View style={content}>
+
+                    <View>
+
+                    <Entypo name="calendar" size={65} color="#217756"  />
+                    <Text style={{
+                      marginLeft:20,
+                      marginTop:-40,
+                      fontSize:14,
+                      fontWeight:'bold',
+
+                    }}>Jul</Text>
+                    <Text style={{
+                      marginLeft:22,
+                     marginTop:-5,
+                      fontSize:12,
+                    }}>21</Text>
+
+                    </View>
+
+                    
+                     <View style={{flexDirection:'column'}}>
+                     <Text style={styles.historyTText}>Polonnaruwa- Mr.P.B.N.Bandara</Text>
+                     <View style={{flexDirection:'row'}}>
+                         <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:0,}}>Payment Method:</Text>
+                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>Online</Text>
+
+                     </View>
+
+
+                     <View style={{flexDirection:'row'}}>
+                         <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:0,}}>Total Amount(Rs):</Text>
+                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>750</Text>
+
+                     </View>
+                 
+                     
+                     </View>
+                      
+                    </View>
+                 
+
+                  </Animatable.View>
+
+
+
+
+
+                  <Animatable.View
+                animation="fadeInUpBig"
+                style={{marginBottom:5}}
+
+                >
+                 
+                    <View style={content}>
+
+                    <View>
+
+                    <Entypo name="calendar" size={65} color="#217756"  />
+                    <Text style={{
+                      marginLeft:20,
+                      marginTop:-40,
+                      fontSize:14,
+                      fontWeight:'bold',
+
+                    }}>Jul</Text>
+                    <Text style={{
+                      marginLeft:22,
+                     marginTop:-5,
+                      fontSize:12,
+                    }}>21</Text>
+
+                    </View>
+
+                    
+                     <View style={{flexDirection:'column'}}>
+                     <Text style={styles.historyTText}>Polonnaruwa- Mr.P.B.N.Bandara</Text>
+                     <View style={{flexDirection:'row'}}>
+                         <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:0,}}>Payment Method:</Text>
+                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>Online</Text>
+
+                     </View>
+
+
+                     <View style={{flexDirection:'row'}}>
+                         <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:0,}}>Total Amount(Rs):</Text>
+                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>750</Text>
+
+                     </View>
+                 
+                     
+                     </View>
+                      
+                    </View>
+                 
+
+                  </Animatable.View>
+
+
+                  <Animatable.View
+                animation="fadeInUpBig"
+                style={{marginBottom:5}}
+
+                >
+                 
+                    <View style={content}>
+
+                    <View>
+
+                    <Entypo name="calendar" size={65} color="#217756"  />
+                    <Text style={{
+                      marginLeft:20,
+                      marginTop:-40,
+                      fontSize:14,
+                      fontWeight:'bold',
+
+                    }}>Jul</Text>
+                    <Text style={{
+                      marginLeft:22,
+                     marginTop:-5,
+                      fontSize:12,
+                    }}>21</Text>
+
+                    </View>
+
+                    
+                     <View style={{flexDirection:'column'}}>
+                     <Text style={styles.historyTText}>Polonnaruwa- Mr.P.B.N.Bandara</Text>
+                     <View style={{flexDirection:'row'}}>
+                         <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:0,}}>Payment Method:</Text>
+                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>Online</Text>
+
+                     </View>
+
+
+                     <View style={{flexDirection:'row'}}>
+                         <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:0,}}>Total Amount(Rs):</Text>
+                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>750</Text>
+
+                     </View>
+                 
+                     
+                     </View>
+                      
+                    </View>
+                 
+
+                  </Animatable.View>
+
+
+
+
+           
+                </ScrollView>
+
+          
+            </Animatable.View>
+          </Modal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{/* 
 
             <Modal visible={openModal1}>
               <View style={{maxHeight:deviceHeight* 0.4}}>
@@ -569,7 +907,7 @@ const HomeScreen = ({navigation})=>{
                 onPress={()=>setOpenModal1(false)}
               />
               </View>
-            </Modal>
+            </Modal> */}
              
 
       </View>
@@ -605,26 +943,43 @@ export default HomeScreen;
       backgroundColor: "#000000c0"
     },
     headerList: {
-      backgroundColor: '#217756',
+      backgroundColor: '#F0F0F0',
       padding: 20,
       borderRadius:20,
+      borderColor:"#000",
+      margin:10,
 
     },
     headerText: {
       textAlign: 'center',
       fontSize: 16,
       fontWeight: '500',
-      color:'#fff',
+      color:'#000000',
       fontWeight:'bold',
+
+    },
+    historyTText: {
+     
+      fontSize: 16,
+      fontWeight: '500',
+      color:'#000000',
+      fontWeight:'bold',
+      marginLeft:10,
+      marginTop:5,
 
     },
     content: {
       padding: 10,
-      marginTop:5,
+      marginLeft:5,
+      marginRight:5,
+      marginTop:2,
       paddingTop:10,
-      backgroundColor: '#fff',
-      borderBottomLeftRadius:20,
-      borderBottomRightRadius:20,
+      backgroundColor:'#F0F0F0',
+      borderRadius:15,
+      
+      
+      // borderBottomLeftRadius:20,
+      // borderBottomRightRadius:20,
       flexDirection:'row',
     },
   
