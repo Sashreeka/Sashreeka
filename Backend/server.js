@@ -82,15 +82,15 @@ app.post('/user/login',(req,res)=>{
 
 
 
-// app.get("/api/get",(req,res)=>{
-//    // console.log('hi anu');
-//     const sqlget="select * from organic";
-//     db.query(sqlget,(err,result)=>{
-//         console.log(result);
-//         res.send(result);
-//     })
+app.get("/api/get",(req,res)=>{
+   // console.log('hi anu');
+    const sqlget="select * from fertilizer";
+    db.query(sqlget,(err,result)=>{
+        console.log(result);
+        res.send(result);
+    })
     
-// })
+})
 
 // app.get("/api/order",(req,res)=>{
 //     // console.log('hi anu');
@@ -105,7 +105,7 @@ app.post('/user/login',(req,res)=>{
 //  app.use(loginRoutes);
 
 app.listen(4000,()=>{
-    console.log("running port 3001");
+    console.log("running port 4000");
 })
 
 

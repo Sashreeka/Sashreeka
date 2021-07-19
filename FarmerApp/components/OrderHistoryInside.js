@@ -10,7 +10,7 @@ import Axios from "axios";
 import { Directions } from 'react-native-gesture-handler';
 import photo from "../assets/images/bio3.png";
 
-import RemoveButton from "./buttons";
+import ViewOrderButton from "./buttons";
 
 Feather.loadFont();
 
@@ -38,84 +38,47 @@ export default Main = ()=>{
             key={Math.random}
             >
 
-             <View style={styles.itemDetailcardWrapper}>
+            <View style={styles.pageTopicView}>
+                <Text style={styles.pageTopic}>Order History</Text>
+            </View>
+
+            <View style={styles.itemDetailcardWrapper2}>
+
+                <View style={styles.itemratingcardcontainer}>
+                <View style={styles.center}>
+                        <View>
+                            <Text>Summary</Text>    
+                        </View>
+                        <View>
+                            <Text style={styles.topicBold}>Order ID: ORD202145639</Text>                        
+                        </View>
+                        <View style={styles.center}>
+                            <Text style={styles.textRegular}>Date: 2021-04-04 Time: 11:50:07</Text> 
+                            <Text style={styles.textRegular}>Payment Method: Online</Text>
+                            <Text style={styles.textRegular}>Payment Status: </Text>
+                            <Text style={styles.textRegular}>Order Status: <Text style={styles.outForDelivery}>Out for Delivery</Text></Text>                       
+                        </View>
+                        <View>
+                            <Text></Text>                        
+                        </View>
+                </View>
+                    
+                </View>
+            </View>  
+
+
+           
+            <View style={styles.itemDetailcardWrapper}>
                  <View style={styles.itemImg}>
-                 <Image source={photo} style={styles.itemCardImage}/>
+                    <Image source={photo} style={styles.itemCardImage}/>
                  </View>
                  <View style={styles.detailsView}>
                     <Text style={styles.itemHeader}>Bio Phos</Text>
                     <Text style={styles.itemDetails}>RS.389.00</Text>
                     <Text style={styles.itemPrice}>Qty :</Text>
-                    
                  </View>
             </View>
-            <View style={styles.itemDetailcardWrapper2}>
-                 <View style={styles.itemratingcardcontainer}>
-                    <Text style={styles.topicBold}>Rating</Text>
-                    <View style={styles.ratingrow}>
-                        <View style={styles.ratingStarTopBarVal}>
-                        <Text style={styles.textRegular}>4.5/5</Text> 
-                        </View>
-                        <View style={styles.ratingStarTopBar}>
-                        <FontAwsome name="star" size={22} color={colors.ratingStarColor}></FontAwsome>
-                        <FontAwsome name="star" size={22} color={colors.ratingStarColor}></FontAwsome>
-                        <FontAwsome name="star" size={22} color={colors.ratingStarColor}></FontAwsome>
-                        <FontAwsome name="star-half" size={22} color={colors.ratingStarColor}></FontAwsome>
-                        </View>
-                    </View>
-                    
-                                  
-                 </View>
-
-                 {/* comments */}
-                <View style={styles.hr}/>
-                 <View style={styles.itemratingcardcontainer}>
-                     <Text style={styles.topicBold}>Comments</Text>
-                     <View style={styles.commentContainer}>
-                         {/* one comments */}
-                         <View style={styles.oneCommentContainer}>
-                            <View style={styles.commenterImage}>
-                            <Image source={require("../assets/images/profileimg_girl.jpg")} style={styles.profileImage}/>
-                            </View>
-                            <View style={styles.commentfull}>
-                                <Text style={styles.commentline}>This Product is good.</Text>
-                                <Text style={styles.commenter}>A A Fernando</Text>
-                            </View>
-                         </View>
-
-                         {/* one comments */}
-                         <View style={styles.oneCommentContainer}>
-                            <View style={styles.commenterImage}>
-                            <Image source={require("../assets/images/profileimg_girl.jpg")} style={styles.profileImage}/>
-                            </View>
-                            <View style={styles.commentfull}>
-                                <Text style={styles.commentline}>Great! I highly recommend this product.</Text>
-                                <Text style={styles.commenter}>Madiri Manoharan</Text>
-                            </View>
-                         </View>
-
-                         {/* one comments */}
-                         <View style={styles.oneCommentContainer}>
-                            <View style={styles.commenterImage}>
-                            <Image source={require("../assets/images/profileimg_girl.jpg")} style={styles.profileImage}/>
-                            </View>
-                            <View style={styles.commentfull}>
-                                <Text style={styles.commentline}>good :)</Text>
-                                <Text style={styles.commenter}>W W Sangakkara</Text>
-                            </View>
-                         </View>
-                            
-                     </View>
-                 </View>
-
-                 
-                     {/* your comments & rate */}
-                 <View style={styles.hr}/>
-                 <View style={styles.itemratingcardcontainer}>
-                     <Text style={styles.topicBold}>Do you like to comment & rate ?</Text>
-                 </View>
-                 
-            </View>    
+            
 
             </ScrollView>
         </View>
@@ -162,12 +125,12 @@ const styles=StyleSheet.create({
         borderBottomLeftRadius:40,
         borderBottomRightRadius:40,
     },
-    itemDetailcardWrapper:{
+   
+    itemDetailcardWrapper2:{
         backgroundColor:"white",
         margin:20,
-        padding:20,
+        paddingHorizontal:20,
         marginBottom:5,
-        flexDirection:"row",
         borderRadius:20,
         shadowColor:"black",
         shadowOffset:{
@@ -177,14 +140,14 @@ const styles=StyleSheet.create({
         shadowOpacity:0.05,
         shadowRadius:10,
         elevation:2,
-        // justifyContent:"space-between",
-       
+        // justifyContent:"space-between",  
     },
-    itemDetailcardWrapper2:{
+    itemDetailcardWrapper:{
         backgroundColor:"white",
         margin:20,
-        paddingHorizontal:20,
+        padding:20,
         marginBottom:5,
+        flexDirection:"row",
         borderRadius:20,
         shadowColor:"black",
         shadowOffset:{
@@ -243,13 +206,24 @@ const styles=StyleSheet.create({
     itemratingcardcontainer:{
         paddingVertical:20,
     },
+
+    ratingTopBar:{
+
+    },
+    topicBold:{
+        fontWeight:"bold",
+        // paddingLeft:10,
+    },
+    itemratingcardcontainer:{
+        paddingVertical:20,
+    },
     hr:{
         borderBottomColor: '#DADADA',
         borderBottomWidth: 1, 
     },
     textRegular:{
         paddingTop:10,
-        paddingLeft:10,
+        // paddingLeft:10,
     },
     ratingStarTopBar:{
         flexDirection:"row",
@@ -285,6 +259,43 @@ const styles=StyleSheet.create({
         fontSize:13,
     },
 
-    
+
+    pageTopicView:{
+        display:'flex',
+        alignItems:'center',
+        paddingHorizontal:30,
+        paddingVertical:10,
+    },
+    pageTopic:{
+        color:"#217756",
+        fontSize:20,
+        fontWeight:"bold",
+
+    },
+    order:{
+        paddingVertical:20,
+        alignItems:'center',
+    },
+    outForDelivery:{
+        color:"#63B75D",
+        fontWeight:'bold',
+    },
+
+    PendingDelivery:{
+        color:"#DDB218",
+        fontWeight:'bold',
+    },
+
+    SuccessfulDelivery:{
+        color:"#217756",
+        fontWeight:'bold',
+    },
+
+    viewOrderButtonview:{
+        paddingTop:10,
+    },
+    center:{
+        alignItems:'center',
+    },
 
 })

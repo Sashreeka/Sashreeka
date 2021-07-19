@@ -1,24 +1,25 @@
 import React, { useState, useEffect} from 'react';
 import {FlatList,StatusBar,View, Text, StyleSheet,SafeAreaView,Image, ScrollView} from "react-native";
 import Feather from "react-native-vector-icons/Feather";
-import fontAwsome from "react-native-vector-icons/FontAwesome";
+import FontAwsome from "react-native-vector-icons/FontAwesome";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 import categoriesData from '../assets/data/categoriesData';
 import itemsData from '../assets/data/itemsData';
 import colors from '../assets/colors/colors';
+import CheckoutForm from './CkeckoutForm';
 import Axios from "axios";
 
 Feather.loadFont();
 
 
 
-export default Home = ()=>{
+export default Home = ({navigation})=>{
 
     const [ferlilizerlist,setferlilizerlist] = useState([]);
 
     useEffect(()=>{
-        Axios.get('http://192.168.1.21:3001/api/get').then((response)=>{
+        Axios.get('http://192.168.1.21:4000/api/get').then((response)=>{
           console.log(response.data[0].caption);
           console.log(response.data[0].fertilizerId);
           console.log(response.data[0].name);
@@ -57,7 +58,10 @@ export default Home = ()=>{
             <SafeAreaView>
                 <View style={styles.headerWrapper}>
                     <Image source={require("../assets/images/profileimg_girl.jpg")} style={styles.profileImage}/>
-                    <Feather name="menu" size={24} color={colors.textDark}></Feather>
+                    <Feather name="menu" size={24} color={colors.textDark}
+                    onPress={()=>navigation.openDrawer()}
+                    
+                    ></Feather>
                 </View>
                 
             </SafeAreaView>
@@ -77,6 +81,8 @@ export default Home = ()=>{
                 </View>
             </View>
 
+            
+
             {/* Categories */}
             <View style={styles.categoriesWrapper}>
                 <Text style={styles.categoriesTitle}>Categories</Text>
@@ -90,6 +96,7 @@ export default Home = ()=>{
                 
                 </View> 
             </View>
+
 
             {/* testcode map funation */}
            {/* {
@@ -132,7 +139,7 @@ export default Home = ()=>{
                             </View>
                             <View styles={styles.itemcardRight}>
                                 
-                                <Image source={val.photo} styles={styles.itemcardimage}/>
+                                {/* <Image source={val.photo} styles={styles.itemcardimage}/> */}
                             </View>
                          </View>
                          
