@@ -9,13 +9,14 @@ import colors from '../assets/colors/colors';
 import Axios from "axios";
 import { Directions } from 'react-native-gesture-handler';
 import photo from "../assets/images/bio3.png";
+import PlusMinusButton from './common/Buttons';
 
 import RemoveButton from "./buttons";
 
 Feather.loadFont();
 
 
-export default Main = ()=>{
+export default Main = ({navigation})=>{
     return(
         <View style={styles.container}>
             
@@ -45,7 +46,11 @@ export default Main = ()=>{
                  <View style={styles.detailsView}>
                     <Text style={styles.itemHeader}>Bio Phos</Text>
                     <Text style={styles.itemDetails}>RS.389.00</Text>
+                    <View>
                     <Text style={styles.itemPrice}>Qty :</Text>
+                    <PlusMinusButton/>
+                    </View>
+                    
                     
                  </View>
             </View>

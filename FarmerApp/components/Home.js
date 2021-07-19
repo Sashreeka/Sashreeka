@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import {FlatList,StatusBar,View, Text, StyleSheet,SafeAreaView,Image, ScrollView} from "react-native";
+import {FlatList,StatusBar,View, Text, StyleSheet,SafeAreaView,Image, ScrollView,TouchableOpacity} from "react-native";
 import Feather from "react-native-vector-icons/Feather";
 import FontAwsome from "react-native-vector-icons/FontAwesome";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -123,25 +123,26 @@ export default Home = ({navigation})=>{
                          marginTop:val.fertilizerId==1 ? 10 : 20,
                          
                      }
-                     ]}>
-                         <View style={styles.itemCardWrapOuter}>
-                            <View style={styles.itemcardLeft}>
+                     ]} >
+                         <TouchableOpacity onPress={()=>navigation.navigate('ItemPage')}>
+                         <View style={styles.itemCardWrapOuter} >
+                            <View style={styles.itemcardLeft} onPress={()=>navigation.navigate('ItemPage')}>
                                 <View style={styles.itemWrapperMain}>
-                                    <Text style={styles.itemTitleMain}>{val.name}</Text>  
+                                    <Text style={styles.itemTitleMain} >{val.name}</Text>  
                                 </View>
                                 <View style={styles.itemDescriptionWrapper}>
                                     <Text style={styles.itemDescription}>{val.caption}</Text>
                                 </View>
                                 <View style={styles.itemADDbutton}>
-                                    <Text style={styles.itemADDbuttonText}>ADD<Feather name="plus" size={15} color='#000'/>
+                                    <Text style={styles.itemADDbuttonText} onPress={()=>navigation.navigate('ItemPage')}>ADD<Feather name="plus" size={15} color='#000'/>
                                     </Text>
                                 </View>
                             </View>
                             <View style={styles.itemcardRight}>
-                                <Image source={{uri: `${val.photo}` }} style={styles.itemcardimage}/>
+                                <Image source={{uri: `${val.photo}` }} style={styles.itemcardimage} />
                             </View>
                          </View>
-                         
+                         </TouchableOpacity>
                  </View>
 
                    )
