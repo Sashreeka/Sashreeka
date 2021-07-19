@@ -24,6 +24,7 @@ import ProductList from "./components/company/Admin/pages/productList/ProductLis
 import Product from "./components/company/Admin/pages/product/Product";
 import NewProduct from "./components/company/Admin/pages/newProduct/NewProduct";
 
+
 function App() {
   let userCategory = localStorage.getItem("userCategory");
 
@@ -58,6 +59,8 @@ function App() {
               <Route path="/newproduct">
                 <NewProduct />
               </Route>
+
+             
             </Switch>
           </div>
         ) : (

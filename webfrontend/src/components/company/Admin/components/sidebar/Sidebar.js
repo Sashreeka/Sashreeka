@@ -1,11 +1,27 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import "./sidebar.css";
 import {LineStyle,Timeline,TrendingUp,Person, WebAsset,AttachMoney,BarChart,MailOutline,DynamicFeed,
     ChatBubbleOutline,WorkOutline,Report} from "@material-ui/icons";
-  
+ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+ import HomeIcon from '@material-ui/icons/Home';
+ import BarChartIcon from '@material-ui/icons/BarChart';
+ import PeopleIcon from '@material-ui/icons/People';
+ import NotificationsIcon from '@material-ui/icons/Notifications';
+ import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew'; 
 import { Link } from 'react-router-dom';
 
 export default function Sidebar() {
+
+    const Logout =()=>{
+
+       
+            localStorage.clear();
+            window.location.href='/';
+
+       
+
+
+    }
     return (
         <div className="sidebar">
             <div className="sidebarWrapper">
@@ -14,16 +30,16 @@ export default function Sidebar() {
                     <ul className="sidebarList">
                         <Link to="/" className="link" >
                             <li className="sidebarListItem active">
-                                <LineStyle className="sidebarIcon"/>
+                                <HomeIcon className="sidebarIcon"/>
                                 Home
                             </li>
                         </Link>
-                        <li className="sidebarListItem">
+                        {/* <li className="sidebarListItem">
                             <Timeline className="sidebarIcon"/>
                             Analytics
-                        </li>
+                        </li> */}
                         <li className="sidebarListItem">
-                            <TrendingUp className="sidebarIcon"/>
+                            <BarChartIcon className="sidebarIcon"/>
                             Sales
                         </li>
                     </ul>
@@ -36,11 +52,11 @@ export default function Sidebar() {
 
             <div className="sidebarWrapper">
                 <div className="sidebarMenu">
-                    <h3 className="sidebarTitleNew">Quick Menu</h3>
+                    <h3 className="sidebarTitleNew">Manage</h3>
                     <ul className="sidebarList">
                     <Link to="/users" className="link">
                          <li className="sidebarListItem">
-                            <Person className="sidebarIcon"/>
+                            <PeopleIcon className="sidebarIcon"/>
                             Users
                         </li>
 
@@ -48,7 +64,7 @@ export default function Sidebar() {
                     <Link to="/products" className="link">
                          <li className="sidebarListItem">
                             <WebAsset className="sidebarIcon"/>
-                            Products
+                            Products & Categories
                         </li>
 
                     </Link>
@@ -56,12 +72,12 @@ export default function Sidebar() {
                       
                         <li className="sidebarListItem">
                             <AttachMoney className="sidebarIcon"/>
-                            Transactions
+                            Deliveries
                         </li>
 
                         <li className="sidebarListItem">
                             <BarChart className="sidebarIcon"/>
-                            Reports
+                            Orders
                         </li>
                     </ul>
 
@@ -74,19 +90,28 @@ export default function Sidebar() {
 
             <div className="sidebarWrapper">
                 <div className="sidebarMenu">
-                    <h3 className="sidebarTitleNew">Notification</h3>
+                    <h3 className="sidebarTitleNew">Company</h3>
                     <ul className="sidebarList">
                         <li className="sidebarListItem">
-                            <MailOutline className="sidebarIcon"/>
-                            Mail
+                            <AccessibilityNewIcon className="sidebarIcon"/>
+                            User Roles & Privilages
                         </li>
                         <li className="sidebarListItem">
-                            <DynamicFeed className="sidebarIcon"/>
-                            Feedback
+                            <PeopleIcon className="sidebarIcon"/>
+                            Company Staff
                         </li>
+                        <li className="sidebarListItem">
+                            <NotificationsIcon className="sidebarIcon"/>
+                            Notifications
+                        </li>
+
                         <li className="sidebarListItem">
                             <ChatBubbleOutline className="sidebarIcon"/>
-                            Messages
+                            Announcements
+                        </li>
+                        <li className="sidebarListItem">
+                            <AttachMoney className="sidebarIcon"/>
+                            Revenue
                         </li>
                     </ul>
 
@@ -98,25 +123,24 @@ export default function Sidebar() {
 
             <div className="sidebarWrapper">
                 <div className="sidebarMenu">
-                    <h3 className="sidebarTitleNew">Staff</h3>
+                    
                     <ul className="sidebarList">
-                        <li className="sidebarListItem">
-                            <WorkOutline className="sidebarIcon"/>
-                            Manage
+                       
+                        
+                        <Link onClick={Logout} className="link">
+                        <li className="sidebarListItemLogout">
+                            <ExitToAppIcon className="sidebarIcon"/>
+                            LogOut
                         </li>
-                        <li className="sidebarListItem">
-                            <Timeline className="sidebarIcon"/>
-                            Analytics
-                        </li>
-                        <li className="sidebarListItem">
-                            <Report className="sidebarIcon"/>
-                            Reports
-                        </li>
+                        </Link>
                     </ul>
 
                 </div>
 
             </div>
+
+
+            
 
 
  
