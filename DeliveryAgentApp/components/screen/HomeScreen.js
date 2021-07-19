@@ -380,12 +380,71 @@ const HomeScreen = ({navigation})=>{
            
            >
               {/* <Animatable.View animation="fadeInDownBig" style={{flex:1,maxHeight:deviceHeight* 0.6, marginTop:180, justifyContent:"flex-end",borderTopLeftRadius:10,}}> */}
-              <Animatable.View animation="fadeInUpBig" style={{flex:1,maxHeight:deviceHeight* 0.6, marginTop:220, marginBottom:-28, justifyContent:"flex-end",borderTopLeftRadius:10,}}>
-                  <ScrollView >
+              <Animatable.View animation="fadeInUpBig" style={{
+                flex:1,
+                maxHeight:deviceHeight* 0.6, 
+                marginTop:220, marginBottom:-28, 
+                justifyContent:"flex-end",
+                borderTopLeftRadius:20,
+                borderTopRightRadius:20,
+                backgroundColor:"#fff",
+                // marginLeft:-17,
+                // marginRight:50,
+                width:'100%',
+                
+                }}>
+
+
+    
+
+
+
+
+
+
+
+
+                <View style={{
+                    flexDirection:'row',
+                    marginTop:18,
+                }}>
+                    <Text style={{
+                      color:'#217756',
+                      fontSize:16,
+                      fontWeight:'bold',
+                      marginLeft:10,
+                    }} >UPCOMING</Text>
+                    <Text style={{
+                       color:'#217756',
+                        fontSize:14,
+                        marginStart:170,
+                    }}>Deliveries</Text>
+                    <View
+                    style={{
+                      marginStart:10,
+                      alignItems:'center', 
+                      justifyContent:'center',  
+                      backgroundColor:'#F7AF93',     
+                      width:25,
+                      height:21, 
+                      marginTop:2,
+                      borderRadius:21, 
+                    }}
+                  >
+                    <Text>9</Text>
+
+                    </View>
+             
+
+               
+            
+
+            </View>
+                  <ScrollView  style={{marginTop:20}}>
                     
 
                   <View
-                  style={{marginBottom:30}}
+                  style={{marginBottom:5}}
                   >
                     <TouchableOpacity onPress={toggleExpanded}>
                       <View style={headerList}>
@@ -394,20 +453,46 @@ const HomeScreen = ({navigation})=>{
                     </TouchableOpacity>
                     <Collapsible collapsed={collapsed} align="center">
                       <View style={content}>
-                      <Entypo name="calendar" size={24} color="black" />
-                        <Text>
 
-                        Sri Wiccrama Rajasinghe Mawatha, Polonnaruwa
-                        </Text>
+                      <Entypo name="calendar" size={45} color="black" style={{height:80}}  />
+                       <View style={{flexDirection:'column'}}>
+                       <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10}}>Sri Wiccrama Rajasinghe Mawatha, Polonnaruwa</Text>
+                       <Text style={{color:'#8C8C8C',fontSize:14,marginLeft:10}}>Tel : 0715822454</Text>
+                       <Text style={{color:'#000',fontSize:14,fontWeight:"bold",marginLeft:10}}>Delivery Date : 2021-07-23</Text>
+                      
+                       
+                       </View>
+                        
+                      </View>
+                    </Collapsible>
 
-                        <Text>
+                    </View>
 
-                        Compost Fertilizer 10kg x 50
-                        </Text>
-                        <Button
+
+
+
+                    <View
+                  style={{marginBottom:5}}
+                  >
+                    <TouchableOpacity onPress={toggleExpanded}>
+                      <View style={headerList}>
+                        <Text style={headerText}>Polonnaruwa- Mr.P.B.N.Bandara</Text>
+                      </View>
+                    </TouchableOpacity>
+                    <Collapsible collapsed={collapsed} align="center">
+                      <View style={content}>
+
+                      <Entypo name="calendar" size={45} color="black" style={{width:55,height:100}} />
+                       <View style={{flexDirection:'column'}}>
+                       <Text style={{color:'#8C8C8C',fontSize:13}}>Sri Wiccrama Rajasinghe Mawatha, Polonnaruwa</Text>
+                       <Text style={{color:'#000',fontSize:14,fontWeight:"bold"}}>Order Items</Text>
+                       <Text>Compost Fertilizer 10kg x 50</Text>
+                       <Button
                           title="Delivered"
                           onPress={()=>{alert('Are you sure, You get the money')}}
                         />
+                       </View>
+                        
                       </View>
                     </Collapsible>
 
@@ -534,10 +619,13 @@ export default HomeScreen;
 
     },
     content: {
-      padding: 20,
+      padding: 10,
+      marginTop:5,
+      paddingTop:10,
       backgroundColor: '#fff',
       borderBottomLeftRadius:20,
       borderBottomRightRadius:20,
+      flexDirection:'row',
     },
   
 
