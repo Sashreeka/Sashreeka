@@ -48,7 +48,13 @@ function Store() {
                 </div>
 
                 {/*corousal*/}
+                <Carousel className="shop-corousal-container" enableAutoPlay autoPlaySpeed={4000}>
                     <img className="shop-corousal" src={require('../../assets/images/shop-slide-1.jpg').default}></img>
+                    <img className="shop-corousal" src={require('../../assets/images/shop-slide-2.jpg').default}></img>
+                    <img className="shop-corousal" src={require('../../assets/images/shop-slide-3.jpg').default}></img>
+                    <img className="shop-corousal" src={require('../../assets/images/shop-slide-4.jpg').default}></img>
+                    <img className="shop-corousal" src={require('../../assets/images/shop-slide-5.jpg').default}></img>
+                </Carousel>    
                     
 
                 {/*Fertilizer categories*/}
