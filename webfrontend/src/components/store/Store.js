@@ -87,6 +87,48 @@ function Store() {
                     <FerProductItem ferProImage = {require("../../assets/images/fer-pro-1.jpg").default} ferName="Vermi liquid compost" ferPrice = "Rs. 1250.00"/>
                 </Carousel>
             </div>
+
+            {/*New arrival*/}
+            <h3 className="fer-topic">New Arrivals</h3>
+            <hr/>
+            <div className="fer-products_row">
+                <Carousel breakPoints={breakPoints1}>
+                    <FerProductItem ferProImage = {require("../../assets/images/fer-pro-1.jpg").default} ferName="Rock Phospate" ferPrice = "Rs. 3790.00"/>
+                    <FerProductItem ferProImage = {require("../../assets/images/fer-pro-2.jpg").default} ferName="Vermicompost" ferPrice = "Rs. 1540.00"/>
+                    <FerProductItem ferProImage = {require("../../assets/images/fer-pro-3.jpg").default} ferName="Manure" ferPrice = "Rs. 1000.00"/>
+                    <FerProductItem ferProImage = {require("../../assets/images/fer-pro-1.jpg").default} ferName="Chicken Litter" ferPrice = "Rs. 1500.00"/>
+                    <FerProductItem ferProImage = {require("../../assets/images/fer-pro-2.jpg").default} ferName="Litter Seaweed" ferPrice = "Rs. 3050.00"/>
+                    <FerProductItem ferProImage = {require("../../assets/images/fer-pro-3.jpg").default} ferName="MorBlooom" ferPrice = "Rs. 4990.00"/>
+                    <FerProductItem ferProImage = {require("../../assets/images/fer-pro-1.jpg").default} ferName="Bio Gold" ferPrice = "Rs. 2679.00"/>
+                    <FerProductItem ferProImage = {require("../../assets/images/fer-pro-2.jpg").default} ferName="Bio Vaccine" ferPrice = "Rs. 2780.00"/>
+                    <FerProductItem ferProImage = {require("../../assets/images/fer-pro-3.jpg").default} ferName="Bio Phos" ferPrice = "Rs. 2670.00"/>
+                    <FerProductItem ferProImage = {require("../../assets/images/fer-pro-1.jpg").default} ferName="Grade A Dark Compost" ferPrice = "Rs. 2750.00"/>
+                    <FerProductItem ferProImage = {require("../../assets/images/fer-pro-2.jpg").default} ferName="Humas soil" ferPrice = "Rs. 4170.00"/>
+                    <FerProductItem ferProImage = {require("../../assets/images/fer-pro-3.jpg").default} ferName="Regular compost" ferPrice = "Rs. 1250.00"/>
+                    <FerProductItem ferProImage = {require("../../assets/images/fer-pro-1.jpg").default} ferName="Vermi liquid compost" ferPrice = "Rs. 1250.00"/>
+                </Carousel>
+            </div>
+
+            {/*Offers*/}
+            <h3 className="fer-topic">Exclusive Offers</h3>
+            <hr/>
+            <div className="fer-products_row">
+                <Carousel breakPoints={breakPoints1}>
+                    <FerProductItem ferProImage = {require("../../assets/images/fer-pro-1.jpg").default} ferName="Rock Phospate" ferPrice = "Rs. 3790.00"/>
+                    <FerProductItem ferProImage = {require("../../assets/images/fer-pro-2.jpg").default} ferName="Vermicompost" ferPrice = "Rs. 1540.00"/>
+                    <FerProductItem ferProImage = {require("../../assets/images/fer-pro-3.jpg").default} ferName="Manure" ferPrice = "Rs. 1000.00"/>
+                    <FerProductItem ferProImage = {require("../../assets/images/fer-pro-1.jpg").default} ferName="Chicken Litter" ferPrice = "Rs. 1500.00"/>
+                    <FerProductItem ferProImage = {require("../../assets/images/fer-pro-2.jpg").default} ferName="Litter Seaweed" ferPrice = "Rs. 3050.00"/>
+                    <FerProductItem ferProImage = {require("../../assets/images/fer-pro-3.jpg").default} ferName="MorBlooom" ferPrice = "Rs. 4990.00"/>
+                    <FerProductItem ferProImage = {require("../../assets/images/fer-pro-1.jpg").default} ferName="Bio Gold" ferPrice = "Rs. 2679.00"/>
+                    <FerProductItem ferProImage = {require("../../assets/images/fer-pro-2.jpg").default} ferName="Bio Vaccine" ferPrice = "Rs. 2780.00"/>
+                    <FerProductItem ferProImage = {require("../../assets/images/fer-pro-3.jpg").default} ferName="Bio Phos" ferPrice = "Rs. 2670.00"/>
+                    <FerProductItem ferProImage = {require("../../assets/images/fer-pro-1.jpg").default} ferName="Grade A Dark Compost" ferPrice = "Rs. 2750.00"/>
+                    <FerProductItem ferProImage = {require("../../assets/images/fer-pro-2.jpg").default} ferName="Humas soil" ferPrice = "Rs. 4170.00"/>
+                    <FerProductItem ferProImage = {require("../../assets/images/fer-pro-3.jpg").default} ferName="Regular compost" ferPrice = "Rs. 1250.00"/>
+                    <FerProductItem ferProImage = {require("../../assets/images/fer-pro-1.jpg").default} ferName="Vermi liquid compost" ferPrice = "Rs. 1250.00"/>
+                </Carousel>
+            </div>
         </div>
     )
 }
