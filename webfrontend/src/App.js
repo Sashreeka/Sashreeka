@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 // import Colors from "./assets/colors/Colors";
 // import './App.css';
 import Navigation from "./components/common/header/Navigation";
@@ -10,6 +10,8 @@ import Store from "./components/store/Store";
 import Handbook from "./components/handbook/Handbook";
 import Signup from "./components/authentication/Signup";
 import Signin from "./components/authentication/Signin";
+import RegAgent from "./components/authentication/DeliveryAgentRegister";
+import RegFarmer from "./components/authentication/FarmerRegister";
 import Footer from "./components/common/footer/footer";
 import Admin from "./components/company/Admin/Admin";
 import UserList from "./components/company/Admin/pages/userList/UserList";
@@ -23,104 +25,96 @@ import Product from "./components/company/Admin/pages/product/Product";
 import NewProduct from "./components/company/Admin/pages/newProduct/NewProduct";
 
 function App() {
-
-  let userCategory=localStorage.getItem('userCategory');
-  
-
-
+  let userCategory = localStorage.getItem("userCategory");
 
   return (
     <div className="App">
-    <BrowserRouter>
+      <BrowserRouter>
+        {userCategory === "admin" ? (
+          <div>
+            <Topbar />
 
-    {
-      userCategory === 'admin'? <div>
-      <Topbar/>
+            <Switch>
+              <Route exact path="/">
+                <Admin />
+              </Route>
 
-     
-     
-        <Switch>
-        <Route exact path="/">
-          <Admin/>
+              <Route path="/users">
+                <UserList />
+              </Route>
+              <Route path="/user/:userId">
+                <User />
+              </Route>
+              <Route path="/newUser">
+                <NewUser />
+              </Route>
 
-        </Route>
+              <Route path="/products">
+                <ProductList />
+              </Route>
+              <Route path="/product/:productsId">
+                <Product />
+              </Route>
+              <Route path="/newproduct">
+                <NewProduct />
+              </Route>
+            </Switch>
+          </div>
+        ) : (
+          <div>
+            <Navigation />
+            <Switch>
+              <Route path="/about">
+                <About />
+              </Route>
 
-        <Route path='/users'>
-          <UserList/>
-        </Route>
-        <Route path='/user/:userId'>
-          <User/>
-        </Route>
-        <Route path='/newUser'>
-          <NewUser/>
-        </Route>
-
-        <Route path='/products'>
-          <ProductList/>
-        </Route>
-        <Route path="/product/:productsId">
-              <Product/>
-
-        </Route>
-        <Route path="/newproduct">
-              <NewProduct/>
-
-            </Route>
-
-
-        </Switch>
-       
-      </div>:
-      <div>
-     
-      
-        <Navigation />
-      <Switch>
-        <Route path="/about">
-          <About />
-        </Route>
-
-        {/* <Route path="/admin">
+              {/* <Route path="/admin">
           <Admin/>
 
         </Route> */}
 
-        {/* <Route path="/admin/user">
+              {/* <Route path="/admin/user">
           <UserList/>
 
         </Route> */}
-        
-        <Route path="/contact">
-          <Contact />
-        </Route>
-        
-        <Route path="/store">
-          <Store />
-        </Route>
 
-        <Route path="/fertilizer">
-          <Handbook />
-        </Route>
-        
-        <Route path="/signup">
-          <Signup />
-        </Route>
+              <Route path="/contact">
+                <Contact />
+              </Route>
 
-        <Route path="/signin">
-          <Signin />
-        </Route>
+              <Route path="/store">
+                <Store />
+              </Route>
 
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
-        
-      <Footer/>
-      
-      </div>
-    }
-    </BrowserRouter>
-      
+              <Route path="/fertilizer">
+                <Handbook />
+              </Route>
+
+              <Route path="/signup">
+                <Signup />
+              </Route>
+
+              <Route path="/signin">
+                <Signin />
+              </Route>
+
+              <Route path="/regAgent">
+                <RegAgent />
+              </Route>
+
+              <Route path="/regFarmer">
+                <RegFarmer />
+              </Route>
+
+              <Route path="/">
+                <Home />
+              </Route>
+            </Switch>
+
+            <Footer />
+          </div>
+        )}
+      </BrowserRouter>
     </div>
   );
 }

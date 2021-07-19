@@ -52,50 +52,175 @@
 }
 */
 
-.nav-sign-in{
-    margin: -5px;
-    width: 117px;
-    height: 36px;
-    background: #9BE564;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 15px;
-    
-
+.nav-sign-in {
+  margin: -5px;
+  width: 117px;
+  height: 36px;
+  background: #9be564;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
 }
 
-.nav-sign-in .signin{
-    position: relative;
-    padding: 8px 20px;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 21px;
-    color: #ffffff;
-}
-    
-.navbar .mr-auto{
-    margin: auto;
+.nav-sign-in .signin {
+  position: relative;
+  padding: 8px 20px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+  color: #ffffff;
 }
 
-.navbar .container-fluid .navbar-brand{
-    padding: 0.2rem 1rem;
+.navbar .mr-auto {
+  margin: auto;
 }
 
-.navbar{
-    padding: 1rem 5rem;
-    /* background-color:var(--primary-color);*/ 
+.navbar .container-fluid .navbar-brand {
+  padding: 0.2rem 1rem;
 }
 
-.nav-item .nav-link{
-    text-transform: uppercase;
-    font-weight: 600;
-    
+.navbar {
+  padding: 1rem 5rem;
+  /* background-color: red; */
+  height: 60px;
 }
 
-.navbar-nav .nav-item{
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+.nav-item .nav-link {
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
+.navbar-nav .nav-item {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
 
+/* Sign-in pop up window styles...................................................................... */
 
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Full-width input fields */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+  /* background-color: #04AA6D; */
+  background: linear-gradient(180deg, #80b953 2.08%, #2c9984 95.83%);
+  border-radius: 10px;
+  color: black;
+  padding: 10px 15px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.signUp {
+  background: #ffffff;
+  border: 2px solid green;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.signUp:hover {
+  background: lightgray;
+}
+
+.loginContainer {
+  height: auto;
+  padding: 16px;
+}
+
+span.psw {
+  padding: 10px;
+  float: right;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  position: fixed;
+  left: calc(100% - 305px);
+  top: 65px;
+  width: 300px;
+  height: auto;
+  background-color: #ffffff;
+  border-radius: 15px;
+  border: 1px solid #888;
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s;
+}
+
+@-webkit-keyframes animatezoom {
+  from {
+    -webkit-transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes animatezoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+}
+
+/* End of Sign-in pop up window styles...................................................................... */
