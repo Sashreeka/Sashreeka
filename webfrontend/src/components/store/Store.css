@@ -235,6 +235,7 @@ h6{
     color: #FFFFFF;
     padding: 3px;
     width:fit-content;
+    height: fit-content;
 }
 
 .fer-price button:hover{
@@ -243,4 +244,14 @@ h6{
 
 .fer-product-container:hover{
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+}
+
+.offer-price-text h6{
+    margin: 0;
+    font-size: 95%;
+}
+
+.offer-nor-price h6{
+    color: red;
+    text-decoration: line-through;
 }
