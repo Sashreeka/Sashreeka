@@ -129,18 +129,7 @@ function DeliveryAgentRegister() {
                     <span>
                       <i aria-hidden="true" className="fa fa-envelope"></i>
                     </span>
-                    <label for="cars">Choose a car:</label>
-                    <select
-                      className="input_halfRegister"
-                      name="cars"
-                      id="cars"
-                    >
-                      <option value="volvo">Volvo</option>
-                      <option value="saab">Saab</option>
-                      <option value="opel">Opel</option>
-                      <option value="audi">Audi</option>
-                    </select>
-                    {/* <input
+                    <input
                       className="input_halfRegister"
                       type="text"
                       name="nic"
@@ -148,7 +137,7 @@ function DeliveryAgentRegister() {
                       onChange={(e) => {
                         setNic(e.target.value);
                       }}
-                    /> */}
+                    />
                   </div>
 
                   <div className="inputField_Register">

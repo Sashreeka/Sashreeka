@@ -10,7 +10,7 @@ function StaffRegister() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [nic, setNic] = useState("");
-  const [drivingLicence, setDrivingLicence] = useState("");
+  const [roleId, setRoleId] = useState("");
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -29,7 +29,7 @@ function StaffRegister() {
         firstName: firstName,
         lastName: lastName,
         nic: nic,
-        drivingLicence: drivingLicence,
+        roleId: roleId,
         address: address,
         passwordCheck: passwordCheck,
       })
@@ -148,10 +148,10 @@ function StaffRegister() {
                     <input
                       className="input_halfRegister"
                       type="text"
-                      name="drivingLicence"
-                      placeholder="License ID"
+                      name="roleId"
+                      placeholder="Role ID"
                       onChange={(e) => {
-                        setDrivingLicence(e.target.value);
+                        setRoleId(e.target.value);
                       }}
                     />
                   </div>
