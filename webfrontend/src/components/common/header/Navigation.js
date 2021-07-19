@@ -52,15 +52,13 @@ function Navigation() {
       });
   };
 
- 
-
   // Get the modal of login pop up window
   var modal = document.getElementById("loginWindow");
 
-   const signup = () => {
-     modal.style.display = "none";
-   };
-   
+  const signup = () => {
+    modal.style.display = "none";
+  };
+
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = function (event) {
     if (event.target == modal) {
@@ -196,7 +194,7 @@ function Navigation() {
               }}
             />
 
-            <button className="signIn" onClick={login}>
+            <button className="modalButton" onClick={login}>
               Sign In
             </button>
             {/* <Link className="signUp" to="/regFarmer" onClick={signup}>
@@ -204,7 +202,7 @@ function Navigation() {
             </Link> */}
 
             <a href="/regFarmer">
-              <button className="signUp" onClick={signup}>
+              <button className="modalSignUp" onClick={signup}>
                 Sign Up
               </button>
             </a>

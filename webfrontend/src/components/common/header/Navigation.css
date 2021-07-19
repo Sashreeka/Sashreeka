@@ -97,10 +97,11 @@
 
 /* Sign-in pop up window styles...................................................................... */
 
-body {
+/* body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
-}
+  padding: 0;
+} */
 
 /* Full-width input fields */
 .loginInput {
@@ -113,7 +114,7 @@ body {
 }
 
 /* Set a style for all buttons */
-button {
+.modalButton {
   /* background-color: #04AA6D; */
   background: linear-gradient(180deg, #80b953 2.08%, #2c9984 95.83%);
   border-radius: 10px;
@@ -125,16 +126,16 @@ button {
   width: 100%;
 }
 
-.signUp {
+.modalSignUp {
   background: #ffffff;
   border: 2px solid green;
 }
 
-button:hover {
+.modalButton:hover {
   opacity: 0.8;
 }
 
-.signUp:hover {
+.modalSignUp:hover {
   background: lightgray;
 }
 
@@ -193,8 +194,8 @@ span.psw {
 
 /* Add Zoom Animation */
 .animate {
-  -webkit-animation: animatezoom 0.6s;
-  animation: animatezoom 0.6s;
+  -webkit-animation: animatezoom 0.3s;
+  animation: animatezoom 0.3s;
 }
 
 @-webkit-keyframes animatezoom {
