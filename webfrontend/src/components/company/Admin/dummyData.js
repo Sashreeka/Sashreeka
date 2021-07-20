@@ -128,6 +128,62 @@ export const UserData = [
   ];
 
 
+  export const staffRows = [
+    { id: 1, 
+        username: 'sanduni', 
+        avater: 'https://writestylesonline.com/wp-content/uploads/2021/02/Michele-Round-Circle-2020.png', 
+        email: 'sanduni@gmail.com',
+        status: 'active',
+        appointedDate:"23-05-2014",
+         nic: "943423423V",
+         roleId:3,
+         role:"order clark", 
+     },
+     { id: 2, 
+        username: 'anuki', 
+        avater: 'https://writestylesonline.com/wp-content/uploads/2021/02/Michele-Round-Circle-2020.png', 
+        email: 'anuki@gmail.com',
+        status: 'active',
+       appointedDate:"23-05-2014",
+        nic: "943423423V",
+        roleId:1,
+        role:"sales_manager",
+     },
+     { id: 3, 
+        username: 'chamodhi', 
+        avater: 'https://writestylesonline.com/wp-content/uploads/2021/02/Michele-Round-Circle-2020.png', 
+        email: 'chamodhi@gmail.com',
+        status: 'active',
+       appointedDate:"23-05-2014",
+        nic: "943423423V",
+        roleId:3,
+        role:"order clark",
+     },
+     { id: 4, 
+        username: 'shamali', 
+        avater: 'https://writestylesonline.com/wp-content/uploads/2021/02/Michele-Round-Circle-2020.png', 
+        email: 'shamali@gmail.com',
+        status: 'active',
+       appointedDate:"23-05-2014",
+        nic: "943423423V",
+        roleId:3,
+        role:"order clark",
+     },
+     { id: 5, 
+        username: 'ishan', 
+        avater: 'https://writestylesonline.com/wp-content/uploads/2021/02/Michele-Round-Circle-2020.png', 
+        email: 'ishan@gmail.com',
+        status: 'active',
+       appointedDate:"23-05-2014",
+        nic: "943423423V",
+        roleId:1,
+        role:"sales_manager",
+     },
+     
+
+  ];
+
+
 
 
   export const productRows = [

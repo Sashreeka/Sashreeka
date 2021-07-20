@@ -5,6 +5,8 @@ import { DeleteOutline } from "@material-ui/icons";
 import { userRows } from "../../dummyData";
 import { Link } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar";
+import { Button } from "@material-ui/core";
+import { PageShiftButton } from "./userListComponents/userListComponents";
 
 export default function UserList() {
   const [data, setData] = useState(userRows);
@@ -64,7 +66,11 @@ export default function UserList() {
   return (
     <div className="userListCon">
       <Sidebar />
+      
       <div className="userList">
+      
+      <PageShiftButton/>
+      
         <DataGrid
           rows={data}
           disableSelectionOnClick

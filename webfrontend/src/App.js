@@ -25,7 +25,9 @@ import ProductList from "./components/company/Admin/pages/productList/ProductLis
 import Product from "./components/company/Admin/pages/product/Product";
 import NewProduct from "./components/company/Admin/pages/newProduct/NewProduct";
 import Sales from "./components/company/Admin/pages/sales/Sales";
-
+import Staff from "./components/company/Admin/pages/staff/Staff";
+import Delivery from "./components/company/Admin/pages/deliveries/Delivery";
+import DeliveryAgent from "./components/company/Admin/pages/deliveryAgents/DeliveryAgent";
 
 function App() {
   let userCategory = localStorage.getItem("userCategory");
@@ -61,10 +63,18 @@ function App() {
               <Route path="/newproduct">
                 <NewProduct />
               </Route>
-
-            <Route path="/sales">
-              <Sales/>
-            </Route>
+              <Route path="/sales">
+                <Sales/>
+              </Route>
+              <Route path="/staff">
+                <Staff/>
+              </Route>
+              <Route path="/delivery">
+                <Delivery/>
+              </Route>
+              <Route path="/deliveryagent">
+                <DeliveryAgent />
+              </Route>
 
              
             </Switch>
