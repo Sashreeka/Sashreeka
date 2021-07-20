@@ -1,0 +1,49 @@
+.about .row{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    
+  }
+  
+  .about .row .image img{
+    height:70vh;
+    width:40vw;
+    padding-top: 8px;
+    left:10px;
+  }
+  
+  .about .row .content{
+    padding-left: 1rem;
+  }
+  
+  .about .row .content h3{
+    font-size: 2rem;
+    color:var(--pink);
+  }
+  
+  .about .row .content p{
+    font-size: 1.2rem;
+    color:black;
+    padding:1rem 0;
+    margin-left: 2px;
+  }
+  
+  .about .row .content button{
+    height:2.5rem;
+    width:14rem;
+    background:var(--violet);
+    background-color:green;
+    border:none;
+    border-radius: 5rem;
+    box-shadow: 0 .2rem 1rem rgba(0,0,0,.3);
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: .2s;
+    color:white;
+  }
+  
+  .about .row .content button:hover{
+    letter-spacing: .2rem;
+    opacity: .8;
+  }
+  
