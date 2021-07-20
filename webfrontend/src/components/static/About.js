@@ -1,6 +1,11 @@
 import React from 'react';
 import './About.css';
 import about1 from '../../assets/images/About/about1.jpg';
+import ProImg1 from '../../assets/images/About/profile images/img1.jpeg';
+import ProImg2 from '../../assets/images/About/profile images/img2.jpeg';
+import ProImg3 from '../../assets/images/About/profile images/img3.jpg';
+import ProImg4 from '../../assets/images/About/profile images/img4.jpg'
+import ProImg5 from '../../assets/images/About/profile images/img5.jpeg';
 
 function About() {
     return(
@@ -23,6 +28,79 @@ function About() {
     </div>
 
 </div>
+
+</section>
+
+<section id="staff" class="staff">
+
+<h1 className="heading">Our Team</h1>
+<h3 className="title">Meet Our Team</h3>
+
+<div className="card-container">
+
+    <div className="card">
+        <img src={ProImg1}/>
+        <h3>Ishan Reshmika</h3>
+        <p>chairman</p>
+        <div className="icons">
+            <a href="#" className="fab fa-facebook-f"></a>
+            <a href="#" className="fab fa-twitter"></a>
+            <a href="#" className="fab fa-instagram"></a>
+            <a href="#" className="fab fa-github"></a>
+        </div>
+    </div>
+
+    <div className="card">
+        <img src={ProImg2}/>
+        <h3>Anuki De Alwis</h3>
+        <p>one</p>
+        <div className="icons">
+            <a href="#" className="fab fa-facebook-f"></a>
+            <a href="#" className="fab fa-twitter"></a>
+            <a href="#" className="fab fa-instagram"></a>
+            <a href="#" className="fab fa-github"></a>
+        </div>
+    </div>
+
+    <div className="card">
+        <img src={ProImg3}/>
+        <h3>Sanduni Fernando</h3>
+        <p>head</p>
+        <div className="icons">
+            <a href="#" className="fab fa-facebook-f"></a>
+            <a href="#" className="fab fa-twitter"></a>
+            <a href="#" class="fab fa-instagram"></a>
+            <a href="#" className="fab fa-github"></a>
+        </div>
+    </div>
+
+    <div className="card">
+        <img src={ProImg4}/>
+        <h3>Chamodi Satharasinghe</h3>
+        <p>head</p>
+        <div className="icons">
+            <a href="#" className="fab fa-facebook-f"></a>
+            <a href="#" className="fab fa-twitter"></a>
+            <a href="#" className="fab fa-instagram"></a>
+            <a href="#" className="fab fa-github"></a>
+        </div>
+    </div>
+
+    <div className="card">
+        <img src={ProImg5}/>
+        <h3>Shamali Pathirana</h3>
+        <p>head</p>
+        <div className="icons">
+            <a href="#" className="fab fa-facebook-f"></a>
+            <a href="#" className="fab fa-twitter"></a>
+            <a href="#" className="fab fa-instagram"></a>
+            <a href="#" className="fab fa-github"></a>
+        </div>
+    </div>
+
+    
+</div>
+
 
 </section>
         </div>
