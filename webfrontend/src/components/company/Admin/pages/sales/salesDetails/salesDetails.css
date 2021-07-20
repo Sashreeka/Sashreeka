@@ -1,14 +1,16 @@
 
-.salesDetails{
+.productList{
     flex: 4;
-  
 }
-.salesDetailsUser{
+
+.productListItem{
     display: flex;
     align-items: center;
 
 }
-.salesDetailsImg{
+
+
+.productListImg{
     width: 32px;
     height: 32px;
     border-radius: 50%;
@@ -16,7 +18,7 @@
     margin-right: 10px;
 }
 
-.salesDetailsEdit{
+.productListEdit{
 
     border: none;
     border-radius: 10px;
@@ -27,3 +29,11 @@
     cursor: pointer;
 }
 
+.productListDelete{
+    color: red;
+    cursor: pointer;
+    
+    
+
+
+}

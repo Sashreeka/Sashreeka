@@ -68,3 +68,9 @@ INSERT INTO `fertilizer` (`fertilizerId`, `name`, `description`, `offer`, `unitP
 (7, 'Bio Gold', 'Bio Gold is a liquid formulation containing a group of beneficial microorganisms such as nitrogen fixing and plant disease controlling bacteria.', 5, 2679, 4, 'http://www.biopowerlanka.com/images/bio-gold.jpg', 50, 15, 'L', 'nitrogen fixing, plant disease controlling bacteri'),
 (8, 'Bio Vaccine', 'The product is made with natural bio control fungal agent Trichoderma viride. It is simply helps to prevent the plant from rot & wilt diseases at any time. Once applied, Trichoderma viride grows over the pathogens that cause root rot, stem rot, seed rot, fruit rot and wilt diseases and killing by destroying the pathogen cell structure.', 10, 2780, 4, 'http://www.biopowerlanka.com/images/bio-vaccine.jpg', 40, 6, 'L', 'helps to prevent the plant from rot & wilt disease'),
 (9, 'Bio Phos', 'Phosphorous is an important nutrient for plants and microorganisms. Bio Phos® is a liquid formulation containing phosphorous solubilizing bacterium Bacillus Megatherium.', 5, 2670, 4, 'https://m.media-amazon.com/images/I/61NDpj1AUWL._SX466_.jpg', 30, 5, 'L', 'formulation containing phosphorous');
+
+
+
+INSERT INTO `orders`(`orderId`, `amount`, `deliveryAddress`, `quickFlag`, `offer`, `receiverName`, `deliveryCharge`, `status`, `farmerPhoneNumber`, `staffPhoneNumber`) VALUES ('3424434361','20220.00','Malabe','2','5','Mr.rahul','600.00','2','0752016924','0711205934');
+
+INSERT INTO `orders`(`orderId`, `amount`, `deliveryAddress`, `quickFlag`, `offer`, `receiverName`, `deliveryCharge`, `status`, `farmerPhoneNumber`, `staffPhoneNumber`) VALUES ('234112130','34000.00','kotuwa','0','10','Mr.Mathura','600.00','1','0752016924','0711205934');

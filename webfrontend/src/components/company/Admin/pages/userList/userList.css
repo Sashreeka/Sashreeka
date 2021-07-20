@@ -45,3 +45,8 @@
 .userList .pageShiftButton  Button{
     background-color: rgb(252, 198, 198);
 }
+.link{
+    text-decoration: none;
+    color: inherit;
+
+}
