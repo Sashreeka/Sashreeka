@@ -5,6 +5,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import axios from 'axios';
 
 import MaterialTable from 'material-table';
+import Insertform from './staffComponents/Insertform';
 
 export default function Staff() {
 
@@ -44,7 +45,10 @@ export default function Staff() {
     return(
         <div className="staffCon">
             <Sidebar/>
+            
+
             <div className="staff">
+           
             <MaterialTable
 
             title="Company Staff Details"
@@ -71,7 +75,11 @@ export default function Staff() {
           },
             ]}
             />
+                {/* <div style={{padddingtop:"margin_rignt_cont"}}> */}
+                <button>Create New staff</button>
+                {/* </div> */}
                 
+                <Insertform/>
             </div>
             
         </div>
