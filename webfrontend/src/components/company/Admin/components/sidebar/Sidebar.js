@@ -71,11 +71,16 @@ export default function Sidebar() {
 
                     </Link>
 
-                      
+                    <Link to="/delivery" className="link">
                         <li className="sidebarListItem">
                             <AttachMoney className="sidebarIcon"/>
                             Deliveries
                         </li>
+
+                    </Link>
+
+                      
+                       
 
                         <li className="sidebarListItem">
                             <BarChart className="sidebarIcon"/>
@@ -98,10 +103,16 @@ export default function Sidebar() {
                             <AccessibilityNewIcon className="sidebarIcon"/>
                             User Roles & Privilages
                         </li>
+                        
+
+                        <Link to="/staff" className="link">
                         <li className="sidebarListItem">
                             <PeopleIcon className="sidebarIcon"/>
                             Company Staff
                         </li>
+                        </Link>
+
+
                         <li className="sidebarListItem">
                             <NotificationsIcon className="sidebarIcon"/>
                             Notifications
