@@ -6,6 +6,9 @@ const jwt = require("jsonwebtoken");
 const app = express();
 const mysql = require("mysql");
 
+// password encryption
+// const { encrypt, decrypt } = require("./EncryptionHandler");
+
 // const db = mysql.createPool({
 //   host: "localhost",
 //   user: "root",
@@ -63,7 +66,7 @@ app.post("/user/login", (req, res) => {
       //    }
       //  })
     } else {
-      res.send({ message: "User doesn't exist" });
+      res.send({ message: "Wrong username/Password combination" });
     }
   });
 });
