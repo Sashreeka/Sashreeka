@@ -75,8 +75,8 @@ function App() {
                 <Staff/>
               </Route>
 
-              <Route path="/staffCheck/:staffId">
-                <StaffCheck/>
+              <Route path="/staffCheck/:userId" component={StaffCheck}>
+                {/* <StaffCheck/> */}
               </Route>
               <Route path="/delivery">
                 <Delivery/>

@@ -31,11 +31,54 @@ export default function Staff() {
 
 
   const columns=[
-    {title:'Id',field:'userId'},
-    {title:'First Name',field:'firstName'},
-    {title:'Last Name',field:'lastName'},
-    {title:'NIC',field:'nic'},
-    {title:'Phone Number',field:'phoneNumber'},
+    {title:'Id',field:'userId',
+
+
+    cellStyle:{
+
+      //  backgroundColor:'red',
+        width:'10%',
+    }
+
+    
+
+  
+},
+    {title:'First Name',field:'firstName',
+
+    cellStyle:{
+
+       // backgroundColor:'red',
+       width:'18%',
+    }
+  
+
+},
+    {title:'Last Name',field:'lastName',
+
+
+    cellStyle:{
+
+        // backgroundColor:'red',
+        width:'20%',
+     }
+},
+    {title:'NIC',field:'nic',
+
+
+    cellStyle:{
+
+        // backgroundColor:'red',
+        width:'20%',
+     }},
+    {title:'Phone Number',field:'phoneNumber',
+
+
+    cellStyle:{
+
+        // backgroundColor:'red',
+        width:'25%',
+     }},
    
   
   ]
@@ -50,15 +93,38 @@ export default function Staff() {
             title="Company Staff Details"
             data={data}
             columns={columns}
+
             options={{
             search:true,
             paging:true,
             filtering:false,
-            exportButton:true
+            exportButton:true,
+            backgroundColor: '#EEE',
+           // showTitle: false,
+            actionsColumnIndex: -1,
+            headerStyle: {
+        //width:20,
+        //marginLeft:20,
+       
+     //  backgroundColor:'red',
+      color:"#000",
+      fontWeight:'bold',
+      width:'15%',
+      }
+
+
+            //headerStyle: {  color:"#000",fontWeight:'bold', },
+            
+            
+             
             }}
+
+          
+      
             actions={[
                 {
             icon: 'edit',
+           
             tooltip: 'Edit',
             onClick: (event, rowData) => {
                 window.location.href='/staffCheck/'+rowData.userId
@@ -69,7 +135,12 @@ export default function Staff() {
             
             // alert('You are editing ' + rowData.userId)
           },
+          
             ]}
+
+            
+         
+      
             />
                 
             </div>

@@ -193,11 +193,23 @@ app.get('/admin/viewDAgentDetails',(req,res)=>{
   });
 })
 
-//display the delivery agent details..................
+//display the delivery agents details..................
 app.get('/admin/viewCStaffDetails',(req,res)=>{
 
   const sqlget = "select * from companystaff";
   db.query(sqlget, (err, result) => {
+    console.log(result);
+    res.send(result);
+  });
+})
+
+//display a delivery agent details..................
+app.get('/admin/viewStafffDetails/:userId',(req,res)=>{
+
+  let userId=req.params.userId
+
+  const sqlget = "select * from companystaff where userId=?";
+  db.query(sqlget,userId,(err, result) => {
     console.log(result);
     res.send(result);
   });
