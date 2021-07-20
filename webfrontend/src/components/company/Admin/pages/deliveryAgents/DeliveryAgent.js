@@ -1,19 +1,136 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./deliveryAgent.css";
+import { DataGrid } from "@material-ui/data-grid";
+import { DeleteOutline } from "@material-ui/icons";
+import { userRows } from "../../dummyData";
 import { Link } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar";
-import { PageShiftButton } from "../userList/userListComponents/userListComponents";
+import { PageShiftButtonOther } from "../userList/userListComponents/userListComponentsD";
+import axios from 'axios';
+
 
 export default function DeliveryAgent() {
 
-    return(
-        <div className="deliveryAgentCon">
-            <Sidebar/>
-            {/* <PageShiftButton/> */}
-            <div className="deliveryAgent">
-                <h1>hello : this is deliveryAgent page</h1>
-            </div>
-            
-        </div>
-    )
+
+
+  const [data, setData] = useState([]);
+  // const [data1, setData1] = useState([]);
+
+  // const handleDelete = (id) => {
+  //   setData(data.filter((item) => item.id !== id));
+  // };
+
+  useEffect(()=>{
+
+    axios.get("http://localhost:4000/admin/viewDAgentDetails").then((response)=>{
+      console.log('hi',response.data);
+      setData(response.data);
+
+    //  setData1(response.data);
+
+    })
+
+  },[])
+  
+
+  // const columns = [
+  //   { field: "id", headerName: "ID", width: 100 },
+  //   {
+  //     field: "user",
+  //     headerName: " User",
+  //     width: 200,
+  //     renderCell: (params) => {
+  //       return (
+  //         <div className="userListUser">
+  //           <img className="userListImg" src={params.row.avater} alt="" />
+  //           {params.row.username}
+  //         </div>
+  //       );
+  //     },
+  //   },
+  //   { field: "email", headerName: "Email", width: 200 },
+  //   {
+  //     field: "status",
+  //     headerName: "Status",
+  //     width: 120,
+  //   },
+  //   {
+  //     field: "transaction",
+  //     headerName: "Transaction Volume",
+  //     width: 160,
+  //   },
+  //   {
+  //     field: "action",
+  //     headerName: "Action",
+  //     width: 150,
+  //     renderCell: (params) => {
+  //       return (
+  //         <>
+  //           <Link to={"/user/" + params.row.id}>
+  //             <button className="userListEdit">Edit</button>
+  //           </Link>
+
+  //           <DeleteOutline
+  //             className="userListDelete"
+  //             onClick={() => handleDelete(params.row.id)}
+  //           />
+  //         </>
+  //       );
+  //     },
+  //   },
+  // ];
+
+  return (
+    <div className="userListCon">
+      <Sidebar />
+      
+      <div className="userList">
+      
+      <PageShiftButtonOther/>
+
+
+      <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+        
+          <th scope="col">name</th>
+          <th scope="col">description</th>
+          <th scope="col">offer</th>
+          <th scope="col">unitWeight</th>
+        </tr>
+      </thead>
+  <tbody>
+        {
+
+            data.map((item)=>(
+              <tr key={item.fertilizerId}>
+              <th scope="row">{item.fertilizerId}</th>
+              <td>{item.name}</td>
+              <td>{item.description}</td>
+              <td>{item.offer}</td>
+              <td>{item.unitWeight}</td>
+            </tr>
+            ))
+
+
+
+        }
+  
+   
+   
+  </tbody>
+</table>
+      
+        {/* <DataGrid
+          rows={data}
+          disableSelectionOnClick
+          columns={columns}
+          pageSize={8}
+          checkboxSelection
+        /> */}
+      </div>
+    
+    </div>
+  );
 }
