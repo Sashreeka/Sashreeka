@@ -5,7 +5,7 @@ import fIcon1 from '../../assets/images/Home/f-icon1.jpg';
 import fIcon2 from '../../assets/images/Home/f-icon2.jpeg';
 import fIcon3 from '../../assets/images/Home/f-icon3.jpg';
 import aboutImg1 from '../../assets/images/Home/about-img1.jpg';
-//import aboutImg2 from '../../assets/images/Home/about-img2.jpg';
+import aboutImg2 from '../../assets/images/Home/about-img2.png';
 //import img2 from '../../assets/images/Home/img2.jpeg';
 //import {Link} from 'react-router-dom'
 
@@ -97,9 +97,9 @@ function Home() {
    
 
         <div class="content">
-            <h3>Organic Fertilizer is Dominating</h3>
-            <p>Chemical fertilizer is harmful for body. Chemical fertilizer is harmful for bodyChemical fertilizer is harmful for body. Chemical fertilizer is harmful for bodyChemical fertilizer is harmful for body. Chemical fertilizer is harmful for bodyChemical fertilizer is harmful for body. Chemical.</p>
-            <p>This is your opprtunity to grow green with organic fertilizer</p>
+            <h3>Searching For Extra Earning?</h3>
+            <p>Shasreeka is the  best opportunity to for you vehical service. Join as our delivery agent and be a main part of the organic fertilizer supply chain of the country. High quality</p>
+            
             <div class="buttons">
                 <a href="#" class="btn">View Products </a>
                 
@@ -107,7 +107,7 @@ function Home() {
         </div>
         
         <div class="image">
-            <img src={aboutImg1}/>
+            <img src={aboutImg2}/>
         </div>
 
         

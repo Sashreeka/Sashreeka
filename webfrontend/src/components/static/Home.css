@@ -34,10 +34,11 @@ section{
 }
 
 .home .image img{
-    width:40vw;
-    animation: float 3s linear infinite;
+    width:40vw;;
+    
+    /*animation: float 2/s linear infinite;*/
 }
-
+/*
 @keyframes float{
     0%, 100%{
         transform: translateY(0rem);
@@ -45,7 +46,8 @@ section{
     50%{
         transform: translateY(-3.5rem);
     }
-}
+    
+}*/
 
 .home .content h3{
     font-size: 3.5rem;
@@ -92,6 +94,7 @@ section{
 
 .features .box-container .box img{
     height: 15rem;
+    width:15rem;
 }
 
 .features .box-container .box h3{
@@ -111,6 +114,7 @@ section{
     background-size: cover;
     background-position: center;
     padding-bottom: 4rem;
+    padding-top: 4rem;
     
      ;
 }
@@ -120,6 +124,11 @@ section{
     align-items: center;
     justify-content: center;
     border-style: solid;
+    border-width: medium;
+    border-radius: 10px;
+    padding-bottom: 4rem;
+    padding-top: 3rem;
+    border-color: #006600;
 
     
 }
@@ -148,6 +157,7 @@ section{
     font-size: 1rem;
     color:#666;
     padding:0.5rem 0;
+    margin-left: 5px;
 }
 
 .about .column .content .buttons a:last-child{
