@@ -65,7 +65,7 @@ function About() {
     <div className="card">
         <img src={ProImg3}/>
         <h3>Sanduni Fernando</h3>
-        <p>head</p>
+        <p>Production Manager</p>
         <div className="icons">
             <a href="#" className="fab fa-facebook-f"></a>
             <a href="#" className="fab fa-twitter"></a>
@@ -76,8 +76,8 @@ function About() {
 
     <div className="card">
         <img src={ProImg4}/>
-        <h3>Chamodi Satharasinghe</h3>
-        <p>head</p>
+        <h3>Chamodi Devwandi</h3>
+        <p>Marketing Manager</p>
         <div className="icons">
             <a href="#" className="fab fa-facebook-f"></a>
             <a href="#" className="fab fa-twitter"></a>
@@ -89,7 +89,7 @@ function About() {
     <div className="card">
         <img src={ProImg5}/>
         <h3>Shamali Pathirana</h3>
-        <p>head</p>
+        <p>Controller</p>
         <div className="icons">
             <a href="#" className="fab fa-facebook-f"></a>
             <a href="#" className="fab fa-twitter"></a>
