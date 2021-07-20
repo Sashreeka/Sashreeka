@@ -3,7 +3,7 @@ body{
 }
 
 section{
-    min-height: 100vh;
+    
     padding:0 9%;
     padding-top: 0.1rem;
     padding-bottom: 2rem;
@@ -34,10 +34,11 @@ section{
 }
 
 .home .image img{
-    width:40vw;
-    animation: float 3s linear infinite;
+    width:40vw;;
+    
+    /*animation: float 2/s linear infinite;*/
 }
-
+/*
 @keyframes float{
     0%, 100%{
         transform: translateY(0rem);
@@ -45,7 +46,8 @@ section{
     50%{
         transform: translateY(-3.5rem);
     }
-}
+    
+}*/
 
 .home .content h3{
     font-size: 3.5rem;
@@ -92,6 +94,7 @@ section{
 
 .features .box-container .box img{
     height: 15rem;
+    width:15rem;
 }
 
 .features .box-container .box h3{
@@ -111,6 +114,7 @@ section{
     background-size: cover;
     background-position: center;
     padding-bottom: 4rem;
+    padding-top: 4rem;
     
      ;
 }
@@ -119,6 +123,13 @@ section{
     display: flex;
     align-items: center;
     justify-content: center;
+    border-style: solid;
+    border-width: medium;
+    border-radius: 10px;
+    padding-bottom: 4rem;
+    padding-top: 3rem;
+    border-color: #006600;
+
     
 }
 
@@ -127,7 +138,10 @@ section{
 }
 
 .about .column .image img{
-    width:100%;
+    width: 80%;
+    margin-left: 10px;
+    /*width:100px;
+    height: 80px;*/
 }
 
 .about .column .content{
@@ -143,13 +157,14 @@ section{
     font-size: 1rem;
     color:#666;
     padding:0.5rem 0;
+    margin-left: 5px;
 }
 
 .about .column .content .buttons a:last-child{
     margin-left: 2rem;
     margin-top: 10px;
 }
-.about1{
+/*.about1{
     
     background-size: cover;
     background-position: center;
@@ -167,9 +182,10 @@ section{
 
 .about1 .column1 .image{
     flex:1 1 40rem;
+    width:
 }
 
-.about1 .column1 .image img{
+.about1 .column1 .image1 img{
     width:100%;
 }
 
@@ -192,3 +208,4 @@ section{
     margin-left: 2rem;
     margin-top: 10px;
 }
+*/
