@@ -8,6 +8,12 @@ import aboutImg1 from '../../assets/images/Home/about-img1.jpg';
 import aboutImg2 from '../../assets/images/Home/about-img2.png';
 //import img2 from '../../assets/images/Home/img2.jpeg';
 //import {Link} from 'react-router-dom'
+import img2 from '../../assets/images/Home1/1.jpg';
+import img3 from '../../assets/images/Home1/3.jpg';
+import img4 from '../../assets/images/Home1/2.jpeg';
+import img5 from '../../assets/images/Home1/4.png';
+import img6 from '../../assets/images/Home1/5.jpg';
+
 
 function Home() { 
     return(
@@ -32,7 +38,7 @@ function Home() {
     </section>
    
 
-<section class="features" id="features">
+{/*<section class="features" id="features">
 
     
 
@@ -115,7 +121,92 @@ function Home() {
     </div>
 
 </section>
+*/}
+<section id="service" className="service">
 
+{/*<h1 className="heading">our services</h1>*/}
+
+<div className="row1">
+
+  <div className="image">
+    <img src={img2}/>
+  </div>
+  <div className="content">
+    <h3>About</h3>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde voluptatem, tempore hic deserunt vel temporibus aperiam recusandae ratione, obcaecati at qui accusamus enim, laudantium eveniet. Inventore voluptas nemo placeat. Voluptas.</p>
+    <a href="#"><button className="btn">read more</button></a>
+  </div>
+
+</div>
+
+<div className="row1">
+
+  <div className="content">
+    <h3>Fertilizer Store</h3>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde voluptatem, tempore hic deserunt vel temporibus aperiam recusandae ratione, obcaecati at qui accusamus enim, laudantium eveniet. Inventore voluptas nemo placeat. Voluptas.</p>
+    <a href="#"><button className="btn">read more</button></a>
+  </div>
+  <div className="image">
+    <img src={img3}/>
+  </div>
+
+</div>
+
+<div className="row1">
+
+  
+  <div className="image">
+    <img src={img4}/>
+  </div>
+  <div className="content">
+    <h3>Fertilizer Handbook</h3>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde voluptatem, tempore hic deserunt vel temporibus aperiam recusandae ratione, obcaecati at qui accusamus enim, laudantium eveniet. Inventore voluptas nemo placeat. Voluptas.</p>
+    <a href="#"><button className="btn">read more</button></a>
+  </div>
+
+</div>
+
+<div className="row1">
+
+  <div className="content">
+    <h3>Delivery Service</h3>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde voluptatem, tempore hic deserunt vel temporibus aperiam recusandae ratione, obcaecati at qui accusamus enim, laudantium eveniet. Inventore voluptas nemo placeat. Voluptas.</p>
+    <a href="#"><button className="btn">read more</button></a>
+  </div>
+  <div className="image">
+    <img src={img5}/>
+  </div>
+
+</div>
+
+<div className="row1">
+
+  
+  <div className="image">
+    <img src={img6}/>
+  </div>
+  <div className="content">
+    <h3>Join With Us</h3>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde voluptatem, tempore hic deserunt vel temporibus aperiam recusandae ratione, obcaecati at qui accusamus enim, laudantium eveniet. Inventore voluptas nemo placeat. Voluptas.</p>
+    <a href="#"><button className="btn">read more</button></a>
+  </div>
+
+</div>
+
+{/*<div className="row1">
+
+  <div className="content">
+    <h3>Join With Us</h3>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde voluptatem, tempore hic deserunt vel temporibus aperiam recusandae ratione, obcaecati at qui accusamus enim, laudantium eveniet. Inventore voluptas nemo placeat. Voluptas.</p>
+    <a href="#"><button className="btn">read more</button></a>
+  </div>
+  <div className="image">
+    <img src={img6}/>
+  </div>
+
+</div>*/}
+
+</section>
 </div>
 
 

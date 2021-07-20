@@ -22,10 +22,12 @@
   align-items: center;
   justify-content: center;
   padding-bottom: 4rem;
+  
 }
 
 .contact .image{
   flex:1 1 40rem;
+  
  
 }
 
@@ -38,10 +40,10 @@
 
 .contact form{
   flex:1 1 40rem;
-  padding:1rem 3rem;
+  padding:1rem 1rem;
   border:.1rem solid rgba(0,0,0,.2);
   box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
-  border-radius: .5rem;
+  border-radius: .3rem;
   background:#fff;
 margin-top: 20px;
   
@@ -50,7 +52,7 @@ margin-top: 20px;
 .contact form .heading{
   text-align: left;
   padding:0;
-  padding-bottom: 0.3rem;
+  padding-bottom: 0.1rem;
   padding-top: 0.2rem;
 }
 
@@ -63,7 +65,7 @@ margin-top: 20px;
   background:none;
   color:#666;
   margin:1rem 0;
-  padding:.5rem 0;
+  padding:.3rem 0;
   font-size: 1.4rem;
   border-bottom: .1rem solid rgba(0,0,0,.1);
   text-transform: none;
@@ -71,7 +73,7 @@ margin-top: 20px;
 
 .contact form .inputBox textarea{
   resize: none;
-  height: 11rem;
+  height: 9rem;
 }
 
 .contact form .inputBox label{

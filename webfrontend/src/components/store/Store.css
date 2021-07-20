@@ -382,3 +382,140 @@ h6{
     background-color: #ffffff;
     color:#212529;
 }
+
+.Store-fer-cart-container{
+    display: flex;
+    justify-content: space-around;
+}
+
+.StoreferCart{
+    Width:87%;
+    background: #FFFFFF;
+    border: 1px solid #9BE564;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 4px 2px #9BE564;
+    border-radius: 8px;
+    padding:10px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+}
+.store-path{
+    display:flex;
+    align-items: center;
+    color:#9BE564;
+    margin-bottom: 8px;
+    border-bottom: 2px solid #9BE564;
+}
+
+.store-path button{
+    background-color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    color:#000000;
+    padding-bottom: 6px;
+}
+
+.store-path button:hover{
+    color:#9BE564;
+}
+
+
+
+.StoreferCart table{
+    width:100%;
+}
+.StoreferCart table tr{
+    border-bottom:1px solid #c2c2c2;
+}
+
+.StoreferCart table tr td{
+    padding-left: 8px;
+}
+
+.StoreferCart table tr th{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.StoreferCart table tr th h6{
+    font-size: 110%;
+}
+
+.StoreferCart table img{
+    width:90px;
+    height:90px;
+    margin:5px;
+}
+
+.store-cart-quantity{
+    display:flex;
+    align-items: center;
+}
+.cart-amount-box{
+    width: 50px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.store-cart-quantity button{
+    background-color: #9BE564;
+    color: #ffffff;
+}
+
+.store-cart-remove button{
+    background-color: #e23a3a;
+    color:#ffffff
+}
+.store-cart-line{
+    display:flex;
+    justify-content: space-between;
+    padding-right:8px;
+    padding-left:8px;
+    border-bottom: 2px solid #9BE564;
+    border-top: 1px solid #9BE564;
+}
+.store-bottom-cart-line{
+    display:flex;
+    justify-content: space-between;
+    padding:8px;
+}
+
+.store-cart-drop{
+    display:flex;
+    justify-content:flex-end;
+    padding:8px;
+    border-bottom: 1px solid #9BE564;
+}
+
+.store-cart-drop button{
+    background-color: #e23a3a;
+    border-radius: 5px;
+    padding:8px;
+    color:#ffffff;
+    font-weight: bold;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
+.store-bottom-cart-line button {
+    background-color: #9BE564;
+    border-radius: 5px;
+    padding:8px;
+    color:#ffffff;
+    font-weight: bold;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
+.store-cart-drop button:hover{
+    box-shadow: 0px 0px 6px #9BE564;
+}
+
+.store-bottom-cart-line button:hover{
+    box-shadow: 0px 0px 6px #9BE564;
+}
+
+.store-empty-cart{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+}

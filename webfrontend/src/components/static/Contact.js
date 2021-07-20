@@ -46,7 +46,7 @@ function Contact() {
 
 <form action="">
 
-    <h1 className="heading">contact us</h1>
+    <h1 className="heading">Contact Us</h1>
 
     <div className="inputBox">
         <input type="text" required/>
@@ -68,7 +68,7 @@ function Contact() {
         <label>Message/Questions</label>
     </div>
 
-    <input type="submit" className="btn" value="send message"/>
+    <input type="submit" className="btn" value="Send"/>
 
 </form>
 

@@ -1,6 +1,10 @@
 import React from 'react';
+import {useCart} from 'react-use-cart';
 
-function FerProOffer(props) { 
+const FerProOffer= (props) =>{
+
+    const {addItem} = useCart();
+
     return(              
         <div className = "fer-product-container">
             <div className="fer-product-avatar">
@@ -17,12 +21,12 @@ function FerProOffer(props) {
                 </div>
                 <div className="fer-price">
                     <div className="offer-price-text">
-                        <h6>{props.ferPrice} <i className="fas fa-tag"></i></h6>
+                        <h6>Rs. {props.ferPrice}.00 <i className="fas fa-tag"></i></h6>
                         <div className="offer-nor-price">
-                            <h6>{props.ferOfferPrice} <i className="fas fa-tag"></i></h6>
+                            <h6>Rs. {props.ferOfferPrice}.00 <i className="fas fa-tag"></i></h6>
                         </div>
                     </div>
-                    <button>Add<i className="fas fa-cart-arrow-down"></i></button>
+                    <button onClick={() => addItem(props.item)}>Add<i className="fas fa-cart-arrow-down"></i></button>
                 </div>
             </div>
         </div>
