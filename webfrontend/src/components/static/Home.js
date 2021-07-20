@@ -87,16 +87,16 @@ function Home() {
 
 </section>
 
-<section class="about1" id="about1">
+<section class="about" id="about1">
 
     
 
-    <div class="column1">
+    <div class="column">
 
         
    
 
-        <div class="content1">
+        <div class="content">
             <h3>Organic Fertilizer is Dominating</h3>
             <p>Chemical fertilizer is harmful for body. Chemical fertilizer is harmful for bodyChemical fertilizer is harmful for body. Chemical fertilizer is harmful for bodyChemical fertilizer is harmful for body. Chemical fertilizer is harmful for bodyChemical fertilizer is harmful for body. Chemical.</p>
             <p>This is your opprtunity to grow green with organic fertilizer</p>
@@ -106,7 +106,7 @@ function Home() {
             </div>
         </div>
         
-        <div class="image1">
+        <div class="image">
             <img src={aboutImg1}/>
         </div>
 
