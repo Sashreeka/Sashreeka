@@ -5,7 +5,7 @@ import fIcon1 from '../../assets/images/Home/f-icon1.jpg';
 import fIcon2 from '../../assets/images/Home/f-icon2.jpeg';
 import fIcon3 from '../../assets/images/Home/f-icon3.jpg';
 import aboutImg1 from '../../assets/images/Home/about-img1.jpg';
-import aboutImg2 from '../../assets/images/Home/about-img2.jpg';
+//import aboutImg2 from '../../assets/images/Home/about-img2.jpg';
 //import img2 from '../../assets/images/Home/img2.jpeg';
 //import {Link} from 'react-router-dom'
 
@@ -94,6 +94,7 @@ function Home() {
     <div class="column1">
 
         
+   
 
         <div class="content1">
             <h3>Organic Fertilizer is Dominating</h3>
@@ -104,10 +105,12 @@ function Home() {
                 
             </div>
         </div>
-
+        
         <div class="image1">
-            <img src={aboutImg2}/>
+            <img src={aboutImg1}/>
         </div>
+
+        
 
     </div>
 

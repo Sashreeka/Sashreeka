@@ -149,3 +149,46 @@ section{
     margin-left: 2rem;
     margin-top: 10px;
 }
+.about1{
+    
+    background-size: cover;
+    background-position: center;
+    padding-bottom: 4rem;
+    
+     ;
+}
+
+.about1 .column1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.about1 .column1 .image{
+    flex:1 1 40rem;
+}
+
+.about1 .column1 .image img{
+    width:100%;
+}
+
+.about1 .column1 .content{
+    flex:1 1 40rem;
+}
+
+.about1 .column1 .content h3{
+    font-size: 2.5rem;
+    color:#666;
+}
+
+.about1 .column1 .content p{
+    font-size: 1rem;
+    color:#666;
+    padding:0.5rem 0;
+}
+
+.about1 .column1 .content .buttons a:last-child{
+    margin-left: 2rem;
+    margin-top: 10px;
+}
