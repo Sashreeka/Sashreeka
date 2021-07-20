@@ -1,9 +1,52 @@
-.deliveryAgentCon{
+.userListCon{
     display: flex;
     margin-top: 10px;
-    background-color: green;
+}
+.userList{
+    flex: 4;
+  
+}
+.userListUser{
+    display: flex;
+    align-items: center;
+
+}
+.userListImg{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
 }
 
-.deliveryAgent{
-    flex: 4;
+.userListEdit{
+
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: #3bb077;
+    color: white;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.userListDelete{
+    color: red;
+    cursor: pointer;
+    
+}
+.userList .pageShift{
+    display:flex;
+}
+.userList .pageShiftButton_Active  Button{
+    background-color: indianred;
+}
+
+.userList .pageShiftButton  Button{
+    background-color: rgb(252, 198, 198);
+}
+.link{
+    text-decoration: none;
+    color: inherit;
+
 }

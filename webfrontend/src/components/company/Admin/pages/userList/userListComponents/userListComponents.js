@@ -2,19 +2,20 @@ import React, { useState } from "react";
 import "../userList.css";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
-import DeliveryAgent from "../../deliveryAgents/DeliveryAgent";
+
 
 export function PageShiftButton() {
 
     return(
         <div className="pageShift">
+        
           <div className="pageShiftButton_Active">
-          <Button>Customers</Button>
+          <Button>Farmers</Button>
           </div>
 
-          <Link to={"/deliveryagent"}>
+          <Link to={"/deliveryagent"} className="link">
             <div className="pageShiftButton">
-            <Button>Delivery Agent</Button>
+            <Button>Delivery Agents</Button>
             </div>
           </Link> 
         </div>

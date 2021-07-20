@@ -16,7 +16,7 @@ export default function Sales() {
              <SalesDetails/>
             
 
-             </div>
+             </div> 
 
 
             

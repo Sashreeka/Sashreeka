@@ -2,7 +2,7 @@ import React from "react";
 
 // CSS file
 import "./Contact.css";
-import img1 from '../../assets/images/Contact/contact-png.png';
+import contactImg1 from '../../assets/images/Contact/contact3.png';
 
 function Contact() {
   return (
@@ -41,7 +41,7 @@ function Contact() {
 <section className="contact" id="contact">
 
 <div className="image">
-    <img src="images/contact-img.png" alt=""/>
+    <img src={contactImg1}/>
 </div>
 
 <form action="">
@@ -50,22 +50,22 @@ function Contact() {
 
     <div className="inputBox">
         <input type="text" required/>
-        <label>name</label>
+        <label>Your Name</label>
     </div>
 
     <div className="inputBox">
         <input type="email" required/>
-        <label>email</label>
+        <label>Your Email</label>
     </div>
 
     <div className="inputBox">
         <input type="number" required/>
-        <label>phone</label>
+        <label>Phone</label>
     </div>
 
     <div className="inputBox">
         <textarea required name="" id="" cols="30" rows="10"></textarea>
-        <label>message</label>
+        <label>Message/Questions</label>
     </div>
 
     <input type="submit" className="btn" value="send message"/>
