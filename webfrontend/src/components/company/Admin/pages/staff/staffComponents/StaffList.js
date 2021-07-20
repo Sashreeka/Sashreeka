@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import "./userList.css";
+import "./staffList.css";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
-import { userRows } from "../../dummyData";
+import { userRows } from "../../../dummyData";
 import { Link } from "react-router-dom";
-import Sidebar from "../../components/sidebar/Sidebar";
-import { Button } from "@material-ui/core";
-import { PageShiftButton } from "./userListComponents/userListComponents";
+import Sidebar from "../../../components/sidebar/Sidebar";
 
-export default function UserList() {
+export default function StaffList() {
   const [data, setData] = useState(userRows);
 
   const handleDelete = (id) => {
@@ -24,8 +22,8 @@ export default function UserList() {
       width: 200,
       renderCell: (params) => {
         return (
-          <div className="userListUser">
-            <img className="userListImg" src={params.row.avater} alt="" />
+          <div className="staffListUser">
+            <img className="staffListImg" src={params.row.avater} alt="" />
             {params.row.username}
           </div>
         );
@@ -50,11 +48,11 @@ export default function UserList() {
         return (
           <>
             <Link to={"/user/" + params.row.id}>
-              <button className="userListEdit">Edit</button>
+              <button className="staffListEdit">Edit</button>
             </Link>
 
             <DeleteOutline
-              className="userListDelete"
+              className="staffListDelete"
               onClick={() => handleDelete(params.row.id)}
             />
           </>
@@ -64,13 +62,9 @@ export default function UserList() {
   ];
 
   return (
-    <div className="userListCon">
+    <div className="staffListCon">
       <Sidebar />
-      
-      <div className="userList">
-      
-      <PageShiftButton/>
-      
+      <div className="staffList">
         <DataGrid
           rows={data}
           disableSelectionOnClick

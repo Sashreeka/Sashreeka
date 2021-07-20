@@ -1,0 +1,9 @@
+.deliveryAgentCon{
+    display: flex;
+    margin-top: 10px;
+    background-color: green;
+}
+
+.deliveryAgent{
+    flex: 4;
+}

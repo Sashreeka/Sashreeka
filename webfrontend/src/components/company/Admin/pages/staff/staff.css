@@ -1,0 +1,9 @@
+.staffCon{
+    display: flex;
+    margin-top: 10px;
+    background-color: red;
+}
+
+.staff{
+    flex: 4;
+}
