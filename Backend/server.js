@@ -192,3 +192,13 @@ app.get('/admin/viewDAgentDetails',(req,res)=>{
     res.send(result);
   });
 })
+
+//display the delivery agent details..................
+app.get('/admin/viewCStaffDetails',(req,res)=>{
+
+  const sqlget = "select * from companystaff";
+  db.query(sqlget, (err, result) => {
+    console.log(result);
+    res.send(result);
+  });
+})

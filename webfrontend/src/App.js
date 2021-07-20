@@ -28,6 +28,7 @@ import Sales from "./components/company/Admin/pages/sales/Sales";
 import Staff from "./components/company/Admin/pages/staff/Staff";
 import Delivery from "./components/company/Admin/pages/deliveries/Delivery";
 import DeliveryAgent from "./components/company/Admin/pages/deliveryAgents/DeliveryAgent";
+import StaffCheck from "./components/company/Admin/pages/staff/staffCheck/StaffCheck";
 
 function App() {
   let userCategory = localStorage.getItem("userCategory");
@@ -68,6 +69,10 @@ function App() {
               </Route>
               <Route path="/staff">
                 <Staff/>
+              </Route>
+
+              <Route path="/staffCheck/:staffId">
+                <StaffCheck/>
               </Route>
               <Route path="/delivery">
                 <Delivery/>
