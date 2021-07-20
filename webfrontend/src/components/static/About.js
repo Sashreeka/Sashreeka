@@ -41,7 +41,7 @@ function About() {
     <div className="card">
         <img src={ProImg1}/>
         <h3>Ishan Reshmika</h3>
-        <p>chairman</p>
+        <p>CEO</p>
         <div className="icons">
             <a href="#" className="fab fa-facebook-f"></a>
             <a href="#" className="fab fa-twitter"></a>
@@ -53,7 +53,7 @@ function About() {
     <div className="card">
         <img src={ProImg2}/>
         <h3>Anuki De Alwis</h3>
-        <p>one</p>
+        <p>COO</p>
         <div className="icons">
             <a href="#" className="fab fa-facebook-f"></a>
             <a href="#" className="fab fa-twitter"></a>
