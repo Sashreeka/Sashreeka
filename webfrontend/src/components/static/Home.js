@@ -1,11 +1,11 @@
 import React from 'react';
 import './Home.css';
-import img1 from '../../assets/images/Home/back1.jpg';
+import img1 from '../../assets/images/Home/back2.jpg';
 import fIcon1 from '../../assets/images/Home/f-icon1.jpg';
 import fIcon2 from '../../assets/images/Home/f-icon2.jpeg';
 import fIcon3 from '../../assets/images/Home/f-icon3.jpg';
 import aboutImg1 from '../../assets/images/Home/about-img1.jpg';
-import aboutImg2 from '../../assets/images/Home/about-img2.png';
+import aboutImg2 from '../../assets/images/Home/about-img2.jpg';
 //import img2 from '../../assets/images/Home/img2.jpeg';
 //import {Link} from 'react-router-dom'
 
@@ -91,7 +91,7 @@ function Home() {
 
     
 
-    <div class="column">
+    <div class="column1">
 
         
 
