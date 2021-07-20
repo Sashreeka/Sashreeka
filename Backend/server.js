@@ -186,7 +186,7 @@ app.post("/user/registerStaff", (req, res) => {
 //display the delivery agent details..................
 app.get('/admin/viewDAgentDetails',(req,res)=>{
 
-  const sqlget = "select * from fertilizer";
+  const sqlget = "select * from deliveryagent";
   db.query(sqlget, (err, result) => {
     console.log(result);
     res.send(result);
