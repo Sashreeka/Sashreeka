@@ -8,6 +8,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import { PageShiftButtonOther } from "../userList/userListComponents/userListComponentsD";
 import axios from 'axios';
 
+import MaterialTable from 'material-table';
 
 export default function DeliveryAgent() {
 
@@ -80,6 +81,16 @@ export default function DeliveryAgent() {
   //   },
   // ];
 
+  const columns=[
+    {title:'Id',field:'userId'},
+    {title:'First Name',field:'firstName'},
+    {title:'Last Name',field:'lastName'},
+    {title:'Driwing Licence',field:'drivingLicence'},
+    {title:'Phone Number',field:'phoneNumber'},
+   
+  
+  ]
+
   return (
     <div className="userListCon">
       <Sidebar />
@@ -89,27 +100,41 @@ export default function DeliveryAgent() {
       <PageShiftButtonOther/>
 
 
-      <table class="table">
+    <MaterialTable
+
+      title="Delivery Agent Details"
+      data={data}
+      columns={columns}
+      options={{
+        search:true,
+        paging:true,
+        filtering:false,
+        exportButton:true
+      }}
+    />
+      {/* <table class="table">
       <thead>
-        <tr>
+        <tr class=".th-lg">
           <th scope="col">#</th>
         
-          <th scope="col">name</th>
-          <th scope="col">description</th>
-          <th scope="col">offer</th>
-          <th scope="col">unitWeight</th>
+          <th scope="col">Full Name</th>
+          <th scope="col">NIC</th>
+          <th scope="col">Driwing Licence</th>
+          <th scope="col">Phone Number</th>
         </tr>
       </thead>
   <tbody>
         {
 
             data.map((item)=>(
-              <tr key={item.fertilizerId}>
-              <th scope="row">{item.fertilizerId}</th>
-              <td>{item.name}</td>
-              <td>{item.description}</td>
-              <td>{item.offer}</td>
-              <td>{item.unitWeight}</td>
+              <tr class=".th-lg" 
+              key={item.userId }>
+              <td>{item.userId}</td>
+              <th scope="row">{item.firstName}  {item.lastName}</th>
+              <td>{item.nic}</td>
+              <td>{item.drivingLicence}</td>
+              <td>{item.phoneNumber}</td>
+             
             </tr>
             ))
 
@@ -120,7 +145,7 @@ export default function DeliveryAgent() {
    
    
   </tbody>
-</table>
+</table> */}
       
         {/* <DataGrid
           rows={data}
