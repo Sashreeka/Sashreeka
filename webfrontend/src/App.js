@@ -6,8 +6,12 @@ import Navigation from "./components/common/header/Navigation";
 import Home from "./components/static/Home";
 import About from "./components/static/About";
 import Contact from "./components/static/Contact";
+
 import Store from "./components/store/Store";
 import SearchStore from "./components/store/SearchStore";
+import StoreCart from "./components/store/StoreCart";
+import {CartProvider} from 'react-use-cart';
+
 import Handbook from "./components/handbook/Handbook";
 import Signup from "./components/authentication/Signup";
 import Signin from "./components/authentication/Signin";
@@ -106,14 +110,6 @@ function App() {
                 <Contact />
               </Route>
 
-              <Route path="/store">
-                <Store />
-              </Route>
-
-              <Route path="/searchstore">
-                <SearchStore />
-              </Route>
-
               <Route path="/fertilizer">
                 <Handbook />
               </Route>
@@ -134,9 +130,25 @@ function App() {
                 <RegFarmer />
               </Route>
 
-              <Route path="/">
+              <Route exact path="/">
                 <Home />
               </Route>
+
+              <CartProvider>
+
+                <Route path="/store">
+                  <Store/>
+                </Route>
+
+                <Route path="/searchstore">
+                  <SearchStore/>
+                </Route>
+
+                <Route path="/storecart">
+                  <StoreCart/>
+                </Route>
+
+              </CartProvider>
             </Switch>
 
             <Footer />
