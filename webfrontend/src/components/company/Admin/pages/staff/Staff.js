@@ -5,7 +5,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import axios from 'axios';
 
 import MaterialTable from 'material-table';
-import Insertform from './staffComponents/Insertform';
+
 
 export default function Staff() {
 
@@ -150,7 +150,7 @@ export default function Staff() {
                 <button>Create New staff</button>
                 {/* </div> */}
                 
-                <Insertform/>
+              
             </div>
             
         </div>
