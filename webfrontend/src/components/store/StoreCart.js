@@ -104,6 +104,16 @@ const StoreCart = () => {
                     <h5>Redeem Loyalty Points</h5>
                     <h5><i class="fas fa-caret-down"></i></h5>
                 </div>
+                <div className="store-bottom-cart-line">
+                    <div className = "store-payment-method">
+                        <div>
+                            <input type="radio" name="payment-type" value="Online payment"/><label for="payment-type"> Online payment</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="payment-type" value="Cash on delivery"/><label for="payment-type"> Cash on delivery</label>
+                        </div>
+                    </div>
+                </div>
                 <div className="store-cart-drop">
                     <button onClick={() => emptyCart()}>Drop Cart</button>
                 </div>
@@ -111,7 +121,9 @@ const StoreCart = () => {
                     <Link to="/store"> 
                         <button>Continue Shopping</button>
                     </Link>
-                    <button>Checkout</button>
+                    <Link to="/storesuccess"> 
+                        <button>Confirm Order</button>
+                    </Link>
                 </div>
                 
             </div>
