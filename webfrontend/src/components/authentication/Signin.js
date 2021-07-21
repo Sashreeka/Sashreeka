@@ -58,7 +58,7 @@ function Signin() {
               className="loginInput"
               type="text"
               name="phoneNumber"
-              placeholder="phoneNumber"
+              placeholder="Phone number"
               onChange={(e) => {
                 setPhoneNumber(e.target.value);
               }}
@@ -89,6 +89,11 @@ function Signin() {
             <div className="login_left">
               <Link className="login_acc" to="/regFarmer">
                 Don't have an account?
+              </Link>
+            </div>
+            <div className="login_left">
+              <Link className="login_acc" to="/signup">
+                Sign Up
               </Link>
             </div>
           </div>

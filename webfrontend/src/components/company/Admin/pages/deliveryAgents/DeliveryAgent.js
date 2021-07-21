@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./deliveryAgent.css";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
@@ -6,14 +6,11 @@ import { userRows } from "../../dummyData";
 import { Link } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { PageShiftButtonOther } from "../userList/userListComponents/userListComponentsD";
-import axios from 'axios';
+import axios from "axios";
 
-import MaterialTable from 'material-table';
+import MaterialTable from "material-table";
 
 export default function DeliveryAgent() {
-
-
-
   const [data, setData] = useState([]);
   // const [data1, setData1] = useState([]);
 
@@ -21,18 +18,16 @@ export default function DeliveryAgent() {
   //   setData(data.filter((item) => item.id !== id));
   // };
 
-  useEffect(()=>{
+  useEffect(() => {
+    axios
+      .get("http://localhost:4000/admin/viewDAgentDetails")
+      .then((response) => {
+        console.log("hi", response.data);
+        setData(response.data);
 
-    axios.get("http://localhost:4000/admin/viewDAgentDetails").then((response)=>{
-      console.log('hi',response.data);
-      setData(response.data);
-
-    //  setData1(response.data);
-
-    })
-
-  },[])
-  
+        //  setData1(response.data);
+      });
+  }, []);
 
   // const columns = [
   //   { field: "id", headerName: "ID", width: 100 },
@@ -81,38 +76,36 @@ export default function DeliveryAgent() {
   //   },
   // ];
 
-  const columns=[
-    {title:'Id',field:'userId'},
-    {title:'First Name',field:'firstName'},
-    {title:'Last Name',field:'lastName'},
-    {title:'Driwing Licence',field:'drivingLicence'},
-    {title:'Phone Number',field:'phoneNumber'},
-   
-  
-  ]
+  const columns = [
+    { title: "Id", field: "userId" },
+    { title: "First Name", field: "firstName" },
+    { title: "Last Name", field: "lastName" },
+    { title: "Address", field: "address" },
+    { title: "NAtional ID", field: "nic" },
+    { title: "Driving Licence", field: "drivingLicence" },
+    { title: "Phone Number", field: "phoneNumber" },
+    { title: "Status", field: "active" },
+  ];
 
   return (
     <div className="userListCon">
       <Sidebar />
-      
+
       <div className="userList">
-      
-      <PageShiftButtonOther/>
+        <PageShiftButtonOther />
 
-
-    <MaterialTable
-
-      title="Delivery Agent Details"
-      data={data}
-      columns={columns}
-      options={{
-        search:true,
-        paging:true,
-        filtering:false,
-        exportButton:true
-      }}
-    />
-      {/* <table class="table">
+        <MaterialTable
+          title="Delivery Agent Details"
+          data={data}
+          columns={columns}
+          options={{
+            search: true,
+            paging: true,
+            filtering: true,
+            exportButton: true,
+          }}
+        />
+        {/* <table class="table">
       <thead>
         <tr class=".th-lg">
           <th scope="col">#</th>
@@ -146,7 +139,7 @@ export default function DeliveryAgent() {
    
   </tbody>
 </table> */}
-      
+
         {/* <DataGrid
           rows={data}
           disableSelectionOnClick
@@ -155,7 +148,6 @@ export default function DeliveryAgent() {
           checkboxSelection
         /> */}
       </div>
-    
     </div>
   );
 }

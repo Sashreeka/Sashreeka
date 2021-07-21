@@ -1,79 +1,83 @@
-.WidgetLg{
-    flex: 2;
+.WidgetLg {
+  /* flex: 2;
     -webkit-box-shadow: 0px 0px 15px -10px #000000; 
     box-shadow: 0px 0px 15px -10px #000000;
-    padding: 20px;
+    padding: 20px; */
+  padding: 20px;
+  margin: 20px;
+  box-shadow: 1px 1px 4px #444;
+  /* padding: 30px 0px 30px; */
+  border-radius: 2px;
+  background-color: white;
+  justify-content: space-between;
 }
-.widgetLgTitle{
-    font-size: 22px;
-    font-weight: 600;
+.widgetLgTitle {
+  font-size: 22px;
+  font-weight: 700;
+  color: darkgreen;
 }
-.WidgetLgTable{
-
-    width: 100%;
-    border-spacing:20px ;
+.WidgetLgTable {
+  width: 100%;
+  border-spacing: 20px;
 }
-.WidgetLgTr{
-   
-
+.WidgetLgTr {
+  color: #141212;
+  padding: 5px;
+  margin: 10px;
 }
-.WidgetLgTh{
-    text-align: left;
-
+.WidgetLgTh {
+  text-align: left;
+  padding: 10px;
+  margin: 10px;
 }
-.WidgetLgUser{
-
-    display: flex;
-    align-items: center;
-    font-weight: 600;
-}
-
-.widgetLgImg{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 10px;
-
-}
-
-
-.WidgetLgDate{
-    font-weight: 300;
-
+.WidgetLgUser {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  margin: 10px;
 }
 
-.WidgetLgAmount{
-    font-weight: 300;
-
+.widgetLgImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
 }
 
-
-.WidgetLgButton{
-    padding: 5px 7px;
-    border: none;
-    border-radius: 10px;
-
-
+.WidgetLgDate {
+  font-weight: 300;
 }
 
-.WidgetLgButton.Approved{
-    background-color: #e5faf2;
-    color: #3bb077;
-
-
+.WidgetLgAmount {
+  font-weight: 300;
 }
 
-.WidgetLgButton.Declined{
-    background-color: #fff0f1;
-    color: #e95087;
-
-
+.WidgetLgButton {
+  padding: 5px 7px;
+  border: none;
+  border-radius: 10px;
 }
 
-.WidgetLgButton.Pending{
-    background-color: #ebf1fe;
-    color: #2a7ade;
+.WidgetLgButton.Approved {
+  background-color: #e5faf2;
+  color: #3bb077;
+}
 
+.WidgetLgButton.Declined {
+  background-color: #fff0f1;
+  color: #e95087;
+}
 
+.WidgetLgButton.Pending {
+  background-color: #ebf1fe;
+  color: #2a7ade;
+}
+
+.center_button_admin {
+  text-align: center;
+}
+
+.WidgetLgStatus {
+  text-align: right;
 }
