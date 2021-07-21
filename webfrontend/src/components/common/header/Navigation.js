@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Navigation.css";
 //import {MenuItems} from "./MenuItems"
@@ -6,6 +6,21 @@ import "./Navigation.css";
 //import { render } from "@testing-library/react";
 
 function Navigation() {
+
+  const phoneNumber=localStorage.getItem('phoneNumber');
+
+
+
+  const Logout =()=>{
+
+       
+            localStorage.clear();
+            window.location.href='/';
+
+       
+
+
+    }
   // class Navigation extends Component {
   /*state={ clicked :false}
   handleClick = () =>{
@@ -85,11 +100,23 @@ function Navigation() {
               </Link>
             </li>
             <li>
-              <Link className="nav-link" to="/signin">
+            {
+              phoneNumber!==null? (
+               
+                <div className="nav-sign-in" onClick={Logout}>
+                  <div className="signin" >Sign Out</div>
+                </div>
+            
+              ):
+              (
+                <Link className="nav-link" to="/signin">
                 <div className="nav-sign-in">
                   <div className="signin">Sign in</div>
                 </div>
               </Link>
+              )
+            }
+              
             </li>
           </ul>
         </div>
