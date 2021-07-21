@@ -7,8 +7,8 @@ import { DrawerContent } from '../pages/DrawerContent';
 import Home from "../Home";
 // import Main from "./components/Main";
 import ItemPage from '../ItemPage';
-// import OrderHistory from './components/OrderHistory';
-// import OrderHistoryInside from './components/OrderHistoryInside';
+import OrderHistory from '../OrderHistory';
+import OrderHistoryInside from '../OrderHistoryInside';
 // import CheckoutPage from './components/CheckoutPage';
 
 
@@ -19,9 +19,9 @@ export default function DrowerStack({navigation}) {
         <Drawer.Navigator drawerContent={props => <DrawerContent {...props}/>} >
             <Drawer.Screen name="Home" component={Home} />
             <Drawer.Screen name="ItemPage" component={ItemPage} />
-            {/* <Drawer.Screen name="OrderHistory" component={OrderHistory} />
+            <Drawer.Screen name="OrderHistory" component={OrderHistory} />
             <Drawer.Screen name="OrderHistoryInside" component={OrderHistoryInside}/>
-            <Drawer.Screen name="CheckoutPage" component={CheckoutPage}/> */}
+            {/* <Drawer.Screen name="CheckoutPage" component={CheckoutPage}/> */}
             
         </Drawer.Navigator>
     ); 
