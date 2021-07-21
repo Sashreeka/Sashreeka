@@ -18,7 +18,7 @@ const StoreSuccess = () => {
     return(
 
         <div className="Store-fer-cart-container">
-            <div className="StoreferCart">
+            <div className="StoreferCartsuccess">
                 <div className = "store-path">
                     <Link to="/store">
                         <button>Store</button>
@@ -27,6 +27,7 @@ const StoreSuccess = () => {
                     <Link to="/storecart">
                         <button>My Cart  </button>
                     </Link>
+                    <i class="fas fa-caret-right"></i>
                 </div>
 
                 <div className  = "cart-success">
@@ -38,9 +39,12 @@ const StoreSuccess = () => {
                         return(
                             
                             <div className="cart-success-line-inner">
+                                <div className ="cart-success-inner">
+                                <img src={item.img} />
                                 <div className="cart-success-line-inner-inner">
                                     <h5>{item.name}</h5>
                                     <h6>{item.quantity} unit(s):</h6>
+                                </div>
                                 </div>
                                 <h6>Rs. {item.quantity * item.price}.00</h6>
                             </div>
