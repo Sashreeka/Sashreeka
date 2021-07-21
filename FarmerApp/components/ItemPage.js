@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import {FlatList,StatusBar,View, Text, StyleSheet,SafeAreaView,Image, ScrollView} from "react-native";
+import {FlatList,StatusBar,View, Text, StyleSheet,SafeAreaView,Image, ScrollView,TouchableOpacity} from "react-native";
 import Feather from "react-native-vector-icons/Feather";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import FontAwsome from "react-native-vector-icons/FontAwesome";
@@ -8,7 +8,6 @@ import itemsData from '../assets/data/itemsData';
 import colors from '../assets/colors/colors';
 import Axios from "axios";
 import { Directions } from 'react-native-gesture-handler';
-import photo from "../assets/images/bio3.png";
 import PlusMinusButton from './common/Buttons';
 
 import RemoveButton from "./buttons";
@@ -25,7 +24,8 @@ export default Main = ({navigation})=>{
                 <View style={styles.headerWrapper}>
                     <Image source={require("../assets/images/profileimg_girl.jpg")} style={styles.profileImage}/>
                     {/* style={styles.profileImage} */}
-                    <Feather name="menu" size={24} color={colors.textDark}></Feather>
+                    <Feather name="menu" size={24} color={colors.textDark}
+                    onPress={()=>navigation.openDrawer()}></Feather>
                 </View>
                 
             </SafeAreaView>
@@ -41,14 +41,24 @@ export default Main = ({navigation})=>{
 
              <View style={styles.itemDetailcardWrapper}>
                  <View style={styles.itemImg}>
-                 <Image source={photo} style={styles.itemCardImage}/>
+                 <Image source={{uri:"https://www.stones4homes.co.uk/wp-content/uploads/2021/04/Farmyard-Manure-1-004.jpg"}} style={styles.itemCardImage}/>
                  </View>
                  <View style={styles.detailsView}>
-                    <Text style={styles.itemHeader}>Bio Phos</Text>
-                    <Text style={styles.itemDetails}>RS.389.00</Text>
+                    <Text style={styles.itemHeader}>Manure</Text>
                     <View>
-                    <Text style={styles.itemPrice}>Qty :</Text>
-                    <PlusMinusButton/>
+                    <Text style={styles.itemPrice}>item unit : 10KG</Text>
+                    <View>
+                        <Text style={styles.itemValue}>Rs.950.00</Text>
+                        <Text style={styles.itemValueWithoutOffer}>Rs.1000.00</Text>
+                    </View>
+                    <View>
+                        {/* <PlusMinusButton/> */}
+                        <TouchableOpacity>
+                            <View style={{backgroundColor:"green",left:100,width:70,height:30,borderRadius:20}}>
+                                <Text style={{fontSize:25,paddingLeft:15,marginTop:-3,color:"yellow"}}>+ <FontAwsome name="shopping-cart" size={22} color={colors.ratingStarColor}></FontAwsome></Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
                     </View>
                     
                     
@@ -288,6 +298,18 @@ const styles=StyleSheet.create({
     commenter:{
         color:"#8C8C8C",
         fontSize:13,
+    },
+    itemValue:{
+        fontSize:26,
+        fontWeight:"bold",
+        paddingLeft:10,
+    },
+    itemValueWithoutOffer:{
+        fontSize:16,
+        color:"red",
+        textDecorationLine: 'line-through', 
+        textDecorationStyle: 'solid',
+        paddingLeft:10,
     },
 
     
