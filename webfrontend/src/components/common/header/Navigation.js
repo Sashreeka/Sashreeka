@@ -97,6 +97,13 @@ function Navigation() {
     </nav>
   );
 }
+{/* <li>
+  <Link className="nav-link" to="/signin">
+    <div className="nav-sign-in">
+      <div className="signin">Sign in</div>
+    </div>
+  </Link>
+</li>; */}
 // }
 
 export default Navigation;
