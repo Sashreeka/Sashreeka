@@ -99,8 +99,16 @@ const StoreCart = () => {
                     })}
                 </table>
                 <div className="store-cart-line">
-                    <h5>{totalItems} item(s) added</h5>
-                    <h5>Sub Total: Rs. {cartTotal}.00</h5>
+                    <h5>{totalItems} item(s) added    Total:</h5>
+                    <h5> Rs. {cartTotal}.00</h5>
+                </div>
+                <div className="store-cart-line">
+                    <h6>Delivery Charges</h6>
+                    <h6>Rs. 200.00</h6>
+                </div>
+                <div className="store-cart-line">
+                    <h5>Sub Total:</h5>
+                    <h5>Rs. {cartTotal + 200}.00</h5>
                 </div>
                 <div className="store-bottom-cart-line">
                     <h5>Redeem Loyalty Points</h5>
@@ -116,13 +124,16 @@ const StoreCart = () => {
                         </div>
                     </div>
                 </div>
-                <div className="store-cart-drop">
-                    <button onClick={() => emptyCart()}>Drop Cart</button>
-                </div>
+                
                 <div className="store-bottom-cart-line">
-                    <Link to="/store"> 
-                        <button>Continue Shopping</button>
-                    </Link>
+                    <div className = "store-carttwo-button">
+                        <Link to="/store"> 
+                            <button>Continue Shopping</button>
+                        </Link>
+                        <div className="store-cart-drop">
+                            <button onClick={() => emptyCart()}>Drop Cart</button>
+                        </div>
+                    </div>
                     <Link to="/storesuccess"> 
                         <button>Confirm Order</button>
                     </Link>

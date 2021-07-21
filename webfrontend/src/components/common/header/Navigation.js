@@ -58,7 +58,7 @@ function Navigation() {
     <nav className="navbar navbar-expand-lg navbar-light">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
-          Sashreeka
+          <img src={require('../../../assets/images/Sashreeka logo nav bar.png').default} />
         </Link>
         <button
           className="navbar-toggler"
@@ -76,27 +76,27 @@ function Navigation() {
           <ul className="navbar-nav">
             <li className="nav-item">
               <Link className="nav-link active" aria-current="page" to="/">
-                <i class="fas fa-home"></i>Home
+                <i class="fas fa-home"></i> Home
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/fertilizer">
-                Fertilizer Handbook
+              <i class="fas fa-book-open"></i> Fertilizer Handbook
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/store">
-                Shop Now
+              <i class="fas fa-shopping-basket"></i> Shop Now
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/about">
-                About
+              <i class="fas fa-building"></i> About
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/contact">
-                Contact
+              <i class="fas fa-headset"></i> Contact
               </Link>
             </li>
             <li>

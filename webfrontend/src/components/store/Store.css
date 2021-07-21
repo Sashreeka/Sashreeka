@@ -478,23 +478,25 @@ h6{
 .store-bottom-cart-line{
     display:flex;
     justify-content: space-between;
+    align-items: center;
     padding:8px;
 }
 
 .store-cart-drop{
     display:flex;
-    justify-content:flex-end;
-    padding:8px;
-    border-bottom: 1px solid #9BE564;
+    margin-left:10px;
 }
 
-.store-cart-drop button{
+.store-bottom-cart-line .store-cart-drop button{
     background-color: #e23a3a;
     border-radius: 5px;
     padding:8px;
     color:#ffffff;
     font-weight: bold;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+.store-carttwo-button{
+    display:flex;
 }
 
 .store-bottom-cart-line button {
@@ -525,6 +527,8 @@ h6{
     display:flex;
     justify-content: space-between;
     margin:50px;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 .cart-success{
@@ -583,4 +587,23 @@ h6{
 
 .store-payment-method label{ 
     margin-left: 10px;
+}
+
+.store-quick-check {
+    display:flex;
+    align-items:center;
+}
+
+.store-quick-check label{
+    margin-right: 10px;
+}
+
+.store-image-farmer img{
+    height: 250px;
+    width: auto;
+}
+
+.store-bottom-image{
+    display:flex;
+    justify-content:space-between;
 }

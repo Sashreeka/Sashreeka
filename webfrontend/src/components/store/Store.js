@@ -87,16 +87,16 @@ function Store() {
                 <hr/>
                 <div className="fer-cat">
                     <Carousel breakPoints={breakPoints}>
-                        <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-1.jpg").default} ferCatName = 'Paddy' />
-                        <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-2.jpg").default} ferCatName = 'Coconut' />
-                        <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-3.jpg").default} ferCatName = 'Compost' />
-                        <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-4.jpg").default} ferCatName = 'Vegetable' />
-                        <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-5.jpg").default} ferCatName = 'Tea' />
-                        <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-6.jpg").default} ferCatName = 'Flower' />
-                        <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-1.jpg").default} ferCatName = 'Liquid' />
-                        <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-2.jpg").default} ferCatName = 'Animal' />
-                        <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-3.jpg").default} ferCatName = 'Leaf' />
-                        <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-4.jpg").default} ferCatName = 'Regular' />
+                        <FerCatItem ferCatImage = {'https://live.staticflickr.com/4300/35736991400_dcacae4810_b.jpg'} ferCatName = 'Paddy' />
+                        <FerCatItem ferCatImage = {'https://cdn.shopify.com/s/files/1/0020/9692/2735/products/coconut-by-maharajasuper-com-60_480x480.jpg?v=1593241701'} ferCatName = 'Coconut' />
+                        <FerCatItem ferCatImage = {'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/how-to-compost-1520281711.jpg'} ferCatName = 'Compost' />
+                        <FerCatItem ferCatImage = {'https://previews.123rf.com/images/krimkate/krimkate1908/krimkate190800157/129018399-food-square-background-still-life-with-various-fresh-vegetables-on-wooden-table.jpg'} ferCatName = 'Vegetable' />
+                        <FerCatItem ferCatImage = {'https://static6.depositphotos.com/1000528/594/i/600/depositphotos_5946965-stock-photo-tea-bud-and-leaves.jpg'} ferCatName = 'Tea' />
+                        <FerCatItem ferCatImage = {'https://cdn.shopify.com/s/files/1/0250/6348/9616/products/nuccios-gem_131f8535-e072-48b0-86d7-8662aa752d6b.jpg?v=1615129160'} ferCatName = 'Flower' />
+                        <FerCatItem ferCatImage = {'https://thumbs.dreamstime.com/b/coffee-splash-drop-macro-close-up-brown-liquid-smoke-188802385.jpg'} ferCatName = 'Liquid' />
+                        <FerCatItem ferCatImage = {'https://i.pinimg.com/originals/00/07/75/000775ea917ffcd49521da19da4c2ba4.png'} ferCatName = 'Animal' />
+                        <FerCatItem ferCatImage = {'https://cdn.vox-cdn.com/thumbor/HQ4WlkwPK0zG5L8CVrLds8QhaIE=/0x0:3000x1854/1200x800/filters:focal(1260x687:1740x1167)/cdn.vox-cdn.com/uploads/chorus_image/image/66181105/leaf_mold.0.jpg'} ferCatName = 'Leaf' />
+                        <FerCatItem ferCatImage = {'https://www.ecofarmingdaily.com/wp-content/uploads/GettyImages-1140803112-scaled.jpg'} ferCatName = 'Regular' />
                     </Carousel>
                 </div>
 
@@ -118,7 +118,7 @@ function Store() {
                 <hr/>
                 <div className="fer-products_row">
                     <Carousel breakPoints={breakPoints1}>
-                        {FerProData.ferprodata.map((item,index)=>{
+                        {FerProData.ferprodata1.map((item,index)=>{
                             return(
                                 <FerProductItem ferProImage = {item.img} ferName={item.name} ferWeight={item.weight} ferPrice = {item.price} item={item} key ={index}/>
                             )
@@ -131,12 +131,21 @@ function Store() {
                 <hr/>
                 <div className="fer-products_row">
                     <Carousel breakPoints={breakPoints1}>
-                        {FerProData.ferprodata.map((item,index)=>{
+                        {FerProData.ferofferdata.map((item,index)=>{
                             return(
                                 <FerProOffer ferProImage = {item.img} ferName={item.name} ferWeight={item.weight} ferPrice = {item.price} ferOfferPrice={item.offer} item={item} key ={index}/>
                             )
                         })}
                     </Carousel>
+                </div>
+
+                <div className="store-bottom-image">
+                    <div className="store-image-farmer">
+                        <img src={require("../../assets/images/Store/store-img.PNG").default} />
+                    </div>
+                    <div className="store-image-farmer">
+                        <img src={require("../../assets/images/Store/store-img.PNG").default} />
+                    </div>
                 </div>
             </div>
         </div>
