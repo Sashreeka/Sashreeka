@@ -80,13 +80,15 @@ app.get("/getfertilizer", (req, res) => {
   });
 });
 
-// app.get("/getorderhistory", (req, res) => {
-//   const sqlget = "select * from orders where farmerPhoneNumber='0752016924'";
-//   db.query(sqlget, (err, result) => {
-//     console.log(result);
-//     res.send(result);
-//   });
-// });
+app.get("/getorderhistory", (req, res) => {
+  const sqlget = "select * from deliveries where famerPhoneNumber='0752016924' and confirmationFlag!=0 order by confirmationFlag ASC";
+  // const sqlget = "select * from deliveries where famerPhoneNumber='0752016924' order by confirmationFlag ASC";
+  db.query(sqlget, (err, result) => {
+    console.log(result);
+    res.send(result);
+  });
+});
+
 
 // app.get("/api/order",(req,res)=>{
 //     // console.log('hi anu');
