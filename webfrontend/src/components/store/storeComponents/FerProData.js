@@ -8,6 +8,7 @@ const FerProData ={
             id: 1,
             img: ferImage1,
             name: "Rock Phospate", 
+            weight: 5,
             price: 3790,
             offer: 4000
         },
@@ -15,13 +16,15 @@ const FerProData ={
             id: 2,
             img: ferImage2,
             name: "Vermicompost", 
+            weight: 50,
             price: 1540,
             offer: 1650
         },
         {
             id: 3,
             img: ferImage3,
-            name: "Manure", 
+            name: "Manure",
+            weight: 50, 
             price: 1000,
             offer: 1250
         },
@@ -29,6 +32,7 @@ const FerProData ={
             id: 4,
             img: ferImage1,
             name: "Chicken Litter", 
+            weight: 5,
             price: 1500,
             offer: 1550
         },
@@ -36,6 +40,7 @@ const FerProData ={
             id: 5,
             img: ferImage2,
             name: "Litter Seaweed", 
+            weight: 50,
             price: 3050,
             offer: 3100
         },
@@ -43,6 +48,7 @@ const FerProData ={
             id: 6,
             img: ferImage3,
             name: "MorBlooom", 
+            weight: 50,
             price: 4990,
             offer: 5200
         },
@@ -50,6 +56,7 @@ const FerProData ={
             id: 7,
             img: ferImage1,
             name: "Rock Phospate 6", 
+            weight: 5,
             price: 6790,
             offer: 6800
         },
@@ -57,6 +64,7 @@ const FerProData ={
             id: 8,
             img: ferImage2,
             name: "Bio Gold", 
+            weight: 50,
             price: 2679,
             offer: 2750
         },
@@ -64,6 +72,7 @@ const FerProData ={
             id: 9,
             img: ferImage3,
             name: "Bio Vaccine", 
+            weight: 50,
             price: 2780,
             offer: 2850
         },
@@ -71,6 +80,7 @@ const FerProData ={
             id: 10,
             img: ferImage1,
             name: "Bio Phos", 
+            weight: 5,
             price: 2670,
             offer: 2800
         },
@@ -78,6 +88,7 @@ const FerProData ={
             id: 11,
             img: ferImage2,
             name: "Grade A Dark Compost", 
+            weight: 50,
             price: 2750,
             offer: 2850
         },
@@ -85,6 +96,7 @@ const FerProData ={
             id: 12,
             img: ferImage2,
             name: "Humas soil", 
+            weight: 50,
             price: 4170,
             offer: 4220
         },
@@ -92,6 +104,7 @@ const FerProData ={
             id: 12,
             img: ferImage3,
             name: "Regular compost", 
+            weight: 50,
             price: 1250,
             offer: 1320
         },
@@ -99,6 +112,7 @@ const FerProData ={
             id: 12,
             img: ferImage1,
             name: "Vermi liquid compost", 
+            weight: 5,
             price: 1250,
             offer: 1310
         },
