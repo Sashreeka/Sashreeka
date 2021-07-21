@@ -30,11 +30,15 @@ import ProfileScreen from './components/screen/ProfileScreen';
 
 import { AuthContext } from './components/context/context';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
+//import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { AsyncStorage } from 'react-native';
 
 import LoginStack from './components/stack/LoginStack';
 
 import DetailsScreen from './components/screen/DetailsScreen';
+import axios from 'axios';
+
 const Drawer = createDrawerNavigator();
 
 
@@ -127,73 +131,118 @@ export default function App({navigation}) {
 
   // }),[])
 
-  const [isLoading,setIsLoading]=useState(true);
-  const [userToken,setUserToken]=useState(null);
-  //let userToken=null;
+ 
+  const [phoneNumber,setphoneNumber]=useState('');
+  const [userRole,setUserRole]=useState('');
+  
+
+
+  // useEffect(()=>{
+
+  //     AsyncStorage.getItem('phoneNumber').then((res)=>{
+  //       setphoneNumber(res);
+
+  //   },1000);
+  // },[])
+
+
+ 
 
   const authContext=useMemo(()=>({
-    signIn: async (telephone,password)=>{
-      // if(telephone =='119' && password=='pass')
-      // {
-        setUserToken('ishan');
-        setIsLoading(false);
-        try{
-          userToken="ishan"
-  
-          await AsyncStorage.setItem('userToken', userToken)
-  
-          //console.log(userToken)
-        }catch(e)
-        {
-          console.log("error",e);
+    signIn:  (telephone,password)=>{
+
+      axios.post('http://192.168.1.12:4000/user/login',{
+        phoneNumber:telephone,
+        password: password
+      }).then((response)=>{
+      //  console.log(response);
+        if(response){
+        //  console.log(response.data[0].id);
+          // console.log(response.data[0].password);
+          // console.log(response.data[0].phoneNumber);
+          // console.log(response.data[0].userCategory);
+
+          // setUserRole(response.data[0].userCategory);
+          // if(userRole==='deliveryAgent')
+          // {
+
+            try{
+              setphoneNumber(response.data[0].phoneNumber);
+             AsyncStorage.setItem('phoneNumber',phoneNumber);
+           
+            }catch(e)
+            {
+              console.log(e);
+            }
+
+          // }else{
+          //   alert('Telephone Number or Password Invalid');
+          // }
+
+
         }
+        else{
+          alert('Telephone Number or Password Invalid');
+        }
+      }).catch((e)=>{
+        console.log(e);
+      })
+
+
+      //  if(telephone =='119' && password=='pass')
+      // {
+      //   // setUserToken('ishan');
+      //   // setIsLoading(false);
+      //   console.log(telephone)
+      //   setUserToken(telephone);
+      //   try{
+      //    // userToken="ishan"
+  
+      //      AsyncStorage.setItem('userToken', userToken)
+  
+      //     //console.log(userToken)
+      //   }catch(e)
+      //   {
+      //     console.log("error",e);
+      //   }
        
 
-      // }else{
+      //  }else{
       //   alert('Username Or Password Invalid')
-      // }
+      //  }
       
      // console.log(telephone,password);
     
 
      
     },
-    signOut: async ()=>{
-      setUserToken(null);
-      setIsLoading(false);
-
+    signOut:()=>{
+     
       try{
 
-        await AsyncStorage.removeItem('userToken')
-      //  console.log(userToken)
+
+        AsyncStorage.removeItem('phoneNumber')
+        AsyncStorage.clear()
+         setphoneNumber(null);
+       
+    
 
       }catch(e){
         console.log(e)
       }
 
+     
+
       
 
       
     },
-    signUp: ()=>{
-      setUserToken('set');
-      setIsLoading(false);
-    },
+
 
   }),[])
 
 
-  useEffect(()=>{
 
-    setTimeout(async()=>{
-
-      const token=await AsyncStorage.getItem('userToken')
-      console.log(token)
-     setIsLoading(false);
-
-
-    },1000);
-  },[])
 
   // useEffect(()=>{
 
@@ -232,7 +281,7 @@ export default function App({navigation}) {
         <NavigationContainer>
         
 
-        { userToken !== null ?(
+        { phoneNumber !== null ?(
        
 
         <Drawer.Navigator drawerContent={props => <DrawerContent {...props}/>}>

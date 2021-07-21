@@ -116,6 +116,8 @@ const HomeStackScreen= ({navigation})=>(
         
       />
 
+
+
     {/* <HomeStack.Screen name="ModalScreen" component={ModalScreen} 
       
         
