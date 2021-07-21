@@ -90,6 +90,7 @@ export default function Staff() {
             
 
             <div className="staff">
+
            
             <MaterialTable
 
@@ -149,6 +150,9 @@ export default function Staff() {
                 <button>Create New staff</button>
                 {/* </div> */}
                 
+                <h1>hello : this is Staff page</h1>
+                
+
             </div>
             
         </div>

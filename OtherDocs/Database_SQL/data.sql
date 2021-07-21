@@ -72,5 +72,8 @@ INSERT INTO `fertilizer` (`fertilizerId`, `name`, `description`, `offer`, `unitP
 
 
 INSERT INTO `orders`(`orderId`, `amount`, `deliveryAddress`, `quickFlag`, `offer`, `receiverName`, `deliveryCharge`, `status`, `farmerPhoneNumber`, `staffPhoneNumber`) VALUES ('3424434361','20220.00','Malabe','2','5','Mr.rahul','600.00','2','0752016924','0711205934');
-
 INSERT INTO `orders`(`orderId`, `amount`, `deliveryAddress`, `quickFlag`, `offer`, `receiverName`, `deliveryCharge`, `status`, `farmerPhoneNumber`, `staffPhoneNumber`) VALUES ('234112130','34000.00','kotuwa','0','10','Mr.Mathura','600.00','1','0752016924','0711205934');
+
+
+
+INSERT INTO `deliveries` (`deliveryId`, `orderId`, `famerPhoneNumber`, `deliveryAgentPhoneNumber`, `deliveryLoad`, `distance`, `deliveryAgentsPayment`, `deliveryAgentsPaymentFlag`, `dateTime`, `deliveryRate`, `issue`, `confirmationFlag`) VALUES ('2', '1114434361', '0752016924', '0712345678', '1000', '450.00', '450000', NULL, '2021-07-21 04:11:13.000000', '0', '', '0'), ('3', '112130000', '0752016924', '0712345678', '1000', '450.00', '450000', NULL, '2021-07-21 04:11:13.000000', '0', '', '0'), ('4', '214748360', '0752016924', '0712345678', '600', '650.00', '456000', NULL, '2021-07-21 04:11:14.000000', '0', '', '0'), ('5', '231121310', '0752016924', '0712345678', '16600', '250.00', '450000', NULL, '2021-07-21 04:11:55.000000', '0', '', '0'), ('6', '231121311', '0752016924', '0712345678', '10030', '150.00', '150000', NULL, '2021-07-21 04:11:16.000000', '0', '', '0')

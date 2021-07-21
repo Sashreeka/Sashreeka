@@ -1,6 +1,9 @@
 import React,{useEffect,useState} from 'react';
 import './staffCheck.css';
 import axios from 'axios';
+import Sidebar from '../../../components/sidebar/Sidebar';
+
+
 export default function StaffCheck(props) {
 
     const [data,setData]=useState([]);
@@ -12,25 +15,19 @@ export default function StaffCheck(props) {
       setData(response.data);
 
     //  setData1(response.data);
-
     })
-
-
-
-
     },[])
     
-
-   
-
     return (
+
+        <div className="staffCon">
+            <Sidebar/>
+
         <div className="staffCheck">
          <p>Anu data tike display kara</p>
-
         {
             data.map((item)=>(
                 <div>
-               
                     <p>{item.userId}</p>
                     <p>{item.firstName}</p>
                     <p>{item.lastName}</p>
@@ -38,12 +35,11 @@ export default function StaffCheck(props) {
                     <p>{item.phoneNumber}</p>
                 </div>
             ))
-        }
-      
-       
-       
-       
-            
+        }  
+        </div>
+
         </div>
     )
 }
+
+

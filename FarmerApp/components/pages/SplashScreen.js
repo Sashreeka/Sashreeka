@@ -33,7 +33,8 @@ export default function SplashScreen({navigation}) {
 
            <Animatable.View style={styles.footer}
            animation="fadeInUpBig">
-            <Text style={styles.title}>Stay connected with Shashreeka</Text>
+            <Text style={styles.title}>සශ්‍රීක හා එක්වන්න</Text>
+            {/* <Text style={styles.title}>Stay connected with Shashreeka</Text> */}
             <Text style={styles.text}>Sign in with account</Text>
             <View style={styles.button}>
             <TouchableOpacity 
@@ -42,7 +43,7 @@ export default function SplashScreen({navigation}) {
               <LinearGradient
               colors={['#08d4c4,#01ab9d']}
               style={styles.signIn}>
-                <Text style={styles.textSign}>Get Started</Text>
+                <Text style={styles.textSign}>ආරම්භ කරන්න</Text>
                 <MaterialIcons
                   name="navigate-next"
                   color="#fff"

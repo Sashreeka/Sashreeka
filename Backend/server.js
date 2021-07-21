@@ -186,8 +186,6 @@ app.post("/user/registerStaff", (req, res) => {
   );
 });
 //Company Staff Register........................................
-
-
 //display the delivery agent details..................
 app.get('/admin/viewDAgentDetails',(req,res)=>{
 
