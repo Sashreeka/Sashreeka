@@ -47,19 +47,30 @@ import { StyleSheet,
 
 const HomeScreen = ({navigation})=>{
 
-  const [orderList,setOrderList]=useState([]);
+  const [upcomingDelivery,setupcomingDelivery]=useState([]);
+  const [historyDelivery,sethistoryDelivery]=useState([]);
 
-  // useEffect(()=>{
-  //   axios.get('http://192.168.1.12:3001/api/order').then((response)=>{
-  //     if(response)
-  //     {
-  //      console.log(response.data);
-  //      setOrderList(response.data)
-  //     }else{
-  //       console.log('error');
-  //     }
-  //    })
-  // },[])
+  useEffect(()=>{
+    axios.get('http://192.168.1.12:4000/deliveryAgent/upcoming').then((response)=>{
+      if(response)
+      {
+       console.log(response.data);
+       setupcomingDelivery(response.data)
+      }else{
+        console.log('error');
+      }
+     })
+
+     axios.get('http://192.168.1.12:4000/deliveryAgent/history').then((response)=>{
+      if(response)
+      {
+       console.log(response.data);
+       sethistoryDelivery(response.data)
+      }else{
+        console.log('error');
+      }
+     })
+  },[])
 
   const data=[
     {
@@ -179,50 +190,63 @@ const HomeScreen = ({navigation})=>{
       marginTop:50,
      }}
      >
-       <View style={[styles.categoryItemWrapper,{
-          backgroundColor:  '#f9f9fb',
-          marginStart:15,
+       <View 
+      //  style={[styles.categoryItemWrapper,{
+      //     backgroundColor:  '#f9f9fb',
+      //     marginStart:15,
          
 
-       }
-            ]}>
-             <ImageBackground source={require('../../assets/d.png')} resizeMode="cover" style={styles.image}/>
+      //  }
+           // ]}
+            >
+             <ImageBackground source={require('../../assets/a.png')} resizeMode="cover" style={[styles.categoryItemWrapper,{
+               marginLeft:5,
+             }]}/>
                   {/* <Text style={styles.text}>Inside</Text>
             </ImageBackground> */}
                {/* <Image source={require('../../assets/d.png')} style={styles.categoryItemImage}/> */}
-               <Text style={styles.categoryItemTitle}>title</Text>
+              
 
 
             </View>
-            <View style={[styles.categoryItemWrapper, {
-                backgroundColor:  '#f9f9fb',
+            <View 
+            // style={[styles.categoryItemWrapper, {
+            //     backgroundColor:  '#f9f9fb',
          
-            },
-            ]}>
+            // },
+            // ]}
+            
+            >
                {/* <Image source={require('../../assets/logo.png')} style={styles.categoryItemImage}/> */}
-               <Text style={styles.categoryItemTitle}>title</Text>
+               <ImageBackground source={require('../../assets/c.png')} resizeMode="cover" style={styles.categoryItemWrapper}/>
                
 
             </View>
 
-            <View style={[styles.categoryItemWrapper, {
-                backgroundColor:  '#f9f9fb',
+            <View
+            //  style={[styles.categoryItemWrapper, {
+            //     backgroundColor:  '#f9f9fb',
           
-            },
-            ]}>
+            // },
+            // ]}
+            >
                {/* <Image source={require('../../assets/logo.png')} style={styles.categoryItemImage}/> */}
-               <Text style={styles.categoryItemTitle}>title</Text>
+               <ImageBackground source={require('../../assets/b.png')} resizeMode="cover" style={styles.categoryItemWrapper}/>
               
 
             </View>
 
-            <View style={[styles.categoryItemWrapper, {
-                backgroundColor:  '#f9f9fb',
-           //     marginLeft: item.id==1 ? 20 : 0,
-            },
-            ]}>
+            <View 
+            
+          //   style={[styles.categoryItemWrapper, {
+          //       backgroundColor:  '#f9f9fb',
+          //  //     marginLeft: item.id==1 ? 20 : 0,
+          //   },
+          //   ]}
+            
+            >
                {/* <Image source={require('../../assets/logo.png')} style={styles.categoryItemImage}/> */}
-               <Text style={styles.categoryItemTitle}>title</Text>
+               <ImageBackground source={require('../../assets/d.png')} resizeMode="cover" style={styles.categoryItemWrapper}/>
             
 
             </View>
@@ -254,7 +278,7 @@ const HomeScreen = ({navigation})=>{
               <View
               style={styles.todayFirstRowIcon}
              >
-              <Text>9</Text>
+              <Text>3</Text>
 
               </View>
              
@@ -449,7 +473,7 @@ const HomeScreen = ({navigation})=>{
                     borderRadius:21, 
                   }}
                 >
-                  <Text>9</Text>
+                  <Text>3</Text>
 
                   </View>
            
@@ -475,16 +499,21 @@ const HomeScreen = ({navigation})=>{
 
          
                   <ScrollView  style={{marginTop:20}}>
-                    
 
-                  <Animatable.View
+                  {
+                      upcomingDelivery.map((item)=>(
+
+
+                        <Animatable.View
+
+                        key={item.orderId}
                   animation="fadeInUpBig"
                   style={{marginBottom:5}}
 
                   >
                     <TouchableOpacity onPress={toggleExpanded}>
                       <View style={headerList}>
-                        <Text style={headerText}>Polonnaruwa- Mr.P.B.N.Bandara</Text>
+                        <Text style={headerText}>{item.city}- {item.firstName} {item.lastName}</Text>
                       </View>
                     </TouchableOpacity>
                     <Collapsible collapsed={collapsed} align="center">
@@ -510,8 +539,8 @@ const HomeScreen = ({navigation})=>{
 
                       
                        <View style={{flexDirection:'column'}}>
-                       <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:10,}}>Sri Wiccrama Rajasinghe Mawatha, Polonnaruwa</Text>
-                       <Text style={{color:'#8C8C8C',fontSize:14,marginLeft:10}}>Tel : 0715822454</Text>
+                       <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:10,}}>{item.address}</Text>
+                       <Text style={{color:'#8C8C8C',fontSize:14,marginLeft:10}}>Tel : {item.phoneNumber}</Text>
                        
                       
                        
@@ -522,6 +551,17 @@ const HomeScreen = ({navigation})=>{
 
                     </Animatable.View>
 
+
+
+
+
+                      ))
+
+
+                  }
+                    
+
+                
 
 
 
@@ -932,7 +972,7 @@ export default HomeScreen;
       justifyContent: "center",
       height:130,
       marginTop:10,
-      width:140
+      width:210
     },
     text: {
       color: "white",
@@ -1026,7 +1066,7 @@ export default HomeScreen;
         marginRight:10,
         borderRadius:20,
         height:150,
-        width:150,
+        width:250,
         // padding:10,
         alignItems:"center",
         justifyContent:"center",

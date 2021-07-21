@@ -1,6 +1,6 @@
-import ferImage1 from '../../../assets/images/fer-pro-1.jpg';
-import ferImage2 from '../../../assets/images/fer-pro-2.jpg';
-import ferImage3 from '../../../assets/images/fer-pro-3.jpg';
+import ferImage1 from '../../../assets/images/Store/fer-pro-1.jpg';
+import ferImage2 from '../../../assets/images/Store/fer-pro-2.jpg';
+import ferImage3 from '../../../assets/images/Store/fer-pro-3.jpg';
 
 const FerProData ={
     ferprodata:[
@@ -115,6 +115,65 @@ const FerProData ={
             weight: 5,
             price: 1250,
             offer: 1310
+        },
+    ],
+
+    fersearchdata: [
+        {
+            id: 7,
+            img: 'http://www.biopowerlanka.com/images/bio-gold.jpg',
+            name: "Bio Gold", 
+            weight: 4,
+            price: 2679,
+            offer: 3000
+        },
+        {
+            id: 8,
+            img: 'http://www.biopowerlanka.com/images/bio-vaccine.jpg',
+            name: "Bio Vaccine", 
+            weight: 4,
+            price: 2780,
+            offer: 3000
+        },
+        {
+            id: 9,
+            img: 'https://m.media-amazon.com/images/I/61NDpj1AUWL._SX466_.jpg',
+            name: "Bio Vermi Compost", 
+            weight: 4,
+            price: 2670,
+            offer: 3000
+        },
+        {
+            id: 10,
+            img: 'https://www.huahng.com.sg/wp-content/uploads/2017/04/NPK-5-5-5-5-Kg.jpg',
+            name: "Bio-Lanka fertilizer", 
+            weight: 3,
+            price: 1790,
+            offer: 2000
+        },
+        {
+            id: 11,
+            img: 'https://drearth.com/wp-content/uploads/NitrogenFertBagComp-699.jpg',
+            name: "Nitro Bio",
+            weight: 1,
+            price: 1080,
+            offer: 1500
+        },
+        {
+            id: 12,
+            img: 'https://image.made-in-china.com/202f0j00dYmfrhUtsupC/Amino-Acid-Organic-16-1-2-NPK-Granular-Fertilizer-for-Sale.jpg',
+            name: "NP-Bio fertilizer",
+            weight: 4,
+            price: 4690,
+            offer: 5000
+        },
+        {
+            id: 13,
+            img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRok3owwkQdKaz4d02VYkX3n8u3CAmjpeKLYQ&usqp=CAU',
+            name: "NPK-Bio",
+            weight: 2,
+            price: 2480,
+            offer: 3100
         },
     ],
 };

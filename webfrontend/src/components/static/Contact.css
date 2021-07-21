@@ -16,7 +16,8 @@
   font-size: 18px;
   line-height: 21px;
   color: #ffffff;
-}*/
+}
+*/
 .contact{
   display: flex;
   align-items: center;
@@ -32,28 +33,36 @@
 }
 
 .contact .image img{
-  width:626px;
-  height: 626px;
+  width:500px;
+  height: 500px;
   padding:2rem;
   top:20px;
+  
 }
 
 .contact form{
   flex:1 1 40rem;
-  padding:1rem 1rem;
+  padding-left:4rem;
+  padding-right:4rem;
+  padding-bottom:4rem;
   border:.1rem solid rgba(0,0,0,.2);
   box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
   border-radius: .3rem;
   background:#fff;
 margin-top: 20px;
+margin-right:70px;
+width:500px;
+height: 500px;
   
 }
 
 .contact form .heading{
   text-align: left;
   padding:0;
-  padding-bottom: 0.1rem;
-  padding-top: 0.2rem;
+  padding-bottom:none;
+  padding-top: 0.3rem;
+  font-size: 1.9rem;
+  color:#2e8f17;
 }
 
 .contact form .inputBox{
@@ -65,22 +74,22 @@ margin-top: 20px;
   background:none;
   color:#666;
   margin:1rem 0;
-  padding:.3rem 0;
-  font-size: 1.4rem;
-  border-bottom: .1rem solid rgba(0,0,0,.1);
+  padding:.4rem 0;
+  font-size: 1.2rem;
+  border-bottom: .1rem solid rgba(18, 247, 67, 0.1);
   text-transform: none;
 }
 
 .contact form .inputBox textarea{
   resize: none;
-  height: 9rem;
+  height: 6.5rem;
 }
 
 .contact form .inputBox label{
   position: absolute;
   top:1.7rem; left:0;
   font-size: 1.4rem;
-  color:#666;
+  color:black;
   transition: .2s linear;
 }
 
@@ -92,3 +101,17 @@ margin-top: 20px;
   font-size: 1.2rem;
   color:var(--pink);
 }
+
+.contact .formSection .contactbtn{
+  text-align: center;
+    border-radius: 5rem;
+    background-color:#2e8f17;
+    font-size: 1.5rem;
+    color:white;
+    cursor: pointer;
+   
+    transition: all .2s linear;
+    width:12rem;
+    
+}
+

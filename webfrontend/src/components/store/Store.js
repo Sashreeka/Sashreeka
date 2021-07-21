@@ -74,11 +74,11 @@ function Store() {
 
                 {/*corousal*/}
                 <Slider {...settings}>
-                    <img className="shop-corousal" src={require('../../assets/images/shop-slide-1.jpg').default}></img>
-                    <img className="shop-corousal" src={require('../../assets/images/shop-slide-2.jpg').default}></img>
-                    <img className="shop-corousal" src={require('../../assets/images/shop-slide-3.jpg').default}></img>
-                    <img className="shop-corousal" src={require('../../assets/images/shop-slide-4.jpg').default}></img>
-                    <img className="shop-corousal" src={require('../../assets/images/shop-slide-5.jpg').default}></img>
+                    <img className="shop-corousal" src={require('../../assets/images/Store/shop-slide-1.jpg').default}></img>
+                    <img className="shop-corousal" src={require('../../assets/images/Store/shop-slide-2.jpg').default}></img>
+                    <img className="shop-corousal" src={require('../../assets/images/Store/shop-slide-3.jpg').default}></img>
+                    <img className="shop-corousal" src={require('../../assets/images/Store/shop-slide-4.jpg').default}></img>
+                    <img className="shop-corousal" src={require('../../assets/images/Store/shop-slide-5.jpg').default}></img>
                 </Slider>    
                     
 
@@ -87,16 +87,16 @@ function Store() {
                 <hr/>
                 <div className="fer-cat">
                     <Carousel breakPoints={breakPoints}>
-                        <FerCatItem ferCatImage = {require("../../assets/images/fer-cat-1.jpg").default} ferCatName = 'Paddy' />
-                        <FerCatItem ferCatImage = {require("../../assets/images/fer-cat-2.jpg").default} ferCatName = 'Coconut' />
-                        <FerCatItem ferCatImage = {require("../../assets/images/fer-cat-3.jpg").default} ferCatName = 'Compost' />
-                        <FerCatItem ferCatImage = {require("../../assets/images/fer-cat-4.jpg").default} ferCatName = 'Vegetable' />
-                        <FerCatItem ferCatImage = {require("../../assets/images/fer-cat-5.jpg").default} ferCatName = 'Tea' />
-                        <FerCatItem ferCatImage = {require("../../assets/images/fer-cat-6.jpg").default} ferCatName = 'Flower' />
-                        <FerCatItem ferCatImage = {require("../../assets/images/fer-cat-1.jpg").default} ferCatName = 'Liquid' />
-                        <FerCatItem ferCatImage = {require("../../assets/images/fer-cat-2.jpg").default} ferCatName = 'Animal' />
-                        <FerCatItem ferCatImage = {require("../../assets/images/fer-cat-3.jpg").default} ferCatName = 'Leaf' />
-                        <FerCatItem ferCatImage = {require("../../assets/images/fer-cat-4.jpg").default} ferCatName = 'Regular' />
+                        <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-1.jpg").default} ferCatName = 'Paddy' />
+                        <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-2.jpg").default} ferCatName = 'Coconut' />
+                        <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-3.jpg").default} ferCatName = 'Compost' />
+                        <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-4.jpg").default} ferCatName = 'Vegetable' />
+                        <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-5.jpg").default} ferCatName = 'Tea' />
+                        <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-6.jpg").default} ferCatName = 'Flower' />
+                        <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-1.jpg").default} ferCatName = 'Liquid' />
+                        <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-2.jpg").default} ferCatName = 'Animal' />
+                        <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-3.jpg").default} ferCatName = 'Leaf' />
+                        <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-4.jpg").default} ferCatName = 'Regular' />
                     </Carousel>
                 </div>
 
@@ -107,7 +107,7 @@ function Store() {
                     <Carousel breakPoints={breakPoints1}>
                         {FerProData.ferprodata.map((item,index)=>{
                             return(
-                                <FerProductItem ferProImage = {item.img} ferName={item.name} ferPrice = {item.price} item={item} key ={index}/>
+                                <FerProductItem ferProImage = {item.img} ferWeight={item.weight} ferName={item.name} ferPrice = {item.price} item={item} key ={index}/>
                             )
                         })}
                     </Carousel>
@@ -120,7 +120,7 @@ function Store() {
                     <Carousel breakPoints={breakPoints1}>
                         {FerProData.ferprodata.map((item,index)=>{
                             return(
-                                <FerProductItem ferProImage = {item.img} ferName={item.name} ferPrice = {item.price} item={item} key ={index}/>
+                                <FerProductItem ferProImage = {item.img} ferName={item.name} ferWeight={item.weight} ferPrice = {item.price} item={item} key ={index}/>
                             )
                         })}
                     </Carousel>
@@ -133,7 +133,7 @@ function Store() {
                     <Carousel breakPoints={breakPoints1}>
                         {FerProData.ferprodata.map((item,index)=>{
                             return(
-                                <FerProOffer ferProImage = {item.img} ferName={item.name} ferPrice = {item.price} ferOfferPrice={item.offer} item={item} key ={index}/>
+                                <FerProOffer ferProImage = {item.img} ferName={item.name} ferWeight={item.weight} ferPrice = {item.price} ferOfferPrice={item.offer} item={item} key ={index}/>
                             )
                         })}
                     </Carousel>

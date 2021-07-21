@@ -8,9 +8,15 @@ import FilterStore from './storeComponents/FilterStore';
 import FilterFerCat from './storeComponents/FilterFerCat';
 import FerProData from './storeComponents/FerProData';
 import Slider from 'infinite-react-carousel';
+import {useCart} from 'react-use-cart';
 import { Link } from "react-router-dom";
 
 function SearchStore() {
+    const {
+        totalItems,
+        cartTotal,
+    } = useCart();
+
     const settings = {
         centerPadding: 10,
         dots: true,
@@ -61,7 +67,7 @@ function SearchStore() {
                     </div>
                         
                     <div className="shopping_details">
-                        <p className="Subtotal">2 items - Rs. 3850.00</p>
+                        <p className="Subtotal">{totalItems} items - Rs. {cartTotal}.00</p>
                         <Link to="/storecart">
                             <button type="submit" className="shopping_cart"><i className="fas fa-shopping-cart"></i></button>
                         </Link>
@@ -70,11 +76,11 @@ function SearchStore() {
 
                 {/*corousal*/}
                 <Slider {...settings}>
-                    <img className="shop-corousal" src={require('../../assets/images/shop-slide-1.jpg').default}></img>
-                    <img className="shop-corousal" src={require('../../assets/images/shop-slide-2.jpg').default}></img>
-                    <img className="shop-corousal" src={require('../../assets/images/shop-slide-3.jpg').default}></img>
-                    <img className="shop-corousal" src={require('../../assets/images/shop-slide-4.jpg').default}></img>
-                    <img className="shop-corousal" src={require('../../assets/images/shop-slide-5.jpg').default}></img>
+                    <img className="shop-corousal" src={require('../../assets/images/Store/shop-slide-1.jpg').default}></img>
+                    <img className="shop-corousal" src={require('../../assets/images/Store/shop-slide-2.jpg').default}></img>
+                    <img className="shop-corousal" src={require('../../assets/images/Store/shop-slide-3.jpg').default}></img>
+                    <img className="shop-corousal" src={require('../../assets/images/Store/shop-slide-4.jpg').default}></img>
+                    <img className="shop-corousal" src={require('../../assets/images/Store/shop-slide-5.jpg').default}></img>
                 </Slider>
 
                 <div class="store-search-container">
@@ -108,10 +114,9 @@ function SearchStore() {
                         <h3 className="fer-topic"><i class="fas fa-leaf"></i> Search Results ...</h3>
                         <hr/>
                         <div className="fer-search-results">
-                        <FerProOffer ferProImage = {require("../../assets/images/fer-pro-3.jpg").default} ferOfferPrice="1250" ferName="Manure" ferPrice = "1000"/>
-                        {FerProData.ferprodata.map((item,index)=>{
+                        {FerProData.fersearchdata.map((item,index)=>{
                             return(
-                                <FerProductItem ferProImage = {item.img} ferName={item.name} ferPrice = {item.price} item={item} key ={index}/>
+                                <FerProductItem ferProImage = {item.img} ferName={item.name} ferPrice = {item.price} ferWeight={item.weight} item={item} key ={index}/>
                             )
                         })}
                         </div>
@@ -121,16 +126,16 @@ function SearchStore() {
                         <hr/>
                         <div className="fer-cat">
                             <Carousel breakPoints={breakPoints}>
-                                <FerCatItem ferCatImage = {require("../../assets/images/fer-cat-1.jpg").default} ferCatName = 'Paddy' />
-                                <FerCatItem ferCatImage = {require("../../assets/images/fer-cat-2.jpg").default} ferCatName = 'Coconut' />
-                                <FerCatItem ferCatImage = {require("../../assets/images/fer-cat-3.jpg").default} ferCatName = 'Compost' />
-                                <FerCatItem ferCatImage = {require("../../assets/images/fer-cat-4.jpg").default} ferCatName = 'Vegetable' />
-                                <FerCatItem ferCatImage = {require("../../assets/images/fer-cat-5.jpg").default} ferCatName = 'Tea' />
-                                <FerCatItem ferCatImage = {require("../../assets/images/fer-cat-6.jpg").default} ferCatName = 'Flower' />
-                                <FerCatItem ferCatImage = {require("../../assets/images/fer-cat-1.jpg").default} ferCatName = 'Liquid' />
-                                <FerCatItem ferCatImage = {require("../../assets/images/fer-cat-2.jpg").default} ferCatName = 'Animal' />
-                                <FerCatItem ferCatImage = {require("../../assets/images/fer-cat-3.jpg").default} ferCatName = 'Leaf' />
-                                <FerCatItem ferCatImage = {require("../../assets/images/fer-cat-4.jpg").default} ferCatName = 'Regular' />
+                                <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-1.jpg").default} ferCatName = 'Paddy' />
+                                <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-2.jpg").default} ferCatName = 'Coconut' />
+                                <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-3.jpg").default} ferCatName = 'Compost' />
+                                <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-4.jpg").default} ferCatName = 'Vegetable' />
+                                <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-5.jpg").default} ferCatName = 'Tea' />
+                                <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-6.jpg").default} ferCatName = 'Flower' />
+                                <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-1.jpg").default} ferCatName = 'Liquid' />
+                                <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-2.jpg").default} ferCatName = 'Animal' />
+                                <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-3.jpg").default} ferCatName = 'Leaf' />
+                                <FerCatItem ferCatImage = {require("../../assets/images/Store/fer-cat-4.jpg").default} ferCatName = 'Regular' />
                             </Carousel>
                         </div>
                     </div>

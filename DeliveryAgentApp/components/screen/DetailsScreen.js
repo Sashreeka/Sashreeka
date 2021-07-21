@@ -62,7 +62,7 @@ import { StyleSheet,
               <View
               style={styles.todayFirstRowIcon}
              >
-              <Text>9</Text>
+              <Text>3</Text>
 
               </View>
              
@@ -112,7 +112,7 @@ import { StyleSheet,
                   >
                     <TouchableOpacity onPress={toggleExpanded}>
                       <View style={styles.headerList}>
-                        <Text style={styles.headerText}>Polonnaruwa- Mr.P.B.N.Bandara</Text>
+                        <Text style={styles.headerText}>Colombo- Sugath Bandara</Text>
                       </View>
                     </TouchableOpacity>
                     <Collapsible collapsed={collapsed} align="center">
@@ -138,7 +138,7 @@ import { StyleSheet,
 
                       
                        <View style={{flexDirection:'column'}}>
-                       <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:10,textDecorationLine: 'underline',textDecorationColor:'#000'}}>Sri Wiccrama Rajasinghe Mawatha, Polonnaruwa</Text>
+                       <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:10,textDecorationLine: 'underline',textDecorationColor:'#000'}}>Sri Wiccrama Rajasinghe Mawatha, Colombo</Text>
                        <View style={{flexDirection:'row'}}>
                          <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>Tel:</Text>
                          <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>0715822452</Text>
@@ -169,7 +169,7 @@ import { StyleSheet,
                        <View style={{flexDirection:'row'}}>
                          <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0}}>Total Amount(Rs):</Text>
                          <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>750</Text>
-                         <View
+                         {/* <View
                          style={{
                            borderRadius:10,
                            backgroundColor:'#fff',
@@ -179,7 +179,7 @@ import { StyleSheet,
                            paddingRight:10,
                          }}>
                            <Text>Paid</Text>
-                         </View>
+                         </View> */}
 
                        </View>
 
@@ -193,7 +193,7 @@ import { StyleSheet,
                       >
 
                         <Text
-                        style={{color:'#fff'}}>Order Delivery</Text>
+                        style={{color:'#fff'}}>Delivered</Text>
                         </TouchableOpacity>
                     
 
@@ -224,7 +224,7 @@ import { StyleSheet,
                   >
                     <TouchableOpacity onPress={toggleExpanded}>
                       <View style={styles.headerList}>
-                        <Text style={styles.headerText}>Polonnaruwa- Mr.P.B.N.Bandara</Text>
+                        <Text style={styles.headerText}>Galle- Kamal Jayasekara</Text>
                       </View>
                     </TouchableOpacity>
                     <Collapsible collapsed={collapsed} align="center">
@@ -250,7 +250,7 @@ import { StyleSheet,
 
                       
                        <View style={{flexDirection:'column'}}>
-                       <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:10,textDecorationLine: 'underline',textDecorationColor:'#000'}}>Sri Wiccrama Rajasinghe Mawatha, Polonnaruwa</Text>
+                       <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:10,textDecorationLine: 'underline',textDecorationColor:'#000'}}>Sri Wiccrama Rajasinghe Mawatha, Galle</Text>
                        <View style={{flexDirection:'row'}}>
                          <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>Tel:</Text>
                          <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>0715822452</Text>
@@ -271,7 +271,7 @@ import { StyleSheet,
                        <View style={{flexDirection:'row'}}>
                          <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0}}>Total Amount(Rs):</Text>
                          <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>750</Text>
-                         <View
+                         {/* <View
                          style={{
                            borderRadius:10,
                            backgroundColor:'#fff',
@@ -281,7 +281,7 @@ import { StyleSheet,
                            paddingRight:10,
                          }}>
                            <Text>Paid</Text>
-                         </View>
+                         </View> */}
 
                        </View>
 
@@ -295,7 +295,7 @@ import { StyleSheet,
                       >
 
                         <Text
-                        style={{color:'#fff'}}>Order Delivery</Text>
+                        style={{color:'#fff'}}>Delivered</Text>
                         </TouchableOpacity>
                     
 
@@ -326,7 +326,7 @@ import { StyleSheet,
                   >
                     <TouchableOpacity onPress={toggleExpanded}>
                       <View style={styles.headerList}>
-                        <Text style={styles.headerText}>Polonnaruwa- Mr.P.B.N.Bandara</Text>
+                        <Text style={styles.headerText}>Matara- Malitha Madushan</Text>
                       </View>
                     </TouchableOpacity>
                     <Collapsible collapsed={collapsed} align="center">
@@ -352,7 +352,7 @@ import { StyleSheet,
 
                       
                        <View style={{flexDirection:'column'}}>
-                       <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:10,textDecorationLine: 'underline',textDecorationColor:'#000'}}>Sri Wiccrama Rajasinghe Mawatha, Polonnaruwa</Text>
+                       <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:10,textDecorationLine: 'underline',textDecorationColor:'#000'}}>Sri Wiccrama Rajasinghe Mawatha, Matara</Text>
                        <View style={{flexDirection:'row'}}>
                          <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>Tel:</Text>
                          <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>0715822452</Text>
@@ -366,7 +366,7 @@ import { StyleSheet,
 
                        </View>
                        <View style={styles.order}>
-                       <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0}}>2.Compost Fertilizer</Text>
+                       <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0}}>2.Bio Fertilizer</Text>
                        <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0}}>10kg x 5</Text>
 
                        </View>
@@ -378,7 +378,7 @@ import { StyleSheet,
                        <View style={{flexDirection:'row'}}>
                          <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0}}>Total Amount(Rs):</Text>
                          <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>750</Text>
-                         <View
+                         {/* <View
                          style={{
                            borderRadius:10,
                            backgroundColor:'#fff',
@@ -388,7 +388,7 @@ import { StyleSheet,
                            paddingRight:10,
                          }}>
                            <Text>Paid</Text>
-                         </View>
+                         </View> */}
 
                        </View>
 
@@ -402,7 +402,7 @@ import { StyleSheet,
                       >
 
                         <Text
-                        style={{color:'#fff'}}>Order Delivery</Text>
+                        style={{color:'#fff'}}>Delivered</Text>
                         </TouchableOpacity>
                     
 

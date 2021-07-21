@@ -1,9 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useCart} from 'react-use-cart';
 
 
 
-const FerProductItem = (props) => { 
+const FerProductItem = (props) => {
+    
+    let userCategory; 
+    useEffect(() => {
+        userCategory = localStorage.getItem('userCategory');
+        console.log(userCategory)
+    })
 
     const {addItem} = useCart();
     
@@ -23,7 +29,13 @@ const FerProductItem = (props) => {
                 </div>
                 <div className="fer-price">
                     <h6>Rs. {props.ferPrice}.00 <i className="fas fa-tag"></i></h6>
-                    <button onClick={() => addItem(props.item)} >Add<i className="fas fa-cart-arrow-down"></i></button>
+                    {
+                            userCategory !== null? (<button onClick={() => addItem(props.item)} >Add<i className="fas fa-cart-arrow-down"></i></button>):
+                            <button onClick = {()=>{
+                                window.location.href = '/signin'
+                            }}>Add<i className="fas fa-cart-arrow-down"></i></button>
+                        
+                    }
                 </div>
             </div>
         </div>

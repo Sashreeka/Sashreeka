@@ -8,25 +8,22 @@ section{
     padding-top: 0.1rem;
     padding-bottom: 2rem;
 }
-
-.btn{
-    
-    
+/*.home .content1 .homeb1{
     text-align: center;
     border-radius: 5rem;
     background-color:#2e8f17;
     font-size: 1.5rem;
-    color:white;
+    color:#ffffff;
     cursor: pointer;
-   
-    transition: all .2s linear;
-    height:2.5rem;
-    width:13rem;
-}
+    /*transition: all .2s linear;
+   margin-left:10px;
 
-.btn:hover{
+
+
+.home .content1 .homebtn1:hover{
     transform: scale(1.1);
-}
+}*/
+
 .home{
     display: flex;
     align-items: center;
@@ -51,25 +48,42 @@ section{
     
 }*/
 
-.home .content h3{
+.home .content1 h3{
     font-size: 3.5rem;
-    color:#006600
-    ;
+    color:#006600;
     text-transform: uppercase;
 }
 
-.home .content h4{
-    color:#2e8f17;
+.home .content1 h4{
+    color:#5fdb43;
     text-transform: uppercase;
     font-size:2rem;
 }
 
-.home .content p{
+.home .content1 p{
     font-size: 1.2rem;
     color:#666;
     padding:0.5rem 0;
 }
 
+
+.homebtn{
+    
+    
+    text-align: center;
+    border-radius: 5rem;
+    background-color:#2e8f17;
+    font-size: 1.5rem;
+    color:white;
+    cursor: pointer;
+   
+    transition: all .2s linear;
+    width:12rem;
+}
+
+.row1 .content .homebtn:hover{
+    transform: scale(1.1);
+}
 /*.features .box-container{
     display: flex;
     align-items: center;
@@ -173,11 +187,14 @@ section{
     width: 100vw;
     text-align: center;
     
+    
   }
   
   .service .row1{
     margin:2rem 0;
-    padding:0 2rem;
+    padding-top:20px;
+    padding-left:8px;
+    padding-bottom: 20px;
     
     display: flex;
     /*align-items: center;*/
@@ -200,12 +217,13 @@ section{
   }
   
   .service .row1 .content h3{
-    font-size: 2rem;
-    color:var(--color);
+    color:#006600;
+    font-size:2rem;
+    
   }
   
   .service .row1 .content p{
-    font-size: 1rem;
-    color:#333;
+    font-size: 1.2rem;
+    color:black;
     padding:1rem 0;
   }

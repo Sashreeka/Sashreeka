@@ -8,11 +8,17 @@ import aboutImg1 from "../../assets/images/Home/about-img1.jpg";
 import aboutImg2 from "../../assets/images/Home/about-img2.png";
 //import img2 from '../../assets/images/Home/img2.jpeg';
 //import {Link} from 'react-router-dom'
-import img2 from "../../assets/images/Home1/1.jpg";
-import img3 from "../../assets/images/Home1/3.jpg";
+// import img2 from "../../assets/images/Home1/1.jpg";
+// import img3 from "../../assets/images/Home1/3.jpg";
+// import img4 from "../../assets/images/Home1/2.jpeg";
+// import img5 from "../../assets/images/Home1/4.png";
+// import img6 from "../../assets/images/Home1/5.jpg";
+
+import img2 from "../../assets/images/Home1/11.png";
+import img3 from "../../assets/images/Home1/33.png";
 import img4 from "../../assets/images/Home1/2.jpeg";
 import img5 from "../../assets/images/Home1/4.png";
-import img6 from "../../assets/images/Home1/5.jpg";
+import img6 from "../../assets/images/Home1/55.png";
 
 function Home() {
   return (

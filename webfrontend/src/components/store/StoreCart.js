@@ -73,6 +73,8 @@ const StoreCart = () => {
                             </td>
                             <td>
                                 <h6>{item.name}</h6>
+                                <p>Unit  weight: {item.weight} kg<br/>
+                                Total weight: {item.quantity*item.weight} kg</p>
                             </td>
                             <td>
                                 <div className="store-cart-quantity">
