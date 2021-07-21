@@ -71,6 +71,17 @@ app.post("/user/login", (req, res) => {
   });
 });
 
+
+
+///get PhoneNumber is Valid
+app.get("/user/getPhoneNumber",(req,res)=>{
+  const sqlget="SELECT phoneNumber FROM user";
+  db.query(sqlget,(err,result)=>{
+    console.log(result);
+    res.send(result);
+  })
+})
+
 app.get("/getfertilizer", (req, res) => {
   // console.log('hi anu');
   const sqlget = "select * from fertilizer";

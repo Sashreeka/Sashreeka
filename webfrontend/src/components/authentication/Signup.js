@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 import { Formik, Form } from "formik";
 import { TextField } from "./TextField";
 import * as Yup from "yup";
@@ -6,6 +6,17 @@ import * as Yup from "yup";
 import axios from "axios";
 
 export default function Signup() {
+
+  const [phoneNumberList,setPhoneNumberList]=useState([]);
+
+  useEffect(()=>{
+
+    axios.get('http://localhost:4000/user/getPhoneNumber').then((response)=>{
+      console.log(response.data);
+      setPhoneNumberList(response.data);
+
+    })
+  },[])
   const validate = Yup.object({
     firstName: Yup.string()
       //   .max(15, "Must be 15 characters or less")
@@ -13,13 +24,25 @@ export default function Signup() {
     lastName: Yup.string()
       //   .max(20, "Must be 20 characters or less")
       .required("Required"),
-    address: Yup.string()
+      address: Yup.string()
+      //   .max(20, "Must be 20 characters or less")
+      .required("Required"),   
+    phoneNumber: Yup.string()
+    
+    .matches(
+      "[0]{1}[7]{1}[0-9]{8}",
+      "Phone Number is not Valid"
+    )
       //   .max(20, "Must be 20 characters or less")
       .required("Required"),
     email: Yup.string().email("Email is invalid").required("Email is required"),
     password: Yup.string()
-      .min(6, "Password must be at least 6 charaters")
-      .required("Password is required"),
+      .min(8, "Password must be at least 6 charaters")
+      .required("Password is required")
+      .matches(
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+        "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
+      ),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password"), null], "Password must match")
       .required("Confirm password is required"),
@@ -37,6 +60,15 @@ export default function Signup() {
       }}
       validationSchema={validate}
       onSubmit={(values) => {
+
+        for(let i=0; i<phoneNumberList.length;i++)
+        {
+          if(phoneNumberList[i]===values.phoneNumber)
+          {
+            alert('alredady')
+          }
+        }
+
         axios
           .post("http://localhost:4000/user/registerFarmer", {
             phoneNumber: values.phoneNumber,
