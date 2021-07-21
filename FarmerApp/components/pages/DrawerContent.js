@@ -122,6 +122,23 @@ import { StyleSheet,
                             }}
 
                         />
+                        <DrawerItem
+                            icon={
+                                ({color,size})=>(
+                                    <Icon
+                                        name="history"
+                                        color={color}
+                                        size={size}
+                                    />
+                                )
+                            }
+                            label="Order History"
+                            onPress={()=>{
+                                props.navigation.navigate('OrderHistory')
+
+                            }}
+
+                        />
 
                         <DrawerItem
                             icon={

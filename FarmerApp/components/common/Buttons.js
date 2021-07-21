@@ -19,7 +19,7 @@ export default function PlusMinusButton(){
                 </View>
             </TouchableOpacity>
             <View style={styling.mid_number_wrapper}>
-            <Text style={styling.mid_number}>3</Text>
+            <Text style={styling.mid_number}>1</Text>
             </View>
             <TouchableOpacity >
                 <View style={styling.plusMinus_Signs_wrapper_R}>
