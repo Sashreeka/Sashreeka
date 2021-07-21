@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import {FlatList,StatusBar,View, Text, StyleSheet,SafeAreaView,Image, ScrollView} from "react-native";
+import {FlatList,StatusBar,View, Text, StyleSheet,SafeAreaView,Image, ScrollView, TouchableOpacity} from "react-native";
 import Feather from "react-native-vector-icons/Feather";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import FontAwsome from "react-native-vector-icons/FontAwesome";
@@ -15,7 +15,22 @@ import ViewOrderButton from "./buttons";
 Feather.loadFont();
 
 
-export default Main = ()=>{
+export default Main = ({navigation})=>{
+
+    
+
+    const orderstatus=(flag)=>{
+        if(flag===0){
+            return(<Text style={styles.PendingDelivery}>Pending delivery</Text>);
+        }else if(flag===1){
+            return(<Text style={styles.outForDelivery}>Out for Delivery</Text>);
+        }else if(flag===2){
+            return(<Text style={styles.SuccessfulDelivery}>Successful delivery</Text>);
+        }else{
+
+        }
+  }
+    
     return(
         <View style={styles.container}>
             
@@ -50,13 +65,19 @@ export default Main = ()=>{
                             <Text>Summary</Text>    
                         </View>
                         <View>
-                            <Text style={styles.topicBold}>Order ID: ORD202145639</Text>                        
+                            <Text style={styles.topicBold}>Order ID: 112130000</Text>                        
                         </View>
                         <View style={styles.center}>
-                            <Text style={styles.textRegular}>Date: 2021-04-04 Time: 11:50:07</Text> 
-                            <Text style={styles.textRegular}>Payment Method: Online</Text>
-                            <Text style={styles.textRegular}>Payment Status: </Text>
-                            <Text style={styles.textRegular}>Order Status: <Text style={styles.outForDelivery}>Out for Delivery</Text></Text>                       
+                            <Text style={styles.textRegular}>Date: 2021-06-21</Text> 
+                            <Text style={styles.textRegular}>Payment Method: cash</Text>
+                            <Text style={styles.textRegular}>Order Status:{orderstatus(1)} </Text> 
+                            <TouchableOpacity>
+                            <View>
+                                <Text >Confirm Delivery by clicking :
+                                <View style={{backgroundColor:"green",width:130,height:30, top:20}}><Text>Delivery Recieved</Text></View>
+                                </Text>
+                            </View>
+                            </TouchableOpacity>                      
                         </View>
                         <View>
                             <Text></Text>                        
@@ -67,8 +88,51 @@ export default Main = ()=>{
             </View>  
 
 
+
+            {/* <View style={styles.itemCardWrapOuter}>
+                            <View style={styles.itemcardLeft}>
+                                <View style={styles.itemWrapperMain}>
+                                    <Text style={styles.itemTitleMain} >{val.name}</Text>  
+                                </View>
+                                <View style={styles.itemDescriptionWrapper}>
+                                    <Text style={styles.itemDescription}>{val.caption}</Text>
+                                </View>
+                                <View>
+                                    <Text style={styles.itemDescription}>Item unit: {val.unitWeight}{val.measurementUnit}</Text>
+                                </View>
+                                <View>
+                                    <Text style={styles.itemValue}>Rs.{parseInt(val.unitPrice*(100-val.offer)/100)}.00</Text>
+                                    <Text style={styles.itemValueWithoutOffer}>Rs.{val.unitPrice}.00</Text>
+                                </View>
+                                
+                               
+                            </View>
+                            <View style={styles.itemcardRight}>
+                                <Image source={{uri: `${val.photo}` }} style={styles.itemcardimage} />
+                                <View style={{backgroundColor:"green",width:70,height:30,borderRadius:20}}>
+                                <Text style={{fontSize:25,paddingLeft:15,marginTop:-3,color:"yellow"}}>+ <FontAwsome name="shopping-cart" size={22} color={colors.ratingStarColor}></FontAwsome></Text>
+                            </View>
+                            </View>
+                         </View> */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
            
-            <View style={styles.itemDetailcardWrapper}>
+            {/* <View style={styles.itemDetailcardWrapper}>
                  <View style={styles.itemImg}>
                     <Image source={photo} style={styles.itemCardImage}/>
                  </View>
@@ -77,7 +141,7 @@ export default Main = ()=>{
                     <Text style={styles.itemDetails}>RS.389.00</Text>
                     <Text style={styles.itemPrice}>Qty :</Text>
                  </View>
-            </View>
+            </View> */}
             
 
             </ScrollView>
@@ -297,5 +361,114 @@ const styles=StyleSheet.create({
     center:{
         alignItems:'center',
     },
+
+    itemsWrapper:{
+        paddingHorizontal:20,
+        paddingVertical:10,
+     },
+ 
+     itemsTitle:{
+         fontSize:20,
+         fontWeight:"bold",  
+     },
+ 
+     itemsCardwrapper:{
+         backgroundColor:colors.background,
+         borderRadius:15,
+         paddingTop:20,
+         paddingLeft:20,
+         paddingBottom:20,
+         flexDirection:"row",
+         shadowColor:"black",
+         shadowOffset:{
+             width:1,
+             height:2,
+         },
+         shadowOpacity:0.05,
+         shadowRadius:10,
+         elevation:2,
+ 
+     },
+ 
+     itemWrapperMain:{
+         flexDirection:"row",
+         alignItems:"center",
+ 
+     },
+ 
+     itemTitleMain:{
+         fontSize:20 ,
+         color: colors.textlight,
+         fontWeight:'700',
+     },
+ 
+ 
+     itemDescriptionWrapper:{
+        marginTop:10,
+        marginBottom:10,
+ 
+     },
+ 
+     itemDescription:{
+         fontSize:14,
+         color:colors.textDark,
+        
+     },
+ 
+     itemUnitWeight:{
+         fontSize:12,
+         color:colors.textlight,
+         marginTop:5,
+     },
+     itemADDbutton:{
+         backgroundColor:colors.primary,
+         width:150,
+         alignItems:"center",
+         justifyContent:"center",
+         padding:10,
+         borderRadius:15,
+         
+     },
+     itemADDbuttonText:{
+         color:"black",
+         fontWeight:"bold",
+     },
+ 
+     itemCardWrapOuter:{
+         // backgroundColor:"red",
+         flexDirection:"row",
+         flexWrap:'wrap',
+         marginRight:20,
+         justifyContent:"space-around",
+     },
+     
+     itemcardLeft:{
+         // backgroundColor:'yellow',
+         width:"55%",
+     },
+     itemcardRight:{
+         // backgroundColor:'blue',
+         width:"45%",
+         alignItems:"flex-end",
+     },
+     
+     itemcardimage:{
+         width:140,
+         height:150,
+         resizeMode:"contain",
+     
+     },
+ 
+     itemValue:{
+         fontSize:26,
+         fontWeight:"bold",
+     },
+     itemValueWithoutOffer:{
+         fontSize:16,
+         color:"red",
+         textDecorationLine: 'line-through', 
+         textDecorationStyle: 'solid'
+     }
+     
 
 })

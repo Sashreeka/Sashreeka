@@ -81,7 +81,14 @@ export default function SigninScreen({navigation}) {
         <View style={styles.container}>
           <StatusBar backgroundColor={colors.primary} barStyle="light-content"/>
           <View style={styles.header}>
-              <Text style={styles.text_header}>Welcome!</Text>
+              <Animatable.Image
+              animation="bounceIn"
+              duration={2000}
+                source={require('../../assets/images/logo.png')}
+                style={styles.logo}
+                resizeMode="stretch"
+              />
+              <Text style={styles.text_header}>සාදරයෙන් පිළිගනිමු!</Text>
           </View>
           <Animatable.View style={styles.footer}
           animation="fadeInUpBig"
@@ -195,6 +202,12 @@ export default function SigninScreen({navigation}) {
     )
 }
 
+
+
+const {height}=Dimensions.get('screen');
+const height_logo=height* 0.15;
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -218,6 +231,13 @@ const styles = StyleSheet.create({
     paddingHorizontal:20,
 
   },
+  logo:{
+    top:27,
+    left:120,
+    width:height_logo,
+    height:height_logo,
+
+  },
   // logo:{
   //   width:height_logo,
   //   height:height_logo,
@@ -226,6 +246,8 @@ const styles = StyleSheet.create({
   text_header:{
     color:'#000',
     fontSize:30,
+    top:30,
+    alignSelf:'center',
     fontWeight:'bold',
   },
   text_footer:{
