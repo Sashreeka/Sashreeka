@@ -1,6 +1,6 @@
 import React from 'react';
 import './About.css';
-import about1 from '../../assets/images/About/about1.jpg';
+//import about1 from '../../assets/images/About/about1.jpg';
 import ProImg1 from '../../assets/images/About/profile images/img1.jpeg';
 import ProImg2 from '../../assets/images/About/profile images/img2.jpeg';
 import ProImg3 from '../../assets/images/About/profile images/img3.jpg';
@@ -12,8 +12,8 @@ function About() {
         <div>
            <section className="about" id="about">
 
-<h1 className="heading">Shashreeka</h1>
-<h3 className="title">The Best Online Organic Fertilizer Market</h3>
+{/*<h1 className="heading">Shashreeka</h1>
+<h3 className="title">The Best Online Organic Fertilizer Market</h3>*/}
 
 <div className="row">
 
@@ -23,9 +23,9 @@ function About() {
         <a href="#"><button>Read More</button></a>
     </div>
 
-    <div className="image">
+   {/*} <div className="image">
         <img src={about1} />
-    </div>
+    </div>*/}
 
 </div>
 
@@ -42,60 +42,35 @@ function About() {
         <img src={ProImg1}/>
         <h3>Ishan Reshmika</h3>
         <p>CEO</p>
-        <div className="icons">
-            <a href="#" className="fab fa-facebook-f"></a>
-            <a href="#" className="fab fa-twitter"></a>
-            <a href="#" className="fab fa-instagram"></a>
-            <a href="#" className="fab fa-github"></a>
-        </div>
+        
     </div>
 
     <div className="card">
         <img src={ProImg2}/>
         <h3>Anuki De Alwis</h3>
         <p>COO</p>
-        <div className="icons">
-            <a href="#" className="fab fa-facebook-f"></a>
-            <a href="#" className="fab fa-twitter"></a>
-            <a href="#" className="fab fa-instagram"></a>
-            <a href="#" className="fab fa-github"></a>
-        </div>
+        
     </div>
 
     <div className="card">
         <img src={ProImg3}/>
         <h3>Sanduni Fernando</h3>
-        <p>Production Manager</p>
-        <div className="icons">
-            <a href="#" className="fab fa-facebook-f"></a>
-            <a href="#" className="fab fa-twitter"></a>
-            <a href="#" class="fab fa-instagram"></a>
-            <a href="#" className="fab fa-github"></a>
-        </div>
+        <p>Manager</p>
+        
     </div>
 
     <div className="card">
         <img src={ProImg4}/>
         <h3>Chamodi Devwandi</h3>
         <p>Marketing Manager</p>
-        <div className="icons">
-            <a href="#" className="fab fa-facebook-f"></a>
-            <a href="#" className="fab fa-twitter"></a>
-            <a href="#" className="fab fa-instagram"></a>
-            <a href="#" className="fab fa-github"></a>
-        </div>
+       
     </div>
 
     <div className="card">
         <img src={ProImg5}/>
         <h3>Shamali Pathirana</h3>
         <p>Controller</p>
-        <div className="icons">
-            <a href="#" className="fab fa-facebook-f"></a>
-            <a href="#" className="fab fa-twitter"></a>
-            <a href="#" className="fab fa-instagram"></a>
-            <a href="#" className="fab fa-github"></a>
-        </div>
+        
     </div>
 
     
