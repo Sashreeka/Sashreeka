@@ -1,1 +1,1 @@
-// Amking sandu and anu
+// Making sandu and anu

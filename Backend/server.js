@@ -6,6 +6,9 @@ const jwt = require("jsonwebtoken");
 const app = express();
 const mysql = require("mysql");
 
+// password encryption
+const { encrypt, decrypt } = require("./EncryptionHandler");
+
 // const db = mysql.createPool({
 //   host: "localhost",
 //   user: "root",

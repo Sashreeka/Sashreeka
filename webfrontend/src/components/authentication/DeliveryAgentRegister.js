@@ -17,22 +17,40 @@ function DeliveryAgentRegister() {
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
 
-  const registerAgent = () => {
+  const registerAgent = (e) => {
+    // e.preventDefault(); // prevent default function of e
+    alert("Created new User");
     // console.log(phoneNumber);
     // console.log(password);
 
+    // const newUser = {
+    //   phoneNumber,
+    //   password,
+    //   email,
+    //   firstName,
+    //   lastName,
+    //   nic,
+    //   drivingLicence,
+    //   address,
+    //   passwordCheck,
+    // };
+
     axios
-      .post("http://localhost:4000/user/registerAgent", {
-        phoneNumber: phoneNumber,
-        password: password,
-        email: email,
-        firstName: firstName,
-        lastName: lastName,
-        nic: nic,
-        drivingLicence: drivingLicence,
-        address: address,
-        passwordCheck: passwordCheck,
-      })
+      .post(
+        "http://localhost:4000/user/registerAgent",
+        // newUser
+        {
+          phoneNumber: phoneNumber,
+          password: password,
+          email: email,
+          firstName: firstName,
+          lastName: lastName,
+          nic: nic,
+          drivingLicence: drivingLicence,
+          address: address,
+          passwordCheck: passwordCheck,
+        }
+      )
       //   console.log("Inside register agent function")
       .then((response) => {
         // console.log(response.data.token);
@@ -45,6 +63,8 @@ function DeliveryAgentRegister() {
       });
   };
 
+  // const checkValidation=(e)
+
   // UI of registration of delivery agent
   return (
     <div>
@@ -56,7 +76,7 @@ function DeliveryAgentRegister() {
           </div>
           <div className="row_Register clearfix_Register">
             <div className="">
-              <form>
+              <form onSubmit={registerAgent}>
                 <div className="full_name_Register">
                   <div className="inputField_Register">
                     {" "}
@@ -68,6 +88,7 @@ function DeliveryAgentRegister() {
                       type="text"
                       name="firstName"
                       placeholder="First Name"
+                      required
                       onChange={(e) => {
                         setFirstName(e.target.value);
                       }}
@@ -84,6 +105,7 @@ function DeliveryAgentRegister() {
                       type="text"
                       name="lastName"
                       placeholder="Last Name"
+                      required
                       onChange={(e) => {
                         setLastName(e.target.value);
                       }}
@@ -101,6 +123,7 @@ function DeliveryAgentRegister() {
                     type="text"
                     name="address"
                     placeholder="Residence Address"
+                    required
                     onChange={(e) => {
                       setAddress(e.target.value);
                     }}
@@ -117,6 +140,7 @@ function DeliveryAgentRegister() {
                     type="text"
                     name="email"
                     placeholder="Email"
+                    required
                     onChange={(e) => {
                       setEmail(e.target.value);
                     }}
@@ -134,6 +158,7 @@ function DeliveryAgentRegister() {
                       type="text"
                       name="nic"
                       placeholder="National ID"
+                      required
                       onChange={(e) => {
                         setNic(e.target.value);
                       }}
@@ -150,6 +175,7 @@ function DeliveryAgentRegister() {
                       type="text"
                       name="drivingLicence"
                       placeholder="License ID"
+                      required
                       onChange={(e) => {
                         setDrivingLicence(e.target.value);
                       }}
@@ -166,8 +192,9 @@ function DeliveryAgentRegister() {
                     className="input_Register"
                     type="text"
                     name="phoneNumber"
-                    placeholder="Contact Number"
+                    placeholder="Contact Numbe (07_ _ _ _ _ _ _ _)"
                     pattern="[0]{1}[7]{1}[0-9]{8}"
+                    required
                     onChange={(e) => {
                       setPhoneNumber(e.target.value);
                     }}
@@ -185,6 +212,7 @@ function DeliveryAgentRegister() {
                       name="password"
                       placeholder="Password"
                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                      required
                       onChange={(e) => {
                         setPassword(e.target.value);
                       }}
@@ -201,6 +229,7 @@ function DeliveryAgentRegister() {
                       name="password_check"
                       placeholder="Re-type Password"
                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                      required
                       onChange={(e) => {
                         setPasswordCheck(e.target.value);
                       }}
@@ -221,7 +250,7 @@ function DeliveryAgentRegister() {
                 <button
                   className="button_Register"
                   type="submit"
-                  onClick={registerAgent}
+                  // onClick={registerAgent}
                 >
                   Register
                 </button>

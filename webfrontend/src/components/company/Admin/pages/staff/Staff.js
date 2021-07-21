@@ -150,9 +150,13 @@ export default function Staff() {
                 <button>Create New staff</button>
                 {/* </div> */}
                 
+<<<<<<< HEAD
                 <h1>hello : this is Staff page</h1>
                 
 
+=======
+              
+>>>>>>> 70031e5f2baba55c54857984133f00fa767b9e7d
             </div>
             
         </div>
