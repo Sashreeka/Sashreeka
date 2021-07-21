@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import {FlatList,StatusBar,View, Text, StyleSheet,SafeAreaView,Image, ScrollView} from "react-native";
+import {FlatList,StatusBar,View, Text, StyleSheet,SafeAreaView,Image, ScrollView,TouchableOpacity} from "react-native";
 import Feather from "react-native-vector-icons/Feather";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import FontAwsome from "react-native-vector-icons/FontAwesome";
@@ -15,7 +15,31 @@ import ViewOrderButton from "./buttons";
 Feather.loadFont();
 
 
-export default Main = ()=>{
+export default Main = ({navigation})=>{
+    const [historylist,setHistoryList] = useState([]);
+
+    useEffect(()=>{
+        Axios.get('http://192.168.1.21:4000/getorderhistory').then((response)=>{
+          console.log(response.data[0].famerPhoneNumber);
+          console.log(response.data[0].confirmationFlag);
+          console.log(response.data[0].distance);
+          setHistoryList(response.data);
+        });
+      },[]);
+
+
+      const orderstatus=(flag)=>{
+            if(flag===0){
+                return(<Text style={styles.PendingDelivery}>Pending delivery</Text>);
+            }else if(flag===1){
+                return(<Text style={styles.outForDelivery}>Out for Delivery</Text>);
+            }else if(flag===2){
+                return(<Text style={styles.SuccessfulDelivery}>Successful delivery</Text>);
+            }else{
+
+            }
+      }
+
     return(
         <View style={styles.container}>
             
@@ -24,7 +48,8 @@ export default Main = ()=>{
                 <View style={styles.headerWrapper}>
                     <Image source={require("../assets/images/profileimg_girl.jpg")} style={styles.profileImage}/>
                     {/* style={styles.profileImage} */}
-                    <Feather name="menu" size={24} color={colors.textDark}></Feather>
+                    <Feather name="menu" size={24} color={colors.textDark}
+                    onPress={()=>navigation.openDrawer()}></Feather>
                 </View>
                 
             </SafeAreaView>
@@ -45,33 +70,27 @@ export default Main = ()=>{
             <View style={styles.itemDetailcardWrapper2}>
 
                 <View style={styles.itemratingcardcontainer}>
-                    <View style={styles.order}>
-                        <Text style={styles.topicBold}>ORD2020145637</Text>
-                        <Text style={styles.textRegular}>Date:12/05/2021</Text>
-                        <Text style={styles.textRegular}>Price:RS.389.00</Text>
-                        <Text style={styles.textRegular}>Order Status:<Text style={styles.outForDelivery}>Out for Delivery</Text>
-                        </Text>
-                        <View style={styles.viewOrderButtonview}><ViewOrderButton/></View>
-                    </View>
-                    <View style={styles.hr}/>
-                    <View style={styles.order}>
-                        <Text style={styles.topicBold}>ORD2020145637</Text>
-                        <Text style={styles.textRegular}>Date:12/05/2021</Text>
-                        <Text style={styles.textRegular}>Price:RS.389.00</Text>
-                        <Text style={styles.textRegular}>Order Status:<Text style={styles.PendingDelivery}>Pending delivery</Text>
-                        </Text>
-                        <View style={styles.viewOrderButtonview}><ViewOrderButton/></View>
-                    </View>
-                    <View style={styles.hr}/>
-                    <View style={styles.order}>
-                        <Text style={styles.topicBold}>ORD2020145637</Text>
-                        <Text style={styles.textRegular}>Date:12/05/2021</Text>
-                        <Text style={styles.textRegular}>Price:RS.389.00</Text>
-                        <Text style={styles.textRegular}>Order Status:<Text style={styles.SuccessfulDelivery}>Successful delivery</Text>
-                        </Text>
-                        <View style={styles.viewOrderButtonview}><ViewOrderButton/></View>
-                    </View>
-                    <View style={styles.hr}/>
+
+                {historylist.map((val)=>{
+                    return(
+                        <View key={val.orderId}>
+                        <View style={styles.order}>
+                                <Text style={styles.topicBold}>
+                                <Text >ORD NO: {val.orderId}</Text></Text>
+                                <Text style={styles.textRegular}>Date:12/05/2021</Text>
+                                <Text style={styles.textRegular}>Price:RS.389.00</Text>
+                                <Text style={styles.textRegular}>Order Status:{orderstatus(val.confirmationFlag)}
+                                </Text>
+                                <TouchableOpacity onPress={()=>navigation.navigate('OrderHistoryInside')}>
+                                <View style={styles.viewOrderButtonview}><ViewOrderButton/></View>
+                                </TouchableOpacity>
+                                
+                            </View>
+                            <View style={styles.hr}/>
+                        </View>
+                    )
+                })}
+
                 </View>
 
                 
