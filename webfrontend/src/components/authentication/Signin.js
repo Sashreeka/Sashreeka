@@ -48,8 +48,8 @@ function Signin() {
     <div className="login_body">
       <h1>Welcome To Sashreeka</h1>
       <div className="login_box">
-        <div className="modal-content animate">
-          <div className="container_login">
+        <div className="animate">
+          <div className="container_login animate">
             <label for="uname">
               <b>Username</b>
             </label>
@@ -75,9 +75,11 @@ function Signin() {
                 setPassword(e.target.value);
               }}
             />
-            <button className="modalButton" onClick={login}>
-              Sign In
-            </button>
+            <div className="button_center">
+              <button className="modalButton" onClick={login}>
+                Sign In
+              </button>
+            </div>
             <div className="login_right">
               <Link className="forgotpwd" to="/forgotpwd">
                 Forgot password?

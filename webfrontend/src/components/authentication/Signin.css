@@ -17,20 +17,24 @@
 }
 
 /* Set a style for all buttons */
+
+.button_center {
+  /* background: chartreuse; */
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
 .modalButton {
   /* background-color: #04AA6D; */
   background: linear-gradient(180deg, #80b953 2.08%, #2c9984 95.83%);
   border-radius: 10px;
   color: black;
-  padding: 10px 15px;
-  margin-left: 30px;
-  margin-right: 30px;
+  padding: 7px 10px;
   border: none;
   cursor: pointer;
-  width: 100%;
-  margin: 10px;
+  width: 75%;
+  /* margin-bottom: 20px; */
 }
-
 .modalButton:hover {
   opacity: 0.8;
 }
@@ -51,7 +55,7 @@
 .login_acc {
   font-size: 12px;
   text-decoration: none;
-  color: red;
+  color: green;
 }
 
 .login_right {
@@ -78,13 +82,14 @@
 
 .container_login {
   height: auto;
-  padding: 16px;
+  padding: 30px;
 }
 
 /* The Modal (background) */
 .login_box {
   width: 100%; /* Full width */
   height: 100%; /* Full height */
+  margin: ;
 }
 
 /* Modal Content/Box */
@@ -118,7 +123,7 @@
 
 .close:hover,
 .close:focus {
-  color: red;
+  color: green;
   cursor: pointer;
 }
 
