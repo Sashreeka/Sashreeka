@@ -66,7 +66,7 @@ function Navigation() {
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/fertilizer">
-                Organic Fertilizer
+                Fertilizer Handbook
               </Link>
             </li>
             <li className="nav-item">
