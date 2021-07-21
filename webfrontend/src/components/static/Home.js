@@ -8,11 +8,11 @@ import aboutImg1 from '../../assets/images/Home/about-img1.jpg';
 import aboutImg2 from '../../assets/images/Home/about-img2.png';
 //import img2 from '../../assets/images/Home/img2.jpeg';
 //import {Link} from 'react-router-dom'
-import img2 from '../../assets/images/Home1/1.jpg';
-import img3 from '../../assets/images/Home1/3.jpg';
+import img2 from '../../assets/images/Home1/11.png';
+import img3 from '../../assets/images/Home1/33.png';
 import img4 from '../../assets/images/Home1/2.jpeg';
 import img5 from '../../assets/images/Home1/4.png';
-import img6 from '../../assets/images/Home1/5.jpg';
+import img6 from '../../assets/images/Home1/55.png';
 
 
 function Home() { 
@@ -22,13 +22,15 @@ function Home() {
     <div>
     <section class="home" id="home">
 
-    <div class="content">
-        <h3>Welcome to Shashreeka </h3>
+    <div class="content1">
+        <h3>Welcome to Sashreeka </h3>
         <h4>The Best Online Organic Fertilizer Market</h4>
         <p>Shashreeka recognized that the growing demand for organic crop farming required an increased focus on providing an all-natural solution to boost soil nutrition.
               Rather than make unproven claims about our fertilizer, we focus on education,testing, and proper use to document results. This process may be slower, but it ensures that we support the growth of
               sustainable agriculture around the world.</p>
-        <a href="./signup" class="btn">Get Started</a>
+              
+        <a href="./signup" class="homebtn">Get Started</a>
+        
     </div>
 
     <div class="image">
@@ -133,8 +135,10 @@ function Home() {
   </div>
   <div className="content">
     <h3>About</h3>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde voluptatem, tempore hic deserunt vel temporibus aperiam recusandae ratione, obcaecati at qui accusamus enim, laudantium eveniet. Inventore voluptas nemo placeat. Voluptas.</p>
-    <a href="#"><button className="btn">read more</button></a>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde voluptatem, tempore hic deserunt vel temporibus aperiam recusandae ratione, obcaecati at qui accusamus enim, laudantium eveniet. Inventore voluptas nemo placeat. Voluptas.
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde voluptatem, tempore hic deserunt vel temporibus aperiam recusandae ratione, obcaecati at qui accusamus enim, laudantium eveniet. Inventore voluptas nemo placeat. Voluptas.
+    </p>
+    <a href="#"><button className="homebtn">Read More</button></a>
   </div>
 
 </div>
@@ -143,8 +147,9 @@ function Home() {
 
   <div className="content">
     <h3>Fertilizer Store</h3>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde voluptatem, tempore hic deserunt vel temporibus aperiam recusandae ratione, obcaecati at qui accusamus enim, laudantium eveniet. Inventore voluptas nemo placeat. Voluptas.</p>
-    <a href="#"><button className="btn">read more</button></a>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde voluptatem, tempore hic deserunt vel temporibus aperiam recusandae ratione, obcaecati at qui accusamus enim, laudantium eveniet. Inventore voluptas nemo placeat. Voluptas.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde voluptatem, tempore hic deserunt vel temporibus aperiam recusandae ratione, obcaecati at qui accusamus enim, laudantium eveniet. Inventore voluptas nemo placeat. Voluptas.
+    </p>
+    <a href="Handbook"><button className="homebtn">Shop Now</button></a>
   </div>
   <div className="image">
     <img src={img3}/>
@@ -160,8 +165,9 @@ function Home() {
   </div>
   <div className="content">
     <h3>Fertilizer Handbook</h3>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde voluptatem, tempore hic deserunt vel temporibus aperiam recusandae ratione, obcaecati at qui accusamus enim, laudantium eveniet. Inventore voluptas nemo placeat. Voluptas.</p>
-    <a href="#"><button className="btn">read more</button></a>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde voluptatem, tempore hic deserunt vel temporibus aperiam recusandae ratione, obcaecati at qui accusamus enim, laudantium eveniet. Inventore voluptas nemo placeat. Voluptas.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde voluptatem, tempore hic deserunt vel temporibus aperiam recusandae ratione, obcaecati at qui accusamus enim, laudantium eveniet. Inventore voluptas nemo placeat. Voluptas.
+    </p>
+    <a href="#"><button className="homebtn">Read More</button></a>
   </div>
 
 </div>
@@ -170,8 +176,9 @@ function Home() {
 
   <div className="content">
     <h3>Delivery Service</h3>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde voluptatem, tempore hic deserunt vel temporibus aperiam recusandae ratione, obcaecati at qui accusamus enim, laudantium eveniet. Inventore voluptas nemo placeat. Voluptas.</p>
-    <a href="#"><button className="btn">read more</button></a>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde voluptatem, tempore hic deserunt vel temporibus aperiam recusandae ratione, obcaecati at qui accusamus enim, laudantium eveniet. Inventore voluptas nemo placeat. Voluptas.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde voluptatem, tempore hic deserunt vel temporibus aperiam recusandae ratione, obcaecati at qui accusamus enim, laudantium eveniet. Inventore voluptas nemo placeat. Voluptas.
+    </p>
+    <a href="#"><button className="homebtn">Read More</button></a>
   </div>
   <div className="image">
     <img src={img5}/>
@@ -187,8 +194,9 @@ function Home() {
   </div>
   <div className="content">
     <h3>Join With Us</h3>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde voluptatem, tempore hic deserunt vel temporibus aperiam recusandae ratione, obcaecati at qui accusamus enim, laudantium eveniet. Inventore voluptas nemo placeat. Voluptas.</p>
-    <a href="#"><button className="btn">read more</button></a>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde voluptatem, tempore hic deserunt vel temporibus aperiam recusandae ratione, obcaecati at qui accusamus enim, laudantium eveniet. Inventore voluptas nemo placeat. Voluptas.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde voluptatem, tempore hic deserunt vel temporibus aperiam recusandae ratione, obcaecati at qui accusamus enim, laudantium eveniet. Inventore voluptas nemo placeat. Voluptas.
+    </p>
+    <a href="#"><button className="homebtn">Join With Us</button></a>
   </div>
 
 </div>
