@@ -10,7 +10,7 @@ import Contact from "./components/static/Contact";
 import Store from "./components/store/Store";
 import SearchStore from "./components/store/SearchStore";
 import StoreCart from "./components/store/StoreCart";
-import {CartProvider} from 'react-use-cart';
+import { CartProvider } from "react-use-cart";
 
 import Handbook from "./components/handbook/Handbook";
 import Signup from "./components/authentication/Signup";
@@ -33,6 +33,13 @@ import Staff from "./components/company/Admin/pages/staff/Staff";
 import Delivery from "./components/company/Admin/pages/deliveries/Delivery";
 import DeliveryAgent from "./components/company/Admin/pages/deliveryAgents/DeliveryAgent";
 import StaffCheck from "./components/company/Admin/pages/staff/staffCheck/StaffCheck";
+
+// Dashboard of Staff and Delivery Agent
+import DeliveryAgentD from "./components/company/DeliveryAgent";
+import StaffD from "./components/company/Staff";
+
+// forgot password
+import Forgotpwd from "./components/authentication/Forgotpwd";
 
 function App() {
   let userCategory = localStorage.getItem("userCategory");
@@ -69,23 +76,21 @@ function App() {
                 <NewProduct />
               </Route>
               <Route path="/sales">
-                <Sales/>
+                <Sales />
               </Route>
               <Route path="/staff">
-                <Staff/>
+                <Staff />
               </Route>
 
               <Route path="/staffCheck/:userId" component={StaffCheck}>
                 {/* <StaffCheck/> */}
               </Route>
               <Route path="/delivery">
-                <Delivery/>
+                <Delivery />
               </Route>
               <Route path="/deliveryagent">
                 <DeliveryAgent />
               </Route>
-
-             
             </Switch>
           </div>
         ) : (
@@ -105,6 +110,18 @@ function App() {
           <UserList/>
 
         </Route> */}
+
+              <Route path="/deliveryAgentD">
+                <DeliveryAgentD />
+              </Route>
+
+              <Route path="/staffD">
+                <StaffD />
+              </Route>
+
+              <Route path="/forgotpwd">
+                <Forgotpwd />
+              </Route>
 
               <Route path="/contact">
                 <Contact />
@@ -135,19 +152,17 @@ function App() {
               </Route>
 
               <CartProvider>
-
                 <Route path="/store">
-                  <Store/>
+                  <Store />
                 </Route>
 
                 <Route path="/searchstore">
-                  <SearchStore/>
+                  <SearchStore />
                 </Route>
 
                 <Route path="/storecart">
-                  <StoreCart/>
+                  <StoreCart />
                 </Route>
-
               </CartProvider>
             </Switch>
 

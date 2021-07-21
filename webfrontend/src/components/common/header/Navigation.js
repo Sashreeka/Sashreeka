@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import "./Navigation.css";
 //import {MenuItems} from "./MenuItems"
@@ -8,59 +6,6 @@ import "./Navigation.css";
 //import { render } from "@testing-library/react";
 
 function Navigation() {
-  function showloginWindow() {
-    document.getElementById("loginWindow").style.display = "block";
-  }
-
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [password, setpassword] = useState("");
-
-  const login = () => {
-    axios
-      .post("http://localhost:4000/user/login", {
-        phoneNumber: phoneNumber,
-        password: password,
-      })
-      .then((response) => {
-        // console.log(response.data.token);
-        // console.log(response.data.message);
-        // console.log(response);
-        // console.log(response.data[0].userCategory);
-        let userCategory = response.data[0].userCategory;
-        let phoneNumber = response.data[0].phoneNumber;
-        localStorage.setItem("userCategory", userCategory);
-        localStorage.setItem("phoneNumber", phoneNumber);
-
-        modal.style.display = "none";
-
-        if (userCategory === "admin") {
-          window.location.href = "/";
-        } else if (userCategory === "deliveryAgent") {
-          window.location.href = "/"; //where delivery agent directs after login
-        } else if (userCategory === "staff") {
-          window.location.href = "/users";
-        }
-       
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  // Get the modal of login pop up window
-  var modal = document.getElementById("loginWindow");
-
-  const signup = () => {
-    modal.style.display = "none";
-  };
-
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function (event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  };
-
   // class Navigation extends Component {
   /*state={ clicked :false}
   handleClick = () =>{
@@ -93,33 +38,6 @@ function Navigation() {
       </ul>
         
     </nav>*/
-
-  // render() {
-
-
-//     const Logout =()=>{    
-//       localStorage.clear();
-//       window.location.href='/';
-// }
-
-
-  const currentlogState=()=> {
-    if(window.localStorage.getItem("userCategory")){
-          console.log("logged in anuki");
-    }else{
-          console.log("logout");
-      
-    }
-  }
-  
-
-  // React.useEffect(()=>{
-  //   if(window.localStorage.getItem("userCategory")){
-  //         console.log("logged in");
-  //   }else{
-  //         console.log("logout");
-  //   }
-  // })
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
@@ -167,77 +85,13 @@ function Navigation() {
               </Link>
             </li>
             <li>
-
-
-              <Link className="nav-link">
-                {/* <Link className="nav-link" to="/signin"> */}
+              <Link className="nav-link" to="/signin">
                 <div className="nav-sign-in">
-                  <div
-                    className="signin"
-                    onClick={currentlogState}
-                    // onClick={showloginWindow}
-                    // onclick="document.getElementById('id01').style.display='block'"
-                  >
-                    Sign in
-                  </div>
-                </div>              
-                </Link>
+                  <div className="signin">Sign in</div>
+                </div>
+              </Link>
             </li>
           </ul>
-        </div>
-      </div>
-
-      <div id="loginWindow" className="modal">
-        <div className="modal-content animate">
-          <div className="loginContainer">
-            <label for="uname">
-              <b>Username</b>
-            </label>
-            {/* <i className="fas fa-mobile-alt"></i> */}
-            <input
-              className="loginInput"
-              type="text"
-              name="phoneNumber"
-              placeholder="phoneNumber"
-              onChange={(e) => {
-                setPhoneNumber(e.target.value);
-              }}
-            />
-
-            <label for="psw">
-              <b>Password</b>
-            </label>
-            <input
-              className="loginInput"
-              type="text"
-              name="password"
-              placeholder="password"
-              onChange={(e) => {
-                setpassword(e.target.value);
-              }}
-            />
-
-            <button className="modalButton" onClick={login}>
-              Sign In
-            </button>
-            {/* <Link className="signUp" to="/regFarmer" onClick={signup}>
-              Sign Up
-            </Link> */}
-
-            <a href="/regFarmer">
-              <button className="modalSignUp" onClick={signup}>
-                Sign Up
-              </button>
-            </a>
-
-            {/* </br> */}
-            <Link className="psw" to="#">
-              Forgot password?
-            </Link>
-            {/* <span className="psw">
-              <a href="#"></a>
-            </span> */}
-          </div>
         </div>
       </div>
     </nav>

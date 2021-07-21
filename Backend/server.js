@@ -66,7 +66,7 @@ app.post("/user/login", (req, res) => {
       //    }
       //  })
     } else {
-      res.send({ message: "User doesn't exist" });
+      res.send({ message: "Wrong username/Password combination" });
     }
   });
 });
@@ -190,47 +190,40 @@ app.post("/user/registerStaff", (req, res) => {
 });
 //Company Staff Register........................................
 //display the delivery agent details..................
-app.get('/admin/viewDAgentDetails',(req,res)=>{
-
+app.get("/admin/viewDAgentDetails", (req, res) => {
   const sqlget = "select * from deliveryagent";
   db.query(sqlget, (err, result) => {
     console.log(result);
     res.send(result);
   });
-})
+});
 
 //display the delivery agents details..................
-app.get('/admin/viewCStaffDetails',(req,res)=>{
-
+app.get("/admin/viewCStaffDetails", (req, res) => {
   const sqlget = "select * from companystaff";
   db.query(sqlget, (err, result) => {
     console.log(result);
     res.send(result);
   });
-})
-
+});
 
 // display delivery details........................
 
-app.get('/admin/viewDeliveryDetails',(req,res)=>{
-
+app.get("/admin/viewDeliveryDetails", (req, res) => {
   const sqlget = "select * from deliveries";
   db.query(sqlget, (err, result) => {
     console.log(result);
     res.send(result);
   });
-})
-
-
+});
 
 //display a delivery agent details..................
-app.get('/admin/viewStafffDetails/:userId',(req,res)=>{
-
-  let userId=req.params.userId
+app.get("/admin/viewStafffDetails/:userId", (req, res) => {
+  let userId = req.params.userId;
 
   const sqlget = "select * from companystaff where userId=?";
-  db.query(sqlget,userId,(err, result) => {
+  db.query(sqlget, userId, (err, result) => {
     console.log(result);
     res.send(result);
   });
-})
+});
