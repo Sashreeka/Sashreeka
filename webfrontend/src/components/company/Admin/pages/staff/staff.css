@@ -1,7 +1,7 @@
 .staffCon{
     display: flex;
     margin-top: 10px;
-    background-color: red;
+    background-color: rgb(221, 216, 216);
 }
 
 .staff{

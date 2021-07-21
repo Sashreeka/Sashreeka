@@ -209,6 +209,20 @@ app.get('/admin/viewCStaffDetails',(req,res)=>{
   });
 })
 
+
+// display delivery details........................
+
+app.get('/admin/viewDeliveryDetails',(req,res)=>{
+
+  const sqlget = "select * from deliveries";
+  db.query(sqlget, (err, result) => {
+    console.log(result);
+    res.send(result);
+  });
+})
+
+
+
 //display a delivery agent details..................
 app.get('/admin/viewStafffDetails/:userId',(req,res)=>{
 

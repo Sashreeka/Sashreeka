@@ -76,6 +76,7 @@ INSERT INTO `orders`(`orderId`, `amount`, `deliveryAddress`, `quickFlag`, `offer
 
 
 
+INSERT INTO `deliveries` (`deliveryId`, `orderId`, `famerPhoneNumber`, `deliveryAgentPhoneNumber`, `deliveryLoad`, `distance`, `deliveryAgentsPayment`, `deliveryAgentsPaymentFlag`, `dateTime`, `deliveryRate`, `issue`, `confirmationFlag`) VALUES ('2', '1114434361', '0752016924', '0712345678', '1000', '450.00', '450000', NULL, '2021-07-21 04:11:13.000000', '0', '', '0'), ('3', '112130000', '0752016924', '0712345678', '1000', '450.00', '450000', NULL, '2021-07-21 04:11:13.000000', '0', '', '0'), ('4', '214748360', '0752016924', '0712345678', '600', '650.00', '456000', NULL, '2021-07-21 04:11:14.000000', '0', '', '0'), ('5', '231121310', '0752016924', '0712345678', '16600', '250.00', '450000', NULL, '2021-07-21 04:11:55.000000', '0', '', '0'), ('6', '231121311', '0752016924', '0712345678', '10030', '150.00', '150000', NULL, '2021-07-21 04:11:16.000000', '0', '', '0')
 INSERT INTO `user` (`phoneNumber`, `password`, `userCategory`) VALUES ('071111111', '111', 'admin');
 INSERT INTO `user` (`phoneNumber`, `password`, `userCategory`) VALUES ('072222222', '222', 'staff');
 INSERT INTO `user` (`phoneNumber`, `password`, `userCategory`) VALUES ('073333333', '333', 'deliveryAgent');
