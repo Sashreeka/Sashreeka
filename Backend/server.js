@@ -186,6 +186,8 @@ app.post("/user/registerStaff", (req, res) => {
   );
 });
 //Company Staff Register........................................
+
+
 //display the delivery agent details..................
 app.get('/admin/viewDAgentDetails',(req,res)=>{
 
@@ -205,6 +207,20 @@ app.get('/admin/viewCStaffDetails',(req,res)=>{
     res.send(result);
   });
 })
+
+
+// display delivery details........................
+
+app.get('/admin/viewDeliveryDetails',(req,res)=>{
+
+  const sqlget = "select * from deliveries";
+  db.query(sqlget, (err, result) => {
+    console.log(result);
+    res.send(result);
+  });
+})
+
+
 
 //display a delivery agent details..................
 app.get('/admin/viewStafffDetails/:userId',(req,res)=>{
