@@ -6,8 +6,12 @@ import Navigation from "./components/common/header/Navigation";
 import Home from "./components/static/Home";
 import About from "./components/static/About";
 import Contact from "./components/static/Contact";
+
 import Store from "./components/store/Store";
 import SearchStore from "./components/store/SearchStore";
+import StoreCart from "./components/store/StoreCart";
+import {CartProvider} from 'react-use-cart';
+
 import Handbook from "./components/handbook/Handbook";
 import Signup from "./components/authentication/Signup";
 import Signin from "./components/authentication/Signin";
@@ -28,6 +32,7 @@ import Sales from "./components/company/Admin/pages/sales/Sales";
 import Staff from "./components/company/Admin/pages/staff/Staff";
 import Delivery from "./components/company/Admin/pages/deliveries/Delivery";
 import DeliveryAgent from "./components/company/Admin/pages/deliveryAgents/DeliveryAgent";
+import StaffCheck from "./components/company/Admin/pages/staff/staffCheck/StaffCheck";
 
 function App() {
   let userCategory = localStorage.getItem("userCategory");
@@ -69,6 +74,10 @@ function App() {
               <Route path="/staff">
                 <Staff/>
               </Route>
+
+              <Route path="/staffCheck/:userId" component={StaffCheck}>
+                {/* <StaffCheck/> */}
+              </Route>
               <Route path="/delivery">
                 <Delivery/>
               </Route>
@@ -101,14 +110,6 @@ function App() {
                 <Contact />
               </Route>
 
-              <Route path="/store">
-                <Store />
-              </Route>
-
-              <Route path="/searchstore">
-                <SearchStore />
-              </Route>
-
               <Route path="/fertilizer">
                 <Handbook />
               </Route>
@@ -129,9 +130,25 @@ function App() {
                 <RegFarmer />
               </Route>
 
-              <Route path="/">
+              <Route exact path="/">
                 <Home />
               </Route>
+
+              <CartProvider>
+
+                <Route path="/store">
+                  <Store/>
+                </Route>
+
+                <Route path="/searchstore">
+                  <SearchStore/>
+                </Route>
+
+                <Route path="/storecart">
+                  <StoreCart/>
+                </Route>
+
+              </CartProvider>
             </Switch>
 
             <Footer />

@@ -66,12 +66,12 @@ app.post("/user/login", (req, res) => {
       //    }
       //  })
     } else {
-      res.send({ message: "Wrong username/Password combination" });
+      res.send({ message: "User doesn't exist" });
     }
   });
 });
 
-app.get("/api/get", (req, res) => {
+app.get("/getfertilizer", (req, res) => {
   // console.log('hi anu');
   const sqlget = "select * from fertilizer";
   db.query(sqlget, (err, result) => {
@@ -79,6 +79,14 @@ app.get("/api/get", (req, res) => {
     res.send(result);
   });
 });
+
+// app.get("/getorderhistory", (req, res) => {
+//   const sqlget = "select * from orders where farmerPhoneNumber='0752016924'";
+//   db.query(sqlget, (err, result) => {
+//     console.log(result);
+//     res.send(result);
+//   });
+// });
 
 // app.get("/api/order",(req,res)=>{
 //     // console.log('hi anu');
@@ -181,3 +189,34 @@ app.post("/user/registerStaff", (req, res) => {
   );
 });
 //Company Staff Register........................................
+//display the delivery agent details..................
+app.get('/admin/viewDAgentDetails',(req,res)=>{
+
+  const sqlget = "select * from deliveryagent";
+  db.query(sqlget, (err, result) => {
+    console.log(result);
+    res.send(result);
+  });
+})
+
+//display the delivery agents details..................
+app.get('/admin/viewCStaffDetails',(req,res)=>{
+
+  const sqlget = "select * from companystaff";
+  db.query(sqlget, (err, result) => {
+    console.log(result);
+    res.send(result);
+  });
+})
+
+//display a delivery agent details..................
+app.get('/admin/viewStafffDetails/:userId',(req,res)=>{
+
+  let userId=req.params.userId
+
+  const sqlget = "select * from companystaff where userId=?";
+  db.query(sqlget,userId,(err, result) => {
+    console.log(result);
+    res.send(result);
+  });
+})

@@ -40,12 +40,7 @@ function Navigation() {
         } else if (userCategory === "staff") {
           window.location.href = "/users";
         }
-        // console.log(response.data.userCategory)
-
-        // localStorage.setItem('login',JSON.stringify({
-        //   login:true,
-        //   token: response.data.token
-        // }))
+       
       })
       .catch((error) => {
         console.log(error);
@@ -101,6 +96,31 @@ function Navigation() {
 
   // render() {
 
+
+//     const Logout =()=>{    
+//       localStorage.clear();
+//       window.location.href='/';
+// }
+
+
+  const currentlogState=()=> {
+    if(window.localStorage.getItem("userCategory")){
+          console.log("logged in anuki");
+    }else{
+          console.log("logout");
+      
+    }
+  }
+  
+
+  // React.useEffect(()=>{
+  //   if(window.localStorage.getItem("userCategory")){
+  //         console.log("logged in");
+  //   }else{
+  //         console.log("logout");
+  //   }
+  // })
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
       <div className="container-fluid">
@@ -147,18 +167,21 @@ function Navigation() {
               </Link>
             </li>
             <li>
+
+
               <Link className="nav-link">
                 {/* <Link className="nav-link" to="/signin"> */}
                 <div className="nav-sign-in">
                   <div
                     className="signin"
-                    onClick={showloginWindow}
+                    onClick={currentlogState}
+                    // onClick={showloginWindow}
                     // onclick="document.getElementById('id01').style.display='block'"
                   >
                     Sign in
                   </div>
-                </div>
-              </Link>
+                </div>              
+                </Link>
             </li>
           </ul>
         </div>

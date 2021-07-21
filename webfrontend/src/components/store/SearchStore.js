@@ -6,6 +6,7 @@ import FerProductItem from './storeComponents/FerProductItem';
 import FerProOffer from './storeComponents/FerProOffer';
 import FilterStore from './storeComponents/FilterStore';
 import FilterFerCat from './storeComponents/FilterFerCat';
+import FerProData from './storeComponents/FerProData';
 import Slider from 'infinite-react-carousel';
 import { Link } from "react-router-dom";
 
@@ -105,42 +106,14 @@ function SearchStore() {
                         <h3 className="fer-topic"><i class="fas fa-leaf"></i> Search Results ...</h3>
                         <hr/>
                         <div className="fer-search-results">
-                        <FerProOffer ferProImage = {require("../../assets/images/fer-pro-3.jpg").default} ferOfferPrice="Rs. 1250.00" ferName="Manure" ferPrice = "Rs. 1000.00"/>
-                                <FerProductItem ferProImage = {require("../../assets/images/fer-pro-1.jpg").default} ferName="Rock Phospate" ferPrice = "Rs. 3790.00"/>
-                                <FerProductItem ferProImage = {require("../../assets/images/fer-pro-2.jpg").default} ferName="Vermicompost" ferPrice = "Rs. 1540.00"/>
-                                <FerProOffer ferProImage = {require("../../assets/images/fer-pro-1.jpg").default} ferOfferPrice="Rs. 4000.00" ferName="Rock Phospate" ferPrice = "Rs. 3790.00"/>
-                                <FerProOffer ferProImage = {require("../../assets/images/fer-pro-2.jpg").default} ferOfferPrice="Rs. 1650.00" ferName="Vermicompost" ferPrice = "Rs. 1540.00"/>
-                                <FerProductItem ferProImage = {require("../../assets/images/fer-pro-3.jpg").default} ferName="Manure" ferPrice = "Rs. 1000.00"/>
-                                <FerProductItem ferProImage = {require("../../assets/images/fer-pro-1.jpg").default} ferName="Chicken Litter" ferPrice = "Rs. 1500.00"/>
-                                <FerProductItem ferProImage = {require("../../assets/images/fer-pro-2.jpg").default} ferName="Litter Seaweed" ferPrice = "Rs. 3050.00"/>
-                                <FerProductItem ferProImage = {require("../../assets/images/fer-pro-3.jpg").default} ferName="MorBlooom" ferPrice = "Rs. 4990.00"/>
-                                <FerProductItem ferProImage = {require("../../assets/images/fer-pro-1.jpg").default} ferName="Bio Gold" ferPrice = "Rs. 2679.00"/>
-                                <FerProductItem ferProImage = {require("../../assets/images/fer-pro-2.jpg").default} ferName="Bio Vaccine" ferPrice = "Rs. 2780.00"/>
-                                <FerProductItem ferProImage = {require("../../assets/images/fer-pro-3.jpg").default} ferName="Bio Phos" ferPrice = "Rs. 2670.00"/>
-                                <FerProductItem ferProImage = {require("../../assets/images/fer-pro-1.jpg").default} ferName="Grade A Dark Compost" ferPrice = "Rs. 2750.00"/>
-                                <FerProductItem ferProImage = {require("../../assets/images/fer-pro-2.jpg").default} ferName="Humas soil" ferPrice = "Rs. 4170.00"/>
-                                <FerProductItem ferProImage = {require("../../assets/images/fer-pro-3.jpg").default} ferName="Regular compost" ferPrice = "Rs. 1250.00"/>
-                                <FerProductItem ferProImage = {require("../../assets/images/fer-pro-1.jpg").default} ferName="Vermi liquid compost" ferPrice = "Rs. 1250.00"/>
+                        <FerProOffer ferProImage = {require("../../assets/images/fer-pro-3.jpg").default} ferOfferPrice="1250" ferName="Manure" ferPrice = "1000"/>
+                        {FerProData.ferprodata.map((item,index)=>{
+                            return(
+                                <FerProductItem ferProImage = {item.img} ferName={item.name} ferPrice = {item.price} item={item} key ={index}/>
+                            )
+                        })}
                         </div>
-                        {/*Offers
-                        <h3 className="fer-topic">Exclusive Offers</h3>
-                        <hr/>
-                        <div className="fer-products_row">
-                            <Carousel breakPoints={breakPoints1}>
-                    
-                    
-                                <FerProOffer ferProImage = {require("../../assets/images/fer-pro-1.jpg").default} ferOfferPrice="Rs. 1550.00" ferName="Chicken Litter" ferPrice = "Rs. 1500.00"/>
-                                <FerProOffer ferProImage = {require("../../assets/images/fer-pro-2.jpg").default} ferOfferPrice="Rs. 3100.00" ferName="Litter Seaweed" ferPrice = "Rs. 3050.00"/>
-                                <FerProOffer ferProImage = {require("../../assets/images/fer-pro-3.jpg").default} ferOfferPrice="Rs. 5200.00" ferName="MorBlooom" ferPrice = "Rs. 4990.00"/>
-                                <FerProOffer ferProImage = {require("../../assets/images/fer-pro-1.jpg").default} ferOfferPrice="Rs. 2750.00" ferName="Bio Gold" ferPrice = "Rs. 2679.00"/>
-                                <FerProOffer ferProImage = {require("../../assets/images/fer-pro-2.jpg").default} ferOfferPrice="Rs. 2850.00" ferName="Bio Vaccine" ferPrice = "Rs. 2780.00"/>
-                                <FerProOffer ferProImage = {require("../../assets/images/fer-pro-3.jpg").default} ferOfferPrice="Rs. 2800.00" ferName="Bio Phos" ferPrice = "Rs. 2670.00"/>
-                                <FerProOffer ferProImage = {require("../../assets/images/fer-pro-1.jpg").default} ferOfferPrice="Rs. 2850.00" ferName="Grade A Dark Compost" ferPrice = "Rs. 2750.00"/>
-                                <FerProOffer ferProImage = {require("../../assets/images/fer-pro-2.jpg").default} ferOfferPrice="Rs. 4220.00" ferName="Humas soil" ferPrice = "Rs. 4170.00"/>
-                                <FerProOffer ferProImage = {require("../../assets/images/fer-pro-3.jpg").default} ferOfferPrice="Rs. 1320.00" ferName="Regular compost" ferPrice = "Rs. 1250.00"/>
-                                <FerProOffer ferProImage = {require("../../assets/images/fer-pro-1.jpg").default} ferOfferPrice="Rs. 1310.00" ferName="Vermi liquid compost" ferPrice = "Rs. 1250.00"/>
-                            </Carousel>
-                        </div>*/}
+                        
                         {/*Fertilizer categories*/}
                         <h3 className="fer-topic"><i class="fas fa-leaf"></i> Fertilizer Categories</h3>
                         <hr/>
