@@ -91,8 +91,8 @@
 .container_login {
   height: auto;
   background-color: #ffffff;
-  border-radius: 15px;
-  /* border: 1px solid #888; */
+  border-radius: 2px;
+  border: 1px solid #888;
 }
 
 .login_body {
