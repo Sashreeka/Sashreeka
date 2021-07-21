@@ -122,7 +122,7 @@ const FerProData ={
         {
             id: 7,
             img: 'http://www.biopowerlanka.com/images/bio-gold.jpg',
-            name: "Rock Phospate", 
+            name: "Bio Gold", 
             weight: 4,
             price: 2679,
             offer: 3000
@@ -138,7 +138,7 @@ const FerProData ={
         {
             id: 9,
             img: 'https://m.media-amazon.com/images/I/61NDpj1AUWL._SX466_.jpg',
-            name: "Bio Phos", 
+            name: "Bio Vermi Compost", 
             weight: 4,
             price: 2670,
             offer: 3000
