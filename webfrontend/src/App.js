@@ -10,7 +10,8 @@ import Contact from "./components/static/Contact";
 import Store from "./components/store/Store";
 import SearchStore from "./components/store/SearchStore";
 import StoreCart from "./components/store/StoreCart";
-import { CartProvider } from "react-use-cart";
+import StoreSuccess from "./components/store/StoreSuccess";
+import {CartProvider} from 'react-use-cart';
 
 import Handbook from "./components/handbook/Handbook";
 import Signup from "./components/authentication/Signup";
@@ -163,6 +164,11 @@ function App() {
                 <Route path="/storecart">
                   <StoreCart />
                 </Route>
+
+                <Route path="/storesuccess">
+                  <StoreSuccess/>
+                </Route>
+
               </CartProvider>
             </Switch>
 
