@@ -1,44 +1,23 @@
 // import React from "react";
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 // CSS file
 import "./Signin.css";
 
 function Signin() {
-  // return (
-  //   // CAn returen only a one single element
-  //   // <React.Fragment>
-  //   <div>
-  //     <h1>This is Login page</h1>
-  //     <div className="formBox">
-  //       <form className="loginForm">
-  //         <label>Username</label>
-  //         <input type="email" name="email" required />
-  //         <br />
-  //         <label>Password</label>
-  //         <input type="password" name="password" required />
-  //         {/* <Button>LOGIN</Button> */}
-  //       </form>
-  //     </div>
-  //   </div>
-  //   // </React.Fragment>
-  // );
-
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [password, setpassword] = useState("");
+  const [password, setPassword] = useState("");
 
-  const loginView = () => {
+  const login = () => {
     axios
       .post("http://localhost:4000/user/login", {
         phoneNumber: phoneNumber,
         password: password,
       })
       .then((response) => {
-        // console.log(response.data.token);
-        // console.log(response.data.message);
-        // console.log(response);
-        // console.log(response.data[0].userCategory);
+        // add user info to local storage
         let userCategory = response.data[0].userCategory;
         let phoneNumber = response.data[0].phoneNumber;
         localStorage.setItem("userCategory", userCategory);
@@ -47,9 +26,11 @@ function Signin() {
         if (userCategory === "admin") {
           window.location.href = "/";
         } else if (userCategory === "deliveryAgent") {
-          window.location.href = "/deliveryAgent";
-        } else if (userCategory === "admin") {
-          window.location.href = "/users";
+          window.location.href = "/deliveryAgentD";
+        } else if (userCategory === "staff") {
+          window.location.href = "/staffD";
+        } else if (userCategory === "farmer") {
+          window.location.href = "/store";
         }
         // console.log(response.data.userCategory)
 
@@ -63,51 +44,86 @@ function Signin() {
       });
   };
 
-  // const submit = () =>{
-
-  //     if(telephone === '1' && password ==='1'){
-
-  //         window.location.href='/'
-  //     }
-  //     else  if(telephone === '2' && password ==='2'){
-
-  //         window.location.href='/admin'
-  //     }
-
-  // }
   return (
-    <div>
-      <h1>This is Login page</h1>
-      <p>
-        Shashreeka recognized that the growing demand for organic crop farming
-        required an increased focus on providing an all-natural solution to
-        boost soil nutrition. Rather than make unproven claims about our
-        fertilizer, we focus on education, testing, and proper use to document
-        results. This process may be slower, but it ensures that we support the
-        growth of sustainable agriculture around the world.
-      </p>
-
-      <h1>Login form</h1>
-      <input
-        type="text"
-        name="phoneNumber"
-        placeholder="phoneNumber"
-        onChange={(e) => {
-          setPhoneNumber(e.target.value);
-        }}
-      />
-      <input
-        type="text"
-        name="password"
-        placeholder="password"
-        onChange={(e) => {
-          setpassword(e.target.value);
-        }}
-      />
-
-      <button onClick={loginView}>Login</button>
+    <div className="login_body">
+      <h1>Welcome To Sashreeka</h1>
+      <div className="login_box">
+        <div className="animate">
+          <div className="container_login animate">
+            <label for="uname">
+              <b>Username</b>
+            </label>
+            {/* <i className="fas fa-mobile-alt"></i> */}
+            <input
+              className="loginInput"
+              type="text"
+              name="phoneNumber"
+              placeholder="Phone number"
+              onChange={(e) => {
+                setPhoneNumber(e.target.value);
+              }}
+            />
+            <label for="password">
+              <b>Password</b>
+            </label>
+            <input
+              className="loginInput"
+              type="text"
+              name="password"
+              placeholder="password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+            <div className="button_center">
+              <button className="modalButton" onClick={login}>
+                Sign In
+              </button>
+            </div>
+            <div className="login_right">
+              <Link className="forgotpwd" to="/forgotpwd">
+                Forgot password?
+              </Link>
+            </div>
+            <br />
+            <div className="login_left">
+              <Link className="login_acc" to="/regFarmer">
+                Don't have an account?
+              </Link>
+            </div>
+            <div className="login_left">
+              <Link className="login_acc" to="/signup">
+                Sign Up
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
 
 export default Signin;
+
+{
+  /* <Link className="modalButton" to="/regFarmer">
+            Sign Up
+          </Link>
+          <Link className="forgotpwd" to="/forgotpwd">
+            Forgot password?
+          </Link> */
+}
+
+// userCategory === null ? (
+//   <button onClick={() => addItem(props.item)}>
+//     Add<i className="fas fa-cart-arrow-down"></i>
+//   </button>
+// ) : (
+//   <button
+//     onClick={() => {
+//       window.location.href = "/signin";
+//     }}
+//   >
+//     Add<i className="fas fa-cart-arrow-down"></i>
+//   </button>
+// );

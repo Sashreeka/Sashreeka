@@ -1,37 +1,161 @@
-* {
+/* Sign-in pop up window styles...................................................................... */
+
+/* body {
+  font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0;
+} */
+
+/* Full-width input fields */
+.loginInput {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
   box-sizing: border-box;
 }
 
-h1 {
-  color: red;
-  margin-left: 30px;
-  font-size: medium;
+/* Set a style for all buttons */
+
+.button_center {
+  /* background: chartreuse; */
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.modalButton {
+  /* background-color: #04AA6D; */
+  background: linear-gradient(180deg, #80b953 2.08%, #2c9984 95.83%);
+  border-radius: 10px;
+  color: black;
+  padding: 7px 10px;
+  border: none;
+  cursor: pointer;
+  width: 75%;
+  /* margin-bottom: 20px; */
+}
+.modalButton:hover {
+  opacity: 0.8;
 }
 
-.formBox {
-  box-sizing: border-box;
-  border: black;
-  /* float: right; */
+.bottom_login {
+  padding: 2px;
 }
 
-.loginForm {
-  color: blue;
-  margin: 30px;
+.login_left {
+  float: left;
+  font-size: 13px;
 }
 
-.loginForm label {
-  color: green;
-  margin: 10px;
-  padding: 10px;
-}
-
-.loginForm input {
-  background: yellow;
-  padding: 10px;
-}
-
-a {
+.forgotpwd {
+  font-size: 10px;
   text-decoration: none;
 }
+.login_acc {
+  font-size: 12px;
+  text-decoration: none;
+  color: green;
+}
+
+.login_right {
+  float: right;
+  font-size: 11px;
+}
+
+.modalSignUp {
+  background: #ffffff;
+  border: 2px solid green;
+  /* background: linear-gradient(180deg, #80b953 2.08%, #2c9984 95.83%); */
+  border-radius: 10px;
+  color: black;
+  padding: 10px 15px;
+  margin: 8px 0;
+  /* border: none; */
+  cursor: pointer;
+  width: 100%;
+}
+
+.modalSignUp:hover {
+  background: lightgray;
+}
+
+.container_login {
+  height: auto;
+  padding: 30px;
+}
+
+/* The Modal (background) */
+.login_box {
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+}
+
+/* Modal Content/Box */
+.container_login {
+  height: auto;
+  background-color: #ffffff;
+  border-radius: 2px;
+  border: 1px solid #888;
+}
+
+.login_body {
+  width: 25%;
+  margin-top: 5px;
+  padding: 25px;
+  margin-left: 500px;
+  /* position: fixed; */
+}
+.login_body h1 {
+  text-align: center;
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: green;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.3s;
+  animation: animatezoom 0.3s;
+}
+
+@-webkit-keyframes animatezoom {
+  from {
+    -webkit-transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes animatezoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+}
+
+/* End of Sign-in pop up window styles...................................................................... */

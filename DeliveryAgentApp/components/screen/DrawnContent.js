@@ -126,7 +126,7 @@ import { StyleSheet,
                             }}
 
                         />
-                        <DrawerItem
+                        {/* <DrawerItem
                             icon={
                                 ({color,size})=>(
                                     <Icon
@@ -142,7 +142,7 @@ import { StyleSheet,
 
                             }}
 
-                        />
+                        /> */}
 
                         <DrawerItem
                             icon={

@@ -82,9 +82,22 @@ INSERT INTO `user` (`phoneNumber`, `password`, `userCategory`) VALUES ('07222222
 INSERT INTO `user` (`phoneNumber`, `password`, `userCategory`) VALUES ('073333333', '333', 'deliveryAgent');
 INSERT INTO `user` (`phoneNumber`, `password`, `userCategory`) VALUES ('074444444', '444', 'farmer');
 
-UPDATE `deliveryagent` SET `phoneNumber` = '073333333' WHERE `deliveryagent`.`phoneNumber` = '0716035548';
-UPDATE `deliveryagent` SET `password` = '333' WHERE `deliveryagent`.`phoneNumber` = '073333333';
-UPDATE `farmer` SET `phoneNumber` = '074444444' WHERE `farmer`.`phoneNumber` = '0752016924';
-UPDATE `farmer` SET `password` = '444' WHERE `farmer`.`phoneNumber` = '074444444';
-UPDATE `companystaff` SET `phoneNumber` = '072222222' WHERE `companystaff`.`phoneNumber` = '0715135934';
-UPDATE `companystaff` SET `password` = '222' WHERE `companystaff`.`phoneNumber` = '072222222';
+
+INSERT INTO `fertilizerferlilizercategory` (`fertilizerId`, `fertilizerCategoryId`) VALUES
+(1, 1),
+(1, 6),
+(2, 1),
+(3, 1),
+(3, 4),
+(4, 1),
+(4, 4),
+(5, 1),
+(5, 2),
+(5, 3),
+(5, 5),
+(6, 1),
+(6, 3),
+(6, 5),
+(7, 5),
+(8, 5),
+(9, 5);

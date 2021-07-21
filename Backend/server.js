@@ -66,7 +66,7 @@ app.post("/user/login", (req, res) => {
       //    }
       //  })
     } else {
-      res.send({ message: "User doesn't exist" });
+      res.send({ message: "Wrong username/Password combination" });
     }
   });
 });
@@ -90,15 +90,42 @@ app.get("/getorderhistory", (req, res) => {
 });
 
 
-// app.get("/api/order",(req,res)=>{
-//     // console.log('hi anu');
-//      const sqlget="select * from orders";
-//      db.query(sqlget,(err,result)=>{
-//          console.log(result);
-//          res.send(result);
-//      })
+//upcoming deleveries
 
-//  })
+app.get("/deliveryAgent/upcoming",(req,res)=>{
+    // console.log('hi anu');
+     const sqlget="select farmer.phoneNumber,farmer.firstName,farmer.lastName,farmer.city,farmer.address,deliveries.orderId,deliveries.dateTime  from farmer INNER JOIN deliveries on farmer.phoneNumber=deliveries.famerPhoneNumber WHERE 	deliveryAgentPhoneNumber='0712345678' AND NOW() < dateTime order by dateTime asc; ";
+     db.query(sqlget,(err,result)=>{
+         console.log(result);
+         res.send(result);
+     })
+
+ })
+
+
+ //today deleveries
+
+app.get("/deliveryAgent/today",(req,res)=>{
+  // console.log('hi anu');
+   const sqlget="select * from deliveries WHERE 	deliveryAgentPhoneNumber='0712345678' AND DATEDIFF(CURRENT_DATE,dateTime)>=0 AND DATEDIFF(CURRENT_DATE,dateTime)<1; ";
+   db.query(sqlget,(err,result)=>{
+       console.log(result);
+       res.send(result);
+   })
+
+})
+
+ //history deleveries
+
+ app.get("/deliveryAgent/history",(req,res)=>{
+  // console.log('hi anu');
+   const sqlget="select * from deliveries WHERE 	deliveryAgentPhoneNumber='0712345678' AND confirmationFlag=1 AND NOW() > dateTime order by dateTime asc; ";
+   db.query(sqlget,(err,result)=>{
+       console.log(result);
+       res.send(result);
+   })
+
+})
 // const loginRoutes=require("./routes/LoginRoutes");
 //  app.use(loginRoutes);
 
@@ -192,47 +219,40 @@ app.post("/user/registerStaff", (req, res) => {
 });
 //Company Staff Register........................................
 //display the delivery agent details..................
-app.get('/admin/viewDAgentDetails',(req,res)=>{
-
+app.get("/admin/viewDAgentDetails", (req, res) => {
   const sqlget = "select * from deliveryagent";
   db.query(sqlget, (err, result) => {
     console.log(result);
     res.send(result);
   });
-})
+});
 
 //display the delivery agents details..................
-app.get('/admin/viewCStaffDetails',(req,res)=>{
-
+app.get("/admin/viewCStaffDetails", (req, res) => {
   const sqlget = "select * from companystaff";
   db.query(sqlget, (err, result) => {
     console.log(result);
     res.send(result);
   });
-})
-
+});
 
 // display delivery details........................
 
-app.get('/admin/viewDeliveryDetails',(req,res)=>{
-
+app.get("/admin/viewDeliveryDetails", (req, res) => {
   const sqlget = "select * from deliveries";
   db.query(sqlget, (err, result) => {
     console.log(result);
     res.send(result);
   });
-})
-
-
+});
 
 //display a delivery agent details..................
-app.get('/admin/viewStafffDetails/:userId',(req,res)=>{
-
-  let userId=req.params.userId
+app.get("/admin/viewStafffDetails/:userId", (req, res) => {
+  let userId = req.params.userId;
 
   const sqlget = "select * from companystaff where userId=?";
-  db.query(sqlget,userId,(err, result) => {
+  db.query(sqlget, userId, (err, result) => {
     console.log(result);
     res.send(result);
   });
-})
+});
