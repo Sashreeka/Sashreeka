@@ -72,5 +72,18 @@ INSERT INTO `fertilizer` (`fertilizerId`, `name`, `description`, `offer`, `unitP
 
 
 INSERT INTO `orders`(`orderId`, `amount`, `deliveryAddress`, `quickFlag`, `offer`, `receiverName`, `deliveryCharge`, `status`, `farmerPhoneNumber`, `staffPhoneNumber`) VALUES ('3424434361','20220.00','Malabe','2','5','Mr.rahul','600.00','2','0752016924','0711205934');
-
 INSERT INTO `orders`(`orderId`, `amount`, `deliveryAddress`, `quickFlag`, `offer`, `receiverName`, `deliveryCharge`, `status`, `farmerPhoneNumber`, `staffPhoneNumber`) VALUES ('234112130','34000.00','kotuwa','0','10','Mr.Mathura','600.00','1','0752016924','0711205934');
+
+
+
+INSERT INTO `user` (`phoneNumber`, `password`, `userCategory`) VALUES ('071111111', '111', 'admin');
+INSERT INTO `user` (`phoneNumber`, `password`, `userCategory`) VALUES ('072222222', '222', 'staff');
+INSERT INTO `user` (`phoneNumber`, `password`, `userCategory`) VALUES ('073333333', '333', 'deliveryAgent');
+INSERT INTO `user` (`phoneNumber`, `password`, `userCategory`) VALUES ('074444444', '444', 'farmer');
+
+UPDATE `deliveryagent` SET `phoneNumber` = '073333333' WHERE `deliveryagent`.`phoneNumber` = '0716035548';
+UPDATE `deliveryagent` SET `password` = '333' WHERE `deliveryagent`.`phoneNumber` = '073333333';
+UPDATE `farmer` SET `phoneNumber` = '074444444' WHERE `farmer`.`phoneNumber` = '0752016924';
+UPDATE `farmer` SET `password` = '444' WHERE `farmer`.`phoneNumber` = '074444444';
+UPDATE `companystaff` SET `phoneNumber` = '072222222' WHERE `companystaff`.`phoneNumber` = '0715135934';
+UPDATE `companystaff` SET `password` = '222' WHERE `companystaff`.`phoneNumber` = '072222222';

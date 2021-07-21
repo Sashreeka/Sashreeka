@@ -36,8 +36,8 @@
   transform: scale3d(1, 1, 1);
   -webkit-transition: none;
   transition: none;
-  -webkit-animation: expand 0.8s 0.6s ease-out forwards;
-  animation: expand 0.8s 0.6s ease-out forwards;
+  -webkit-animation: expand 0.4s 0.3s ease-out forwards;
+  animation: expand 0.4s 0.3s ease-out forwards;
   opacity: 0;
 }
 .form_wrapper_Register h2 {
@@ -84,8 +84,8 @@
 .form_wrapper_Register .inputField_Register {
   position: relative;
   margin-bottom: 20px;
-  -webkit-animation: bounce 0.6s ease-out;
-  animation: bounce 0.6s ease-out;
+  -webkit-animation: bounce 0.3s ease-out;
+  animation: bounce 0.3s ease-out;
 }
 
 .form_wrapper_Register .inputField_Register > span {

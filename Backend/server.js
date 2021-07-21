@@ -7,7 +7,7 @@ const app = express();
 const mysql = require("mysql");
 
 // password encryption
-// const { encrypt, decrypt } = require("./EncryptionHandler");
+const { encrypt, decrypt } = require("./EncryptionHandler");
 
 // const db = mysql.createPool({
 //   host: "localhost",
@@ -181,14 +181,3 @@ app.post("/user/registerStaff", (req, res) => {
   );
 });
 //Company Staff Register........................................
-
-
-//display the delivery agent details..................
-app.get('/admin/viewDAgentDetails',(req,res)=>{
-
-  const sqlget = "select * from fertilizer";
-  db.query(sqlget, (err, result) => {
-    console.log(result);
-    res.send(result);
-  });
-})
