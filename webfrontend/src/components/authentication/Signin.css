@@ -9,7 +9,7 @@
 /* Full-width input fields */
 .loginInput {
   width: 100%;
-  padding: 12px 20px;
+  padding: 6px 10px;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
@@ -23,7 +23,8 @@
   border-radius: 10px;
   color: black;
   padding: 10px 15px;
-  margin: 8px 0;
+  margin-left: 30px;
+  margin-right: 30px;
   border: none;
   cursor: pointer;
   width: 100%;
@@ -35,11 +36,27 @@
 }
 
 .bottom_login {
-  display: flex;
+  padding: 2px;
 }
+
+.login_left {
+  float: left;
+  font-size: 13px;
+}
+
 .forgotpwd {
-  font-size: 8px;
-  text-decoration: lightseagreen;
+  font-size: 10px;
+  text-decoration: none;
+}
+.login_acc {
+  font-size: 12px;
+  text-decoration: none;
+  color: red;
+}
+
+.login_right {
+  float: right;
+  font-size: 11px;
 }
 
 .modalSignUp {
@@ -64,17 +81,10 @@
   padding: 16px;
 }
 
-span.psw {
-  padding: 10px;
-  float: right;
-}
-
 /* The Modal (background) */
 .login_box {
   width: 100%; /* Full width */
   height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  padding-top: 60px;
 }
 
 /* Modal Content/Box */
@@ -82,11 +92,18 @@ span.psw {
   height: auto;
   background-color: #ffffff;
   border-radius: 15px;
-  border: 1px solid #888;
+  /* border: 1px solid #888; */
 }
 
 .login_body {
-  align-items: center;
+  width: 25%;
+  margin-top: 5px;
+  padding: 25px;
+  margin-left: 500px;
+  /* position: fixed; */
+}
+.login_body h1 {
+  text-align: center;
 }
 
 /* The Close Button (x) */

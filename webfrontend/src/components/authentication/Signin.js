@@ -63,7 +63,6 @@ function Signin() {
                 setPhoneNumber(e.target.value);
               }}
             />
-
             <label for="password">
               <b>Password</b>
             </label>
@@ -76,16 +75,18 @@ function Signin() {
                 setPassword(e.target.value);
               }}
             />
-
             <button className="modalButton" onClick={login}>
               Sign In
             </button>
-            <div className="bottom_login">
-              <Link className="forgotpwd" to="/regFarmer">
-                Create and account?
-              </Link>
+            <div className="login_right">
               <Link className="forgotpwd" to="/forgotpwd">
                 Forgot password?
+              </Link>
+            </div>
+            <br />
+            <div className="login_left">
+              <Link className="login_acc" to="/regFarmer">
+                Don't have an account?
               </Link>
             </div>
           </div>
