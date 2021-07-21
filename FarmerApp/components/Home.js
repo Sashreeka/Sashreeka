@@ -51,6 +51,9 @@ export default Home = ({navigation})=>{
         );
     };
 
+
+    
+
     return(
         <View style={styles.container}>
             
@@ -126,20 +129,31 @@ export default Home = ({navigation})=>{
                      ]} >
                          <TouchableOpacity onPress={()=>navigation.navigate('ItemPage')}>
                          <View style={styles.itemCardWrapOuter} >
-                            <View style={styles.itemcardLeft} onPress={()=>navigation.navigate('ItemPage')}>
+                            <View style={styles.itemcardLeft}>
                                 <View style={styles.itemWrapperMain}>
                                     <Text style={styles.itemTitleMain} >{val.name}</Text>  
                                 </View>
                                 <View style={styles.itemDescriptionWrapper}>
                                     <Text style={styles.itemDescription}>{val.caption}</Text>
                                 </View>
-                                <View style={styles.itemADDbutton}>
-                                    <Text style={styles.itemADDbuttonText} onPress={()=>navigation.navigate('ItemPage')}>ADD<Feather name="plus" size={15} color='#000'/>
-                                    </Text>
+                                <View>
+                                    <Text style={styles.itemDescription}>Item unit: {val.unitWeight}{val.measurementUnit}</Text>
                                 </View>
+                                <View>
+                                    <Text style={styles.itemValue}>Rs.{parseInt(val.unitPrice*(100-val.offer)/100)}.00</Text>
+                                    <Text style={styles.itemValueWithoutOffer}>Rs.{val.unitPrice}.00</Text>
+                                </View>
+                                
+                                {/* <View style={styles.itemADDbutton}>
+                                    <Text style={styles.itemADDbuttonText}>ADD<Feather name="plus" size={15} color='#000'/>
+                                    </Text>
+                                </View> */}
                             </View>
                             <View style={styles.itemcardRight}>
                                 <Image source={{uri: `${val.photo}` }} style={styles.itemcardimage} />
+                                <View style={{backgroundColor:"green",width:70,height:30,borderRadius:20}}>
+                                <Text style={{fontSize:25,paddingLeft:15,marginTop:-3,color:"yellow"}}>+ <FontAwsome name="shopping-cart" size={22} color={colors.ratingStarColor}></FontAwsome></Text>
+                            </View>
                             </View>
                          </View>
                          </TouchableOpacity>
@@ -253,18 +267,19 @@ const styles=StyleSheet.create({
         color:colors.textlight,
     },
     categoriesWrapper:{
-       marginTop:30,
+       marginTop:20,
 
     },
     categoriesTitle:{
         fontWeight:"bold",
         fontSize:20,
-        paddingHorizontal:20,
+        paddingVertical:5,
+        paddingHorizontal:30,
     },
 
     categoriesListWrapper:{
         paddingTop:15,
-        paddingBottom:20,
+        paddingBottom:10,
         // paddingLeft:20,
     },
 
@@ -289,7 +304,8 @@ const styles=StyleSheet.create({
     },
 
     categoryItemImage:{
-        marginTop:25,
+        // backgroundColor:"red",
+        marginTop:10,
         alignSelf:"center",
         marginHorizontal:27,
     },
@@ -299,8 +315,12 @@ const styles=StyleSheet.create({
         textAlign:"center",
         fontSize:16,
         fontWeight:"600",
-        marginTop:10,
+        marginTop:20,
         textTransform:'uppercase',
+    },
+
+    categoriesListWrapper:{
+        // backgroundColor:"red",
     },
 
     categorySelectWrapper:{
@@ -311,12 +331,13 @@ const styles=StyleSheet.create({
     },
 
     categoryItemimage:{
-
+        
     },
 
 
     itemsWrapper:{
        paddingHorizontal:20,
+       paddingVertical:10,
     },
 
     itemsTitle:{
@@ -357,7 +378,7 @@ const styles=StyleSheet.create({
 
     itemDescriptionWrapper:{
        marginTop:10,
-       marginBottom:20,
+       marginBottom:10,
 
     },
 
@@ -410,6 +431,17 @@ const styles=StyleSheet.create({
         resizeMode:"contain",
     
     },
+
+    itemValue:{
+        fontSize:26,
+        fontWeight:"bold",
+    },
+    itemValueWithoutOffer:{
+        fontSize:16,
+        color:"red",
+        textDecorationLine: 'line-through', 
+        textDecorationStyle: 'solid'
+    }
     
     
 
