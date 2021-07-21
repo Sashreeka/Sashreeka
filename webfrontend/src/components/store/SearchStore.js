@@ -62,7 +62,9 @@ function SearchStore() {
                         
                     <div className="shopping_details">
                         <p className="Subtotal">2 items - Rs. 3850.00</p>
-                        <button type="submit" className="shopping_cart"><i className="fas fa-shopping-cart"></i></button>
+                        <Link to="/storecart">
+                            <button type="submit" className="shopping_cart"><i className="fas fa-shopping-cart"></i></button>
+                        </Link>
                     </div>
                 </div>
 
