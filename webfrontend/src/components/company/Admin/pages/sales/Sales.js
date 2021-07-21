@@ -4,6 +4,7 @@ import Sidebar from '../../components/sidebar/Sidebar';
 import {UserData} from '../../dummyData';
 import Chart from '../../components/chart/Chart';
 import SalesDetails from './salesDetails/SalesDetails';
+import { BarChart } from '@material-ui/icons';
 
 export default function Sales() {
     return (
@@ -11,8 +12,14 @@ export default function Sales() {
             <Sidebar/>
 
              <div className="sales">
-
-             <Chart data={UserData} title="User Analytics" grid dataKey="Active User"/>
+                   
+                <div className="sales_analytics">
+                <Chart data={UserData} title="User Analytics" grid dataKey="Active User"/>
+                </div>
+                <div className="sales_barchart">
+                <BarChart/>
+                </div>
+             
              <SalesDetails/>
             
 

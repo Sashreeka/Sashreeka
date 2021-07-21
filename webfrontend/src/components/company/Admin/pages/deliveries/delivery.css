@@ -1,9 +1,21 @@
 .deliveryCon{
     display: flex;
     margin-top: 10px;
-    background-color: red;
 }
 
 .delivery{
     flex: 4;
+}
+
+.lineChart{
+    width: 50vw;
+}
+
+.doughnutChart{
+    width: 20vw;
+}
+
+.chartdiv{
+    display: flex;
+    flex-direction: row;
 }
