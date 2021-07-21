@@ -28,7 +28,6 @@ export default function Signup() {
       //   .max(20, "Must be 20 characters or less")
       .required("Required"),   
     phoneNumber: Yup.string()
-    
     .matches(
       "[0]{1}[7]{1}[0-9]{8}",
       "Phone Number is not Valid"

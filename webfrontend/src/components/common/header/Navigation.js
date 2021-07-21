@@ -103,8 +103,8 @@ function Navigation() {
             {
               phoneNumber!==null? (
                
-                <div className="nav-sign-in" onClick={Logout}>
-                  <div className="signin" >Sign Out</div>
+                <div className="nav-sign-out" onClick={Logout}>
+                  <div className="signout" >Sign Out</div>
                 </div>
             
               ):
