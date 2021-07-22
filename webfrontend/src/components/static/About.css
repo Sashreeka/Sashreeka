@@ -12,54 +12,53 @@
     left:10px;
   }
   
-  .about .row .content{
+  .about .row .aboutContent{
     padding-left: 1rem;
   }
   
-  .about .row .content h3{
+  .about .row .aboutContent h3{
     font-size: 2.5rem;
     color:green;
 
   }
-  .about .row .content p{
+  .about .row .aboutContent p{
     font-size: 1.2rem;
     color:black;
     padding:1rem 0;
     margin-left: 2px;
   }
   
-  .about .row .content button{
+  .about .row .aboutContent .aboutbtn{
     height:2.5rem;
     width:13rem;
-    background:var(--violet);
-    background-color:green;
+    background:linear-gradient(180deg, #80b953 2.08%, #2c9984 95.83%);
     border:none;
     border-radius: 5rem;
-    box-shadow: 0 .2rem 1rem rgba(0,0,0,.3);
+    /*box-shadow: 0 .2rem 1rem rgba(0,0,0,.3);*/
     cursor: pointer;
     font-size: 1.4rem;
     transition: .2s;
     color:white;
   }
   
-  .about .row .content button:hover{
+  .about .row .aboutContent .aboutbtn:hover{
     letter-spacing: .2rem;
     opacity: .8;
   }
 
-  .staff{
+  .aboutStaff{
     background:white;
   }
-  .staff .heading{
+  .aboutStaff .heading{
     font-size: 2.5rem;
     color:green;
   }
-  .staff .title{
+  .aboutStaff .title{
     color:#B0D553;
     font-size: 2rem;
   }
   
-  .staff .card-container{
+  .aboutStaff .about-card-container{
     display: flex;
     
     justify-content: center;
@@ -67,7 +66,7 @@
     padding:2rem 0;
   }
   
-  .staff .card-container .card{
+  .aboutStaff .about-card-container .about-card{
     padding:1rem;
     margin: 1rem;
     background:#9be564;
@@ -77,24 +76,24 @@
     box-shadow: 0 .3rem .5rem rgba(0,0,0,.3);
   }
   
-  .staff .card-container .card img{
+  .aboutStaff .about-card-container .about-card img{
     height:200px;
     width:200px;
    
     padding: 1rem 1rem;
   }
   
-  .staff .card-container .card:hover img{
+  .aboutStaff .about-card-container .about-card:hover img{
     filter: grayscale(0);
   }
   
-  .staff .card-container .card h3{
+  .aboutStaff .about-card-container .about-card h3{
     color:black;
     font-size: 1.2rem;
     padding:.4rem 0;
   }
   
-  .staff .card-container .card p{
+  .aboutStaff .about-card-container .about-card p{
     font-size: 1.3rem;
     color:white;
   }

@@ -804,16 +804,18 @@ const HomeScreen = ({navigation})=>{
                     
                      <View style={{flexDirection:'column'}}>
                      <Text style={styles.historyTText}>Polonnaruwa- Mr.P.B.N.Bandara</Text>
+                     
+
+
                      <View style={{flexDirection:'row'}}>
-                         <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:0,}}>Payment Method:</Text>
-                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>Online</Text>
+                         <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:0,width:110}}>Total Amount(Rs):</Text>
+                         <Text style={{color:'#000',fontSize:13,marginTop:0,}}>750</Text>
 
                      </View>
 
-
                      <View style={{flexDirection:'row'}}>
-                         <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:0,}}>Total Amount(Rs):</Text>
-                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>750</Text>
+                         <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:0,width:110}}>Delivery Date:</Text>
+                         <Text style={{color:'#000',fontSize:13,marginTop:0,}}>2021-07-20</Text>
 
                      </View>
                  

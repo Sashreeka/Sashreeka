@@ -95,3 +95,8 @@
   padding-right: 1.5rem;
 }
 
+.navbar-brand img{
+  height: 50px;
+  width:auto;
+}
+

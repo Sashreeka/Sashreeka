@@ -54,7 +54,7 @@ const StoreSuccess = () => {
                     <hr></hr>
                     <div className="cart-success-line">
                             <h5>Sub total:</h5>
-                            <h5>Rs.{cartTotal}.00</h5>
+                            <h5>Rs.{cartTotal + 200}.00</h5>
                     </div>
                     
                     <div className="cart-sucs-msg">
