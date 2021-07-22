@@ -20,7 +20,6 @@ export default function Signup() {
     });
   }, []);
 
-  
   const checkPhoneNum = (num) => {
     phoneNumberList.find((item) => {
       return item.phoneNumber === num;
@@ -100,30 +99,156 @@ export default function Signup() {
     >
       {(formik) => (
         <div>
-          <h1 className="my-4 font-weight-bold .display-4">Sign Up</h1>
-          <Form>
-            <TextField label="First Name" name="firstName" type="text" />
-            <TextField label="last Name" name="lastName" type="text" />
-            <TextField label="Address" name="address" type="text" />
-            <TextField label="Email" name="email" type="email" />
-            <TextField label="Phone Number" name="phoneNumber" type="text" />
-            <TextField label="password" name="password" type="password" />
-            <TextField
-              label="Confirm Password"
-              name="confirmPassword"
-              type="password"
-            />
-            <button
-              className="btn btn-dark mt-3"
-              type="submit"
-              // onClick={checkPhoneNum()}
-            >
-              Register
-            </button>
-            <button className="btn btn-danger mt-3 ml-3" type="reset">
-              Reset
-            </button>
-          </Form>
+          <div className="form_wrapper_Register">
+            <div className="form_container_Register">
+              <div className="title_container_Register">
+                <h2>Registration of a Delivery Agent</h2>
+              </div>
+              <div className="row_Register clearfix_Register">
+                <div className="">
+                  <Form>
+                    <div className="full_name_Register">
+                      <div className="inputField_Register">
+                        {" "}
+                        <span>
+                          <i aria-hidden="true" className="fa fa-envelope"></i>
+                        </span>
+                        <TextField
+                          className="input_halfRegister"
+                          // label="First Name"
+                          name="firstName"
+                          type="text"
+                          placeholder="First Name"
+                        />
+                      </div>
+
+                      <div className="inputField_Register">
+                        {" "}
+                        <span>
+                          <i aria-hidden="true" className="fa fa-envelope"></i>
+                        </span>
+                        <TextField
+                          className="input_halfRegister"
+                          placeholder="Last Name"
+                          // label="last Name"
+                          name="lastName"
+                          type="text"
+                        />
+                      </div>
+                    </div>
+                    <div className="inputField_Register">
+                      {" "}
+                      <span>
+                        <i aria-hidden="true" className="fa fa-envelope"></i>
+                      </span>
+                      <TextField
+                        className="input_halfRegister"
+                        placeholder="Address"
+                        // label="address"
+                        name="address"
+                        type="text"
+                      />
+                    </div>
+                    <div className="inputField_Register">
+                      {" "}
+                      <span>
+                        <i aria-hidden="true" className="fa fa-envelope"></i>
+                      </span>
+                      <TextField
+                        className="input_halfRegister"
+                        placeholder="Email"
+                        // label="Email"
+                        name="email"
+                        type="email"
+                      />
+                    </div>
+                    <div className="full_name_Register">
+                      <div className="inputField_Register">
+                        {" "}
+                        <span>
+                          <i aria-hidden="true" className="fa fa-envelope"></i>
+                        </span>
+                        <TextField
+                          className="input_halfRegister"
+                          // label="National ID"
+                          name="nic"
+                          type="text"
+                          placeholder="National ID"
+                        />
+                      </div>
+
+                      <div className="inputField_Register">
+                        {" "}
+                        <span>
+                          <i aria-hidden="true" className="fa fa-envelope"></i>
+                        </span>
+                        <TextField
+                          className="input_halfRegister"
+                          // label="License ID"
+                          name="drivingLicence"
+                          type="text"
+                          placeholder="License ID"
+                        />
+                      </div>
+                    </div>
+                    <div className="inputField_Register">
+                      {" "}
+                      <span>
+                        <i aria-hidden="true" className="fa fa-envelope"></i>
+                      </span>
+                      <TextField
+                        className="input_Register"
+                        // label="Phone Number"
+                        name="phoneNumber"
+                        placeholder="Contact Numbe (07_ _ _ _ _ _ _ _)"
+                        type="text"
+                      />
+                    </div>
+                    <div className="full_name_Register">
+                      <div className="inputField_Register">
+                        {" "}
+                        <span>
+                          <i aria-hidden="true" className="fa fa-lock"></i>
+                        </span>
+                        <input
+                          className="input_halfRegister"
+                          type="text"
+                          name="password"
+                          placeholder="Password"
+                          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                          required
+                          // onChange={(e) => {
+                          //   setPassword(e.target.value);
+                          // }}
+                        />
+                      </div>
+                      <div className="inputField_Register">
+                        {" "}
+                        <span>
+                          <i aria-hidden="true" className="fa fa-lock"></i>
+                        </span>
+                        <TextField
+                          className="input_halfRegister"
+                          placeholder="Re-type Password"
+                          // label="Confirm Password"
+                          name="confirmPassword"
+                          type="password"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <button className="button_Register" type="submit">
+                        Register
+                      </button>
+                      <button className="button_Reset" type="reset">
+                        Reset
+                      </button>
+                    </div>
+                  </Form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </Formik>

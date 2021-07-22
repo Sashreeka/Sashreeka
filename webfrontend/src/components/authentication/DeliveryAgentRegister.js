@@ -1,268 +1,266 @@
-import React from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Formik, Form } from "formik";
+import { TextField } from "./TextField";
+import * as Yup from "yup";
+
 import axios from "axios";
-// import { Link } from 'react-dom' ;
 
-// CSS file
-import "./DeliveryAgentRegister.css";
+export default function DeliverAgentRegister() {
+  const [phoneNumberList, setPhoneNumberList] = useState([]);
 
-function DeliveryAgentRegister() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [nic, setNic] = useState("");
-  const [drivingLicence, setDrivingLicence] = useState("");
-  const [address, setAddress] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordCheck, setPasswordCheck] = useState("");
+  // getting the pgone numbers by an array
+  useEffect(() => {
+    axios.get("http://localhost:4000/user/getPhoneNumber").then((response) => {
+      console.log(response.data);
+      setPhoneNumberList(response.data);
+      // const finalResult = phoneNumberList.find((item) => {
+      //   return item.phoneNumber === "0713705751";
+      // });
+      // console.log(finalResult);
+    });
+  }, []);
 
-  const registerAgent = (e) => {
-    // e.preventDefault(); // prevent default function of e
-    alert("Created new User");
-    // console.log(phoneNumber);
-    // console.log(password);
-
-    // const newUser = {
-    //   phoneNumber,
-    //   password,
-    //   email,
-    //   firstName,
-    //   lastName,
-    //   nic,
-    //   drivingLicence,
-    //   address,
-    //   passwordCheck,
-    // };
-
-    axios
-      .post(
-        "http://localhost:4000/user/registerAgent",
-        // newUser
-        {
-          phoneNumber: phoneNumber,
-          password: password,
-          email: email,
-          firstName: firstName,
-          lastName: lastName,
-          nic: nic,
-          drivingLicence: drivingLicence,
-          address: address,
-          passwordCheck: passwordCheck,
-        }
-      )
-      //   console.log("Inside register agent function")
-      .then((response) => {
-        // console.log(response.data.token);
-        // console.log(response.data.message);
-        console.log(response);
-        // console.log(response.data[0].userCategory);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const checkPhoneNum = (num) => {
+    phoneNumberList.find((item) => {
+      return item.phoneNumber === num;
+    });
+    alert(num);
+    return true;
   };
 
-  // const checkValidation=(e)
-
-  
-
-  // UI of registration of delivery agent
+  const validate = Yup.object({
+    firstName: Yup.string()
+      //   .max(15, "Must be 15 characters or less")
+      .required("Required"),
+    lastName: Yup.string()
+      //   .max(20, "Must be 20 characters or less")
+      .required("Required"),
+    address: Yup.string()
+      //   .max(20, "Must be 20 characters or less")
+      .required("Required"),
+    nic: Yup.string()
+    // .equals(10, "Must be 10 characters")
+    .required("Required"),
+    drivingLicence: Yup.string()
+      // .equals(9, "Must be 9 characters")
+      .required("Required"),
+    phoneNumber: Yup.string()
+      .matches("[0]{1}[7]{1}[0-9]{8}", "Phone Number is not Valid")
+      //   .max(20, "Must be 20 characters or less")
+      // .checkPhoneNum("0713705751")
+      .required("Required"),
+    email: Yup.string().email("Email is invalid").required("Email is required"),
+    password: Yup.string()
+      .min(8, "Password must be at least 8 charaters")
+      .required("Password is required")
+      .matches(
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+        "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
+      ),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref("password"), null], "Password must match")
+      .required("Confirm password is required"),
+  });
   return (
-    <div>
-      {/* <h1>This is Delivery Agent Register</h1> */}
-      <div className="form_wrapper_Register">
-        <div className="form_container_Register">
-          <div className="title_container_Register">
-            <h2>Registration of a Delivery Agent</h2>
-          </div>
-          <div className="row_Register clearfix_Register">
-            <div className="">
-              <form onSubmit={registerAgent}>
-                <div className="full_name_Register">
-                  <div className="inputField_Register">
-                    {" "}
-                    <span>
-                      <i aria-hidden="true" className="fa fa-envelope"></i>
-                    </span>
-                    <input
-                      className="input_halfRegister"
-                      type="text"
-                      name="firstName"
-                      placeholder="First Name"
-                      required
-                      onChange={(e) => {
-                        setFirstName(e.target.value);
-                      }}
-                    />
-                  </div>
+    <Formik
+      initialValues={{
+        firstName: "",
+        lastName: "",
+        address: "",
+        nic: "",
+        drivingLicence: "",
+        email: "",
+        phoneNumber: "",
+        password: "",
+        confirmPassword: "",
+      }}
+      validationSchema={validate}
+      onSubmit={(values) => {
+        if (checkPhoneNum(values.phoneNumber) === false) {
+          alert("Please enter a different phone number.");
+        } else {
+          alert(values.password);
+          axios
+            .post("http://localhost:4000/user/registerFarmer", {
+              phoneNumber: values.phoneNumber,
+              password: values.password,
+              email: values.email,
+              firstName: values.firstName,
+              lastName: values.lastName,
+              nic: values.nic,
+              drivingLicence: values.drivingLicence,
+              address: values.address,
+              passwordCheck: values.passwordCheck,
+            })
+            //   console.log("Inside register agent function")
+            .then((response) => {
+              // console.log(response.data.token);
+              // console.log(response.data.message);
+              //console.log(response);
+              // console.log(response.data[0].userCategory);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }
 
-                  <div className="inputField_Register">
-                    {" "}
-                    <span>
-                      <i aria-hidden="true" className="fa fa-envelope"></i>
-                    </span>
-                    <input
-                      className="input_halfRegister"
-                      type="text"
-                      name="lastName"
-                      placeholder="Last Name"
-                      required
-                      onChange={(e) => {
-                        setLastName(e.target.value);
-                      }}
-                    />
-                  </div>
+        // console.log(values);
+      }}
+    >
+      {(formik) => (
+        <div>
+          <div className="form_wrapper_Register">
+            <div className="form_container_Register">
+              <div className="title_container_Register">
+                <h2>Registration of a Delivery Agent</h2>
+              </div>
+              <div className="row_Register clearfix_Register">
+                <div className="">
+                  <Form>
+                    <div className="full_name_Register">
+                      <div className="inputField_Register">
+                        {" "}
+                        <span>
+                          <i aria-hidden="true" className="fa fa-envelope"></i>
+                        </span>
+                        <TextField
+                          className="input_halfRegister"
+                          // label="First Name"
+                          name="firstName"
+                          type="text"
+                          placeholder="First Name"
+                        />
+                      </div>
+
+                      <div className="inputField_Register">
+                        {" "}
+                        <span>
+                          <i aria-hidden="true" className="fa fa-envelope"></i>
+                        </span>
+                        <TextField
+                          className="input_halfRegister"
+                          placeholder="Last Name"
+                          // label="last Name"
+                          name="lastName"
+                          type="text"
+                        />
+                      </div>
+                    </div>
+                    <div className="inputField_Register">
+                      {" "}
+                      <span>
+                        <i aria-hidden="true" className="fa fa-envelope"></i>
+                      </span>
+                      <TextField
+                        className="input_halfRegister"
+                        placeholder="Address"
+                        // label="address"
+                        name="address"
+                        type="text"
+                      />
+                    </div>
+                    <div className="inputField_Register">
+                      {" "}
+                      <span>
+                        <i aria-hidden="true" className="fa fa-envelope"></i>
+                      </span>
+                      <TextField
+                        className="input_halfRegister"
+                        placeholder="Email"
+                        // label="Email"
+                        name="email"
+                        type="email"
+                      />
+                    </div>
+                    <div className="full_name_Register">
+                      <div className="inputField_Register">
+                        {" "}
+                        <span>
+                          <i aria-hidden="true" className="fa fa-envelope"></i>
+                        </span>
+                        <TextField
+                          className="input_halfRegister"
+                          // label="National ID"
+                          name="nic"
+                          type="text"
+                          placeholder="National ID"
+                        />
+                      </div>
+
+                      <div className="inputField_Register">
+                        {" "}
+                        <span>
+                          <i aria-hidden="true" className="fa fa-envelope"></i>
+                        </span>
+                        <TextField
+                          className="input_halfRegister"
+                          // label="License ID"
+                          name="drivingLicence"
+                          type="text"
+                          placeholder="License ID"
+                        />
+                      </div>
+                    </div>
+                    <div className="inputField_Register">
+                      {" "}
+                      <span>
+                        <i aria-hidden="true" className="fa fa-envelope"></i>
+                      </span>
+                      <TextField
+                        className="input_Register"
+                        // label="Phone Number"
+                        name="phoneNumber"
+                        placeholder="Contact Numbe (07_ _ _ _ _ _ _ _)"
+                        type="text"
+                      />
+                    </div>
+                    <div className="full_name_Register">
+                      <div className="inputField_Register">
+                        {" "}
+                        <span>
+                          <i aria-hidden="true" className="fa fa-lock"></i>
+                        </span>
+                        <input
+                          className="input_halfRegister"
+                          type="text"
+                          name="password"
+                          placeholder="Password"
+                          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                          required
+                          // onChange={(e) => {
+                          //   setPassword(e.target.value);
+                          // }}
+                        />
+                      </div>
+                      <div className="inputField_Register">
+                        {" "}
+                        <span>
+                          <i aria-hidden="true" className="fa fa-lock"></i>
+                        </span>
+                        <TextField
+                          className="input_halfRegister"
+                          placeholder="Re-type Password"
+                          // label="Confirm Password"
+                          name="confirmPassword"
+                          type="password"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <button className="button_Register" type="submit">
+                        Register
+                      </button>
+                      {/* <button className="button_Reset" type="reset">
+                        Reset
+                      </button> */}
+                    </div>
+                  </Form>
                 </div>
-
-                <div className="inputField_Register">
-                  {" "}
-                  <span>
-                    <i aria-hidden="true" className="fa fa-envelope"></i>
-                  </span>
-                  <input
-                    className="input_Register"
-                    type="text"
-                    name="address"
-                    placeholder="Residence Address"
-                    required
-                    onChange={(e) => {
-                      setAddress(e.target.value);
-                    }}
-                  />
-                </div>
-
-                <div className="inputField_Register">
-                  {" "}
-                  <span>
-                    <i aria-hidden="true" className="fa fa-envelope"></i>
-                  </span>
-                  <input
-                    className="input_Register"
-                    type="text"
-                    name="email"
-                    placeholder="Email"
-                    required
-                    onChange={(e) => {
-                      setEmail(e.target.value);
-                    }}
-                  />
-                </div>
-
-                <div className="full_name_Register">
-                  <div className="inputField_Register">
-                    {" "}
-                    <span>
-                      <i aria-hidden="true" className="fa fa-envelope"></i>
-                    </span>
-                    <input
-                      className="input_halfRegister"
-                      type="text"
-                      name="nic"
-                      placeholder="National ID"
-                      required
-                      onChange={(e) => {
-                        setNic(e.target.value);
-                      }}
-                    />
-                  </div>
-
-                  <div className="inputField_Register">
-                    {" "}
-                    <span>
-                      <i aria-hidden="true" className="fa fa-envelope"></i>
-                    </span>
-                    <input
-                      className="input_halfRegister"
-                      type="text"
-                      name="drivingLicence"
-                      placeholder="License ID"
-                      required
-                      onChange={(e) => {
-                        setDrivingLicence(e.target.value);
-                      }}
-                    />
-                  </div>
-                </div>
-
-                <div className="inputField_Register">
-                  {" "}
-                  <span>
-                    <i aria-hidden="true" className="fa fa-envelope"></i>
-                  </span>
-                  <input
-                    className="input_Register"
-                    type="text"
-                    name="phoneNumber"
-                    placeholder="Contact Numbe (07_ _ _ _ _ _ _ _)"
-                    pattern="[0]{1}[7]{1}[0-9]{8}"
-                    required
-                    onChange={(e) => {
-                      setPhoneNumber(e.target.value);
-                    }}
-                  />
-                </div>
-                <div className="full_name_Register">
-                  <div className="inputField_Register">
-                    {" "}
-                    <span>
-                      <i aria-hidden="true" className="fa fa-lock"></i>
-                    </span>
-                    <input
-                      className="input_halfRegister"
-                      type="text"
-                      name="password"
-                      placeholder="Password"
-                      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                      required
-                      onChange={(e) => {
-                        setPassword(e.target.value);
-                      }}
-                    />
-                  </div>
-                  <div className="inputField_Register">
-                    {" "}
-                    <span>
-                      <i aria-hidden="true" className="fa fa-lock"></i>
-                    </span>
-                    <input
-                      className="input_halfRegister"
-                      type="text"
-                      name="password_check"
-                      placeholder="Re-type Password"
-                      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                      required
-                      onChange={(e) => {
-                        setPasswordCheck(e.target.value);
-                      }}
-                    />
-                  </div>
-                </div>
-                <p className="smallTextRegister">
-                  Password must contain at least a <b> number</b> ,
-                  <b>uppercase letter</b> , <b>lowercase letter</b> and{" "}
-                  <b>8 or more characters</b>
-                </p>
-
-                {/* <div className="checkbox_Register">
-                  <input type="checkbox" id="cb1" />
-                  <label>I accept the Terms and Conditions</label>
-                </div> */}
-
-                <button
-                  className="button_Register"
-                  type="submit"
-                  // onClick={registerAgent}
-                >
-                  Register
-                </button>
-              </form>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      )}
+    </Formik>
   );
 }
-
-export default DeliveryAgentRegister;

@@ -129,7 +129,8 @@
 
 .form_wrapper_Register .input_halfRegister {
   width: 99%;
-  padding: 8px 2px 9px 35px;
+  padding: 8px 10px 9px 35px;
+  /* padding: 8px 2px 9px 35px; */
   height: 35px;
   border: 1px solid #ccc;
   box-sizing: border-box;
@@ -349,6 +350,25 @@
   opacity: 0.8;
 }
 
+.button_Reset {
+  background: linear-gradient(180deg, orange 2.08%, yellow 95.83%);
+  border-radius: 10px;
+  color: black;
+  padding: 3px 5px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 90%;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.button_Reset:hover {
+  opacity: 0.8;
+}
+
 @-webkit-keyframes check {
   0% {
     height: 0;
@@ -479,3 +499,7 @@
     padding-bottom: 20px;
   }
 }
+/* 
+.spanClass {
+  margin-bottom: 0 !important;
+} */

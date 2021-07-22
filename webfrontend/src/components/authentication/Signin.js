@@ -91,11 +91,11 @@ function Signin() {
                 Don't have an account?
               </Link>
             </div>
-            <div className="login_left">
+            {/* <div className="login_left">
               <Link className="login_acc" to="/signup">
                 Sign Up
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
