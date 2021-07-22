@@ -24,20 +24,21 @@ function Home() {
   return (
     <div>
       <section class="home" id="home">
-        <div class="content">
-          <h3>Welcome to Shashreeka </h3>
+        <div class="content1">
+          <h3>Welcome to Sashreeka </h3>
           <h4>The Best Online Organic Fertilizer Market</h4>
           <p>
-            Shashreeka recognized that the growing demand for organic crop
+            Sashreeka recognized that the growing demand for organic crop
             farming required an increased focus on providing an all-natural
             solution to boost soil nutrition. Rather than make unproven claims
             about our fertilizer, we focus on education,testing, and proper use
             to document results. This process may be slower, but it ensures that
             we support the growth of sustainable agriculture around the world.
           </p>
-          <a href="./regFarmer" class="btn">
-            Get Started
-          </a>
+         
+          <a href="./regFarmer" class="homebtn">
+              <button className="homebtn">Get Started</button>
+            </a>
         </div>
 
         <div class="image">
@@ -145,7 +146,7 @@ function Home() {
               Inventore voluptas nemo placeat. Voluptas.
             </p>
             <a href="./about">
-              <button className="btn">Read More</button>
+              <button className="homebtn">Read More</button>
             </a>
           </div>
         </div>
@@ -160,7 +161,7 @@ function Home() {
               Inventore voluptas nemo placeat. Voluptas.
             </p>
             <a href="./store">
-              <button className="btn">Buy Now</button>
+              <button className="homebtn">Buy Now</button>
             </a>
           </div>
           <div className="image">
@@ -181,7 +182,7 @@ function Home() {
               Inventore voluptas nemo placeat. Voluptas.
             </p>
             <a href="./fertilizer">
-              <button className="btn">Read More</button>
+              <button className="homebtn">Read More</button>
             </a>
           </div>
         </div>
@@ -196,7 +197,7 @@ function Home() {
               Inventore voluptas nemo placeat. Voluptas.
             </p>
             <a href="./regAgent">
-              <button className="btn">Join With Us</button>
+              <button className="homebtn">Join With Us</button>
             </a>
           </div>
           <div className="image">
