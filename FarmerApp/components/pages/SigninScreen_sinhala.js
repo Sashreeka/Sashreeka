@@ -12,20 +12,15 @@ import { StyleSheet,
     TextInput,
     StatusBar
   } from 'react-native';
-
   import * as Animatable from 'react-native-animatable';
-
   import { LinearGradient } from 'expo-linear-gradient';
-  
   import { MaterialIcons } from '@expo/vector-icons';
   import { FontAwesome } from '@expo/vector-icons';
   import { Feather } from '@expo/vector-icons';
   import colors from '../../assets/colors/colors';
-
- // import { AuthContext } from '../context/context';
-  //import { AuthContext } from '../context';
-
   import { AuthContext } from '../context/context';
+
+
 export default function SigninScreen({navigation}) {
 
   const [data,setData]=useState({
@@ -51,11 +46,7 @@ export default function SigninScreen({navigation}) {
         telephone:val,
         check_textInputChange:false
       });
-
-
     }
-
-
   }
 
   const handlePasswordChange =(val) =>{
@@ -64,8 +55,6 @@ export default function SigninScreen({navigation}) {
       password:val
     });
   }
-
-
   const updateSecureTextEntry =(val) =>{
     setData({
       ...data,
@@ -73,27 +62,21 @@ export default function SigninScreen({navigation}) {
     });
   }
 
-  // const loginHandle = (username, password)=>{
-  //   signIn(username,password);
-  // }
-
     return (
         <View style={styles.container}>
           <StatusBar backgroundColor={colors.primary} barStyle="light-content"/>
           <View style={styles.header}>
               <Animatable.Image
-              animation="bounceIn"
-              duration={2000}
-                source={require('../../assets/images/logo.png')}
-                style={styles.logo}
-                resizeMode="stretch"
+                  animation="bounceIn"
+                  duration={2000}
+                  source={require('../../assets/images/logo.png')}
+                  style={styles.logo}
+                  resizeMode="stretch"
               />
-              <Text style={styles.text_header}>Welcome!</Text>
+              <Text style={styles.text_header}>සාදරයෙන් පිළිගනිමු!</Text>
           </View>
-          <Animatable.View style={styles.footer}
-          animation="fadeInUpBig"
-          >
-              <Text style={styles.text_footer}>Telephone</Text>
+          <Animatable.View style={styles.footer} animation="fadeInUpBig">
+              <Text style={styles.text_footer}>දුරකථන අංකය</Text>
               <View style={styles.action}>
                 <FontAwesome
                   name="mobile"
@@ -107,8 +90,7 @@ export default function SigninScreen({navigation}) {
                   onChangeText={(val)=>textInputChange(val)}
                 />
                 {data.check_textInputChange ? 
-                <Animatable.View
-                animation='bounceIn'>
+                <Animatable.View animation='bounceIn'>
                 <Feather
                   name="check-circle"
                   color="#217756"
@@ -119,7 +101,7 @@ export default function SigninScreen({navigation}) {
               </View>
 
 
-              <Text style={[styles.text_footer,{marginTop:35}]}>Password</Text>
+              <Text style={[styles.text_footer,{marginTop:35}]}>මුරපදය</Text>
               <View style={styles.action}>
                 <FontAwesome
                   name="lock"
@@ -132,56 +114,40 @@ export default function SigninScreen({navigation}) {
                   autoCapitalize="none"
                   secureTextEntry={data.secureTextEntry ?true: false}
                   onChangeText={(val)=>handlePasswordChange(val)}
-                
                 />
 
                 <TouchableOpacity
-                onPress={updateSecureTextEntry}>
-                {data.secureTextEntry ?
+                    onPress={updateSecureTextEntry}>
+                    {data.secureTextEntry ?
                   <Feather
                     name="eye-off"
                     color="grey"
                     size={20}
-                  />
+                    />
                   :
-
                   <Feather
                     name="eye"
                     color="grey"
                     size={20}
-                  />
-                }
+                    />
+                    }
                 </TouchableOpacity>
-
-                
-               
               </View>
-
-             
-              
-              
-
-              
-
 
               <View style={styles.button}>
                  <TouchableOpacity
-                 style={styles.signIn}
-               //  onPress={()=>{loginHandle(data.username,data.password)}}
-                 onPress={()=>{signIn(data.telephone,data.password)}}
-                 >
+                      style={styles.signIn}
+                      onPress={()=>{signIn(data.telephone,data.password)}}
+                      >
                     <LinearGradient
-                     colors={['#80B953','#2C9984']}
-                    // colors={['#217756','#FFFFFF']}
-                    style={styles.signIn}
-                    >
+                      colors={['#80B953','#2C9984']}
+                      style={styles.signIn}
+                      >
                     <Text
-                    style={[styles.textSign,{
+                      style={[styles.textSign,{
                       color:'#fff'
-                    }]}
-                    >Sign In</Text>
-
-
+                      }]}
+                      >ඉදිරියට යන්න</Text>
                     </LinearGradient>
                   </TouchableOpacity>   
 
@@ -192,7 +158,7 @@ export default function SigninScreen({navigation}) {
 
                 <Text style={styles.forget} 
                   onPress={()=>navigation.navigate('ForgetPassword')}
-                >Forget Password</Text>
+                >මුර පදය අමතකද?</Text>
 
 
           </Animatable.View>

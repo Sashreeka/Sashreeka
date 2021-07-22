@@ -17,7 +17,24 @@ Feather.loadFont();
 
 export default Main = ({navigation})=>{
 
+    var getInitialState=() =>{
+        return {
+            color: 'orange',
+          backgroundColor: 'rgba(0,0,0,.1)'
+        }
+      }
+
+    _changeStyle=()=>{
+        this.setstate({
+            color:color,
+            backgroundColor:backgroundColor
+        })
+    }
+
     
+    const delivery_accepted_button=()=>{
+
+    }
 
     const orderstatus=(flag)=>{
         if(flag===0){
@@ -61,6 +78,7 @@ export default Main = ({navigation})=>{
 
                 <View style={styles.itemratingcardcontainer}>
                 <View style={styles.center}>
+                    
                         <View>
                             <Text>Summary</Text>    
                         </View>
@@ -71,49 +89,75 @@ export default Main = ({navigation})=>{
                             <Text style={styles.textRegular}>Date: 2021-06-21</Text> 
                             <Text style={styles.textRegular}>Payment Method: cash</Text>
                             <Text style={styles.textRegular}>Order Status:{orderstatus(1)} </Text> 
-                            <TouchableOpacity>
+                            <TouchableOpacity className="accept_button" onPress={()=>_changeStyle()} >
                             <View>
                                 <Text >Confirm Delivery by clicking :
-                                <View style={{backgroundColor:"green",width:130,height:30, top:20}}><Text>Delivery Recieved</Text></View>
+                                <View style={{backgroundColor:"green",width:130,height:30, top:20, borderRadius:15, }}>
+                                    <Text style={{paddingTop:3, color:"white", paddingLeft:5}}>Delivery Recieved</Text></View>
                                 </Text>
                             </View>
                             </TouchableOpacity>                      
                         </View>
-                        <View>
-                            <Text></Text>                        
-                        </View>
+                       
                 </View>
                     
                 </View>
             </View>  
 
-
-
-            {/* <View style={styles.itemCardWrapOuter}>
+            <Text style={{paddingLeft:30, paddingTop:20,fontWeight:'bold'}}>Ordered Items List</Text>
+            <View style={styles.itemDetailcardWrapper2}>
+                <View style={{padding:20}}>
+                        <View style={styles.itemCardWrapOuter}>
                             <View style={styles.itemcardLeft}>
                                 <View style={styles.itemWrapperMain}>
-                                    <Text style={styles.itemTitleMain} >{val.name}</Text>  
+                                    <Text style={styles.itemTitleMain} >Bio vermi Compost</Text>  
                                 </View>
-                                <View style={styles.itemDescriptionWrapper}>
-                                    <Text style={styles.itemDescription}>{val.caption}</Text>
+                                
+                                <View>
+                                    <Text style={styles.itemDescription}>Item unit: 4kg X 3 </Text>
                                 </View>
                                 <View>
-                                    <Text style={styles.itemDescription}>Item unit: {val.unitWeight}{val.measurementUnit}</Text>
+                                    <Text style={styles.itemValue}>Rs.7608.00</Text>
                                 </View>
                                 <View>
-                                    <Text style={styles.itemValue}>Rs.{parseInt(val.unitPrice*(100-val.offer)/100)}.00</Text>
-                                    <Text style={styles.itemValueWithoutOffer}>Rs.{val.unitPrice}.00</Text>
+                                    <Text style={styles.itemValueWithoutOffer}>Rs.8430.00</Text>
                                 </View>
                                 
                                
                             </View>
                             <View style={styles.itemcardRight}>
-                                <Image source={{uri: `${val.photo}` }} style={styles.itemcardimage} />
-                                <View style={{backgroundColor:"green",width:70,height:30,borderRadius:20}}>
-                                <Text style={{fontSize:25,paddingLeft:15,marginTop:-3,color:"yellow"}}>+ <FontAwsome name="shopping-cart" size={22} color={colors.ratingStarColor}></FontAwsome></Text>
+                                <Image source={{uri: `https://m.media-amazon.com/images/I/61NDpj1AUWL._SX466_.jpg` }} style={styles.itemcardimage} />
                             </View>
+                         </View>
+                    </View>
+                </View>
+
+                <View style={styles.itemDetailcardWrapper2}>
+                <View style={{padding:20}}>
+                        <View style={styles.itemCardWrapOuter}>
+                            <View style={styles.itemcardLeft}>
+                                <View style={styles.itemWrapperMain}>
+                                    <Text style={styles.itemTitleMain} >Bio vermi Compost</Text>  
+                                </View>
+                                
+                                <View>
+                                    <Text style={styles.itemDescription}>Item unit: 4kg X 3 </Text>
+                                </View>
+                                <View>
+                                    <Text style={styles.itemValue}>Rs.7608.00</Text>
+                                </View>
+                                <View>
+                                    <Text style={styles.itemValueWithoutOffer}>Rs.8430.00</Text>
+                                </View>
+                                
+                               
                             </View>
-                         </View> */}
+                            <View style={styles.itemcardRight}>
+                                <Image source={{uri: `http://www.biopowerlanka.com/images/bio-gold.jpg` }} style={styles.itemcardimage} />
+                            </View>
+                         </View>
+                    </View>
+                </View>
 
 
 
@@ -363,7 +407,7 @@ const styles=StyleSheet.create({
     },
 
     itemsWrapper:{
-        paddingHorizontal:20,
+        paddingHorizontal:10,
         paddingVertical:10,
      },
  
@@ -376,7 +420,7 @@ const styles=StyleSheet.create({
          backgroundColor:colors.background,
          borderRadius:15,
          paddingTop:20,
-         paddingLeft:20,
+         paddingLeft:10,
          paddingBottom:20,
          flexDirection:"row",
          shadowColor:"black",
@@ -438,24 +482,25 @@ const styles=StyleSheet.create({
          // backgroundColor:"red",
          flexDirection:"row",
          flexWrap:'wrap',
-         marginRight:20,
+         marginRight:0,
          justifyContent:"space-around",
      },
      
      itemcardLeft:{
          // backgroundColor:'yellow',
-         width:"55%",
+         width:"65%",
      },
      itemcardRight:{
          // backgroundColor:'blue',
-         width:"45%",
+         width:"35%",
          alignItems:"flex-end",
      },
      
      itemcardimage:{
-         width:140,
+         width:130,
          height:150,
          resizeMode:"contain",
+         margin:10,
      
      },
  

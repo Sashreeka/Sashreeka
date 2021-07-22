@@ -46,7 +46,7 @@ export default Main = ({navigation})=>{
                  <View style={styles.detailsView}>
                     <Text style={styles.itemHeader}>Manure</Text>
                     <View>
-                    <Text style={styles.itemPrice}>item unit : 10KG</Text>
+                    <Text style={styles.itemPrice}>item unit : 5KG</Text>
                     <View>
                         <Text style={styles.itemValue}>Rs.950.00</Text>
                         <Text style={styles.itemValueWithoutOffer}>Rs.1000.00</Text>
