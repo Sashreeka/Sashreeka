@@ -50,7 +50,7 @@ function Footer() {
                     <a href="#">Home</a>
                   </li>
                   <li className="my-2">
-                    <a href="#">About Us</a>
+                    <a href="./about">About Us</a>
                   </li>
                   <li className="my-2">
                     <a href="#">Services</a>
@@ -66,10 +66,10 @@ function Footer() {
                 <hr className="undertopic"></hr>
                 <ul className="list-unstyled">
                   <li className="my-3">
-                    <a href="#">Organic Fertilizer shop</a>
+                    <a href="./store">Organic Fertilizer shop</a>
                   </li>
                   <li className="my-3">
-                    <a href="#">Organic Fertilizer Hand book</a>
+                    <a href="./fertilizer">Organic Fertilizer Hand book</a>
                   </li>
                   <li className="my-3">
                     {/* Directs to delivery Agent Registration */}
