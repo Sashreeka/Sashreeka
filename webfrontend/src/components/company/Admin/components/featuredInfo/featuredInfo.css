@@ -1,14 +1,16 @@
 .featured {
   width: 98%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   text-align: center;
   margin: 5px;
+  margin-bottom: 20px;
 }
 
 .featuredItem {
   /* flex: 1; */
   margin: 5px;
+  width: 350px;
   /* padding: 30px; */
   /* border-radius: 10px; */
   cursor: pointer;
@@ -31,6 +33,7 @@
   margin: 5px 0px;
   display: flex;
   align-items: center;
+  justify-content: space-around;
   font-size: 18px;
 }
 

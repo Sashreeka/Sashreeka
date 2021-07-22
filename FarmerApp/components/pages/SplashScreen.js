@@ -17,6 +17,7 @@ import { StyleSheet,
   import { LinearGradient } from 'expo-linear-gradient';
   
   import { MaterialIcons } from '@expo/vector-icons';
+import { Directions } from 'react-native-gesture-handler';
 export default function SplashScreen({navigation}) {
     return (
         <View style={styles.container}>
@@ -33,26 +34,47 @@ export default function SplashScreen({navigation}) {
 
            <Animatable.View style={styles.footer}
            animation="fadeInUpBig">
-            <Text style={styles.title}>සශ්‍රීක හා එක්වන්න</Text>
+            <Text style={styles.title}>Join with Sashreeka</Text>
+            <Text style={styles.title2}>සශ්‍රීක හා එක්වන්න</Text>
             {/* <Text style={styles.title}>Stay connected with Shashreeka</Text> */}
-            <Text style={styles.text}>Sign in with account</Text>
+            <Text style={styles.textbeauty}>Choose your Language</Text>
+
+
+            {/*********************************************************/}
             <View style={styles.button}>
+            <TouchableOpacity 
+            onPress={()=>navigation.navigate('SigninScreen_sinhala')}
+            >
+              <LinearGradient
+              colors={['#08d4c4,#01ab9d']}
+              style={styles.signIn}>
+                <Text style={styles.textSign}>සිංහල</Text>
+              </LinearGradient>
+            </TouchableOpacity>
+
             <TouchableOpacity 
             onPress={()=>navigation.navigate('SigninScreen')}
             >
               <LinearGradient
               colors={['#08d4c4,#01ab9d']}
               style={styles.signIn}>
-                <Text style={styles.textSign}>ආරම්භ කරන්න</Text>
-                <MaterialIcons
-                  name="navigate-next"
-                  color="#fff"
-                  size={20}
-                />
+                <Text style={styles.textSign}>English</Text>
+              </LinearGradient>
+            </TouchableOpacity>
+
+            <TouchableOpacity 
+            onPress={()=>navigation.navigate('SigninScreen')}
+            >
+              <LinearGradient
+              colors={['#08d4c4,#01ab9d']}
+              style={styles.signIn}>
+                <Text style={styles.textSign}>தமிழ்</Text>
+                
 
               </LinearGradient>
             </TouchableOpacity>
             </View>
+            {/*********************************************************/}
 
            </Animatable.View>
             
@@ -93,16 +115,29 @@ const styles = StyleSheet.create({
       fontSize:30,
       fontWeight:'bold',
     },
+    title2:{
+      color:'#05375a',
+      fontSize:25,
+      fontWeight:'bold',
+    },
     text:{
       color:"grey",
       marginTop:5,
     },
-    button:{
-      alignItems:'flex-end',
+    textbeauty:{
       marginTop:30,
+      color:"grey",
+      // backgroundColor:"red",
+    },
+    button:{
+      display:"flex",
+      flexDirection:"row",
+      justifyContent:'space-between',
+      marginTop:10,
+      // backgroundColor:"yellow",
     },
     signIn:{
-      width:150,
+      width:100,
       height:40,
       justifyContent:'center',
       alignItems:'center',

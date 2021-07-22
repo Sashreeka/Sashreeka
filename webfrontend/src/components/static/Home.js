@@ -24,20 +24,21 @@ function Home() {
   return (
     <div>
       <section class="home" id="home">
-        <div class="content">
-          <h3>Welcome to Shashreeka </h3>
+        <div class="content1">
+          <h3>Welcome to Sashreeka </h3>
           <h4>The Best Online Organic Fertilizer Market</h4>
           <p>
-            Shashreeka recognized that the growing demand for organic crop
+            Sashreeka recognized that the growing demand for organic crop
             farming required an increased focus on providing an all-natural
             solution to boost soil nutrition. Rather than make unproven claims
             about our fertilizer, we focus on education,testing, and proper use
             to document results. This process may be slower, but it ensures that
             we support the growth of sustainable agriculture around the world.
           </p>
-          <a href="./regFarmer" class="btn">
-            Get Started
-          </a>
+         
+          <a href="./regFarmer" class="homebtn">
+              <button className="homebtn">Get Started</button>
+            </a>
         </div>
 
         <div class="image">
@@ -139,13 +140,12 @@ function Home() {
           <div className="content">
             <h3>About</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde
-              voluptatem, tempore hic deserunt vel temporibus aperiam recusandae
-              ratione, obcaecati at qui accusamus enim, laudantium eveniet.
-              Inventore voluptas nemo placeat. Voluptas.
+            With the recent chemical fertilizer prohibition, the demand for organic fertilizer has grown. But farmers are struggling to find chemical fertilizer as there is less connection between farmers and vendors. 
+            Or there aren't many ways to transport fertilizer to their farming lands. Therefore, there is a need to promote the organic fertilizer market to the farming community and establish a systematic delivery process.
+
             </p>
             <a href="./about">
-              <button className="btn">Read More</button>
+              <button className="homebtn">Read More</button>
             </a>
           </div>
         </div>
@@ -154,13 +154,11 @@ function Home() {
           <div className="content">
             <h3>Fertilizer Store</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde
-              voluptatem, tempore hic deserunt vel temporibus aperiam recusandae
-              ratione, obcaecati at qui accusamus enim, laudantium eveniet.
-              Inventore voluptas nemo placeat. Voluptas.
+            Organic Fertilizer is Dominating.Chemical fertilizer is harmful for body. Chemical fertilizer is harmful for bodyChemical fertilizer is harmful for body. Chemical fertilizer is harmful for bodyChemical fertilizer is harmful for body. Chemical fertilizer is harmful for bodyChemical fertilizer is harmful for body. Chemical.
+            We have many Oraganic fertilizer products. Our designed system is a platform for fertilizer manufacturing/ dealing  company to show their all-organic fertilizer product as well as, it is a good opportunity for  farmers to find the needed stocks of fertilizer products on the same platform
             </p>
             <a href="./store">
-              <button className="btn">Buy Now</button>
+              <button className="homebtn">Buy Now</button>
             </a>
           </div>
           <div className="image">
@@ -175,13 +173,12 @@ function Home() {
           <div className="content">
             <h3>Fertilizer Handbook</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde
-              voluptatem, tempore hic deserunt vel temporibus aperiam recusandae
-              ratione, obcaecati at qui accusamus enim, laudantium eveniet.
-              Inventore voluptas nemo placeat. Voluptas.
+            There is a Fertilizer Handbook for farmers.
+            Organic Fertilizer is Dominating.Chemical fertilizer is harmful for body. Chemical fertilizer is harmful for bodyChemical fertilizer is harmful for body. Chemical fertilizer is harmful for bodyChemical fertilizer is harmful for body. Chemical fertilizer is harmful for bodyChemical fertilizer is harmful for body. Chemical.
+            We have many Oraganic fertilizer products.
             </p>
             <a href="./fertilizer">
-              <button className="btn">Read More</button>
+              <button className="homebtn">Read More</button>
             </a>
           </div>
         </div>
@@ -190,13 +187,17 @@ function Home() {
           <div className="content">
             <h3>Delivery Service</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde
-              voluptatem, tempore hic deserunt vel temporibus aperiam recusandae
-              ratione, obcaecati at qui accusamus enim, laudantium eveniet.
-              Inventore voluptas nemo placeat. Voluptas.
+            Searching For Extra Earning? Shasreeka is the  best opportunity to for you vehical service. Join as our delivery agent and be a main part of the organic fertilizer supply chain of the country.You can Log in to the system. Receive alerts on deliveries.
+View delivery locations,
+Receive cash payments on delivery,Report delivered orders to the company.
+,Report issues with deliveries.
+,View upcoming deliveries.
+,View delivery history.
+,Set availability of delivery agent.
+
             </p>
             <a href="./regAgent">
-              <button className="btn">Join With Us</button>
+              <button className="homebtn">Join With Us</button>
             </a>
           </div>
           <div className="image">

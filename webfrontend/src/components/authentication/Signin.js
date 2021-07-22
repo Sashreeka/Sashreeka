@@ -68,7 +68,7 @@ function Signin() {
             </label>
             <input
               className="loginInput"
-              type="text"
+              type="password"
               name="password"
               placeholder="password"
               onChange={(e) => {

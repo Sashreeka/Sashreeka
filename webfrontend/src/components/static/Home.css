@@ -51,11 +51,13 @@ section{
 .home .content1 h3{
     font-size: 3.5rem;
     color:#006600;
+    
+    font-weight:100px ;
     text-transform: uppercase;
 }
 
 .home .content1 h4{
-    color:#5fdb43;
+    color:black;
     text-transform: uppercase;
     font-size:2rem;
 }
@@ -72,7 +74,8 @@ section{
     
     text-align: center;
     border-radius: 5rem;
-    background-color:#2e8f17;
+    /*background-color:#2e8f17;*/
+    background: linear-gradient(180deg, #80b953 2.08%, #2c9984 95.83%);
     font-size: 1.5rem;
     color:white;
     cursor: pointer;

@@ -11,10 +11,10 @@ export default function Home() {
     return (
         <div className="adminHome"> 
 
-        <FeaturedInfo/>
-        <Chart data={UserData} title="User Analytics" grid dataKey="Active User"/>
+            <FeaturedInfo/>
+            <Chart data={UserData} title="User Analytics" grid dataKey="Active User"/>
 
-        <div className="homeWidgets">
+            <div className="homeWidgets">
                 <WidgetSm/>
                <WidgetLg/>
               

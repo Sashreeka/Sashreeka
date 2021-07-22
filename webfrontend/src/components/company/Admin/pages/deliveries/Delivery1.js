@@ -9,7 +9,7 @@ export default function Delivery() {
 
     return(
         <div className="deliveryCon">
-            <Sidebar/>
+            <Sidebar title="delivery"/>
             <div className="delivery">
                 <h1>hello : this is delivery page</h1>
                 <div  className="chartdiv">

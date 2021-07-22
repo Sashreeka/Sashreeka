@@ -16,7 +16,7 @@ function Test() {
               name="phoneNumber"
               placeholder="phoneNumber"
               onChange={(e) => {
-                setPhoneNumber(e.target.value);
+               // setPhoneNumber(e.target.value);
               }}
             />
 

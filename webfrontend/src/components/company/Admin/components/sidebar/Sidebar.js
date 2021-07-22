@@ -10,7 +10,7 @@ import {LineStyle,Timeline,TrendingUp,Person, WebAsset,AttachMoney,BarChart,Mail
  import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew'; 
 import { Link } from 'react-router-dom';
 
-export default function Sidebar() {
+export default function Sidebar({title}) {
 
     const Logout =()=>{
 
@@ -28,22 +28,41 @@ export default function Sidebar() {
                 <div className="sidebarMenu">
                     <h3 className="sidebarTitleNew">Dashboard</h3>
                     <ul className="sidebarList">
-                        <Link to="/" className="link" >
+                    {title==='home'?(<Link to="/" className="link" >
                             <li className="sidebarListItem active">
                                 <HomeIcon className="sidebarIcon"/>
                                 Home
                             </li>
+                        </Link>):
+                        <Link to="/" className="link" >
+                            <li className="sidebarListItem">
+                                <HomeIcon className="sidebarIcon"/>
+                                Home
+                            </li>
                         </Link>
+                        
+                        }
+                        
                         {/* <li className="sidebarListItem">
                             <Timeline className="sidebarIcon"/>
                             Analytics
                         </li> */}
+
+                        {
+                            title==='sales'? ( <Link to="/sales" className="link">
+                        <li className="sidebarListItem active">
+                            <BarChartIcon className="sidebarIcon"/>
+                            Sales
+                        </li>
+                        </Link>):
                         <Link to="/sales" className="link">
                         <li className="sidebarListItem">
                             <BarChartIcon className="sidebarIcon"/>
                             Sales
                         </li>
                         </Link>
+                        }
+                       
                     </ul>
 
                 </div>
@@ -56,28 +75,68 @@ export default function Sidebar() {
                 <div className="sidebarMenu">
                     <h3 className="sidebarTitleNew">Manage</h3>
                     <ul className="sidebarList">
-                    <Link to="/users" className="link">
+
+                    {
+                        title==='users'?(<Link to="/users" className="link">
+                         <li className="sidebarListItem active">
+                            <PeopleIcon className="sidebarIcon"/>
+                            Users
+                        </li>
+
+                    </Link>):
+                    
+                        <Link to="/users" className="link">
                          <li className="sidebarListItem">
                             <PeopleIcon className="sidebarIcon"/>
                             Users
                         </li>
 
                     </Link>
-                    <Link to="/products" className="link">
-                         <li className="sidebarListItem">
+                    
+
+                    }
+                   
+                   {
+                       title==='products'?(
+                        <Link to="/products" className="link">
+                         <li className="sidebarListItem active">
                             <WebAsset className="sidebarIcon"/>
                             Products & Categories
                         </li>
 
                     </Link>
 
-                    <Link to="/delivery" className="link">
+                       ):
+                       <Link to="/products" className="link">
+                         <li className="sidebarListItem">
+                            <WebAsset className="sidebarIcon"/>
+                            Products & Categories
+                        </li>
+
+                    </Link>
+                   }
+                   
+                   {
+                       title==='delivery'?(
+                        <Link to="/delivery" className="link">
+                        <li className="sidebarListItem active">
+                            <AttachMoney className="sidebarIcon"/>
+                            Deliveries
+                        </li>
+
+                    </Link>
+
+                       ):
+                       <Link to="/delivery" className="link">
                         <li className="sidebarListItem">
                             <AttachMoney className="sidebarIcon"/>
                             Deliveries
                         </li>
 
                     </Link>
+                   }
+
+                   
 
                       
                        
@@ -103,14 +162,27 @@ export default function Sidebar() {
                             <AccessibilityNewIcon className="sidebarIcon"/>
                             User Roles & Privilages
                         </li>
-                        
 
-                        <Link to="/staff" className="link">
+                     {
+                         title==='staff'?(
+                            <Link to="/staff" className="link">
+                        <li className="sidebarListItem active">
+                            <PeopleIcon className="sidebarIcon"/>
+                            Company Staff
+                        </li>
+                        </Link>
+
+                         ):
+                         <Link to="/staff" className="link">
                         <li className="sidebarListItem">
                             <PeopleIcon className="sidebarIcon"/>
                             Company Staff
                         </li>
                         </Link>
+
+                     }   
+
+                        
 
 
                         <li className="sidebarListItem">

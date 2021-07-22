@@ -66,13 +66,13 @@ export default function UserList() {
 
   return (
     <div className="userListCon">
-      <Sidebar />
+      <Sidebar title="users"/>
       
       <div className="userList">
       
       <PageShiftButton/>
-      
-        <DataGrid
+  
+        <DataGrid 
           rows={data}
           disableSelectionOnClick
           columns={columns}
