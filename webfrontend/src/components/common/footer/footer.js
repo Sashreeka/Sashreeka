@@ -34,9 +34,11 @@ function Footer() {
                 <h4 className="text-uppercase font-weight-bold">Sashreeka</h4>
                 <hr className="undertopic"></hr>
                 <p className="mt-2">
-                  Lorem Ipsum has been the industry's standard dummy text ever
-                  since the 1500s, when an unknown printer took a galley of type
-                  and scrambled it to make a type specimen booklorem
+                Sashreeka recognized that the growing demand for organic crop
+            farming required an increased focus on providing an all-natural
+            solution to boost soil nutrition. Rather than make unproven claims
+            about our fertilizer, we focus on education,testing, and proper use
+            to document results. 
                 </p>
               </div>
 
