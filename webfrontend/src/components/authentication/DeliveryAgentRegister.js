@@ -51,8 +51,8 @@ export default function DeliverAgentRegister() {
       .required("Required"),
     email: Yup.string().email("Email is invalid").required("Email is required"),
     password: Yup.string()
-      .min(8, "Password must be at least 8 charaters")
       .required("Password is required")
+      .min(8, "Password must be at least 8 charaters")
       .matches(
         /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
         "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
@@ -222,10 +222,10 @@ export default function DeliverAgentRegister() {
                         </span>
                         <input
                           className="input_halfRegister"
-                          type="text"
+                          type="password"
                           name="password"
                           placeholder="Password"
-                          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                          // pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                           required
                           // onChange={(e) => {
                           //   setPassword(e.target.value);
