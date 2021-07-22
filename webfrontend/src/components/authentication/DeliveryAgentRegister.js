@@ -38,12 +38,12 @@ export default function DeliverAgentRegister() {
     address: Yup.string()
       //   .max(20, "Must be 20 characters or less")
       .required("Required"),
-    nic: Yup.string()
-    // .equals(10, "Must be 10 characters")
-    .required("Required"),
-    drivingLicence: Yup.string()
-      // .equals(9, "Must be 9 characters")
-      .required("Required"),
+    // nic: Yup.string()
+    // // .equals(10, "Must be 10 characters")
+    // .required("Required"),
+    // drivingLicence: Yup.string()
+    //   // .equals(9, "Must be 9 characters")
+    //   .required("Required"),
     phoneNumber: Yup.string()
       .matches("[0]{1}[7]{1}[0-9]{8}", "Phone Number is not Valid")
       //   .max(20, "Must be 20 characters or less")
@@ -67,8 +67,8 @@ export default function DeliverAgentRegister() {
         firstName: "",
         lastName: "",
         address: "",
-        nic: "",
-        drivingLicence: "",
+        // nic: "",
+        // drivingLicence: "",
         email: "",
         phoneNumber: "",
         password: "",
@@ -87,8 +87,8 @@ export default function DeliverAgentRegister() {
               email: values.email,
               firstName: values.firstName,
               lastName: values.lastName,
-              nic: values.nic,
-              drivingLicence: values.drivingLicence,
+              // nic: values.nic,
+              // drivingLicence: values.drivingLicence,
               address: values.address,
               passwordCheck: values.passwordCheck,
             })
@@ -172,7 +172,7 @@ export default function DeliverAgentRegister() {
                         type="email"
                       />
                     </div>
-                    <div className="full_name_Register">
+                    {/* <div className="full_name_Register">
                       <div className="inputField_Register">
                         {" "}
                         <span>
@@ -200,7 +200,7 @@ export default function DeliverAgentRegister() {
                           placeholder="License ID"
                         />
                       </div>
-                    </div>
+                    </div> */}
                     <div className="inputField_Register">
                       {" "}
                       <span>

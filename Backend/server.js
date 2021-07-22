@@ -71,16 +71,14 @@ app.post("/user/login", (req, res) => {
   });
 });
 
-
-
 ///get PhoneNumber is Valid
-app.get("/user/getPhoneNumber",(req,res)=>{
-  const sqlget="SELECT phoneNumber FROM user";
-  db.query(sqlget,(err,result)=>{
+app.get("/user/getPhoneNumber", (req, res) => {
+  const sqlget = "SELECT phoneNumber FROM user";
+  db.query(sqlget, (err, result) => {
     console.log(result);
     res.send(result);
-  })
-})
+  });
+});
 
 app.get("/getfertilizer", (req, res) => {
   // console.log('hi anu');
@@ -92,7 +90,8 @@ app.get("/getfertilizer", (req, res) => {
 });
 
 app.get("/getorderhistory", (req, res) => {
-  const sqlget = "select * from deliveries where famerPhoneNumber='0752016924' and confirmationFlag!=0 order by confirmationFlag ASC";
+  const sqlget =
+    "select * from deliveries where famerPhoneNumber='0752016924' and confirmationFlag!=0 order by confirmationFlag ASC";
   // const sqlget = "select * from deliveries where famerPhoneNumber='0752016924' order by confirmationFlag ASC";
   db.query(sqlget, (err, result) => {
     console.log(result);
@@ -100,43 +99,41 @@ app.get("/getorderhistory", (req, res) => {
   });
 });
 
-
 //upcoming deleveries
 
-app.get("/deliveryAgent/upcoming",(req,res)=>{
-    // console.log('hi anu');
-     const sqlget="select farmer.phoneNumber,farmer.firstName,farmer.lastName,farmer.city,farmer.address,deliveries.orderId,deliveries.dateTime  from farmer INNER JOIN deliveries on farmer.phoneNumber=deliveries.famerPhoneNumber WHERE 	deliveryAgentPhoneNumber='0712345678' AND NOW() < dateTime order by dateTime asc; ";
-     db.query(sqlget,(err,result)=>{
-         console.log(result);
-         res.send(result);
-     })
-
- })
-
-
- //today deleveries
-
-app.get("/deliveryAgent/today",(req,res)=>{
+app.get("/deliveryAgent/upcoming", (req, res) => {
   // console.log('hi anu');
-   const sqlget="select * from deliveries WHERE 	deliveryAgentPhoneNumber='0712345678' AND DATEDIFF(CURRENT_DATE,dateTime)>=0 AND DATEDIFF(CURRENT_DATE,dateTime)<1; ";
-   db.query(sqlget,(err,result)=>{
-       console.log(result);
-       res.send(result);
-   })
+  const sqlget =
+    "select farmer.phoneNumber,farmer.firstName,farmer.lastName,farmer.city,farmer.address,deliveries.orderId,deliveries.dateTime  from farmer INNER JOIN deliveries on farmer.phoneNumber=deliveries.famerPhoneNumber WHERE 	deliveryAgentPhoneNumber='0712345678' AND NOW() < dateTime order by dateTime asc; ";
+  db.query(sqlget, (err, result) => {
+    console.log(result);
+    res.send(result);
+  });
+});
 
-})
+//today deleveries
 
- //history deleveries
-
- app.get("/deliveryAgent/history",(req,res)=>{
+app.get("/deliveryAgent/today", (req, res) => {
   // console.log('hi anu');
-   const sqlget="select * from deliveries WHERE 	deliveryAgentPhoneNumber='0712345678' AND confirmationFlag=1 AND NOW() > dateTime order by dateTime asc; ";
-   db.query(sqlget,(err,result)=>{
-       console.log(result);
-       res.send(result);
-   })
+  const sqlget =
+    "select * from deliveries WHERE 	deliveryAgentPhoneNumber='0712345678' AND DATEDIFF(CURRENT_DATE,dateTime)>=0 AND DATEDIFF(CURRENT_DATE,dateTime)<1; ";
+  db.query(sqlget, (err, result) => {
+    console.log(result);
+    res.send(result);
+  });
+});
 
-})
+//history deleveries
+
+app.get("/deliveryAgent/history", (req, res) => {
+  // console.log('hi anu');
+  const sqlget =
+    "select * from deliveries WHERE 	deliveryAgentPhoneNumber='0712345678' AND confirmationFlag=1 AND NOW() > dateTime order by dateTime asc; ";
+  db.query(sqlget, (err, result) => {
+    console.log(result);
+    res.send(result);
+  });
+});
 // const loginRoutes=require("./routes/LoginRoutes");
 //  app.use(loginRoutes);
 
@@ -156,7 +153,8 @@ app.post("/user/registerAgent", (req, res) => {
   const drivingLicence = req.body.drivingLicence;
 
   const sqlRegisterAgent =
-    "INSERT INTO deliveryagent (phoneNumber, password,email, firstName, lastName, address, nic, drivingLicence) VALUE (?,?,?,?,?,?,?,?)";
+    "INSERT INTO deliveryagent (phoneNumber, password,email, firstName, lastName, address) VALUE (?,?,?,?,?,?)";
+  // "INSERT INTO deliveryagent (phoneNumber, password,email, firstName, lastName, address, nic, drivingLicence) VALUE (?,?,?,?,?,?,?,?)";
   db.query(
     sqlRegisterAgent,
     [
@@ -166,8 +164,8 @@ app.post("/user/registerAgent", (req, res) => {
       firstName,
       lastName,
       address,
-      nic,
-      drivingLicence,
+      // nic,
+      // drivingLicence,
     ],
     (err, result) => {
       if (err) {
