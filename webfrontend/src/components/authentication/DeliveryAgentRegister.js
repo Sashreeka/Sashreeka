@@ -65,6 +65,8 @@ function DeliveryAgentRegister() {
 
   // const checkValidation=(e)
 
+  
+
   // UI of registration of delivery agent
   return (
     <div>
