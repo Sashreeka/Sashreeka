@@ -59,7 +59,7 @@ export default function ProductList() {
 
     return (
         <div className='productListCon'>
-        <Sidebar/>
+        <Sidebar title="products"/>
         <div className="productList">
                 <DataGrid rows={data} disableSelectionOnClick columns={columns} pageSize={8} checkboxSelection />
 

@@ -10,7 +10,7 @@ import { BarChart } from '@material-ui/icons';
 export default function Sales() {
     return (
         <div className="Salescon">
-            <Sidebar/>
+            <Sidebar title="sales"/>
 
              <div className="sales">
 

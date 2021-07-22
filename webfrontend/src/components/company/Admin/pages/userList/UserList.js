@@ -66,7 +66,7 @@ export default function UserList() {
 
   return (
     <div className="userListCon">
-      <Sidebar />
+      <Sidebar title="users"/>
       
       <div className="userList">
       

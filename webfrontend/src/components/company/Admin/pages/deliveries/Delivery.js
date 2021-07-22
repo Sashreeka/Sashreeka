@@ -71,7 +71,7 @@ export default function Delivery() {
 
     return(
         <div className="deliveryCon">
-            <Sidebar/>
+            <Sidebar title="delivery"/>
             <div>
 
             {/* *******charts**************** */}

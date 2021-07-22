@@ -86,7 +86,7 @@ export default function Staff() {
 
     return(
         <div className="staffCon">
-            <Sidebar/>
+            <Sidebar title="staff"/>
             
 
             <div className="staff">

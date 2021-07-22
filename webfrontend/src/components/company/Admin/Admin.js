@@ -12,7 +12,7 @@ export default function Admin() {
             <div className="admincon">
            
             
-            <Sidebar/>
+            <Sidebar title="home"/>
             <Home/>
 
             </div>
