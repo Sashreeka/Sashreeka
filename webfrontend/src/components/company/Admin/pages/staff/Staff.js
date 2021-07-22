@@ -147,9 +147,9 @@ export default function Staff() {
       
             />
                 {/* <div style={{padddingtop:"margin_rignt_cont"}}> */}
-                <button>Create New staff</button>
+                <button className="staff-button">Create New staff</button>
                 {/* </div> */}
-                <h1>hello : this is Staff page</h1>
+                
             </div>
             
         </div>
