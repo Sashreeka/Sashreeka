@@ -71,8 +71,8 @@ export default function UserList() {
       <div className="userList">
       
       <PageShiftButton/>
-      
-        <DataGrid
+  
+        <DataGrid 
           rows={data}
           disableSelectionOnClick
           columns={columns}

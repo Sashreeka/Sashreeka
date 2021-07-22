@@ -1,7 +1,7 @@
 import React from 'react';
 import './sales.css';
 import Sidebar from '../../components/sidebar/Sidebar';
-import {UserData} from '../../dummyData';
+import {SalesData} from '../../dummyData';
 import Chart from '../../components/chart/Chart';
 import SalesDetails from './salesDetails/SalesDetails';
 
@@ -15,17 +15,17 @@ export default function Sales() {
              <div className="sales">
 
                    
-                <div className="sales_analytics">
+                {/* <div className="sales_analytics">
                 <Chart data={UserData} title="User Analytics" grid dataKey="Active User"/>
-                </div>
-                <div className="sales_barchart">
+                </div> */}
+                {/* <div className="sales_barchart">
                 <BarChart/>
-                </div>
+                </div> */}
 
              
             
 
-             <Chart data={UserData} title="User Analytics" grid dataKey="Active User"/>
+             <Chart data={SalesData} title="Sales Analytics" grid dataKey="Monthly revenue"/>
 
              <SalesDetails/>
             
