@@ -163,7 +163,7 @@ const HomeScreen = ({navigation})=>{
           <Ionicons name="menu" size={25} color='#217756'  style={{marginLeft:5,marginTop:5}}
               onPress={()=>navigation.openDrawer()} />
 
-          <TouchableRipple>
+          {/* <TouchableRipple>
                <View style={{flexDirection:'row',marginStart:190,marginTop:10,}}>
                    <Text style={{color:'#217756',fontWeight:'bold',fontSize:16}}>Available</Text>
                        <View style={{
@@ -174,7 +174,7 @@ const HomeScreen = ({navigation})=>{
                              <Switch/>
                         </View>
                 </View>
-            </TouchableRipple>
+            </TouchableRipple> */}
           <Image
           style={styles.profileImage}
             source={require('../../assets/ishan.png')}
@@ -533,7 +533,7 @@ const HomeScreen = ({navigation})=>{
                         marginLeft:22,
                        marginTop:-5,
                         fontSize:12,
-                      }}>24</Text>
+                      }}>23</Text>
 
                       </View>
 
@@ -670,7 +670,7 @@ const HomeScreen = ({navigation})=>{
                     borderRadius:21, 
                   }}
                 >
-                  <Text>9</Text>
+                  <Text>3</Text>
 
                   </View>
            
@@ -721,7 +721,12 @@ const HomeScreen = ({navigation})=>{
                 <ScrollView  style={{marginTop:20}}>
                   
 
-                <Animatable.View
+
+
+
+
+
+                  <Animatable.View
                 animation="fadeInUpBig"
                 style={{marginBottom:5}}
 
@@ -743,23 +748,25 @@ const HomeScreen = ({navigation})=>{
                       marginLeft:22,
                      marginTop:-5,
                       fontSize:12,
-                    }}>21</Text>
+                    }}>19</Text>
 
                     </View>
 
                     
                      <View style={{flexDirection:'column'}}>
-                     <Text style={styles.historyTText}>Polonnaruwa- Mr.P.B.N.Bandara</Text>
+                     <Text style={styles.historyTText}>Colombo-Bandara Jayathilake</Text>
+                     
+
+
                      <View style={{flexDirection:'row'}}>
-                         <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:0,}}>Payment Method:</Text>
-                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>Online</Text>
+                         <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:0,width:110}}>Total Amount(Rs):</Text>
+                         <Text style={{color:'#000',fontSize:13,marginTop:0,}}>750</Text>
 
                      </View>
 
-
                      <View style={{flexDirection:'row'}}>
-                         <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:0,}}>Total Amount(Rs):</Text>
-                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>750</Text>
+                         <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:0,width:110}}>Delivery Date:</Text>
+                         <Text style={{color:'#000',fontSize:13,marginTop:0,}}>2021-07-19</Text>
 
                      </View>
                  
@@ -771,6 +778,60 @@ const HomeScreen = ({navigation})=>{
 
                   </Animatable.View>
 
+
+
+
+                  <Animatable.View
+                animation="fadeInUpBig"
+                style={{marginBottom:5}}
+
+                >
+                 
+                    <View style={content}>
+
+                    <View>
+
+                    <Entypo name="calendar" size={65} color="#217756"  />
+                    <Text style={{
+                      marginLeft:20,
+                      marginTop:-40,
+                      fontSize:14,
+                      fontWeight:'bold',
+
+                    }}>Jul</Text>
+                    <Text style={{
+                      marginLeft:22,
+                     marginTop:-5,
+                      fontSize:12,
+                    }}>18</Text>
+
+                    </View>
+
+                    
+                     <View style={{flexDirection:'column'}}>
+                     <Text style={styles.historyTText}>Galle- Somapala</Text>
+                     
+
+
+                     <View style={{flexDirection:'row'}}>
+                         <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:0,width:110}}>Total Amount(Rs):</Text>
+                         <Text style={{color:'#000',fontSize:13,marginTop:0,}}>1750</Text>
+
+                     </View>
+
+                     <View style={{flexDirection:'row'}}>
+                         <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:0,width:110}}>Delivery Date:</Text>
+                         <Text style={{color:'#000',fontSize:13,marginTop:0,}}>2021-07-18</Text>
+
+                     </View>
+                 
+                     
+                     </View>
+                      
+                    </View>
+                 
+
+                  </Animatable.View>
 
 
 
@@ -815,7 +876,7 @@ const HomeScreen = ({navigation})=>{
 
                      <View style={{flexDirection:'row'}}>
                          <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:0,width:110}}>Delivery Date:</Text>
-                         <Text style={{color:'#000',fontSize:13,marginTop:0,}}>2021-07-20</Text>
+                         <Text style={{color:'#000',fontSize:13,marginTop:0,}}>2021-07-17</Text>
 
                      </View>
                  
@@ -828,56 +889,8 @@ const HomeScreen = ({navigation})=>{
                   </Animatable.View>
 
 
-                  <Animatable.View
-                animation="fadeInUpBig"
-                style={{marginBottom:5}}
 
-                >
-                 
-                    <View style={content}>
-
-                    <View>
-
-                    <Entypo name="calendar" size={65} color="#217756"  />
-                    <Text style={{
-                      marginLeft:20,
-                      marginTop:-40,
-                      fontSize:14,
-                      fontWeight:'bold',
-
-                    }}>Jul</Text>
-                    <Text style={{
-                      marginLeft:22,
-                     marginTop:-5,
-                      fontSize:12,
-                    }}>21</Text>
-
-                    </View>
-
-                    
-                     <View style={{flexDirection:'column'}}>
-                     <Text style={styles.historyTText}>Polonnaruwa- Mr.P.B.N.Bandara</Text>
-                     <View style={{flexDirection:'row'}}>
-                         <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:0,}}>Payment Method:</Text>
-                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>Online</Text>
-
-                     </View>
-
-
-                     <View style={{flexDirection:'row'}}>
-                         <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:0,}}>Total Amount(Rs):</Text>
-                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>750</Text>
-
-                     </View>
-                 
-                     
-                     </View>
-                      
-                    </View>
-                 
-
-                  </Animatable.View>
-
+              
 
 
 

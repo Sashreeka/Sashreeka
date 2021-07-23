@@ -132,7 +132,7 @@ import { StyleSheet,
                         marginLeft:22,
                        marginTop:-5,
                         fontSize:12,
-                      }}>24</Text>
+                      }}>22</Text>
 
                       </View>
 
@@ -151,7 +151,7 @@ import { StyleSheet,
                        <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0}}>10kg x 5</Text>
 
                        </View>
-                       <View style={styles.order}>
+                       {/* <View style={styles.order}>
                        <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0}}>2.Compost Fertilizer</Text>
                        <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0}}>10kg x 5</Text>
 
@@ -161,7 +161,7 @@ import { StyleSheet,
                        <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0}}>3.Compost Fertilizer</Text>
                        <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0}}>10kg x 5</Text>
 
-                       </View>
+                       </View> */}
 
 
 
@@ -244,7 +244,7 @@ import { StyleSheet,
                         marginLeft:22,
                        marginTop:-5,
                         fontSize:12,
-                      }}>24</Text>
+                      }}>22</Text>
 
                       </View>
 
