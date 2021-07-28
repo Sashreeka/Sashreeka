@@ -3,6 +3,11 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+//header and footer components
+import Navigation from "../../components/common/header/Navigation";
+import Footer from "../../components/common/footer/footer";
+
+
 // CSS file
 import "./Signin.css";
 
@@ -45,6 +50,8 @@ function Signin() {
   };
 
   return (
+    <>
+    <Navigation />
     <div className="login_body">
       <h1>Welcome To Sashreeka</h1>
       <div className="login_box">
@@ -100,6 +107,8 @@ function Signin() {
         </div>
       </div>
     </div>
+    <Footer />
+    </>
   );
 }
 

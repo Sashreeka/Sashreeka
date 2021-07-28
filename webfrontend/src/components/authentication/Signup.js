@@ -5,6 +5,10 @@ import * as Yup from "yup";
 
 import axios from "axios";
 
+//header and footer components
+import Navigation from "../../components/common/header/Navigation";
+import Footer from "../../components/common/footer/footer";
+
 export default function Signup() {
   const [phoneNumberList, setPhoneNumberList] = useState([]);
 
@@ -98,6 +102,8 @@ export default function Signup() {
       }}
     >
       {(formik) => (
+        <>
+        <Navigation />
         <div>
           <div className="form_wrapper_Register">
             <div className="form_container_Register">
@@ -250,6 +256,8 @@ export default function Signup() {
             </div>
           </div>
         </div>
+        <Footer />
+        </>
       )}
     </Formik>
   );
