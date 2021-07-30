@@ -46,90 +46,6 @@ const Drawer = createDrawerNavigator();
 export default function App({navigation}) {
  
 
-  // const initialLoginState={
-
-  //   isLoading: true,
-  //   username: null,
-  //   userToken: null,
-  // };
-  // const loginReducer= (prevState,action)=>{
-  //   switch(action.type){
-  //     case 'RETRIEVE_TOKEN':
-  //       return{
-
-  //         ...prevState,
-  //         userToken: action.token,
-  //         isLoading :false,
-  //       };
-  //     case 'LOGIN':
-  //         return{
-  //           ...prevState,
-  //           username: action.id,
-  //           userToken: action.token,
-  //           isLoading :false,
-            
-  //         }; 
-  //     case 'LOGOUT':
-  //           return{
-  //             ...prevState,
-
-  //          username: null,
-  //           userToken: null,
-  //           isLoading :false,
-              
-  //           }; 
-  //     case 'REGISTER':
-  //             return{
-  //               ...prevState,
-  //           username: action.id,
-  //           userToken: action.token,
-  //           isLoading :false,
-  //             };         
-  //   }
-  // }
-
-  // const [loginState,dispatch]=useReducer(loginReducer,initialLoginState)
-
-  // const authContext=useMemo(()=>({
-  //   signIn: async(username,password)=>{
-  //     // setUserToken('set');
-  //     // setIsLoading(false);
-      
-  //     let userToken;
-  //     userToken=null;
-  //     if(username =='user' && password =='pass'){
-        
-  //       try{
-  //         userToken='dfgdfg';
-  //         await AsyncStorage.setItem('userToken', userToken);
-  //       }
-  //       catch(e){
-  //         console.log(e);
-  //       }
-  //      // console.log('user token',userToken)
-  //     }
-  //     dispatch({type: 'LOGIN', id: username, token: userToken})
-  //   },
-  //   signOut: async ()=>{
-  //     // setUserToken(null);
-  //     // setIsLoading(false);
-
-  //     try{
-        
-  //       await AsyncStorage.removeItem('userToken');
-  //     }
-  //     catch(e){
-  //       console.log(e);
-  //     }
-
-  //     dispatch({type:'LOGOUT'})
-  //   },
-  //   signUp: ()=>{
-  //     // setUserToken('set');
-  //     // setIsLoading(false);
-  //   },
-
-  // }),[])
 
  
   const [phoneNumber,setphoneNumber]=useState('');
@@ -137,13 +53,6 @@ export default function App({navigation}) {
   
 
 
-  // useEffect(()=>{
-
-  //     AsyncStorage.getItem('phoneNumber').then((res)=>{
-  //       setphoneNumber(res);
-
-  //   },1000);
-  // },[])
 
 
  
