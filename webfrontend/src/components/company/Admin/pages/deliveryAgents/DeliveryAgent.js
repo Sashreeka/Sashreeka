@@ -81,8 +81,8 @@ export default function DeliveryAgent() {
     { title: "First Name", field: "firstName" },
     { title: "Last Name", field: "lastName" },
     { title: "Address", field: "address" },
-    { title: "NAtional ID", field: "nic" },
-    { title: "Driving Licence", field: "drivingLicence" },
+    // { title: "NAtional ID", field: "nic" },
+    // { title: "Driving Licence", field: "drivingLicence" },
     { title: "Phone Number", field: "phoneNumber" },
     { title: "Status", field: "active" },
   ];

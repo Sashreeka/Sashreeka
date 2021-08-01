@@ -149,8 +149,8 @@ app.post("/user/registerAgent", (req, res) => {
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
   const address = req.body.address;
-  const nic = req.body.nic;
-  const drivingLicence = req.body.drivingLicence;
+  // const nic = req.body.nic;
+  // const drivingLicence = req.body.drivingLicence;
 
   const sqlRegisterAgent =
     "INSERT INTO deliveryagent (phoneNumber, password,email, firstName, lastName, address) VALUE (?,?,?,?,?,?)";

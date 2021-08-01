@@ -2,31 +2,28 @@ import React, { useEffect, useState } from "react";
 import { Formik, Form } from "formik";
 import { TextField } from "./TextField";
 import * as Yup from "yup";
-
 import axios from "axios";
 
 export default function DeliverAgentRegister() {
   const [phoneNumberList, setPhoneNumberList] = useState([]);
 
   // getting the pgone numbers by an array
-  useEffect(() => {
-    axios.get("http://localhost:4000/user/getPhoneNumber").then((response) => {
-      console.log(response.data);
-      setPhoneNumberList(response.data);
-      // const finalResult = phoneNumberList.find((item) => {
-      //   return item.phoneNumber === "0713705751";
-      // });
-      // console.log(finalResult);
-    });
-  }, []);
+  // useEffect(() => {
+  //   axios.get("http://localhost:4000/user/getPhoneNumber").then((response) => {
+  //     console.log(response.data);
+  //     setPhoneNumberList(response.data);
+  //     // const finalResult = phoneNumberList.find((item) => {
+  //     //   return item.phoneNumber === "0713705751";
+  //     // });
+  //     // console.log(finalResult);
+  //   });
+  // }, []);
 
-  const checkPhoneNum = (num) => {
-    phoneNumberList.find((item) => {
-      return item.phoneNumber === num;
-    });
-    alert(num);
-    return true;
-  };
+  // const checkPhoneNum = (num) => {
+  //   phoneNumberList.find((item) => {
+  //     return item.phoneNumber === num;
+  //   });
+  // };
 
   const validate = Yup.object({
     firstName: Yup.string()
@@ -54,7 +51,7 @@ export default function DeliverAgentRegister() {
       .required("Password is required")
       .min(8, "Password must be at least 8 charaters")
       .matches(
-        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+        "(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8,}",
         "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
       ),
     confirmPassword: Yup.string()
@@ -76,33 +73,34 @@ export default function DeliverAgentRegister() {
       }}
       validationSchema={validate}
       onSubmit={(values) => {
-        if (checkPhoneNum(values.phoneNumber) === false) {
-          alert("Please enter a different phone number.");
-        } else {
-          alert(values.password);
-          axios
-            .post("http://localhost:4000/user/registerFarmer", {
-              phoneNumber: values.phoneNumber,
-              password: values.password,
-              email: values.email,
-              firstName: values.firstName,
-              lastName: values.lastName,
-              // nic: values.nic,
-              // drivingLicence: values.drivingLicence,
-              address: values.address,
-              passwordCheck: values.passwordCheck,
-            })
-            //   console.log("Inside register agent function")
-            .then((response) => {
-              // console.log(response.data.token);
-              // console.log(response.data.message);
-              //console.log(response);
-              // console.log(response.data[0].userCategory);
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        }
+        // if (checkPhoneNum(values.phoneNumber) === false) {
+        //   alert("Please enter a different phone number.");
+        // } else {
+        //alert(values.phoneNumber);
+        axios
+          .post("http://localhost:4000/user/registerAgent", {
+            phoneNumber: values.phoneNumber,
+            password: values.password,
+            email: values.email,
+            firstName: values.firstName,
+            lastName: values.lastName,
+            // nic: values.nic,
+            // drivingLicence: values.drivingLicence,
+            address: values.address,
+            passwordCheck: values.passwordCheck,
+          })
+          //   console.log("Inside register agent function")
+          .then((response) => {
+            window.location.href = "./signin";
+            // console.log(response.data.token);
+            // console.log(response.data.message);
+            //console.log(response);
+            // console.log(response.data[0].userCategory);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+        // }
 
         // console.log(values);
       }}
@@ -220,7 +218,14 @@ export default function DeliverAgentRegister() {
                         <span>
                           <i aria-hidden="true" className="fa fa-lock"></i>
                         </span>
-                        <input
+                        <TextField
+                          className="input_halfRegister"
+                          placeholder="Password"
+                          type="password"
+                          name="password"
+                          placeholder="Password"
+                        />
+                        {/* <input
                           className="input_halfRegister"
                           type="password"
                           name="password"
@@ -230,7 +235,7 @@ export default function DeliverAgentRegister() {
                           // onChange={(e) => {
                           //   setPassword(e.target.value);
                           // }}
-                        />
+                        /> */}
                       </div>
                       <div className="inputField_Register">
                         {" "}
