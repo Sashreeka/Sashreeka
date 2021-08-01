@@ -9,6 +9,9 @@ import {useCart} from 'react-use-cart';
 import Slider from 'infinite-react-carousel';
 import { Link } from "react-router-dom";
 
+import Navigation from "../../components/common/header/Navigation";
+import Footer from "../../components/common/footer/footer";
+
 function Store() {
     const {
         totalItems,
@@ -50,7 +53,8 @@ function Store() {
     ];
 
     return(
-        
+        <>
+        <Navigation />
         <div className="fer-store-web">
             <div className="fer-store-content">
                 {/*Search bar*/}
@@ -149,6 +153,8 @@ function Store() {
                 </div>
             </div>
         </div>
+        <Footer />
+        </>
     )
 }
 

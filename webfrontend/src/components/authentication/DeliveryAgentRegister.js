@@ -4,6 +4,10 @@ import { TextField } from "./TextField";
 import * as Yup from "yup";
 import axios from "axios";
 
+//header and footer components
+import Navigation from "../../components/common/header/Navigation";
+import Footer from "../../components/common/footer/footer";
+
 export default function DeliverAgentRegister() {
   const [phoneNumberList, setPhoneNumberList] = useState([]);
 
@@ -107,6 +111,7 @@ export default function DeliverAgentRegister() {
     >
       {(formik) => (
         <div>
+          <Navigation />
           <div className="form_wrapper_Register">
             <div className="form_container_Register">
               <div className="title_container_Register">
@@ -264,6 +269,7 @@ export default function DeliverAgentRegister() {
               </div>
             </div>
           </div>
+          <Footer />
         </div>
       )}
     </Formik>

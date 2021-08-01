@@ -20,9 +20,14 @@ import img4 from "../../assets/images/Home1/2.jpeg";
 import img5 from "../../assets/images/Home1/4.png";
 import img6 from "../../assets/images/Home1/55.png";
 
+//header and footer components
+import Navigation from "../../components/common/header/Navigation";
+import Footer from "../../components/common/footer/footer";
+
 function Home() {
   return (
     <div>
+      <Navigation />
       <section class="home" id="home">
         <div class="content1">
           <h3>Welcome to Sashreeka </h3>
@@ -236,6 +241,7 @@ Receive cash payments on delivery,Report delivered orders to the company.
 
 </div>*/}
       </section>
+      <Footer />
     </div>
   );
 }

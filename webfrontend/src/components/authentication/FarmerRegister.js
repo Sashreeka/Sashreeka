@@ -6,6 +6,10 @@ import axios from "axios";
 // CSS file
 import "./FarmerRegister.css";
 
+//header and footer components
+import Navigation from "../../components/common/header/Navigation";
+import Footer from "../../components/common/footer/footer";
+
 function FarmerRegister() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -44,6 +48,7 @@ function FarmerRegister() {
   // UI of registration of delivery agent
   return (
     <div>
+      <Navigation />
       {/* <h1>This is Farmer Register</h1> */}
       <div className="form_wrapper_Register">
         <div className="form_container_Register">
@@ -226,6 +231,7 @@ function FarmerRegister() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 // import Colors from "./assets/colors/Colors";
 // import './App.css';
-import Navigation from "./components/common/header/Navigation";
+/* import Navigation from "./components/common/header/Navigation"; */
 import Home from "./components/static/Home";
 import About from "./components/static/About";
 import Contact from "./components/static/Contact";
@@ -18,7 +18,7 @@ import Signup from "./components/authentication/Signup";
 import Signin from "./components/authentication/Signin";
 import RegAgent from "./components/authentication/DeliveryAgentRegister";
 import RegFarmer from "./components/authentication/FarmerRegister";
-import Footer from "./components/common/footer/footer";
+/* import Footer from "./components/common/footer/footer"; */
 import Admin from "./components/company/Admin/Admin";
 import UserList from "./components/company/Admin/pages/userList/UserList";
 import Topbar from "./components/company/Admin/components/topbar/Topbar";
@@ -96,7 +96,7 @@ function App() {
           </div>
         ) : (
           <div>
-            <Navigation />
+            {/* <Navigation /> */}
             <Switch>
               <Route path="/about">
                 <About />
@@ -112,7 +112,7 @@ function App() {
 
         </Route> */}
 
-              <Route path="/deliveryAgentD">
+              <Route path="/deliveryAgentD">  
                 <DeliveryAgentD />
               </Route>
 
@@ -172,7 +172,7 @@ function App() {
               </CartProvider>
             </Switch>
 
-            <Footer />
+            {/* <Footer /> */}
           </div>
         )}
       </BrowserRouter>
