@@ -49,7 +49,7 @@ function Footer() {
                 <hr className="undertopic"></hr>
                 <ul className="list-unstyled">
                   <li className="my-2">
-                    <a href="#">Home</a>
+                    <a href="/">Home</a>
                   </li>
                   <li className="my-2">
                     <a href="./about">About Us</a>
