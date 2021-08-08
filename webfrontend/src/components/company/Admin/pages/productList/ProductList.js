@@ -153,7 +153,11 @@ export default function ProductList() {
         <div className='productListCon'>
         <Sidebar title="products"/>
         <div className="productList">
-        <button className="productAddButton">Add</button>
+            <div className="productTitleContainer">
+                <h1></h1>
+                <button className="productAddButton">Add</button>
+            </div>
+       
                 {/* <DataGrid rows={data} disableSelectionOnClick columns={columns} pageSize={8} checkboxSelection /> */}
 
 
@@ -200,7 +204,7 @@ export default function ProductList() {
 
                     tooltip: 'Edit',
                     onClick: (event, rowData) => {
-                        window.location.href='/staffCheck/'+rowData.userId
+                        window.location.href='/product/'+rowData.fertilizerId;
                     }
                    
                     },

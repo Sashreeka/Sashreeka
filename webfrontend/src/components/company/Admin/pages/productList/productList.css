@@ -5,6 +5,7 @@
 }
 .productList{
     flex: 4;
+    padding: 20px;
 }
 
 .productListItem{
@@ -39,6 +40,15 @@
     
     
 
+
+}
+
+
+.productTitleContainer{
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
 
 }
 

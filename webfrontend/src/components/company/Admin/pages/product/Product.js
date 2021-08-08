@@ -6,7 +6,9 @@ import { productData } from '../../dummyData';
 import { Publish } from '@material-ui/icons';
 import Sidebar from '../../components/sidebar/Sidebar';
 
-export default function Product() {
+export default function Product(props) {
+    const fertilizerId=props.match.params.fertilizerId
+    console.log("id="+fertilizerId);
     return (
         <div className="productCon">
         <Sidebar/>
