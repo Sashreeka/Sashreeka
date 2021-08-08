@@ -58,7 +58,19 @@ router.get("/admin/viewStafffDetails/:userId", (req, res) => {
   });
   
 
+// delete a product item...........................
+router.delete('/deleteProductItems/:fertilizerId',(req,res)=>{
+  let fertilizerId=req.params.fertilizerId;
 
+  const sqlDelete="delete from fertilizer where fertilizerId=?";
+  db.query(sqlDelete, fertilizerId, (err,result)=>{
+    console.log(result);
+    res.send(result);
+    //console.log(err);
+  })
+
+
+})
 
 
 

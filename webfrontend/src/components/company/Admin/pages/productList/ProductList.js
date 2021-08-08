@@ -7,7 +7,8 @@ import {Link} from 'react-router-dom';
 import Sidebar from '../../components/sidebar/Sidebar';
 import axios from 'axios';
 import MaterialTable from 'material-table';
-
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 export default function ProductList() {
     const [data,setData]=useState(productRows);
@@ -138,11 +139,21 @@ export default function ProductList() {
       ]
     
 
+     const  deleteProduct= (fertilizerId)=>{
+
+        //alert(fertilizerId);
+        axios.delete('http://localhost:4000/deleteProductItems/'+fertilizerId).then((response)=>{
+            setData(data.filter((item)=>item.fertilizerId!==fertilizerId));
+        });
+
+
+      }
 
     return (
         <div className='productListCon'>
         <Sidebar title="products"/>
         <div className="productList">
+        <button className="productAddButton">Add</button>
                 {/* <DataGrid rows={data} disableSelectionOnClick columns={columns} pageSize={8} checkboxSelection /> */}
 
 
@@ -185,17 +196,40 @@ export default function ProductList() {
                     actions={[
                         {
                     icon: 'edit',
+                   
 
                     tooltip: 'Edit',
                     onClick: (event, rowData) => {
                         window.location.href='/staffCheck/'+rowData.userId
                     }
-                    //  <Link to={"/user/" + params.row.id}>
-                    //   <button className="userListEdit">Edit</button>
-                    // </Link>
-
-                    // alert('You are editing ' + rowData.userId)
+                   
                     },
+                    {
+                    icon: 'delete',
+                   
+
+                    tooltip: 'Delete',
+                    onClick: (event, rowData) => {
+                        confirmAlert({
+                        title: 'Confirm to Delete',
+                        message: 'Are you sure to do this.',
+                        buttons: [
+                            {
+                            label: 'Yes',
+                            onClick: () =>{deleteProduct(rowData.fertilizerId)}
+                            },
+                            {
+                            label: 'No',
+                         
+                            }
+                        ]
+                        });
+                    }
+                    
+
+                 
+                    },
+
 
                     ]}
 
