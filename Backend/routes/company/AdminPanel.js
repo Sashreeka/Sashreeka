@@ -27,7 +27,8 @@ router.get("/admin/viewDAgentDetails", (req, res) => {
 
 //display the company staff details..................
 router.get("/admin/viewCStaffDetails", (req, res) => {
-    const sqlget = "select * from companystaff";
+   // const sqlget = "select * from companystaff";
+   const sqlget="select userId,phoneNumber,concat(firstName,'  ',lastName) as name,nic,active from companystaff;";
     db.query(sqlget, (err, result) => {
       console.log(result);
       res.send(result);
