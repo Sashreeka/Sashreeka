@@ -5,6 +5,7 @@
 }
 .productList{
     flex: 4;
+    padding: 20px;
 }
 
 .productListItem{
@@ -39,5 +40,35 @@
     
     
 
+
+}
+
+
+.productTitleContainer{
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.productAddButton{
+    width: 80px;
+    border: none;
+   
+    padding: 5px;
+    background-color:teal ;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    margin-bottom: 10px;
+    
+   
+    /* align-items: flex-end;
+    justify-content: flex-end; */
+   
+     /* margin-left: 1000px;  */
+    
 
 }

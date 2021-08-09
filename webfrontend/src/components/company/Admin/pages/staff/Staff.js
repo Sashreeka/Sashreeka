@@ -44,7 +44,7 @@ export default function Staff() {
 
   
 },
-    {title:'First Name',field:'firstName',
+    {title:'Full Name',field:'name',
 
     cellStyle:{
 
@@ -54,13 +54,14 @@ export default function Staff() {
   
 
 },
-    {title:'Last Name',field:'lastName',
+    {title:'Is present',field:'active',
 
 
     cellStyle:{
 
         // backgroundColor:'red',
         width:'20%',
+        
      }
 },
     {title:'NIC',field:'nic',
@@ -87,10 +88,13 @@ export default function Staff() {
     return(
         <div className="staffCon">
             <Sidebar title="staff"/>
+
+           
             
 
             <div className="staff">
 
+            <button className="staff-button">Create New staff</button>
            
             <MaterialTable
 
@@ -105,6 +109,7 @@ export default function Staff() {
             exportButton:true,
             backgroundColor: '#EEE',
            // showTitle: false,
+           
             actionsColumnIndex: -1,
             headerStyle: {
         //width:20,
@@ -117,7 +122,7 @@ export default function Staff() {
       }
 
 
-            //headerStyle: {  color:"#000",fontWeight:'bold', },
+          
             
             
              
@@ -146,9 +151,7 @@ export default function Staff() {
          
       
             />
-                {/* <div style={{padddingtop:"margin_rignt_cont"}}> */}
-                <button className="staff-button">Create New staff</button>
-                {/* </div> */}
+               
                 
             </div>
             

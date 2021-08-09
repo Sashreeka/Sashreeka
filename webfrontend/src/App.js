@@ -70,9 +70,8 @@ function App() {
               <Route path="/products">
                 <ProductList />
               </Route>
-              <Route path="/product/:productsId">
-                <Product />
-              </Route>
+              <Route path="/product/:fertilizerId" component={Product}/>
+            
               <Route path="/newproduct">
                 <NewProduct />
               </Route>
