@@ -1,3 +1,6 @@
+web site............................................................
+
+
 npm install axios
 
 packages:
@@ -7,7 +10,11 @@ npm install --save react-elastic-carousel
 npm install --save styled-components
 
 https://www.npmjs.com/package/infinite-react-carousel 
-npm install infinite-react-carousel –save
+npm install infinite-react-carousel ï¿½save
 
 https://www.npmjs.com/package/react-use-cart
-npm i react-use-cart
+npm iï¿½react-use-cart
+
+
+
+mobile app.............................................
