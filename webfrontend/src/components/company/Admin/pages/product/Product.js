@@ -38,7 +38,7 @@ export default function Product(props) {
                     <div className="productInfoBottom">
                         <div className="productInfoItem">
                             <span className="productInfokey">id</span>
-                            <span className="productInfoValue">123</span>
+                            <span className="productInfoValue">{fertilizerId}</span>
 
                         </div>
 

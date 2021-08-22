@@ -72,6 +72,17 @@ router.delete('/deleteProductItems/:fertilizerId',(req,res)=>{
 
 })
 
+///sample
+router.post('/save',(req,res)=>{
+  const name=req.body.name;
+  const image=req.body.image;
+  const sql="INSERT INTO image(name,image) VALUES(?,?);";
+  db.query(sql,[name,image],(err,result)=>{
+    res.send(err);
+    console.log(err);
+    
+  })
+})
 
 
 
