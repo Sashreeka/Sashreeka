@@ -1,14 +1,36 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import { Link } from 'react-router-dom';
 import "./product.css";
 import Chart from "../../components/chart/Chart";
 import { productData } from '../../dummyData';
 import { Publish } from '@material-ui/icons';
 import Sidebar from '../../components/sidebar/Sidebar';
+import axios from 'axios';
 
 export default function Product(props) {
     const fertilizerId=props.match.params.fertilizerId
     console.log("id="+fertilizerId);
+
+   
+    const [data,setData]=useState([]);
+    // const [name,setName]=useState("");
+    // const [description,setDescription]=useState("");
+    // const [	offer,setoffer]=useState("");
+    // const [	unitPrice,setunitPrice]=useState("");
+    // const [	unitWeight,setUnitWeight]=useState("");
+    // const [	photo,setphoto]=useState("");
+    // const [	stock,setstock]=useState("");
+
+
+
+    useEffect(()=>{
+
+        axios.get('http://localhost:4000/getfertilizeritem/'+fertilizerId).then((response)=>{
+        setData(response.data[0]);})
+      },[])
+
+  
+
     return (
         <div className="productCon">
         <Sidebar/>
@@ -29,11 +51,11 @@ export default function Product(props) {
                 </div>
                 <div className="productTopRight">
                     <div className="productInfoTop">
-                        <img src="https://images.unsplash.com/photo-1607203391514-b001be773a22?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXBwbGUlMjBwaG9uZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"
+                        <img src={data.photo}
                             alt=""
                             className="productInfoImg"
                         />
-                        <span className="productName">Apple Airpods</span>
+                        <span className="productName">{data.name}</span>
                     </div>
                     <div className="productInfoBottom">
                         <div className="productInfoItem">
