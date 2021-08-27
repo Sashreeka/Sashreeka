@@ -6,7 +6,6 @@
 // import SplashScreen from '../pages/SplashScreen';
 // import ForgetPassword from '../pages/ForgetPassword';
 
-
 // const MStack=createStackNavigator();
 // export default function MainStack({navigation}) {
 //     return (
@@ -16,5 +15,5 @@
 //             <MStack.Screen name="SigninScreen" component={SigninScreen}/>
 //             <MStack.Screen name="ForgetPassword" component={ForgetPassword}/>
 //         </MStack.Navigator>
-//     ); 
+//     );
 // }
