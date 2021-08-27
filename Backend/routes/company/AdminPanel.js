@@ -11,16 +11,27 @@ router.get("/getfertilizer", (req, res) => {
     // console.log('hi anu');
     const sqlget = "select * from fertilizer";
     db.query(sqlget, (err, result) => {
-      console.log(result);
+    //  console.log(result);
       res.send(result);
     });
   });
+
+//get a specific fertilizer id
+
+router.get("/getfertilizeritem/:fertilizerId",(req,res)=>{
+  const fertilizerId=req.params.fertilizerId;
+  const sqlgetItem="SELECT * FROM fertilizer WHERE fertilizerId=?";
+  db.query(sqlgetItem,fertilizerId,(err,result)=>{
+   // console.log(result);
+   res.send(result);
+  })
+})
 
 //  display the delivery agent details..................
 router.get("/admin/viewDAgentDetails", (req, res) => {
     const sqlget = "select * from deliveryagent";
     db.query(sqlget, (err, result) => {
-      console.log(result);
+     // console.log(result);
       res.send(result);
     });
   });
@@ -30,7 +41,7 @@ router.get("/admin/viewCStaffDetails", (req, res) => {
    // const sqlget = "select * from companystaff";
    const sqlget="select userId,phoneNumber,concat(firstName,'  ',lastName) as name,nic,active from companystaff;";
     db.query(sqlget, (err, result) => {
-      console.log(result);
+  //    console.log(result);
       res.send(result);
     });
   });  
@@ -40,7 +51,7 @@ router.get("/admin/viewCStaffDetails", (req, res) => {
 router.get("/admin/viewDeliveryDetails", (req, res) => {
     const sqlget = "select * from deliveries";
     db.query(sqlget, (err, result) => {
-      console.log(result);
+    //  console.log(result);
       res.send(result);
     });
   });
@@ -52,7 +63,7 @@ router.get("/admin/viewStafffDetails/:userId", (req, res) => {
   
     const sqlget = "select * from companystaff where userId=?";
     db.query(sqlget, userId, (err, result) => {
-      console.log(result);
+   //   console.log(result);
       res.send(result);
     });
   });
@@ -64,7 +75,7 @@ router.delete('/deleteProductItems/:fertilizerId',(req,res)=>{
 
   const sqlDelete="delete from fertilizer where fertilizerId=?";
   db.query(sqlDelete, fertilizerId, (err,result)=>{
-    console.log(result);
+  //  console.log(result);
     res.send(result);
     //console.log(err);
   })
@@ -79,7 +90,7 @@ router.post('/save',(req,res)=>{
   const sql="INSERT INTO image(name,image) VALUES(?,?);";
   db.query(sql,[name,image],(err,result)=>{
     res.send(err);
-    console.log(err);
+   // console.log(err);
     
   })
 })

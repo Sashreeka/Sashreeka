@@ -64,6 +64,7 @@ export default function ProductList() {
     
 
 
+
     //delete record
      const  deleteProduct= (fertilizerId)=>{
         axios.delete('http://localhost:4000/deleteProductItems/'+fertilizerId).then((response)=>{
