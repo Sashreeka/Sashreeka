@@ -34,6 +34,7 @@ import Staff from "./components/company/Admin/pages/staff/Staff";
 import Delivery from "./components/company/Admin/pages/deliveries/Delivery";
 import DeliveryAgent from "./components/company/Admin/pages/deliveryAgents/DeliveryAgent";
 import StaffCheck from "./components/company/Admin/pages/staff/staffCheck/StaffCheck";
+import RolesPrivilages from "./components/company/Admin/pages/roles_&_privilages/Roles_and_privilages";
 
 // Dashboard of Staff and Delivery Agent
 import DeliveryAgentD from "./components/company/DeliveryAgent";
@@ -70,8 +71,8 @@ function App() {
               <Route path="/products">
                 <ProductList />
               </Route>
-              <Route path="/product/:fertilizerId" component={Product}/>
-            
+              <Route path="/product/:fertilizerId" component={Product} />
+
               <Route path="/newproduct">
                 <NewProduct />
               </Route>
@@ -90,6 +91,10 @@ function App() {
               </Route>
               <Route path="/deliveryagent">
                 <DeliveryAgent />
+              </Route>
+
+              <Route path="/rolesPrivilages">
+                <RolesPrivilages />
               </Route>
             </Switch>
           </div>
@@ -111,7 +116,7 @@ function App() {
 
         </Route> */}
 
-              <Route path="/deliveryAgentD">  
+              <Route path="/deliveryAgentD">
                 <DeliveryAgentD />
               </Route>
 
@@ -122,7 +127,6 @@ function App() {
               <Route path="/forgotpwd">
                 <Forgotpwd />
               </Route>
-              
 
               <Route path="/contact">
                 <Contact />

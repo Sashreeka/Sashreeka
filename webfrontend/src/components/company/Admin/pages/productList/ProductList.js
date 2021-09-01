@@ -1,144 +1,152 @@
-import React,{useState,useEffect} from 'react'
-import './productList.css'
-import Sidebar from '../../components/sidebar/Sidebar';
-import axios from 'axios';
-import MaterialTable from 'material-table';
-import { confirmAlert } from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import React, { useState, useEffect } from "react";
+import "./productList.css";
+import Sidebar from "../../components/sidebar/Sidebar";
+import axios from "axios";
+import MaterialTable from "material-table";
+import { confirmAlert } from "react-confirm-alert"; // Import
+import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 
 export default function ProductList() {
-    const [data,setData]=useState([]);
+  const [data, setData] = useState([]);
 
-  
-    useEffect(()=>{
+  useEffect(() => {
+    axios.get("http://localhost:4000/getfertilizer").then((response) => {
+      setData(response.data);
+    });
+  }, []);
 
-        axios.get('http://localhost:4000/getfertilizer').then((response)=>{
-            setData(response.data);
-        })
-    },[]);
-
-    
-
-
-
-
-    const columns=[
-    {title:'Id',field:'fertilizerId',
-        cellStyle:{
-            width:'10%',
-        }
+  const columns = [
+    {
+      title: "Id",
+      field: "fertilizerId",
+      cellStyle: {
+        width: "10%",
+      },
     },
 
-    { title: '', field: 'photo',
-     render: item => <img src={item.photo} alt=""  height="30" width="30" style={{borderRadius:20}}/>,
-      
-      cellStyle:{
-        width:'0%',
-        paddingRight:0,
-     }},
+    {
+      title: "",
+      field: "photo",
+      render: (item) => (
+        <img
+          src={item.photo}
+          alt=""
+          height="30"
+          width="30"
+          style={{ borderRadius: 20 }}
+        />
+      ),
 
-    {title:'Product',field:'name',
-    
-        cellStyle:{
-           width:'22%',
-           paddingLeft:0
-        }
+      cellStyle: {
+        width: "0%",
+        paddingRight: 0,
+      },
     },
 
-    {title:'Stock',field:'stock',
-        cellStyle:{
-            width:'20%',
-            }
+    {
+      title: "Product",
+      field: "name",
+
+      cellStyle: {
+        width: "22%",
+        paddingLeft: 0,
+      },
     },
 
-    {title:'Price',field:'unitPrice',
-        cellStyle:{
-            width:'20%',
-    }},
+    {
+      title: "Stock",
+      field: "stock",
+      cellStyle: {
+        width: "20%",
+      },
+    },
 
-    {title:'Offer',field:'offer',
-        cellStyle:{
-             width:'15%',
-    }},
-    ]
-    
+    {
+      title: "Price",
+      field: "unitPrice",
+      cellStyle: {
+        width: "20%",
+      },
+    },
 
+    {
+      title: "Offer",
+      field: "offer",
+      cellStyle: {
+        width: "15%",
+      },
+    },
+  ];
 
+  //delete record
+  const deleteProduct = (fertilizerId) => {
+    axios
+      .delete("http://localhost:4000/deleteProductItems/" + fertilizerId)
+      .then((response) => {
+        setData(data.filter((item) => item.fertilizerId !== fertilizerId));
+      });
+  };
 
-    //delete record
-     const  deleteProduct= (fertilizerId)=>{
-        axios.delete('http://localhost:4000/deleteProductItems/'+fertilizerId).then((response)=>{
-            setData(data.filter((item)=>item.fertilizerId!==fertilizerId));
-        });
-    }
+  return (
+    <div className="productListCon">
+      <Sidebar title="products" />
+      <div className="productList">
+        <div className="productTitleContainer">
+          <h1></h1>
+          <button className="productAddButton">Add</button>
+        </div>
 
+        <MaterialTable
+          title="Product & Categories Details"
+          data={data}
+          columns={columns}
+          options={{
+            search: true,
+            paging: true,
+            filtering: false,
+            exportButton: true,
+            backgroundColor: "#EEE",
+            actionsColumnIndex: -1,
 
+            headerStyle: {
+              color: "#000",
+              fontWeight: "bold",
+              width: "15%",
+            },
+          }}
+          actions={[
+            {
+              icon: "edit",
+              tooltip: "Edit",
+              onClick: (event, rowData) => {
+                window.location.href = "/product/" + rowData.fertilizerId;
+              },
+            },
 
-    return (
-        <div className='productListCon'>
-        <Sidebar title="products"/>
-        <div className="productList">
-            <div className="productTitleContainer">
-                <h1></h1>
-                <button className="productAddButton">Add</button>
-            </div>
-       
-                <MaterialTable
-
-                    title="Product & Categories Details"
-                    data={data}
-                    columns={columns}
-
-                    options={{
-                    search:true,
-                    paging:true,
-                    filtering:false,
-                    exportButton:true,
-                    backgroundColor: '#EEE',
-                    actionsColumnIndex: -1,
-
-                    headerStyle: {
-                        color:"#000",
-                        fontWeight:'bold',
-                        width:'15%',
-                    }
-                            }}
-
-                    actions={[
-                        {
-                    icon: 'edit',
-                    tooltip: 'Edit',
-                    onClick: (event, rowData) => {
-                        window.location.href='/product/'+rowData.fertilizerId;
-                    }
-                   
-                    },
-
+            {
+              icon: "delete",
+              tooltip: "Delete",
+              onClick: (event, rowData) => {
+                confirmAlert({
+                  title: "Confirm to Delete",
+                  message: "Are you sure to do this.",
+                  buttons: [
                     {
-                    icon: 'delete',
-                    tooltip: 'Delete',
-                    onClick: (event, rowData) => {
-                        confirmAlert({
-                        title: 'Confirm to Delete',
-                        message: 'Are you sure to do this.',
-                        buttons: [
-                            {
-                            label: 'Yes',
-                            onClick: () =>{deleteProduct(rowData.fertilizerId)}
-                            },
-                            {
-                            label: 'No',
-                         
-                            }
-                        ]
-                        });
-                    }
+                      label: "Yes",
+                      onClick: () => {
+                        deleteProduct(rowData.fertilizerId);
+                      },
                     },
-                    ]}
-                />
-
-            
-        </div>
-        </div>
-    )
+                    {
+                      label: "No",
+                    },
+                  ],
+                });
+              },
+            },
+          ]}
+        />
+      </div>
+    </div>
+  );
 }
