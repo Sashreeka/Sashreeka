@@ -7,15 +7,17 @@ import { Publish } from '@material-ui/icons';
 import Sidebar from '../../components/sidebar/Sidebar';
 import axios from 'axios';
 
+
+
 export default function Product(props) {
     const fertilizerId=props.match.params.fertilizerId
     console.log("id="+fertilizerId);
 
    
     const [data,setData]=useState([]);
-    // const [name,setName]=useState("");
-    // const [description,setDescription]=useState("");
-    // const [	offer,setoffer]=useState("");
+     const [sname,setsName]=useState("");
+     const [newdata,setNewData]=useState([]);
+     const [	offer,setoffer]=useState("");
     // const [	unitPrice,setunitPrice]=useState("");
     // const [	unitWeight,setUnitWeight]=useState("");
     // const [	photo,setphoto]=useState("");
@@ -24,6 +26,11 @@ export default function Product(props) {
 
 
     useEffect(()=>{
+
+        axios.get('http://localhost:4000/getfertilizer').then((response)=>{
+            setNewData(response.data);
+            console.log(response.data);
+        })
 
         axios.get('http://localhost:4000/getfertilizeritem/'+fertilizerId).then((response)=>{
         setData(response.data[0]);})
@@ -66,15 +73,19 @@ export default function Product(props) {
 
                         <div className="productInfoItem">
                             <span className="productInfokey">Sales</span>
-                            <span className="productInfoValue">$123</span>
+                            <span className="productInfoValue">{data.stock}</span>
 
                         </div>
 
                         <div className="productInfoItem">
-                            <span className="productInfokey">active</span>
-                            <span className="productInfoValue">yes</span>
+
+                            <span className="productInfokey">active</span>  
+                            {
+                                data.stock > 0 ?( <div> <span className="productInfoValue">yes</span></div>):( <div> <span className="productInfoValue">no</span></div>)
+                            }  
 
                         </div>
+                      
 
 
                         <div className="productInfoItem">
@@ -93,25 +104,41 @@ export default function Product(props) {
                         <label>Product Name</label>
                         <input type="text" placeholder="Apple Airpods"/>
                         <label>In Stock</label>
-                        <select name="inStock" id="idStock">
-                            <option  value="yes">Yes</option>
-                            <option  value="no">No</option>
 
+
+                        <select name="inStock" id="idStock" onChange={(ddl)=>{setoffer(ddl.target.value)}}>
+                            {
+                                
+                                newdata.map((item)=>(
+                                   
+                                    <option  value={item.name}>{item.name}</option>
+                                   
+                                    
+
+                                ))
+                            }
+                           
+                           
                         </select>
 
+                        <p>{offer}</p>
+
+                       
 
                         <label>Active</label>
-                        <select name="active" id="active">
+                        <select name="active" id="active" onChange={(ddl)=>{setsName(ddl.target.value)}}>
+
                             <option  value="yes">Yes</option>
                             <option  value="no">No</option>
 
                         </select>
+                        <p>state ishannnnnnnn{sname}</p>
 
                     </div>
 
                     <div className="productFormRight">
                         <div className="productUpload">
-                            <img src="https://images.unsplash.com/photo-1607203391514-b001be773a22?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXBwbGUlMjBwaG9uZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"
+                            <img src={data.photo}
                                 alt=""
                                 className="productUploadImg"
                             />
