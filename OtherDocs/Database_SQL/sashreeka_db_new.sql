@@ -643,3 +643,7 @@ COMMIT;
 
 -- 2021/09/02 changed table structure by anuki
 ALTER TABLE `ordercontainsfertilizer` ADD `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `weight`;
+
+-- 2021/09/02 changed table structure by anuki - row order changed -roles table
+ALTER TABLE `role` CHANGE `roleName` `roleName` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL AFTER `roleId`
+
