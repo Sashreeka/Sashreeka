@@ -40,9 +40,9 @@ export default function Product(props) {
 
     return (
         <div className="productCon">
-        <Sidebar/>
+        <Sidebar title="products"/>
         <div className="product">
-            <div className="productTitleContainer">
+            {/* <div className="productTitleContainer">
                 <h1 className="productTitle">Product</h1>
                 <Link to="/newproduct">
 
@@ -50,7 +50,7 @@ export default function Product(props) {
 
                 </Link>
 
-            </div>
+            </div> */}
 
             <div className="productTop">
                 <div className="productTopLeft">

@@ -101,7 +101,7 @@ export default function ProductList() {
       <div className="productList">
         <div className="productTitleContainer">
           <h1></h1>
-          <button className="productAddButton">Add</button>
+          <button className="productAddButton" onClick={()=>window.location.href="/newproduct"}>Add</button>
         </div>
 
         <MaterialTable
