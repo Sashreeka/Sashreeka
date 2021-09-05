@@ -1,68 +1,34 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./userList.css";
-import { DataGrid } from "@material-ui/data-grid";
-import { DeleteOutline } from "@material-ui/icons";
-import { userRows } from "../../dummyData";
-import { Link } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar";
-import { Button } from "@material-ui/core";
 import { PageShiftButton } from "./userListComponents/userListComponents";
+import axios from "axios";
+import MaterialTable from "material-table";
+
 
 
 export default function UserList() {
-  const [data, setData] = useState(userRows);
+  const [data, setData] = useState([]);
 
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
-  };
-  
+  useEffect(()=>{
+    axios.get("http://localhost:4000/getFarmerDetails").then((response)=>{
+      setData(response.data);
+    });
+
+  },[]);
 
   const columns = [
-    { field: "id", headerName: "ID", width: 100 },
-    {
-      field: "user",
-      headerName: " User",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="userListUser">
-            <img className="userListImg" src={params.row.avater} alt="" />
-            {params.row.username}
-          </div>
-        );
-      },
-    },
-    { field: "email", headerName: "Email", width: 200 },
-    {
-      field: "status",
-      headerName: "Status",
-      width: 120,
-    },
-    {
-      field: "transaction",
-      headerName: "Transaction Volume",
-      width: 160,
-    },
-    {
-      field: "action",
-      headerName: "Action",
-      width: 150,
-      renderCell: (params) => {
-        return (
-          <>
-            <Link to={"/user/" + params.row.id}>
-              <button className="userListEdit">Edit</button>
-            </Link>
-
-            <DeleteOutline
-              className="userListDelete"
-              onClick={() => handleDelete(params.row.id)}
-            />
-          </>
-        );
-      },
-    },
+    { title: "Id", field: "userId",cellStyle:{width:"5%"} },
+    { title: "Name", field: "name",cellStyle:{width:"15%"} },
+    {title:"Email",field:"email"},
+    { title: "Address", field: "address",cellStyle:{width:"40%"} },
+    { title: "Phone Number", field: "phoneNumber",cellStyle:{width:"15%"} },
+    { title: "Status", field: "active",render:(row)=> <div className={row.active?"Factive":"deactive"}>{row.active?"Active":"Deactive"}</div> },
   ];
+
+
+  
+
 
   return (
     <div className="userListCon">
@@ -71,14 +37,19 @@ export default function UserList() {
       <div className="userList">
       
       <PageShiftButton/>
+
+      <MaterialTable
+        title="Farmer Details"
+        columns={columns}
+        data={data}
+        options={{
+          paging:true,
+          search:true,
+          exportButton:true
+        }}
+      />
   
-        <DataGrid 
-          rows={data}
-          disableSelectionOnClick
-          columns={columns}
-          pageSize={8}
-          checkboxSelection
-        />
+
       </div>
     </div>
   );

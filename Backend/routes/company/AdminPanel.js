@@ -30,12 +30,23 @@ router.get("/getfertilizeritem/:fertilizerId",(req,res)=>{
 
 //  display the delivery agent details..................
 router.get("/admin/viewDAgentDetails", (req, res) => {
-    const sqlget = "select * from deliveryagent";
+    const sqlget = "SELECT userId ,phoneNumber,email,CONCAT(firstName,' ',lastName) AS name,address,active,nic FROM deliveryagent;";
     db.query(sqlget, (err, result) => {
      // console.log(result);
       res.send(result);
     });
   });
+
+//display farmer details.....................
+
+router.get("/getFarmerDetails",(req,res)=>{
+  const sqlGet="SELECT userId ,phoneNumber,email,CONCAT(firstName,' ',lastName) AS name,address,active,loyaltyPoints FROM farmer;";
+  db.query(sqlGet,(err,result)=>{
+    res.send(result);
+  })
+})
+
+
 
 //display the company staff details..................
 router.get("/admin/viewCStaffDetails", (req, res) => {
