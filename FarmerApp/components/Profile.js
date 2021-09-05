@@ -6,7 +6,12 @@ import {
   StatusBar,
   SafeAreaView,
   Image,
+  Button,
+  TextInput,
+  TouchableOpacity,
+  ScrollView,
 } from "react-native";
+
 import colors from "../assets/colors/colors";
 import Feather from "react-native-vector-icons/Feather";
 
@@ -34,10 +39,36 @@ export default function Profile({ navigation }) {
         <Text style={styles.titlesTitle}>My Profile</Text>
       </View>
 
-      <View>
-        <Text>Full Name</Text>
+      <View style={styles.dataForm}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={styles.inputs}>
+            <View style={styles.inputRow}>
+              <Text style={styles.inputRowLabel}>Username</Text>
+              <Text style={styles.inputRowData}>Sanduni Fernando</Text>
+            </View>
+
+            <View style={styles.inputRow}>
+              <Text style={styles.inputRowLabel}>Email</Text>
+              <Text style={styles.inputRowData}>sanduni@gmail.com</Text>
+            </View>
+
+            <View style={styles.inputRow}>
+              <Text style={styles.inputRowLabel}>Contact Number</Text>
+              <Text style={styles.inputRowData}>0713705751</Text>
+            </View>
+
+            <View style={styles.inputRow}>
+              <Text style={styles.inputRowLabel}>Password</Text>
+              <Text style={styles.inputRowData}>password</Text>
+            </View>
+          </View>
+          {/* inputs-end */}
+        </ScrollView>
       </View>
-    </View>
+      {/* dataform-end */}
+
+      {/* <Button>Save Changes</Button> */}
+    </View> // container-end
   );
 }
 
@@ -65,6 +96,7 @@ const styles = StyleSheet.create({
     fontSize: 32,
     color: colors.textDark,
     paddingLeft: 20,
+    marginLeft: 10,
   },
 
   titleView: {
@@ -72,5 +104,34 @@ const styles = StyleSheet.create({
     padding: 5,
     paddingBottom: 10,
     borderBottomLeftRadius: 75,
+  },
+
+  // styles for profile data
+  dataForm: {
+    margin: 25,
+    // marginTop: 10,
+    // marginLeft: 30,
+    // marginRight: 30,
+    backgroundColor: "red",
+    padding: 5,
+  },
+
+  inputs: {
+    marginTop: 10,
+    paddingHorizontal: 5,
+    backgroundColor: "green",
+  },
+
+  inputRow: {
+    margin: 5,
+    // alignItems: "flex-end",
+    backgroundColor: "blue",
+  },
+  inputRowLabel: {
+    marginBottom: 10,
+  },
+
+  inputRowData: {
+    marginLeft: 10,
   },
 });

@@ -9,7 +9,7 @@ import Navigation from "../../components/common/header/Navigation";
 import Footer from "../../components/common/footer/footer";
 
 export default function DeliverAgentRegister() {
-  const [phoneNumberList, setPhoneNumberList] = useState([]);
+  // const [phoneNumberList, setPhoneNumberList] = useState([]);
 
   // getting the pgone numbers by an array
   // useEffect(() => {
