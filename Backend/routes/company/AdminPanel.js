@@ -9,7 +9,8 @@ const db=require('../../connection/database');
 //display fertilizer  
 router.get("/getfertilizer", (req, res) => {
     // console.log('hi anu');
-    const sqlget = "select * from fertilizer";
+  //  const sqlget = "select * from fertilizer";
+  const sqlget='SELECT CONCAT(unitWeight," ",measurementUnit) AS unit,fertilizerId,name,CONCAT(offer,"%")AS offer,unitPrice,photo,stock,reOrderLevel FROM fertilizer';
     db.query(sqlget, (err, result) => {
     //  console.log(result);
       res.send(result);
@@ -96,5 +97,7 @@ router.post('/save',(req,res)=>{
 })
 
 
+
+////SELECT DATE_FORMAT(date,'%Y-%m') AS date FROM ordercontainsfertilizer;
 
   module.exports=router;
