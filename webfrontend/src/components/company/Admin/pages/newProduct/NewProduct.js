@@ -5,7 +5,7 @@ import Sidebar from '../../components/sidebar/Sidebar';
 export default function NewProduct() {
     return (
         <div className='newProductCon'>
-            <Sidebar/>
+            <Sidebar title="products"/>
        
         <div className="newProduct">
             <h1 className="addProductTitle">New Product</h1>

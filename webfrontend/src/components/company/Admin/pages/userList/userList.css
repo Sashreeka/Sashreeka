@@ -56,3 +56,16 @@
 .user-list-table-farmer{
     background:#ffffff;
 }
+
+.Factive{
+    background-color: rgb(31, 191, 31);
+    width: fit-content;
+    padding: 0 5px;
+    border-radius: 2px;
+}
+.deactive{
+    background-color: #ec4f4f;
+    width: fit-content;
+    padding: 0 5px;
+    border-radius: 2px;
+}

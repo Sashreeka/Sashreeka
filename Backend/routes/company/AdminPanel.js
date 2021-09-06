@@ -4,9 +4,10 @@ const db = require("../../connection/database");
 
 //display fertilizer
 router.get("/getfertilizer", (req, res) => {
-  // console.log('hi anu');
-  const sqlget = "select * from fertilizer";
-  db.query(sqlget, (err, result) => {
+    // console.log('hi anu');
+  //  const sqlget = "select * from fertilizer";
+  const sqlget='SELECT CONCAT(unitWeight," ",measurementUnit) AS unit,fertilizerId,name,CONCAT(offer,"%")AS offer,unitPrice,photo,stock,reOrderLevel FROM fertilizer';
+    db.query(sqlget, (err, result) => {
     //  console.log(result);
     res.send(result);
   });
@@ -25,12 +26,24 @@ router.get("/getfertilizeritem/:fertilizerId", (req, res) => {
 
 //  display the delivery agent details..................
 router.get("/admin/viewDAgentDetails", (req, res) => {
-  const sqlget = "select * from deliveryagent";
-  db.query(sqlget, (err, result) => {
-    // console.log(result);
-    res.send(result);
+    const sqlget = "SELECT userId ,phoneNumber,email,CONCAT(firstName,' ',lastName) AS name,address,active,nic FROM deliveryagent;";
+    db.query(sqlget, (err, result) => {
+     // console.log(result);
+      res.send(result);
+    });
   });
 });
+
+//display farmer details.....................
+
+router.get("/getFarmerDetails",(req,res)=>{
+  const sqlGet="SELECT userId ,phoneNumber,email,CONCAT(firstName,' ',lastName) AS name,address,active,loyaltyPoints FROM farmer;";
+  db.query(sqlGet,(err,result)=>{
+    res.send(result);
+  })
+})
+
+
 
 //display the company staff details..................
 router.get("/admin/viewCStaffDetails", (req, res) => {
@@ -107,4 +120,6 @@ router.post("/save", (req, res) => {
   });
 });
 
-module.exports = router;
+////SELECT DATE_FORMAT(date,'%Y-%m') AS date FROM ordercontainsfertilizer;
+
+  module.exports=router;

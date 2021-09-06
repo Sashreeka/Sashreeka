@@ -20,7 +20,7 @@ export default function ProductList() {
       title: "Id",
       field: "fertilizerId",
       cellStyle: {
-        width: "10%",
+        width: "5%",
       },
     },
 
@@ -59,10 +59,18 @@ export default function ProductList() {
       cellStyle: {
         width: "20%",
       },
+      render: (row)=><div className={row.stock>row.reOrderLevel?row.stock:"deactive"}>{row.stock?row.stock:row.stock}</div>
+    },
+    {
+      title: "Unit",
+      field: "unit",
+      cellStyle: {
+        width: "20%",
+      },
     },
 
     {
-      title: "Price",
+      title: "Unit Price (Rs)",
       field: "unitPrice",
       cellStyle: {
         width: "20%",
@@ -93,7 +101,7 @@ export default function ProductList() {
       <div className="productList">
         <div className="productTitleContainer">
           <h1></h1>
-          <button className="productAddButton">Add</button>
+          <button className="productAddButton" onClick={()=>window.location.href="/newproduct"}>Add</button>
         </div>
 
         <MaterialTable
