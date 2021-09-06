@@ -26,10 +26,11 @@ export default Home = ({ navigation }) => {
   const [ferlilizerlist, setferlilizerlist] = useState([]);
 
   useEffect(() => {
-    Axios.get("http://192.168.1.21:4000/getfertilizer").then((response) => {
-      console.log(response.data[0].caption);
-      console.log(response.data[0].fertilizerId);
-      console.log(response.data[0].photo);
+    Axios.get("http://192.168.8.222:4000/getfertilizer").then((response) => {
+      // console.log(response.data[0].caption);
+      // console.log(response.data[0].fertilizerId);
+      // console.log(response.data[0].photo);
+      console.log(response.data);
       setferlilizerlist(response.data);
     });
   }, []);
