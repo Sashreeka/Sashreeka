@@ -13,14 +13,7 @@ router.get("/getfertilizer", (req, res) => {
     res.send(result);
   });
 });
-router.get("/getfertilizerall", (req, res) => {
-  // console.log('hi anu');
-  const sqlget = "select * from fertilizer";
-  db.query(sqlget, (err, result) => {
-    //  console.log(result);
-    res.send(result);
-  });
-});
+
 
 //get a specific fertilizer id
 
