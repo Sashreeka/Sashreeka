@@ -27,6 +27,33 @@ router.get("/getfertilizeritem/:fertilizerId",(req,res)=>{
    res.send(result);
   })
 })
+//add fertilizer item
+
+router.post('/addFertilizer',(req,res)=>{
+
+  const name=req.body.name;
+  const description=req.body.description;
+  const offer=req.body.offer;
+
+  const unitPrice=req.body.unitPrice;
+  const unitWeight=req.body.unitWeight;
+  const photo=req.body.photo;
+  const stock=req.body.stock;
+  const reOrderLevel=req.body.reOrderLevel;
+  const measurementUnit=req.body.measurementUnit;
+  const caption=req.body.caption;
+
+
+
+  const sqlInsert="INSERT INTO fertilizer(name,description,offer,unitPrice,unitWeight,photo,stock,reOrderLevel,measurementUnit,caption)VALUE(?,?,?,?,?,?,?,?,?,?) ";
+
+  db.query(sqlInsert,[name,description,offer,unitPrice,unitWeight,photo,stock,reOrderLevel,measurementUnit,caption],(err,result)=>{
+   // console.log(err);
+    res.send(result);
+  })
+})
+
+
 
 //  display the delivery agent details..................
 router.get("/admin/viewDAgentDetails", (req, res) => {
