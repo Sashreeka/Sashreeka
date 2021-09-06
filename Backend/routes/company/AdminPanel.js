@@ -13,6 +13,14 @@ router.get("/getfertilizer", (req, res) => {
     res.send(result);
   });
 });
+router.get("/getfertilizerall", (req, res) => {
+  // console.log('hi anu');
+  const sqlget = "select * from fertilizer";
+  db.query(sqlget, (err, result) => {
+    //  console.log(result);
+    res.send(result);
+  });
+});
 
 //get a specific fertilizer id
 
@@ -36,7 +44,6 @@ router.get("/admin/viewDAgentDetails", (req, res) => {
 });
 
 //display farmer details.....................
-
 router.get("/getFarmerDetails", (req, res) => {
   const sqlGet =
     "SELECT userId ,phoneNumber,email,CONCAT(firstName,' ',lastName) AS name,address,active,loyaltyPoints FROM farmer;";
