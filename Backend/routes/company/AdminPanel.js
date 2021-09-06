@@ -4,7 +4,17 @@ const db = require("../../connection/database");
 
 //display fertilizer
 router.get("/getfertilizer", (req, res) => {
-  // console.log("Admin Panel Get Fertlizer");
+  // console.log('hi anu');
+  //  const sqlget = "select * from fertilizer";
+  const sqlget =
+    'SELECT CONCAT(unitWeight," ",measurementUnit) AS unit,fertilizerId,name,CONCAT(offer,"%")AS offer,unitPrice,photo,stock,reOrderLevel FROM fertilizer';
+  db.query(sqlget, (err, result) => {
+    //  console.log(result);
+    res.send(result);
+  });
+});
+router.get("/getfertilizerall", (req, res) => {
+  // console.log('hi anu');
   const sqlget = "select * from fertilizer";
   db.query(sqlget, (err, result) => {
     //  console.log(result);
@@ -25,9 +35,19 @@ router.get("/getfertilizeritem/:fertilizerId", (req, res) => {
 
 //  display the delivery agent details..................
 router.get("/admin/viewDAgentDetails", (req, res) => {
-  const sqlget = "select * from deliveryagent";
+  const sqlget =
+    "SELECT userId ,phoneNumber,email,CONCAT(firstName,' ',lastName) AS name,address,active,nic FROM deliveryagent;";
   db.query(sqlget, (err, result) => {
     // console.log(result);
+    res.send(result);
+  });
+});
+
+//display farmer details.....................
+router.get("/getFarmerDetails", (req, res) => {
+  const sqlGet =
+    "SELECT userId ,phoneNumber,email,CONCAT(firstName,' ',lastName) AS name,address,active,loyaltyPoints FROM farmer;";
+  db.query(sqlGet, (err, result) => {
     res.send(result);
   });
 });
@@ -75,6 +95,27 @@ router.delete("/deleteProductItems/:fertilizerId", (req, res) => {
   });
 });
 
+// get all privilages & roles ..................
+router.get("/admin/getAll_privilages_and_roles", (req, res) => {
+  const sqlget = "SELECT * FROM `role`";
+  db.query(sqlget, (err, result) => {
+    console.log(err);
+    console.log(result);
+    res.send(result);
+  });
+});
+
+// get all privilages & roles ..................
+router.get("/admin/getRoleNames", (req, res) => {
+  const sqlget =
+    "SELECT `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='sashreeka_db' AND `TABLE_NAME`='role'";
+  db.query(sqlget, (err, result) => {
+    console.log(err);
+    console.log(result);
+    res.send(result);
+  });
+});
+
 ///sample
 router.post("/save", (req, res) => {
   const name = req.body.name;
@@ -86,16 +127,6 @@ router.post("/save", (req, res) => {
   });
 });
 
-// get profile data from farmer table
-
-// router.get("/getProfileData", (req, res) => {
-//   console.log("Admin Panel getProfileData");
-
-//   const sqlget = "select * from farmer";
-//   db.query(sqlget, (err, result) => {
-//     console.log(result);
-//     res.send(result);
-//   });
-// });
+////SELECT DATE_FORMAT(date,'%Y-%m') AS date FROM ordercontainsfertilizer;
 
 module.exports = router;

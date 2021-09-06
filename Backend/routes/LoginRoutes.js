@@ -84,16 +84,4 @@ router.get("/getorderhistory", (req, res) => {
   });
 });
 
-// get profile data from farmer table
-
-router.get("/getProfileData", (req, res) => {
-  // console.log("getProfileData");
-
-  const sqlget = "select * from farmer";
-  db.query(sqlget, (err, result) => {
-    console.log(result);
-    res.send(result);
-  });
-});
-
 module.exports = router;

@@ -1,0 +1,10 @@
+.rolesAndPrivilagesCon {
+  display: flex;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.rolesAndPrivilagesTitleContainer {
+  flex: 4;
+  /* background-color: aquamarine; */
+}

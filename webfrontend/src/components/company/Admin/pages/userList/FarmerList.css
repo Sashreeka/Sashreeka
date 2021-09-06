@@ -1,0 +1,9 @@
+.farmerListCon{
+    display: flex;
+
+}
+
+.farmerList{
+    flex: 4;
+
+}

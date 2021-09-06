@@ -72,3 +72,10 @@
     
 
 }
+
+.deactive{
+    background-color: #ec4f4f;
+    width: fit-content;
+    padding: 0 5px;
+    border-radius: 2px;
+}
