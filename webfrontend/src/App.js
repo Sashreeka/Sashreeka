@@ -35,6 +35,8 @@ import Delivery from "./components/company/Admin/pages/deliveries/Delivery";
 import DeliveryAgent from "./components/company/Admin/pages/deliveryAgents/DeliveryAgent";
 import StaffCheck from "./components/company/Admin/pages/staff/staffCheck/StaffCheck";
 import RolesPrivilages from "./components/company/Admin/pages/roles_&_privilages/Roles_and_privilages";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+import { green, grey } from "@material-ui/core/colors";
 
 // Dashboard of Staff and Delivery Agent
 import DeliveryAgentD from "./components/company/DeliveryAgent";
@@ -42,6 +44,17 @@ import StaffD from "./components/company/Staff";
 
 // forgot password
 import Forgotpwd from "./components/authentication/Forgotpwd";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: green[800],
+    },
+    secondary: {
+      main: green[500],
+    },
+  },
+});
 
 function App() {
   let userCategory = localStorage.getItem("userCategory");
@@ -51,52 +64,54 @@ function App() {
       <BrowserRouter>
         {userCategory === "admin" ? (
           <div>
-            <Topbar />
+            <ThemeProvider theme={theme}>
+              <Topbar />
 
-            <Switch>
-              <Route exact path="/">
-                <Admin />
-              </Route>
+              <Switch>
+                <Route exact path="/">
+                  <Admin />
+                </Route>
 
-              <Route path="/users">
-                <UserList />
-              </Route>
-              <Route path="/user/:userId">
-                <User />
-              </Route>
-              <Route path="/newUser">
-                <NewUser />
-              </Route>
+                <Route path="/users">
+                  <UserList />
+                </Route>
+                <Route path="/user/:userId">
+                  <User />
+                </Route>
+                <Route path="/newUser">
+                  <NewUser />
+                </Route>
 
-              <Route path="/products">
-                <ProductList />
-              </Route>
-              <Route path="/product/:fertilizerId" component={Product} />
+                <Route path="/products">
+                  <ProductList />
+                </Route>
+                <Route path="/product/:fertilizerId" component={Product} />
 
-              <Route path="/newproduct">
-                <NewProduct />
-              </Route>
-              <Route path="/sales">
-                <Sales />
-              </Route>
-              <Route path="/staff">
-                <Staff />
-              </Route>
+                <Route path="/newproduct">
+                  <NewProduct />
+                </Route>
+                <Route path="/sales">
+                  <Sales />
+                </Route>
+                <Route path="/staff">
+                  <Staff />
+                </Route>
 
-              <Route path="/staffCheck/:userId" component={StaffCheck}>
-                {/* <StaffCheck/> */}
-              </Route>
-              <Route path="/delivery">
-                <Delivery />
-              </Route>
-              <Route path="/deliveryagent">
-                <DeliveryAgent />
-              </Route>
+                <Route path="/staffCheck/:userId" component={StaffCheck}>
+                  {/* <StaffCheck/> */}
+                </Route>
+                <Route path="/delivery">
+                  <Delivery />
+                </Route>
+                <Route path="/deliveryagent">
+                  <DeliveryAgent />
+                </Route>
 
-              <Route path="/rolesPrivilages">
-                <RolesPrivilages />
-              </Route>
-            </Switch>
+                <Route path="/rolesPrivilages">
+                  <RolesPrivilages />
+                </Route>
+              </Switch>
+            </ThemeProvider>
           </div>
         ) : (
           <div>

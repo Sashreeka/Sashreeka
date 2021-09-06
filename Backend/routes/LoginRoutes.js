@@ -57,7 +57,7 @@ router.get("/ishan", (req, res) => {
 });
 
 router.get("/getfertilizer", (req, res) => {
-  // console.log('hi anu');
+  // console.log("get fertilizer");
   const sqlget = "select * from fertilizer";
   db.query(sqlget, (err, result) => {
     console.log(result);
@@ -72,4 +72,16 @@ router.get("/admin/viewDAgentDetails", (req, res) => {
     res.send(result);
   });
 });
+
+router.get("/getorderhistory", (req, res) => {
+  // const sqlget =
+  //   "select * from deliveries where famerPhoneNumber='0752016924' and confirmationFlag!=0 order by confirmationFlag ASC";
+  const sqlget =
+    "select * from deliveries where famerPhoneNumber='0752016924' order by confirmationFlag ASC";
+  db.query(sqlget, (err, result) => {
+    console.log(result);
+    res.send(result);
+  });
+});
+
 module.exports = router;

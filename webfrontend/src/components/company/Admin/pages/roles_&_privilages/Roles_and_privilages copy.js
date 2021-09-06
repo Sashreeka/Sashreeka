@@ -70,6 +70,61 @@ export default function Roles_and_privilages() {
           colour="green"
           icon={<CheckCircle />}
         ></Control.Label>
+        <MaterialTable
+          title="Privilages of the Roles"
+          data={data}
+          columns={arr}
+          options={{
+            search: true,
+            paging: false,
+            filtering: false,
+            exportButton: true,
+            backgroundColor: "#EEE",
+            actionsColumnIndex: -1,
+
+            headerStyle: {
+              color: "#000",
+              fontWeight: "bold",
+              width: "15%",
+            },
+          }}
+          actions={[
+            {
+              icon: "edit",
+              tooltip: "Edit",
+              onClick: (event, rowData) => {
+                window.location.href = "/product/" + rowData.fertilizerId;
+              },
+            },
+
+            {
+              icon: "delete",
+              tooltip: "Delete",
+              onClick: (event, rowData) => {
+                // confirmAlert({
+                //   title: "Confirm to Delete",
+                //   message: "Are you sure to do this.",
+                //   buttons: [
+                //     {
+                //       label: "Yes",
+                //       onClick: () => {
+                //         // deleteProduct(rowData.fertilizerId);
+                //       },
+                //     },
+                //     {
+                //       label: "No",
+                //     },
+                //   ],
+                // });
+              },
+            },
+          ]}
+        />
+        {/* {data.map((item) => (
+          <div key={item.roleId}>{item.roleName}</div>
+        ))} */}
+
+        {column()}
       </div>
     </div>
   );
