@@ -71,16 +71,16 @@ export default Home = ({ navigation }) => {
       <StatusBar backgroundColor={colors.primary} />
       <SafeAreaView>
         <View style={styles.headerWrapper}>
-          <Image
-            source={require("../assets/images/profileimg_girl.jpg")}
-            style={styles.profileImage}
-          />
           <Feather
             name="menu"
             size={24}
             color={colors.textDark}
             onPress={() => navigation.openDrawer()}
           ></Feather>
+          <Image
+            source={require("../assets/images/profileimg_girl.jpg")}
+            style={styles.profileImage}
+          />
         </View>
       </SafeAreaView>
       {/* titles */}

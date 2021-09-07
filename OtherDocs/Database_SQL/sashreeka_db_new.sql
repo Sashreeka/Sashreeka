@@ -647,3 +647,6 @@ ALTER TABLE `ordercontainsfertilizer` ADD `date` DATETIME NOT NULL DEFAULT CURRE
 -- 2021/09/02 changed table structure by anuki - row order changed -roles table
 ALTER TABLE `role` CHANGE `roleName` `roleName` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL AFTER `roleId`
 
+
+-- 2021/09/07 changed table structure by sanduni - streetNumber of farmer Table changed - street name
+ALTER TABLE `farmer` CHANGE `streetNumber` `streetName` VARCHAR(255) NOT NULL;

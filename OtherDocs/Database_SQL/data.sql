@@ -101,3 +101,11 @@ INSERT INTO `fertilizerferlilizercategory` (`fertilizerId`, `fertilizerCategoryI
 (7, 5),
 (8, 5),
 (9, 5);
+
+
+INSERT INTO `orders` (`orderId`, `amount`, `deliveryAddress`, `quickFlag`, `offer`, `receiverName`, `deliveryCharge`, `status`, `farmerPhoneNumber`, `staffPhoneNumber`) VALUES
+(112130000, 8800, 'polonnaruwa', 0, 10, 'Mr.Mathura', 600, 1, '0752016924', '0711205934'),
+(214748360, 20220, 'Malabe', 0, 5, 'Mr.rahul', 600, 2, '0752016924', '0711205934'),
+(231121310, 30000, 'Malabe', 1, 5, 'Mr.jaya', 600, 0, '0752016924', '0711205934'),
+(231121311, 34000, 'kotuwa', 0, 10, 'Mr.Mathura', 600, 1, '0752016924', '0711205934'),
+(1114434361, 99220, 'trinkomalee', 1, 5, 'Mr.rahul', 600, 2, '0752016924', '0711205934');
