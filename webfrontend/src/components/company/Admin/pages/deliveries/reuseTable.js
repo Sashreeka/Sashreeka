@@ -1,0 +1,94 @@
+import React from "react";
+import { makeStyles, lighten, createMuiTheme } from "@material-ui/core";
+import { green, grey } from "@material-ui/core/colors";
+
+export default function reuseTable() {
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: grey[500],
+      },
+      secondary: {
+        main: green[500],
+      },
+    },
+  });
+
+  const useToolbarStyles = makeStyles((theme) => ({
+    root: {
+      paddingLeft: theme.spacing(2),
+      paddingRight: theme.spacing(1),
+    },
+    highlight:
+      theme.palette.type === "light"
+        ? {
+            color: theme.palette.secondary.main,
+            backgroundColor: lighten(theme.palette.secondary.light, 0.85),
+          }
+        : {
+            color: theme.palette.text.primary,
+            backgroundColor: theme.palette.secondary.dark,
+          },
+    title: {
+      flex: "1 1 100%",
+    },
+  }));
+
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      width: "100%",
+    },
+    paper: {
+      width: "100%",
+      marginBottom: theme.spacing(2),
+    },
+    table: {
+      minWidth: 750,
+    },
+    visuallyHidden: {
+      border: 0,
+      clip: "rect(0 0 0 0)",
+      height: 1,
+      margin: -1,
+      overflow: "hidden",
+      padding: 0,
+      position: "absolute",
+      top: 20,
+      width: 1,
+    },
+  }));
+
+  function descendingComparator(a, b, orderBy) {
+    if (b[orderBy] < a[orderBy]) {
+      return -1;
+    }
+    if (b[orderBy] > a[orderBy]) {
+      return 1;
+    }
+    return 0;
+  }
+
+  function getComparator(order, orderBy) {
+    return order === "desc"
+      ? (a, b) => descendingComparator(a, b, orderBy)
+      : (a, b) => -descendingComparator(a, b, orderBy);
+  }
+
+  function stableSort(array, comparator) {
+    const stabilizedThis = array.map((el, index) => [el, index]);
+    stabilizedThis.sort((a, b) => {
+      const order = comparator(a[0], b[0]);
+      if (order !== 0) return order;
+      return a[1] - b[1];
+    });
+    return stabilizedThis.map((el) => el[0]);
+  }
+
+  return {
+    useToolbarStyles,
+    useStyles,
+    theme,
+    getComparator,
+    stableSort,
+  };
+}

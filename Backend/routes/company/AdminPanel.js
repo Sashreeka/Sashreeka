@@ -14,7 +14,6 @@ router.get("/getfertilizer", (req, res) => {
   });
 });
 
-
 //get a specific fertilizer id
 
 router.get("/getfertilizeritem/:fertilizerId", (req, res) => {
@@ -30,6 +29,16 @@ router.get("/getfertilizeritem/:fertilizerId", (req, res) => {
 router.get("/admin/viewDAgentDetails", (req, res) => {
   const sqlget =
     "SELECT userId ,phoneNumber,email,CONCAT(firstName,' ',lastName) AS name,address,active,nic FROM deliveryagent;";
+  db.query(sqlget, (err, result) => {
+    // console.log(result);
+    res.send(result);
+  });
+});
+
+//  display the delivery agent+ vehicle details details..................
+router.get("/admin/getdeliveyagentetails", (req, res) => {
+  const sqlget =
+    "SELECT userId,CONCAT(firstName,' ',lastName) AS Name ,availability,vehicle.vehicleId,vehicle.maxLoad,drivingLicence FROM `deliveryagent` LEFT JOIN vehicle ON vehicle.deliveryAgentPhoneNumber=deliveryagent.phoneNumber ORDER BY userId";
   db.query(sqlget, (err, result) => {
     // console.log(result);
     res.send(result);

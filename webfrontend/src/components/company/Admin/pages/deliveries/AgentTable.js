@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import axios from "axios";
 import PropTypes from "prop-types";
 import clsx from "clsx";
 import { FilterList, Create, Delete } from "@material-ui/icons";
@@ -21,22 +22,10 @@ import {
   Paper,
   lighten,
   makeStyles,
-  createMuiTheme,
   ThemeProvider,
 } from "@material-ui/core";
 
-import { green, grey } from "@material-ui/core/colors";
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: grey[500],
-    },
-    secondary: {
-      main: green[500],
-    },
-  },
-});
+import reuseTable from "./reuseTable";
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -58,46 +47,26 @@ const rows = [
   createData("Oreo", 437, 18.0, 63, 4.0),
 ];
 
-function descendingComparator(a, b, orderBy) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  return 0;
-}
-
-function getComparator(order, orderBy) {
-  return order === "desc"
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
-}
-
-function stableSort(array, comparator) {
-  const stabilizedThis = array.map((el, index) => [el, index]);
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) return order;
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map((el) => el[0]);
-}
-
 const headCells = [
+  { id: "userId", numeric: false, disablePadding: false, label: "ID" },
+  { id: "Name", numeric: false, disablePadding: false, label: "Name" },
   {
-    id: "name",
+    id: "availability",
     numeric: false,
-    disablePadding: true,
-    label: "Dessert (100g serving)",
+    disablePadding: false,
+    label: "Availability",
   },
-  { id: "calories", numeric: true, disablePadding: false, label: "Calories" },
-  { id: "fat", numeric: true, disablePadding: false, label: "Fat (g)" },
-  { id: "carbs", numeric: true, disablePadding: false, label: "Carbs (g)" },
-  { id: "protein", numeric: true, disablePadding: false, label: "Protein (g)" },
+  {
+    id: "vehicleId",
+    numeric: false,
+    disablePadding: false,
+    label: "vehicle Id",
+  },
+  { id: "maxLoad", numeric: false, disablePadding: false, label: "MaxLoad" },
 ];
 
 function EnhancedTableHead(props) {
+  const { theme } = reuseTable();
   const {
     classes,
     onSelectAllClick,
@@ -121,6 +90,7 @@ function EnhancedTableHead(props) {
               checked={rowCount > 0 && numSelected === rowCount}
               onChange={onSelectAllClick}
               inputProps={{ "aria-label": "select all desserts" }}
+              // ***********************************************************************
             />
           </TableCell>
           {headCells.map((headCell) => (
@@ -162,27 +132,8 @@ EnhancedTableHead.propTypes = {
   rowCount: PropTypes.number.isRequired,
 };
 
-const useToolbarStyles = makeStyles((theme) => ({
-  root: {
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(1),
-  },
-  highlight:
-    theme.palette.type === "light"
-      ? {
-          color: theme.palette.secondary.main,
-          backgroundColor: lighten(theme.palette.secondary.light, 0.85),
-        }
-      : {
-          color: theme.palette.text.primary,
-          backgroundColor: theme.palette.secondary.dark,
-        },
-  title: {
-    flex: "1 1 100%",
-  },
-}));
-
 const EnhancedTableToolbar = (props) => {
+  const { useToolbarStyles, theme } = reuseTable();
   const classes = useToolbarStyles();
   const { numSelected } = props;
 
@@ -235,38 +186,16 @@ EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
 };
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-  },
-  paper: {
-    width: "100%",
-    marginBottom: theme.spacing(2),
-  },
-  table: {
-    minWidth: 750,
-  },
-  visuallyHidden: {
-    border: 0,
-    clip: "rect(0 0 0 0)",
-    height: 1,
-    margin: -1,
-    overflow: "hidden",
-    padding: 0,
-    position: "absolute",
-    top: 20,
-    width: 1,
-  },
-}));
-
 export default function AgentTable() {
+  const { useStyles, theme, getComparator, stableSort } = reuseTable();
   const classes = useStyles();
   const [order, setOrder] = React.useState("asc");
-  const [orderBy, setOrderBy] = React.useState("calories");
+  const [orderBy, setOrderBy] = React.useState("userId");
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [agents, setAgents] = React.useState([]);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -317,6 +246,16 @@ export default function AgentTable() {
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:4000/admin/getdeliveyagentetails")
+      .then((res) => {
+        setAgents(res.data);
+        console.log("AgentDetails : ", res.data);
+      })
+      .catch((err) => console.log("Error in Agent Dtails: ", err));
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <div className={classes.root}>
@@ -339,20 +278,20 @@ export default function AgentTable() {
                 rowCount={rows.length}
               />
               <TableBody>
-                {stableSort(rows, getComparator(order, orderBy))
+                {stableSort(agents, getComparator(order, orderBy))
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row, index) => {
-                    const isItemSelected = isSelected(row.name);
+                    const isItemSelected = isSelected(row.Name);
                     const labelId = `enhanced-table-checkbox-${index}`;
 
                     return (
                       <TableRow
                         hover
-                        onClick={(event) => handleClick(event, row.name)}
+                        onClick={(event) => handleClick(event, row.Name)}
                         role="checkbox"
                         aria-checked={isItemSelected}
                         tabIndex={-1}
-                        key={row.name}
+                        key={row.Name}
                         selected={isItemSelected}
                       >
                         <TableCell padding="checkbox">
@@ -367,9 +306,9 @@ export default function AgentTable() {
                           scope="row"
                           padding="none"
                         >
-                          {row.name}
+                          {row.userId}
                         </TableCell>
-                        <TableCell align="right">{row.calories}</TableCell>
+                        <TableCell align="left">{row.Name}</TableCell>
                         <TableCell align="right">{row.fat}</TableCell>
                         <TableCell align="right">{row.carbs}</TableCell>
                         <TableCell align="right">{row.protein}</TableCell>
