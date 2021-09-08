@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles, lighten, createMuiTheme } from "@material-ui/core";
 import { green, grey } from "@material-ui/core/colors";
+import { PropTypes } from "prop-types";
 
-export default function reuseTable() {
+export default function ReuseTable(rows) {
+  const [order, setOrder] = useState("asc");
+  const [orderBy, setOrderBy] = useState("userId");
+  const [selected, setSelected] = useState([]);
+  const [page, setPage] = useState(0);
+  const [dense, setDense] = useState(false);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+
   const theme = createMuiTheme({
     palette: {
       primary: {
@@ -84,11 +92,72 @@ export default function reuseTable() {
     return stabilizedThis.map((el) => el[0]);
   }
 
+  const handleRequestSort = (event, property) => {
+    const isAsc = orderBy === property && order === "asc";
+    setOrder(isAsc ? "desc" : "asc");
+    setOrderBy(property);
+  };
+
+  const handleSelectAllClick = (event) => {
+    if (event.target.checked) {
+      const newSelecteds = rows.map((n) => n.name);
+      setSelected(newSelecteds);
+      return;
+    }
+    setSelected([]);
+  };
+
+  const handleClick = (event, name) => {
+    const selectedIndex = selected.indexOf(name);
+    let newSelected = [];
+    if (selectedIndex === -1) {
+      newSelected = newSelected.concat(selected, name);
+    } else if (selectedIndex === 0) {
+      newSelected = newSelected.concat(selected.slice(1));
+    } else if (selectedIndex === selected.length - 1) {
+      newSelected = newSelected.concat(selected.slice(0, -1));
+    } else if (selectedIndex > 0) {
+      newSelected = newSelected.concat(
+        selected.slice(0, selectedIndex),
+        selected.slice(selectedIndex + 1)
+      );
+    }
+    setSelected(newSelected);
+  };
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  const isSelected = (name) => selected.indexOf(name) !== -1;
+
+  const emptyRows =
+    rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+
   return {
+    order,
+    orderBy,
+    selected,
+    page,
+    dense,
+    rowsPerPage,
     useToolbarStyles,
     useStyles,
     theme,
     getComparator,
     stableSort,
+    handleRequestSort,
+    handleSelectAllClick,
+    handleClick,
+    handleChangePage,
+    handleChangeRowsPerPage,
+    isSelected,
+    emptyRows,
+    rows,
   };
 }
