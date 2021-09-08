@@ -15,42 +15,72 @@ router.get("/getfertilizer", (req, res) => {
 });
 
 //get a specific fertilizer id
+const multer=require('multer');
+const path=require('path');
+////////
+router.get("/getImage",(req,res)=>{
 
-router.get("/getfertilizeritem/:fertilizerId",(req,res)=>{
-  const fertilizerId=req.params.fertilizerId;
-  const sqlgetItem="SELECT * FROM fertilizer WHERE fertilizerId=?";
-  db.query(sqlgetItem,fertilizerId,(err,result)=>{
-   // console.log(result);
-   res.send(result);
-  })
-})
-//add fertilizer item
-
-router.post('/addFertilizer',(req,res)=>{
-
-  const name=req.body.name;
-  const description=req.body.description;
-  const offer=req.body.offer;
-
-  const unitPrice=req.body.unitPrice;
-  const unitWeight=req.body.unitWeight;
-  const photo=req.body.photo;
-  const stock=req.body.stock;
-  const reOrderLevel=req.body.reOrderLevel;
-  const measurementUnit=req.body.measurementUnit;
-  const caption=req.body.caption;
-
-
-
-  const sqlInsert="INSERT INTO fertilizer(name,description,offer,unitPrice,unitWeight,photo,stock,reOrderLevel,measurementUnit,caption)VALUE(?,?,?,?,?,?,?,?,?,?) ";
-
-  db.query(sqlInsert,[name,description,offer,unitPrice,unitWeight,photo,stock,reOrderLevel,measurementUnit,caption],(err,result)=>{
-   // console.log(err);
+  const sql="select * from photo";
+  db.query(sql,(err,result)=>{
     res.send(result);
   })
 })
 
 
+///upload images
+const storage=multer.diskStorage({
+  destination:'./../image/',
+  filename: (req,file,cb)=>{
+   
+    return cb(null,`${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
+  }
+
+})
+
+const upload=multer({
+  storage:storage
+  
+})
+
+console.log("ishan"+storage);
+///////////////sample
+router.post("/addFertilizer",upload.single('image'),(req,res)=>{
+
+  const name=req.body.name;
+  const image=req.file.filename;
+
+  const sqlInsert="INSERT INTO photo(name,image) VALUE(?,?)";
+  db.query(sqlInsert,[name,image],(err,result)=>{
+
+    console.log(err);
+    console.log(result);
+    res.send(result);
+  })
+
+})
+
+//display fertilizer
+router.get("/getfertilizer", (req, res) => {
+  // console.log('hi anu');
+  //  const sqlget = "select * from fertilizer";
+  const sqlget =
+    'SELECT CONCAT(unitWeight," ",measurementUnit) AS unit,fertilizerId,name,CONCAT(offer,"%")AS offer,unitPrice,photo,stock,reOrderLevel FROM fertilizer';
+  db.query(sqlget, (err, result) => {
+    //  console.log(result);
+    res.send(result);
+  });
+});
+
+//get a specific fertilizer id
+
+router.get("/getfertilizeritem/:fertilizerId", (req, res) => {
+  const fertilizerId = req.params.fertilizerId;
+  const sqlgetItem = "SELECT * FROM fertilizer WHERE fertilizerId=?";
+  db.query(sqlgetItem, fertilizerId, (err, result) => {
+    // console.log(result);
+    res.send(result);
+  });
+});
 
 //  display the delivery agent details..................
 router.get("/admin/viewDAgentDetails", (req, res) => {
