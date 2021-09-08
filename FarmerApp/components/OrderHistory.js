@@ -28,7 +28,7 @@ export default Main = ({ navigation }) => {
   const [historylist, setHistoryList] = useState([]);
 
   useEffect(() => {
-    Axios.get("http://192.168.1.21:4000/getorderhistory").then((response) => {
+    Axios.get("http://192.168.8.222:4000/getorderhistory").then((response) => {
       console.log(response.data[0].famerPhoneNumber);
       console.log(response.data[0].confirmationFlag);
       console.log(response.data[0].distance);
