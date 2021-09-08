@@ -1,5 +1,10 @@
 import React from "react";
+import AssignDeliveries from "./AssignDeliveries";
 
 export default function Tab3_AssignDelivaries() {
-  return <div>Tab3_AssignDelivaries</div>;
+  return (
+    <div>
+      <AssignDeliveries />
+    </div>
+  );
 }

@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
+import Control from "../../../../common/Control";
 import clsx from "clsx";
-import { FilterList, Create, Delete } from "@material-ui/icons";
+import {
+  FilterList,
+  Edit,
+  Delete,
+  Visibility,
+  CheckCircle,
+  FiberManualRecord,
+} from "@material-ui/icons";
 import {
   Switch,
   FormControlLabel,
@@ -23,9 +31,14 @@ import {
   lighten,
   makeStyles,
   ThemeProvider,
+  ButtonGroup,
+  Button,
 } from "@material-ui/core";
 
 import ReuseTable from "./ReuseTable";
+import Label from "../../../../common/labels/Label";
+import MaterialTable from "material-table";
+import ReuseDialog from "./ReuseDialog";
 
 const headCells = [
   { id: "userId", numeric: false, disablePadding: false, label: "ID" },
@@ -43,6 +56,13 @@ const headCells = [
     label: "vehicle Id",
   },
   { id: "maxLoad", numeric: false, disablePadding: false, label: "MaxLoad" },
+  {
+    id: "drivingLicence",
+    numeric: false,
+    disablePadding: false,
+    label: "Driving Licence",
+  },
+  { id: "action", numeric: true, disablePadding: false, label: "Actions" },
 ];
 
 function EnhancedTableHead(props) {
@@ -142,7 +162,7 @@ const EnhancedTableToolbar = (props) => {
             id="tableTitle"
             component="div"
           >
-            Nutrition
+            Agents
           </Typography>
         )}
 
@@ -169,6 +189,15 @@ EnhancedTableToolbar.propTypes = {
   rows: PropTypes.array,
 };
 
+const Availble = () => {
+  return <Label label="Available" colour="green" icon={<CheckCircle />} />;
+};
+const Unavailble = () => {
+  return (
+    <Label label="Unavailable" colour="red" icon={<FiberManualRecord />} />
+  );
+};
+
 export default function AgentTable() {
   const [rows, setRows] = useState([]);
 
@@ -182,6 +211,8 @@ export default function AgentTable() {
       })
       .catch((err) => console.log("Error in Agent Dtails: ", err));
   }, []);
+
+  const visibility = () => <ReuseDialog />;
 
   const {
     order,
@@ -258,9 +289,39 @@ export default function AgentTable() {
                           {row.userId}
                         </TableCell>
                         <TableCell align="left">{row.Name}</TableCell>
-                        <TableCell align="right">{row.fat}</TableCell>
-                        <TableCell align="right">{row.carbs}</TableCell>
-                        <TableCell align="right">{row.protein}</TableCell>
+                        <TableCell align="center">
+                          {row.availability === 1 ? (
+                            <Availble />
+                          ) : (
+                            <Unavailble />
+                          )}
+                        </TableCell>
+                        <TableCell align="left">{row.vehicleId}</TableCell>
+                        <TableCell align="center">{row.maxLoad}</TableCell>
+                        <TableCell align="left">{row.drivingLicence}</TableCell>
+                        <TableCell align="right">
+                          <ButtonGroup
+                            size="small"
+                            variant="contained"
+                            color="primary"
+                            aria-label="contained primary button group"
+                          >
+                            <Button
+                              onClick={() => {
+                                // console.log("visibility");
+                                visibility();
+                              }}
+                            >
+                              <Visibility fontSize="small" />
+                            </Button>
+                            <Button onClick={() => console.log("Edit")}>
+                              <Edit fontSize="small" />
+                            </Button>
+                            <Button onClick={() => console.log("Delete")}>
+                              <Delete fontSize="small" />
+                            </Button>
+                          </ButtonGroup>
+                        </TableCell>
                       </TableRow>
                     );
                   })}
