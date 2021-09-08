@@ -15,6 +15,63 @@ router.get("/getfertilizer", (req, res) => {
 });
 
 //get a specific fertilizer id
+const multer=require('multer');
+const path=require('path');
+////////
+router.get("/getImage",(req,res)=>{
+
+  const sql="select * from photo";
+  db.query(sql,(err,result)=>{
+    res.send(result);
+  })
+})
+
+
+///upload images
+const storage=multer.diskStorage({
+  destination:'./../image/',
+  filename: (req,file,cb)=>{
+   
+    return cb(null,`${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
+  }
+
+})
+
+const upload=multer({
+  storage:storage
+  
+})
+
+console.log("ishan"+storage);
+///////////////sample
+router.post("/addFertilizer",upload.single('image'),(req,res)=>{
+
+  const name=req.body.name;
+  const image=req.file.filename;
+
+  const sqlInsert="INSERT INTO photo(name,image) VALUE(?,?)";
+  db.query(sqlInsert,[name,image],(err,result)=>{
+
+    console.log(err);
+    console.log(result);
+    res.send(result);
+  })
+
+})
+
+//display fertilizer
+router.get("/getfertilizer", (req, res) => {
+  // console.log('hi anu');
+  //  const sqlget = "select * from fertilizer";
+  const sqlget =
+    'SELECT CONCAT(unitWeight," ",measurementUnit) AS unit,fertilizerId,name,CONCAT(offer,"%")AS offer,unitPrice,photo,stock,reOrderLevel FROM fertilizer';
+  db.query(sqlget, (err, result) => {
+    //  console.log(result);
+    res.send(result);
+  });
+});
+
+//get a specific fertilizer id
 
 router.get("/getfertilizeritem/:fertilizerId", (req, res) => {
   const fertilizerId = req.params.fertilizerId;
