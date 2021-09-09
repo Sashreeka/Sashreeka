@@ -10,6 +10,7 @@ import {
   Visibility,
   CheckCircle,
   FiberManualRecord,
+  Close,
 } from "@material-ui/icons";
 import {
   Switch,
@@ -33,12 +34,20 @@ import {
   ThemeProvider,
   ButtonGroup,
   Button,
+  Dialog,
+  withStyles,
 } from "@material-ui/core";
+
+import MuiDialogTitle from "@material-ui/core/DialogTitle";
+import MuiDialogContent from "@material-ui/core/DialogContent";
+import MuiDialogActions from "@material-ui/core/DialogActions";
 
 import ReuseTable from "./ReuseTable";
 import Label from "../../../../common/labels/Label";
 import MaterialTable from "material-table";
 import ReuseDialog from "./ReuseDialog";
+import AgentView from "./AgentView";
+// import ReuseDialog from "./ReuseDialog";
 
 const headCells = [
   { id: "userId", numeric: false, disablePadding: false, label: "ID" },
@@ -200,6 +209,8 @@ const Unavailble = () => {
 
 export default function AgentTable() {
   const [rows, setRows] = useState([]);
+  const [visible, setVisible] = useState(false);
+  const [Editable, setEditable] = useState(false);
 
   useEffect(() => {
     // console.log("useeffect working! ");
@@ -212,7 +223,22 @@ export default function AgentTable() {
       .catch((err) => console.log("Error in Agent Dtails: ", err));
   }, []);
 
-  const visibility = () => <ReuseDialog />;
+  const openVisibility = () => {
+    console.log("visivle to you");
+    setVisible(true);
+  };
+  const closeVisibility = () => {
+    console.log("visivle to you -closed");
+    setVisible(false);
+  };
+  const openEditability = () => {
+    console.log("Editable content");
+    setEditable(true);
+  };
+  const closeEditability = () => {
+    console.log("Editable content closed");
+    setEditable(false);
+  };
 
   const {
     order,
@@ -308,13 +334,12 @@ export default function AgentTable() {
                           >
                             <Button
                               onClick={() => {
-                                // console.log("visibility");
-                                visibility();
+                                openVisibility();
                               }}
                             >
                               <Visibility fontSize="small" />
                             </Button>
-                            <Button onClick={() => console.log("Edit")}>
+                            <Button onClick={() => openEditability()}>
                               <Edit fontSize="small" />
                             </Button>
                             <Button onClick={() => console.log("Delete")}>
@@ -343,6 +368,28 @@ export default function AgentTable() {
             onRowsPerPageChange={handleChangeRowsPerPage}
           />
         </Paper>
+      </div>
+
+      {/* popup dialog box 1 - view details */}
+      <div>
+        <ReuseDialog
+          onclose={closeVisibility}
+          open={visible}
+          dialogTitle={"Agent Details"}
+        >
+          <AgentView />
+        </ReuseDialog>
+      </div>
+
+      {/* popup dialog box 2 - Edit details */}
+      <div>
+        <ReuseDialog
+          onclose={closeEditability}
+          open={Editable}
+          dialogTitle={"Edit Agent Details"}
+        >
+          <h2>this is content of dialog</h2>
+        </ReuseDialog>
       </div>
     </ThemeProvider>
   );

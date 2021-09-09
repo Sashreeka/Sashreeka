@@ -1,15 +1,13 @@
 import React from "react";
-import {
-  withStyles,
-  Button,
-  Dialog,
-  IconButton,
-  Typography,
-} from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 import MuiDialogActions from "@material-ui/core/DialogActions";
-import { Close } from "@material-ui/icons";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
+import Typography from "@material-ui/core/Typography";
 
 const styles = (theme) => ({
   root: {
@@ -35,7 +33,7 @@ const DialogTitle = withStyles(styles)((props) => {
           className={classes.closeButton}
           onClick={onClose}
         >
-          <Close />
+          <CloseIcon />
         </IconButton>
       ) : null}
     </MuiDialogTitle>
@@ -44,7 +42,7 @@ const DialogTitle = withStyles(styles)((props) => {
 
 const DialogContent = withStyles((theme) => ({
   root: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(4),
   },
 }))(MuiDialogContent);
 
@@ -55,48 +53,25 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
-export default function ReuseDialog() {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
+export default function DialogView(props) {
+  const { onclose, open, dialogTitle, children } = props;
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open dialog
-      </Button>
       <Dialog
-        onClose={handleClose}
+        maxWidth="lg"
+        onClose={onclose}
         aria-labelledby="customized-dialog-title"
         open={open}
       >
-        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Modal title
+        <DialogTitle id="customized-dialog-title" onClose={onclose}>
+          {dialogTitle}
         </DialogTitle>
         <DialogContent dividers>
-          <Typography gutterBottom>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros.
-          </Typography>
-          <Typography gutterBottom>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
-            auctor.
-          </Typography>
-          <Typography gutterBottom>
-            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
-            cursus magna, vel scelerisque nisl consectetur et. Donec sed odio
-            dui. Donec ullamcorper nulla non metus auctor fringilla.
-          </Typography>
+          <Typography gutterBottom>{children}</Typography>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleClose} color="primary">
+          <Button autoFocus onClick={onclose} color="primary">
             Save changes
           </Button>
         </DialogActions>

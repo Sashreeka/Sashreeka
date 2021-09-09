@@ -15,49 +15,43 @@ router.get("/getfertilizer", (req, res) => {
 });
 
 //get a specific fertilizer id
-const multer=require('multer');
-const path=require('path');
+const multer = require("multer");
+const path = require("path");
 ////////
-router.get("/getImage",(req,res)=>{
-
-  const sql="select * from photo";
-  db.query(sql,(err,result)=>{
+router.get("/getImage", (req, res) => {
+  const sql = "select * from photo";
+  db.query(sql, (err, result) => {
     res.send(result);
-  })
-})
-
+  });
+});
 
 ///upload images
-const storage=multer.diskStorage({
-  destination:'./../image/',
-  filename: (req,file,cb)=>{
-   
-    return cb(null,`${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
-  }
+const storage = multer.diskStorage({
+  destination: "./../image/",
+  filename: (req, file, cb) => {
+    return cb(
+      null,
+      `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`
+    );
+  },
+});
 
-})
+const upload = multer({
+  storage: storage,
+});
 
-const upload=multer({
-  storage:storage
-  
-})
+console.log("ishan" + storage);
+router.post("/addFertilizer", upload.single("image"), (req, res) => {
+  const name = req.body.name;
+  const image = req.file.filename;
 
-console.log("ishan"+storage);
-///////////////sample
-router.post("/addFertilizer",upload.single('image'),(req,res)=>{
-
-  const name=req.body.name;
-  const image=req.file.filename;
-
-  const sqlInsert="INSERT INTO photo(name,image) VALUE(?,?)";
-  db.query(sqlInsert,[name,image],(err,result)=>{
-
+  const sqlInsert = "INSERT INTO photo(name,image) VALUE(?,?)";
+  db.query(sqlInsert, [name, image], (err, result) => {
     console.log(err);
     console.log(result);
     res.send(result);
-  })
-
-})
+  });
+});
 
 //display fertilizer
 router.get("/getfertilizer", (req, res) => {

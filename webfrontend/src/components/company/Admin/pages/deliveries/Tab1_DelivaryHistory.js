@@ -1,10 +1,10 @@
 import React from "react";
-import Delivery_backup from "./Delivery_backup";
+import DeliveryHistory from "./DeliveryHistory";
 
 export default function Tab1_DelivaryHistory() {
   return (
     <div>
-      <Delivery_backup />
+      <DeliveryHistory />
     </div>
   );
 }
