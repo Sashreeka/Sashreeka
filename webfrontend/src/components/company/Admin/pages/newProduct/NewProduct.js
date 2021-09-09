@@ -4,12 +4,13 @@ import Sidebar from '../../components/sidebar/Sidebar';
 import axios from 'axios';
 import NewForm from './NewForm';
 import { Paper ,makeStyles} from '@material-ui/core';
+import { Publish } from '@material-ui/icons';
 
 
 const useStyles=makeStyles(theme=>({
     pageContent:{
         margin:theme.spacing(5),
-        padding:theme.spacing(10)
+        padding:theme.spacing(3)
 
     }
 
@@ -33,6 +34,57 @@ export default function NewProduct() {
 
     const classes=useStyles();
 
+    // const dataset = [
+    //     {
+    //       id: "1",
+    //       name: "ishan",
+    //       age: 23,
+    //      item:[
+    //          {itemname:"f1",quantity:10},
+    //          {itemname:"f2",quantity:30},
+    //          {itemname:"f3",quantity:20},
+
+    //      ]
+    //     },
+    //     {
+    //       id: "2",
+    //       name: "ishan1",
+    //       age: 23,
+    //       item:[
+    //         {itemname:"f1",quantity:30},
+    //         {itemname:"f2",quantity:30},
+          
+
+    //     ]
+    //     },
+    //     {
+    //       id: "3",
+    //       name: "ishan2",
+    //       age: 23,
+    //       item:[
+    //         {itemname:"f1",quantity:10},
+           
+
+    //     ]
+    //     },
+    //     {
+    //       id: "4",
+    //       name: "ishan3",
+    //       age: 23,
+    //       item:[
+    //         {itemname:"f1",quantity:10},
+    //         {itemname:"f2",quantity:30},
+    //         {itemname:"f3",quantity:20},
+
+    //     ]
+    //     },
+       
+    //   ];
+
+    // const data=[
+    //     {"id":1,"name":"ishan","item":[{"iname":"f1"},{"iname":"f2"}]},
+    //     {"id":2,"name":"ishan","item":[{"iname":"f1"}]}
+    // ];
 
 
     // useEffect(()=>{
@@ -117,54 +169,105 @@ export default function NewProduct() {
           
        
         <div className="newProduct">
-            <h1 className="addProductTitle">New Product</h1>
+            <h1 className="addProductTitle">Add Fertilizer Item</h1>
+            {/* {
+                dataset.map((item)=>(
+                    <div key={item.id}>
+                        <p>{item.name}-{item.age}</p>
+
+                        
+                     {
+                        item.item.map((second)=>(
+                            <div>
+                                <p>{second.itemname}-{second.quantity}</p>
+                            </div>
+                           
+                           ))
+                     }
+
+                       
+
+                    </div>
+                ))
+            } */}
+
+
+
             <form onSubmit={submitform} >
+            <div className="mb-3 productUpload">
+                            <img src="https://www.stones4homes.co.uk/wp-content/uploads/2021/04/Farmyard-Manure-1-004.jpg"
+                                alt=""
+                                className="productUploadImg"
+                            />
+
+                            <label  for="file">
+                                <Publish/>
+
+                            </label>
+                            <input type="file" id="file" className="form-control" name="image" onChange={changeIma} style={{display:'none'}} />
+
+                        </div>    
                 <div class="form-outline flex-fill mb-3">
                    
                     <input type="text" name="name" class="form-control" placeholder="name" onChange={(e)=>{setName(e.target.value)}}/>
                     
                   
                 </div>
-                {/* <div class="mb-3">
+                <div class="mb-3">
                    
-                    <input type="text" class="form-control" name="description" placeholder="description" onChange={(e)=>{setDescription(e.target.value)}} />
+                    <input type="text"  class="form-control" name="description" placeholder="description" onChange={(e)=>{setDescription(e.target.value)}} />
                    
                 </div>
 
                 <div class="row g-3 mb-3">
                     <div class="col">
-                        <input type="text" class="form-control" placeholder="offer" aria-label="offer" name="offer" onChange={(e)=>{setOffer(e.target.value)}}/>
+                        <input type="number" min="0" class="form-control" placeholder="offer" aria-label="offer" name="offer" onChange={(e)=>{setOffer(e.target.value)}}/>
                     </div>
                     <div class="col">
-                        <input type="text" class="form-control" placeholder="unitPrice" aria-label="unitPrice" name="unitPrice"onChange={(e)=>{setUnitPrice(e.target.value)}}/>
+                        <input type="number" min="0" class="form-control" placeholder="unitPrice" aria-label="unitPrice" name="unitPrice"onChange={(e)=>{setUnitPrice(e.target.value)}}/>
                     </div>
                 </div>
 
                 <div class="row g-3 mb-3">
                     <div class="col">
-                        <input type="text" class="form-control" placeholder="unitWeight" aria-label="unitWeight" name="unitWeight"onChange={(e)=>{setUnitWeight(e.target.value)}}/>
+                        <input type="number" min="0" class="form-control" placeholder="unitWeight" aria-label="unitWeight" name="unitWeight"onChange={(e)=>{setUnitWeight(e.target.value)}}/>
                     </div>
                     <div class="col">
-                        <input type="text" class="form-control" placeholder="stock" aria-label="stock" name="stock"onChange={(e)=>{setStock(e.target.value)}}/>
+                        <input type="number" class="form-control" min="0" placeholder="stock" aria-label="stock" name="stock"onChange={(e)=>{setStock(e.target.value)}}/>
                      </div>
                 </div>
 
                 <div class="row g-3 mb-3">
                     <div class="col">
-                        <input type="text" class="form-control" placeholder="reOrderLevel" aria-label="reOrderLevel" name="reOrderLevel"onChange={(e)=>{setReOrderLevel(e.target.value)}}/>
+                        <input type="number" class="form-control" min="0" placeholder="reOrderLevel" aria-label="reOrderLevel" name="reOrderLevel"onChange={(e)=>{setReOrderLevel(e.target.value)}}/>
                     </div>
+
+
                     <div class="col">
-                        <input type="text" class="form-control" placeholder="measurementUnit" aria-label="measurementUnit" name="measurementUnit" onChange={(e)=>{setMeasurementUnit(e.target.value)}}/>
+                        <label style={{marginRight:"10px"}}>measurementUnit</label>
+                        <select name="measurementUnit" id="measurementUnit"
+                        onChange={(e)=>{setMeasurementUnit(e.target.value)}}
+                        // onChange={(ddl)=>{setsName(ddl.target.value)}}
+                        >
+
+                            <option  value="Kg">Kg</option>
+                            <option  value="g">g</option>
+                            <option  value="L">L</option>
+                            <option  value="ml">ml</option>
+
+                        </select>
+                        {/* <input type="text" class="form-control" placeholder="measurementUnit" aria-label="measurementUnit" name="measurementUnit" onChange={(e)=>{setMeasurementUnit(e.target.value)}}/> */}
                     </div>
-                </div> */}
+                </div>
               
+            {/* <img src={image} alt=""/> */}
                
                
-                <div class="mb-3">
+                {/* <div class="mb-3">
                     <label class="form-label">photo</label>
                     <input type="file" class="form-control" name="image"onChange={changeIma}/>
                    
-                </div>
+                </div> */}
 
                 
 
@@ -196,7 +299,8 @@ export default function NewProduct() {
 
 {/*            
             <img src={require("./../../../../../../../../Backend/image/$`item.image`")  } alt=""/> */}
-            {/* <img src="./../../image/image_1630947896098.PNG" alt="" width="20%" height="20%"/> that's correct */}
+            
+            {/* <img src="./../../image/image_1630947896098.PNG" alt="" width="20%" height="20%"/> that's correct 
 
 
 
@@ -240,86 +344,6 @@ export default function NewProduct() {
 
 
             </form> */}
-
-{/* 
-
-
-            <section class="vh-100" style="background-color: #eee;">
-  <div class="container h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-lg-12 col-xl-11">
-        <div class="card text-black" style="border-radius: 25px;">
-          <div class="card-body p-md-5">
-            <div class="row justify-content-center">
-              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-
-                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
-
-                <form class="mx-1 mx-md-4">
-
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <input type="text" id="form3Example1c" class="form-control" />
-                      <label class="form-label" for="form3Example1c">Your Name</label>
-                    </div>
-                  </div>
-
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <input type="email" id="form3Example3c" class="form-control" />
-                      <label class="form-label" for="form3Example3c">Your Email</label>
-                    </div>
-                  </div>
-
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <input type="password" id="form3Example4c" class="form-control" />
-                      <label class="form-label" for="form3Example4c">Password</label>
-                    </div>
-                  </div>
-
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <input type="password" id="form3Example4cd" class="form-control" />
-                      <label class="form-label" for="form3Example4cd">Repeat your password</label>
-                    </div>
-                  </div>
-
-                  <div class="form-check d-flex justify-content-center mb-5">
-                    <input
-                      class="form-check-input me-2"
-                      type="checkbox"
-                      value=""
-                      id="form2Example3c"
-                    />
-                    <label class="form-check-label" for="form2Example3">
-                      I agree all statements in <a href="#!">Terms of service</a>
-                    </label>
-                  </div>
-
-                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                    <button type="button" class="btn btn-primary btn-lg">Register</button>
-                  </div>
-
-                </form>
-
-              </div>
-              <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-
-                <img src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-registration/draw1.png" class="img-fluid" alt="Sample image"/>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> */}
 
             <div className="card w-80">
            

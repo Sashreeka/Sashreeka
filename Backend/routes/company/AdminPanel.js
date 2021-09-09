@@ -29,7 +29,7 @@ router.get("/getImage",(req,res)=>{
 
 ///upload images
 const storage=multer.diskStorage({
-  destination:'./../image/',
+  destination:'./public/image/',
   filename: (req,file,cb)=>{
    
     return cb(null,`${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
