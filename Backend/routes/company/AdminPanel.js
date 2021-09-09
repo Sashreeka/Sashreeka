@@ -2,6 +2,10 @@ const express = require("express");
 const router = express.Router();
 const db = require("../../connection/database");
 
+//upload image library
+const multer=require('multer');
+const path=require('path');
+
 //display fertilizer
 router.get("/getfertilizer", (req, res) => {
   // console.log('hi anu');
@@ -15,8 +19,7 @@ router.get("/getfertilizer", (req, res) => {
 });
 
 //get a specific fertilizer id
-const multer=require('multer');
-const path=require('path');
+
 ////////
 router.get("/getImage",(req,res)=>{
 
@@ -42,15 +45,24 @@ const upload=multer({
   
 })
 
-console.log("ishan"+storage);
+
 ///////////////sample
 router.post("/addFertilizer",upload.single('image'),(req,res)=>{
 
   const name=req.body.name;
   const image=req.file.filename;
+  const description=req.body.description;
+  const offer=req.body.offer;
+  const unitPrice=req.body.unitPrice;
+  const unitWeight=req.body.unitWeight;
+  const stock=req.body.stock;
+  const reOrderLevel=req.body.reOrderLevel;
+  const measurementUnit=req.body.measurementUnit;
+  const caption=req.body.caption;
 
-  const sqlInsert="INSERT INTO photo(name,image) VALUE(?,?)";
-  db.query(sqlInsert,[name,image],(err,result)=>{
+  //const sqlInsert="INSERT INTO photo(name,image) VALUE(?,?)";
+  const sqlInsert="INSERT INTO fertilizer(name,description,offer,unitPrice,unitWeight,photo,stock,reOrderLevel,measurementUnit,caption) VALUE(?,?,?,?,?,?,?,?,?,?)";
+  db.query(sqlInsert,[name,description,offer,unitPrice,unitWeight,image,stock,reOrderLevel,measurementUnit,caption],(err,result)=>{
 
     console.log(err);
     console.log(result);

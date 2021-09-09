@@ -25,7 +25,7 @@ export default function NewProduct() {
     const [unitWeight,setUnitWeight]=useState('');
     const [stock,setStock]=useState('');
     const [reOrderLevel,setReOrderLevel]=useState('');
-    const [measurementUnit,setMeasurementUnit]=useState('');
+    const [measurementUnit,setMeasurementUnit]=useState('Kg');
     const [image,setImage]=useState(null);
     const [caption,setCaption]=useState('');
 
@@ -121,6 +121,14 @@ export default function NewProduct() {
         const formdata=new FormData();
         formdata.append('name',name);
         formdata.append('image',image);
+        formdata.append('description',description);
+        formdata.append('offer',offer);
+        formdata.append('unitPrice',unitPrice);
+        formdata.append('unitWeight',unitWeight);
+        formdata.append('stock',stock);
+        formdata.append('reOrderLevel',reOrderLevel);
+        formdata.append('measurementUnit',measurementUnit);
+        formdata.append('caption',caption);
 
         const config = {     
             headers: { 'content-type': 'multipart/form-data' }
@@ -170,7 +178,7 @@ export default function NewProduct() {
        
         <div className="newProduct">
             <h1 className="addProductTitle">Add Fertilizer Item</h1>
-            {/* {
+             {/* {
                 dataset.map((item)=>(
                     <div key={item.id}>
                         <p>{item.name}-{item.age}</p>
@@ -189,7 +197,7 @@ export default function NewProduct() {
 
                     </div>
                 ))
-            } */}
+            }  */}
 
 
 
@@ -258,7 +266,7 @@ export default function NewProduct() {
                         </select>
                         {/* <input type="text" class="form-control" placeholder="measurementUnit" aria-label="measurementUnit" name="measurementUnit" onChange={(e)=>{setMeasurementUnit(e.target.value)}}/> */}
                     </div>
-                </div>
+                </div> 
               
             {/* <img src={image} alt=""/> */}
                
@@ -276,12 +284,12 @@ export default function NewProduct() {
               
 
                
-{/* 
+
                 <div class="mb-3">
                   
                     <input type="text" class="form-control" name="caption" placeholder="caption" onChange={(e)=>{setCaption(e.target.value)}}/>
                    
-                </div> */}
+                </div>
                
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
