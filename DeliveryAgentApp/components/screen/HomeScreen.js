@@ -53,7 +53,7 @@ const HomeScreen = ({ navigation }) => {
       .get("http://192.168.1.11:4000/deliveryAgent/upcoming")
       .then((response) => {
         if (response) {
-          console.log(response.data);
+          // console.log(response.data);
           setupcomingDelivery(response.data);
         } else {
           console.log("error");
@@ -61,7 +61,7 @@ const HomeScreen = ({ navigation }) => {
       });
 
     axios
-      .get("http://192.168.1.12:4000/deliveryAgent/history")
+      .get("http://192.168.1.11:4000/deliveryAgent/history")
       .then((response) => {
         if (response) {
           console.log(response.data);
@@ -260,6 +260,13 @@ const HomeScreen = ({ navigation }) => {
           </View>
         </ScrollView>
 
+
+
+
+
+
+{/* today delivery page */}
+
         <TouchableOpacity
           onPress={() => {
             navigation.navigate("DetailsScreen");
@@ -318,8 +325,24 @@ const HomeScreen = ({ navigation }) => {
             </View>
           </View>
         </TouchableOpacity>
+{/* today delivery page */}
+
+
+
+
+
+
+
+
+
+
+
 
         <ScrollView horizontal={true}>
+
+
+
+{/* display upcoming delivery button */}
           <TouchableOpacity
             onPress={() =>
               //  navigation.navigate("ModalScreen")
@@ -348,7 +371,11 @@ const HomeScreen = ({ navigation }) => {
               </Text>
             </View>
           </TouchableOpacity>
+{/* display upcoming delivery button */}
 
+
+
+{/* display histry delivery button */}
           <TouchableOpacity onPress={() => setOpenModal1(true)}>
             <View
               style={[
@@ -384,6 +411,13 @@ const HomeScreen = ({ navigation }) => {
           setOpenModal1(true)
           }
         /> */}
+
+
+
+
+
+{/* upcoming  */}
+
 
         <Modal visible={openModal} onBackdropPress={() => setOpenModal(false)}>
           {/* <Animatable.View animation="fadeInDownBig" style={{flex:1,maxHeight:deviceHeight* 0.6, marginTop:180, justifyContent:"flex-end",borderTopLeftRadius:10,}}> */}
@@ -455,7 +489,7 @@ const HomeScreen = ({ navigation }) => {
                   borderRadius: 21,
                 }}
               >
-                <Text>3</Text>
+                <Text>{upcomingDelivery.length}</Text>
               </View>
             </View>
 
@@ -526,6 +560,26 @@ const HomeScreen = ({ navigation }) => {
             </ScrollView>
           </Animatable.View>
         </Modal>
+
+{/* upcoming  */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         {/* history modal */}
 
@@ -602,7 +656,7 @@ const HomeScreen = ({ navigation }) => {
                   borderRadius: 21,
                 }}
               >
-                <Text>3</Text>
+                <Text>{historyDelivery.length}</Text>
               </View>
             </View>
 
@@ -640,10 +694,16 @@ const HomeScreen = ({ navigation }) => {
             </View>
 
             <ScrollView style={{ marginTop: 20 }}>
-              <Animatable.View
+
+          {historyDelivery.map((item)=>(
+
+            <Animatable.View
+               key={item.orderId}
                 animation="fadeInUpBig"
                 style={{ marginBottom: 5 }}
               >
+
+
                 <View style={content}>
                   <View>
                     <Entypo name="calendar" size={65} color="#217756" />
@@ -655,7 +715,8 @@ const HomeScreen = ({ navigation }) => {
                         fontWeight: "bold",
                       }}
                     >
-                      Jul
+                    {item.shortMonth}
+                     
                     </Text>
                     <Text
                       style={{
@@ -664,13 +725,14 @@ const HomeScreen = ({ navigation }) => {
                         fontSize: 12,
                       }}
                     >
-                      19
+                      {item.dateD}
                     </Text>
                   </View>
 
                   <View style={{ flexDirection: "column" }}>
                     <Text style={styles.historyTText}>
-                      Colombo-Bandara Jayathilake
+                    {item.city} - {item.firstName+" "}{item.lastName}
+                      {/* Colombo-Bandara Jayathilake */}
                     </Text>
 
                     <View style={{ flexDirection: "row" }}>
@@ -688,7 +750,7 @@ const HomeScreen = ({ navigation }) => {
                       <Text
                         style={{ color: "#000", fontSize: 13, marginTop: 0 }}
                       >
-                        750
+                       {item.amount}
                       </Text>
                     </View>
 
@@ -707,13 +769,46 @@ const HomeScreen = ({ navigation }) => {
                       <Text
                         style={{ color: "#000", fontSize: 13, marginTop: 0 }}
                       >
-                        2021-07-19
+                        {item.newdateTime}
+                     
                       </Text>
                     </View>
                   </View>
                 </View>
               </Animatable.View>
 
+
+
+          ))
+
+
+
+              
+
+
+
+
+
+
+
+
+
+
+
+              }
+            </ScrollView>
+          </Animatable.View>
+        </Modal>
+
+
+{/* 
+
+
+
+
+
+
+{/* 
               <Animatable.View
                 animation="fadeInUpBig"
                 style={{ marginBottom: 5 }}
@@ -858,10 +953,35 @@ const HomeScreen = ({ navigation }) => {
                     </View>
                   </View>
                 </View>
-              </Animatable.View>
-            </ScrollView>
-          </Animatable.View>
-        </Modal>
+              </Animatable.View> 
+
+
+
+
+
+
+
+
+
+
+ */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         {/* 
 
