@@ -31,7 +31,7 @@ export default Home = ({ navigation }) => {
         // console.log(response.data[0].caption);
         // console.log(response.data[0].fertilizerId);
         // console.log(response.data[0].photo);
-        console.log(response.data);
+        //  console.log(response.data);
         setferlilizerlist(response.data);
       }
     );
@@ -141,7 +141,10 @@ export default Home = ({ navigation }) => {
                   onPress={() => navigation.navigate("ItemPage")}
                 >
                   <View style={styles.itemCardWrapOuter}>
-                    <View style={styles.itemcardLeft}>
+                    <View
+                      style={styles.itemcardLeft}
+                      onPress={() => navigation.navigate("ItemPage")}
+                    >
                       <View style={styles.itemWrapperMain}>
                         <Text style={styles.itemTitleMain}>{val.name}</Text>
                       </View>
@@ -150,57 +153,21 @@ export default Home = ({ navigation }) => {
                           {val.caption}
                         </Text>
                       </View>
-                      <View>
-                        <Text style={styles.itemDescription}>
-                          Item unit: {val.unitWeight}
-                          {val.measurementUnit}
+                      <View style={styles.itemADDbutton}>
+                        <Text
+                          style={styles.itemADDbuttonText}
+                          onPress={() => navigation.navigate("ItemPage")}
+                        >
+                          ADD
+                          <Feather name="plus" size={15} color="#000" />
                         </Text>
                       </View>
-                      <View>
-                        <Text style={styles.itemValue}>
-                          Rs.
-                          {parseInt((val.unitPrice * (100 - val.offer)) / 100)}
-                          .00
-                        </Text>
-                        <Text style={styles.itemValueWithoutOffer}>
-                          Rs.{val.unitPrice}.00
-                        </Text>
-                      </View>
-
-                      {/* <View style={styles.itemADDbutton}>
-                                    <Text style={styles.itemADDbuttonText}>ADD<Feather name="plus" size={15} color='#000'/>
-                                    </Text>
-                                </View> */}
                     </View>
                     <View style={styles.itemcardRight}>
                       <Image
                         source={{ uri: `${val.photo}` }}
                         style={styles.itemcardimage}
                       />
-                      <View
-                        style={{
-                          backgroundColor: "green",
-                          width: 70,
-                          height: 30,
-                          borderRadius: 20,
-                        }}
-                      >
-                        <Text
-                          style={{
-                            fontSize: 25,
-                            paddingLeft: 15,
-                            marginTop: -3,
-                            color: "yellow",
-                          }}
-                        >
-                          +{" "}
-                          <FontAwsome
-                            name="shopping-cart"
-                            size={22}
-                            color={colors.ratingStarColor}
-                          ></FontAwsome>
-                        </Text>
-                      </View>
                     </View>
                   </View>
                 </TouchableOpacity>
@@ -304,18 +271,17 @@ const styles = StyleSheet.create({
     color: colors.textlight,
   },
   categoriesWrapper: {
-    marginTop: 20,
+    marginTop: 30,
   },
   categoriesTitle: {
     fontWeight: "bold",
     fontSize: 20,
-    paddingVertical: 5,
-    paddingHorizontal: 30,
+    paddingHorizontal: 20,
   },
 
   categoriesListWrapper: {
     paddingTop: 15,
-    paddingBottom: 10,
+    paddingBottom: 20,
     // paddingLeft:20,
   },
 
@@ -339,8 +305,7 @@ const styles = StyleSheet.create({
   },
 
   categoryItemImage: {
-    // backgroundColor:"red",
-    marginTop: 10,
+    marginTop: 25,
     alignSelf: "center",
     marginHorizontal: 27,
   },
@@ -350,12 +315,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 16,
     fontWeight: "600",
-    marginTop: 20,
+    marginTop: 10,
     textTransform: "uppercase",
-  },
-
-  categoriesListWrapper: {
-    // backgroundColor:"red",
   },
 
   categorySelectWrapper: {
@@ -368,7 +329,6 @@ const styles = StyleSheet.create({
 
   itemsWrapper: {
     paddingHorizontal: 20,
-    paddingVertical: 10,
   },
 
   itemsTitle: {
@@ -406,7 +366,7 @@ const styles = StyleSheet.create({
 
   itemDescriptionWrapper: {
     marginTop: 10,
-    marginBottom: 10,
+    marginBottom: 20,
   },
 
   itemDescription: {
@@ -454,16 +414,5 @@ const styles = StyleSheet.create({
     width: 140,
     height: 150,
     resizeMode: "contain",
-  },
-
-  itemValue: {
-    fontSize: 26,
-    fontWeight: "bold",
-  },
-  itemValueWithoutOffer: {
-    fontSize: 16,
-    color: "red",
-    textDecorationLine: "line-through",
-    textDecorationStyle: "solid",
   },
 });
