@@ -42,10 +42,6 @@ const upload = multer({
   storage: storage,
 });
 
-const upload = multer({
-  storage: storage,
-});
-
 ///////////////sample
 router.post("/addFertilizer", upload.single("image"), (req, res) => {
   const name = req.body.name;
