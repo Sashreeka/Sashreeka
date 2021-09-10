@@ -42,6 +42,10 @@ const upload = multer({
   storage: storage,
 });
 
+const upload = multer({
+  storage: storage,
+});
+
 ///////////////sample
 router.post("/addFertilizer", upload.single("image"), (req, res) => {
   const name = req.body.name;
@@ -78,6 +82,56 @@ router.post("/addFertilizer", upload.single("image"), (req, res) => {
       console.log(err);
       console.log(result);
       res.send(result);
+    }
+  );
+});
+
+//update fertilizer item
+router.put("/updateFertilizerItem/:id", upload.single("image"), (req, res) => {
+  const id = req.params.id;
+  const name = req.body.name;
+  const image = req.file.filename;
+  const description = req.body.description;
+  const offer = req.body.offer;
+  const unitPrice = req.body.unitPrice;
+  const unitWeight = req.body.unitWeight;
+  const stock = req.body.stock;
+  const reOrderLevel = req.body.reOrderLevel;
+  const measurementUnit = req.body.measurementUnit;
+  const caption = req.body.caption;
+  name,
+    description,
+    offer,
+    unitPrice,
+    unitWeight,
+    photo,
+    stock,
+    reOrderLevel,
+    measurementUnit,
+    caption;
+
+  const sqlUpdate =
+    "UPDATE fertilizer SET name=?,description=?,offer=?,unitPrice=?,unitWeight=?,photo=?,stock=?,reOrderLevel=?,measurementUnit=?,caption=? WHERE fertilizerId=?";
+
+  db.query(
+    sqlUpdate,
+    [
+      name,
+      description,
+      offer,
+      unitPrice,
+      unitWeight,
+      image,
+      stock,
+      reOrderLevel,
+      measurementUnit,
+      caption,
+      id,
+    ],
+    (err, result) => {
+      console.log(err);
+      // console.log(result);
+      // res.send(result);
     }
   );
 });

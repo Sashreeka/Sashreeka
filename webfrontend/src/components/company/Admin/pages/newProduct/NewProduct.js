@@ -27,7 +27,10 @@ export default function NewProduct() {
     const [reOrderLevel,setReOrderLevel]=useState('');
     const [measurementUnit,setMeasurementUnit]=useState('Kg');
     const [image,setImage]=useState(null);
+    
     const [caption,setCaption]=useState('');
+
+    const [filePreview,setFilePreview]=useState(null);
 
 
     const [data,setData]=useState([]);
@@ -109,7 +112,18 @@ export default function NewProduct() {
 
     
     const changeIma=(e)=>{
-        setImage(e.target.files[0]);
+        // const reader=new FileReader();
+        // reader.onload=()=>{
+        //     if(reader.readyState===2){
+
+        //         setImage(reader.result);
+        //       //  console.log(reader.result)
+        //     }
+        // }
+        // reader.readAsDataURL(e.target.files[0])
+      
+         setImage(e.target.files[0]);
+         setFilePreview(URL.createObjectURL(e.target.files[0]));
 
 
 
@@ -117,6 +131,8 @@ export default function NewProduct() {
 
     const submitform=(e)=>{
         e.preventDefault();
+
+
 
         const formdata=new FormData();
         formdata.append('name',name);
@@ -203,18 +219,27 @@ export default function NewProduct() {
 
             <form onSubmit={submitform} >
             <div className="mb-3 productUpload">
-                            <img src="https://www.stones4homes.co.uk/wp-content/uploads/2021/04/Farmyard-Manure-1-004.jpg"
-                                alt=""
+             {
+                 filePreview!==null ?<img src={filePreview}
+                                alt="uploadImage"
+                                className="productUploadImg"
+                            />:<img src="https://www.stones4homes.co.uk/wp-content/uploads/2021/04/Farmyard-Manure-1-004.jpg"
+                                alt="uploadImage"
                                 className="productUploadImg"
                             />
+             }
+                            
 
                             <label  for="file">
                                 <Publish/>
 
                             </label>
+                            {/* accept="image/*" */}
                             <input type="file" id="file" className="form-control" name="image" onChange={changeIma} style={{display:'none'}} />
 
-                        </div>    
+                        </div>  
+
+                      
                 <div class="form-outline flex-fill mb-3">
                    
                     <input type="text" name="name" class="form-control" placeholder="name" onChange={(e)=>{setName(e.target.value)}}/>

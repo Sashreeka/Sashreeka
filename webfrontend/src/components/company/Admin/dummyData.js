@@ -81,6 +81,21 @@ export const UserData = [
       "Sales": 2000,
    
     },
+    // {
+    //   name: 'Apr',
+    //   "Sales": 1000,
+   
+    // },
+    // {
+    //   name: 'May',
+    //   "Sales": 2000,
+   
+    // },
+    // {
+    //   name: 'Jun',
+    //   "Sales": 4000,
+   
+    // },
 
   ];
 

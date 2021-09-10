@@ -13,30 +13,116 @@ export default function Product(props) {
     const fertilizerId=props.match.params.fertilizerId
     console.log("id="+fertilizerId);
 
+
+
+
+    const [name,setName]=useState('');
+    const [description,setDescription]=useState('');
+    const [offer,setOffer]=useState('');
+    const [unitPrice,setUnitPrice]=useState('');
+    const [unitWeight,setUnitWeight]=useState('');
+    const [stock,setStock]=useState('');
+    const [reOrderLevel,setReOrderLevel]=useState('');
+    const [measurementUnit,setMeasurementUnit]=useState('Kg');
+    const [image,setImage]=useState(null);
+    const [caption,setCaption]=useState('');
+
+
    
-    const [data,setData]=useState([]);
-     const [sname,setsName]=useState("");
-     const [newdata,setNewData]=useState([]);
-     const [	offer,setoffer]=useState("");
-    // const [	unitPrice,setunitPrice]=useState("");
-    // const [	unitWeight,setUnitWeight]=useState("");
-    // const [	photo,setphoto]=useState("");
-    // const [	stock,setstock]=useState("");
+   // const [data,setData]=useState([]);
 
 
+
+   const changeIma=(e)=>{
+    setImage(e.target.files[0]);
+
+
+
+}
 
     useEffect(()=>{
 
-        axios.get('http://localhost:4000/getfertilizer').then((response)=>{
-            setNewData(response.data);
-            console.log(response.data);
-        })
+        // axios.get('http://localhost:4000/getfertilizer').then((response)=>{
+        //     setNewData(response.data);
+        //     console.log(response.data);
+        // })
 
         axios.get('http://localhost:4000/getfertilizeritem/'+fertilizerId).then((response)=>{
-        setData(response.data[0]);})
+        //setData(response.data[0]);
+        setName(response.data[0].name);
+        setDescription(response.data[0].description);
+        setOffer(response.data[0].offer);
+        setUnitPrice(response.data[0].unitPrice);
+        setUnitWeight(response.data[0].unitWeight);
+        setImage(response.data[0].photo);
+        console.log(response.data[0].photo)
+        setStock(response.data[0].stock);
+        setReOrderLevel(response.data[0].reOrderLevel);
+        setMeasurementUnit(response.data[0].measurementUnit);
+        setCaption(response.data[0].caption);
+        
+    })
+       
+
       },[])
 
+
+      const submitform=(e)=>{
+        e.preventDefault();
+
+        const formdata=new FormData();
+        formdata.append('name',name);
+        formdata.append('image',image);
+        formdata.append('description',description);
+        formdata.append('offer',offer);
+        formdata.append('unitPrice',unitPrice);
+        formdata.append('unitWeight',unitWeight);
+        formdata.append('stock',stock);
+        formdata.append('reOrderLevel',reOrderLevel);
+        formdata.append('measurementUnit',measurementUnit);
+        formdata.append('caption',caption);
+
+        const config = {     
+            headers: { 'content-type': 'multipart/form-data' }
+        }
+
+        // const onInputChange = (e)=>{
+            
+        
+        //     }
+
+
+         
+       
+        axios.put("http://localhost:4000/updateFertilizerItem/"+fertilizerId,formdata,config
+        // {
+        //     name:name,
+        //     // description:description,
+        //     // offer:offer,
+        //     // unitPrice:unitPrice,
+        //     // unitWeight:unitWeight,
+        //     // stock:stock,
+        //     // reOrderLevel:reOrderLevel,
+        //     // measurementUnit:measurementUnit,
+        //     image:image,
+        //     // caption:caption
+
+
+        // }
+        ).then((response)=>{
+           console.log('SUCCESS');
+           console.log(response);
+        }).catch((e)=>{
+            console.log("Errr"+e);
+        })
+
+     
+
+       
+
+    }
   
+    //const sample=require("./image/image_1630955080724.png");
 
     return (
         <div className="productCon">
@@ -51,13 +137,112 @@ export default function Product(props) {
                 </Link>
 
             </div> */}
+            <h2>Fertilizer</h2>
 
             <div className="productTop">
-                <div className="productTopLeft">
-                    <Chart data={productData} dataKey="Sales" title="Sales Performance"/>
-                </div>
+               
                 <div className="productTopRight">
-                    <div className="productInfoTop">
+
+
+
+
+                <form
+                  onSubmit={submitform} 
+                 >
+            <div className="mb-3 productUpload">
+            {/* npm install react-scripts@latest */}
+                            <img src="./image/image_1630955080724.png"
+                                alt=""
+                                className="productUploadImg"
+                            />
+
+
+                            {/* <img src="./../../image/logo192.png" alt="" width="20%" height="20%"/> */}
+
+                            {/* <img src={require("http://localhost:3000/Backend/public/image_1631163625548.png").default} alt="" width="20%" height="20%"/> */}
+
+                            <label  for="file">
+                                <Publish/>
+
+                            </label>
+                            <input type="file" id="file" className="form-control" name="image"   onChange={changeIma} style={{display:'none'}} />
+
+                        </div>    
+                <div class="form-outline flex-fill mb-3">
+                   
+                    <input type="text" name="name" class="form-control" value={name} placeholder="name" onChange={(e)=>{setName(e.target.value)}}/>
+                    
+                  
+                </div>
+                <div class="mb-3">
+                   
+                    <input type="text"  class="form-control" name="description" value={description} placeholder="description" onChange={(e)=>{setDescription(e.target.value)}} />
+                   
+                </div>
+
+                <div class="row g-3 mb-3">
+                    <div class="col">
+                        <input type="number" min="0" class="form-control" value={offer} placeholder="offer" aria-label="offer" name="offer" onChange={(e)=>{setOffer(e.target.value)}}/>
+                    </div>
+                    <div class="col">
+                        <input type="number" min="0" class="form-control" value={unitPrice} placeholder="unitPrice" aria-label="unitPrice" name="unitPrice"onChange={(e)=>{setUnitPrice(e.target.value)}}/>
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-3">
+                    <div class="col">
+                        <input type="number" min="0" class="form-control" value={unitWeight} placeholder="unitWeight" aria-label="unitWeight" name="unitWeight"onChange={(e)=>{setUnitWeight(e.target.value)}}/>
+                    </div>
+                    <div class="col">
+                        <input type="number" class="form-control" min="0" value={stock} placeholder="stock" aria-label="stock" name="stock"onChange={(e)=>{setStock(e.target.value)}}/>
+                     </div>
+                </div>
+
+                <div class="row g-3 mb-3">
+                    <div class="col">
+                        <input type="number" class="form-control" min="0" value={reOrderLevel} placeholder="reOrderLevel" aria-label="reOrderLevel" name="reOrderLevel"onChange={(e)=>{setReOrderLevel(e.target.value)}}/>
+                    </div>
+
+
+                    <div class="col">
+                        <label style={{marginRight:"10px"}}>measurementUnit</label>
+                        <select name="measurementUnit" id="measurementUnit" value={measurementUnit}
+                        onChange={(e)=>{setMeasurementUnit(e.target.value)}}
+                        // onChange={(ddl)=>{setsName(ddl.target.value)}}
+                        >
+
+                            <option  value="Kg">Kg</option>
+                            <option  value="g">g</option>
+                            <option  value="L">L</option>
+                            <option  value="ml">ml</option>
+
+                        </select>
+                        {/* <input type="text" class="form-control" placeholder="measurementUnit" aria-label="measurementUnit" name="measurementUnit" onChange={(e)=>{setMeasurementUnit(e.target.value)}}/> */}
+                    </div>
+                </div> 
+              
+          
+
+                
+
+               
+
+              
+
+               
+
+                <div class="mb-3">
+                  
+                    <input type="text" class="form-control" name="caption" value={caption} placeholder="caption" onChange={(e)=>{setCaption(e.target.value)}}/>
+                   
+                </div>
+               
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
+
+
+                    {/* <div className="productInfoTop">
                         <img src={data.photo}
                             alt=""
                             className="productInfoImg"
@@ -93,12 +278,19 @@ export default function Product(props) {
                             <span className="productInfoValue">no</span>
 
                         </div>
-                    </div>
+                    </div> */}
+
+
+
+                </div>
+
+                <div className="productTopLeft">
+                    <Chart data={productData} dataKey="Sales" title="Sales Performance"/>
                 </div>
 
             </div>
             <div className="productBottom">
-                <form className="productForm">
+                {/* <form className="productForm">
 
                     <div className="productFormLeft">
                         <label>Product Name</label>
@@ -106,7 +298,7 @@ export default function Product(props) {
                         <label>In Stock</label>
 
 
-                        <select name="inStock" id="idStock" onChange={(ddl)=>{setoffer(ddl.target.value)}}>
+                        <select name="inStock" id="idStock" onChange={(ddl)=>{setOffer(ddl.target.value)}}>
                             {
                                 
                                 newdata.map((item)=>(
@@ -155,7 +347,7 @@ export default function Product(props) {
 
                     </div>
 
-                </form>
+                </form> */}
 
             </div>
             

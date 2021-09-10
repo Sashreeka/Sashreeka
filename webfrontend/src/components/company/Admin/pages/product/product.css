@@ -36,17 +36,15 @@
 
 }
 
-.productBottom{
 
-}
 
 .productTopLeft{
-    flex: 1;
+    flex: 3;
 
 }
 
 .productTopRight{
-    flex: 1;
+    flex: 6;
 
     margin: 20px;
     padding: 20px;
