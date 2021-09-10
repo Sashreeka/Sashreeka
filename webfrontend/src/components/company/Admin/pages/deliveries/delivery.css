@@ -1,21 +1,21 @@
-.deliveryCon{
-    display: flex;
-    margin-top: 10px;
+.deliveryCon {
+  display: flex;
+  margin-top: 10px;
 }
 
-.delivery{
-    flex: 4;
+.delivery {
+  flex: 4;
 }
 
-.lineChart{
-    width: 50vw;
+.lineChart {
+  width: 40vw;
 }
 
-.doughnutChart{
-    width: 20vw;
+.doughnutChart {
+  width: 20vw;
 }
 
-.chartdiv{
-    display: flex;
-    flex-direction: row;
+.chartdiv {
+  display: flex;
+  flex-direction: row;
 }

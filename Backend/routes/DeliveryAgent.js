@@ -41,7 +41,8 @@ router.get("/deliveryAgent/today", (req, res) => {
 router.get("/deliveryAgent/history", (req, res) => {
   // console.log('hi anu');
   const sqlget =
-    "select * from deliveries WHERE 	deliveryAgentPhoneNumber='0712345678' AND confirmationFlag=1 AND NOW() > dateTime order by dateTime asc; ";
+  "select farmer.phoneNumber,farmer.firstName,farmer.lastName,farmer.city,deliveries.orderId,DAY(deliveries.dateTime)AS dateD, MONTHNAME(deliveries.dateTime) AS monthName,DATE_FORMAT(deliveries.dateTime,'%b') AS shortMonth,DATE_FORMAT(deliveries.datetime, '%Y-%m-%d') AS newdateTime,orders.amount  from ((deliveries INNER JOIN farmer on deliveries.famerPhoneNumber=farmer.phoneNumber)INNER JOIN orders on deliveries.orderId=orders.orderId) WHERE deliveryAgentPhoneNumber='0712345678' AND confirmationFlag=1 AND NOW() > dateTime order by dateTime asc;"
+    // "select * from deliveries WHERE 	deliveryAgentPhoneNumber='0712345678' AND confirmationFlag=1 AND NOW() > dateTime order by dateTime asc; ";
   db.query(sqlget, (err, result) => {
     console.log(result);
     res.send(result);

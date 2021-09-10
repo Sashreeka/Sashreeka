@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./delivery.css";
-import Sidebar from "../../components/sidebar/Sidebar";
-
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
 import {
@@ -11,9 +9,15 @@ import {
   Tabs,
   AppBar,
   makeStyles,
+  withStyles,
   useTheme,
 } from "@material-ui/core";
 import { green } from "@material-ui/core/colors";
+
+import Sidebar from "../../components/sidebar/Sidebar";
+import Tab1_DelivaryHistory from "./Tab1_DelivaryHistory";
+import Tab2_Agents from "./Tab2_Agents";
+import Tab3_AssignDelivaries from "./Tab3_AssignDelivaries";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -34,6 +38,15 @@ function TabPanel(props) {
     </div>
   );
 }
+
+const AntTabs = withStyles({
+  root: {
+    borderBottom: "1px solid #e8e8e8",
+  },
+  indicator: {
+    backgroundColor: "#1890ff",
+  },
+})(Tabs);
 
 TabPanel.propTypes = {
   children: PropTypes.node,
@@ -131,13 +144,13 @@ export default function Delivery() {
             onChangeIndex={handleChangeIndex}
           >
             <TabPanel value={value} index={0} dir={theme.direction}>
-              Item One
+              <Tab1_DelivaryHistory />
             </TabPanel>
             <TabPanel value={value} index={1} dir={theme.direction}>
-              Item Two
+              <Tab2_Agents />
             </TabPanel>
             <TabPanel value={value} index={2} dir={theme.direction}>
-              Item Three
+              <Tab3_AssignDelivaries />
             </TabPanel>
           </SwipeableViews>
         </div>

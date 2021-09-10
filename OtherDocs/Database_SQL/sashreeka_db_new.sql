@@ -650,3 +650,6 @@ ALTER TABLE `role` CHANGE `roleName` `roleName` VARCHAR(255) CHARACTER SET utf8m
 
 -- 2021/09/07 changed table structure by sanduni - streetNumber of farmer Table changed - street name
 ALTER TABLE `farmer` CHANGE `streetNumber` `streetName` VARCHAR(255) NOT NULL;
+-- 2021/09/08 insert table by anuki - row order changed -deliveries table
+INSERT INTO `vehicle`(`deliveryAgentPhoneNumber`, `vehicleId`, `vehicleTypeId`, `maxLoad`) VALUES ('0716506548','ABB-5332','5','15'),('0775216548','554-1010','3','30')
+

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar";
 import axios from "axios";
 
-import LineChart from "../../components/chart/LineChart";
+import LineChart_Deliveries from "../../components/chart/LineChart_Deliveries";
 import DoughnutChart from "../../components/chart/DoughnutChart";
 import MaterialTable from "material-table";
 
@@ -74,12 +74,11 @@ export default function Delivery() {
 
   return (
     <div className="deliveryCon">
-      <Sidebar title="delivery" />
       <div style={{ flex: 4 }}>
         {/* *******charts**************** */}
         <div style={{ display: "flex" }}>
           <div className="lineChart">
-            <LineChart />
+            <LineChart_Deliveries />
           </div>
           <div className="doughnutChart">
             <DoughnutChart />
@@ -115,8 +114,6 @@ export default function Delivery() {
               },
             ]}
           />
-
-          <button>Create New delivery</button>
         </div>
       </div>
     </div>

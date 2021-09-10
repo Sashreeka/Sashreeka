@@ -104,6 +104,7 @@ export default function ProductList() {
           <button className="productAddButton" onClick={()=>window.location.href="/newproduct"}>Add</button>
         </div>
 
+        
         <MaterialTable
           title="Product & Categories Details"
           data={data}
