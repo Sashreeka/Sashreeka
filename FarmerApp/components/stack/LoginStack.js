@@ -6,6 +6,7 @@ import SigninScreen from "../pages/SigninScreen";
 import SigninScreen_sinhala from "../pages/SigninScreen_sinhala";
 import SplashScreen from "../pages/SplashScreen";
 import ForgetPassword from "../pages/ForgetPassword";
+import SignupScreen from "../pages/SignupScreen";
 
 const RootStack = createStackNavigator();
 export default function LoginStack({ navigation }) {
@@ -19,6 +20,7 @@ export default function LoginStack({ navigation }) {
         component={SigninScreen_sinhala}
       />
       <RootStack.Screen name="ForgetPassword" component={ForgetPassword} />
+      <RootStack.Screen name="SignupScreen" component={SignupScreen} />
     </RootStack.Navigator>
   );
 }
