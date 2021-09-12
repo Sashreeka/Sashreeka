@@ -28,12 +28,14 @@ export default Main = ({ navigation }) => {
   const [historylist, setHistoryList] = useState([]);
 
   useEffect(() => {
-    Axios.get("http://192.168.8.222:4000/getorderhistory").then((response) => {
-      console.log(response.data[0].famerPhoneNumber);
-      console.log(response.data[0].confirmationFlag);
-      console.log(response.data[0].distance);
-      setHistoryList(response.data);
-    });
+    Axios.get("http://192.168.8.222:4000/farmer/getorderhistory").then(
+      (response) => {
+        console.log(response.data[0].famerPhoneNumber);
+        console.log(response.data[0].confirmationFlag);
+        console.log(response.data[0].distance);
+        setHistoryList(response.data);
+      }
+    );
   }, []);
 
   const orderstatus = (flag) => {
@@ -52,17 +54,17 @@ export default Main = ({ navigation }) => {
       <StatusBar backgroundColor={colors.primary} />
       <SafeAreaView>
         <View style={styles.headerWrapper}>
-          <Image
-            source={require("../assets/images/profileimg_girl.jpg")}
-            style={styles.profileImage}
-          />
-          {/* style={styles.profileImage} */}
           <Feather
             name="menu"
             size={24}
             color={colors.textDark}
             onPress={() => navigation.openDrawer()}
           ></Feather>
+          <Image
+            source={require("../assets/images/profileimg_girl.jpg")}
+            style={styles.profileImage}
+          />
+          {/* style={styles.profileImage} */}
         </View>
       </SafeAreaView>
 

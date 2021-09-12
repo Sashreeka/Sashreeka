@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import { StyleSheet, 
     Text, 
     View, 
@@ -11,6 +11,7 @@ import { StyleSheet,
     TouchableRipple,
     Dimensions,
     ScrollView,
+   
     
   } from 'react-native';
 
@@ -27,11 +28,13 @@ import { StyleSheet,
   const deviceWidth=Dimensions.get('window').width
 
   import {Entypo} from '@expo/vector-icons';
+import axios from 'axios';
+
 
   const DetailsScreen = ({navigation})=>{
 
     const [collapsed,setCollapsed]=useState(true);
-    const [details, setDetails]=useState([])
+    const [fertilizer, setfertilizer]=useState([])
   
     const toggleExpanded = () => {
       setCollapsed( !collapsed);
@@ -40,8 +43,75 @@ import { StyleSheet,
     };
 
 
+    const [data,setData]=useState([]);
+
+    useEffect(()=>{
+
+      axios.get("http://192.168.1.11:4000/deliveryAgent/today").then((response)=>{
+
+        setData(response.data);
+      //  console.log("today"+response.data);
+        
+
+
+      })
+
+      axios.get("http://192.168.1.11:4000/deliveryAgent/todayItem").then((response)=>{
+
+        setfertilizer(response.data);
+      //  console.log("today"+response.data);
+        
+
+
+      })
+    },[])
+
+
+    const confirmOrder =(orderId)=>{
+
+
+      //alert(orderId);
+      Alert.alert(
+        //title
+        'Confirmation Order',
+        //body
+        'Are you sure',
+        [
+          {text:'Yes',
+         onPress:()=>{
+          axios.put("http://192.168.1.11:4000/deliveryAgent/confirmDeliverByDAgent/"+orderId).then((response)=>{
+
+            console.log("updated"+response);
+            if(response)
+            {
+              setData((prevData)=>{
+                return prevData.filter(todo=>todo.orderId!=orderId);
+              });
+              
+            }
+          })
+
+         }
+        },
+        {
+          text:'no'
+        }
+        ]
+      )
+
+
+
+    
+
+
+
+    }
+
+
    
     return(
+
+     
       <ScrollView>
       <View style={{flex:1, backgroundColor:'#f9f9fb'}}>
         <View style={styles.header}>
@@ -62,7 +132,7 @@ import { StyleSheet,
               <View
               style={styles.todayFirstRowIcon}
              >
-              <Text>3</Text>
+              <Text>{data.length}</Text>
 
               </View>
              
@@ -100,19 +170,41 @@ import { StyleSheet,
 
             </View>
 
+          {/* {
+            data.map((item)=>(
+              <View key={item.orderId}>
+                <Text>{item.district}</Text>
+                <Text>{item.orderId}</Text>
+                {
+                  fertilizer.filter((fitems)=>(fitems.orderId===item.orderId)).map((ffertilizer)=>(
+                   <View>
+                      <Text>{ffertilizer.fertilizerName}-{ffertilizer.quantity}</Text>
+                     
+                   </View>
+                  ))
+                }
+              
+              </View>
+            ))
+          } */}
+
+
+
+
               
             <ScrollView>
 
-
-            
-            <Animatable.View
+          {
+            data.map((item)=>(
+              <Animatable.View
                   animation="fadeInUpBig"
+                  key={item.orderId}
                  
 
                   >
                     <TouchableOpacity onPress={toggleExpanded}>
                       <View style={styles.headerList}>
-                        <Text style={styles.headerText}>Colombo- Sugath Bandara</Text>
+                        <Text style={styles.headerText}>{item.district} - {item.receiverName}</Text>
                       </View>
                     </TouchableOpacity>
                     <Collapsible collapsed={collapsed} align="center">
@@ -138,37 +230,34 @@ import { StyleSheet,
 
                       
                        <View style={{flexDirection:'column'}}>
-                       <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:10,textDecorationLine: 'underline',textDecorationColor:'#000'}}>Sri Wiccrama Rajasinghe Mawatha, Colombo</Text>
+                       <Text style={{color:'#8C8C8C',fontSize:13,marginLeft:10,marginTop:10,textDecorationLine: 'underline',textDecorationColor:'#000'}}>{item.houseNumber} {item.streetName} {item.city}</Text>
                        <View style={{flexDirection:'row'}}>
                          <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>Tel:</Text>
-                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>0715822452</Text>
+                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>{item.farmerPhoneNumber}</Text>
 
                        </View>
                        <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0,fontWeight:'bold'}}>Order Details</Text>
 
-                       <View style={styles.order}>
-                       <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0}}>1.Compost Fertilizer</Text>
-                       <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0}}>10kg x 5</Text>
+                       {
+                         fertilizer.filter((ffertilizer)=>(ffertilizer.orderId===item.orderId)).map((fertilizerItem)=>(
 
-                       </View>
-                       {/* <View style={styles.order}>
-                       <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0}}>2.Compost Fertilizer</Text>
-                       <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0}}>10kg x 5</Text>
+                          <View style={styles.order} key={fertilizerItem.date}>
+                              <Text style={{color:'#000000',fontSize:13,marginLeft:5,marginTop:0,width:100}}>{fertilizerItem.fertilizerName}</Text>
+                              <Text style={{color:'#000000',fontSize:13,marginLeft:5,marginTop:0,width:100}}>{fertilizerItem.quantity}</Text>
 
-                       </View>
+                        </View>
+                         ))
+                       }
 
-                       <View style={styles.order}>
-                       <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0}}>3.Compost Fertilizer</Text>
-                       <Text style={{color:'#000000',fontSize:13,marginLeft:10,marginTop:0}}>10kg x 5</Text>
-
-                       </View> */}
+                       
+                      
 
 
 
                        
                        <View style={{flexDirection:'row'}}>
                          <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0}}>Total Amount(Rs):</Text>
-                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>750</Text>
+                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>{item.amount+item.deliveryCharge}</Text>
                          {/* <View
                          style={{
                            borderRadius:10,
@@ -182,6 +271,11 @@ import { StyleSheet,
                          </View> */}
 
                        </View>
+                       {/* {
+                         data.filter((item)=>(item.amount+item.deliveryCharge)).map((i)=>(
+                           <Text key={item.orderId}>{i}</Text>
+                         ))
+                       } */}
 
 
                   <LinearGradient
@@ -190,6 +284,7 @@ import { StyleSheet,
                     style={styles.orderbtn}
                     >
                      <TouchableOpacity
+                     onPress={()=>{confirmOrder(item.orderId)}}
                       >
 
                         <Text
@@ -214,10 +309,17 @@ import { StyleSheet,
                     </Animatable.View>
 
 
+            ))
+
+            
+           
+
+    
+                  }
+                    </ScrollView>  
 
 
-
-                    <Animatable.View
+                    {/* <Animatable.View
                   animation="fadeInUpBig"
                  
 
@@ -268,20 +370,7 @@ import { StyleSheet,
 
 
                        
-                       <View style={{flexDirection:'row'}}>
-                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0}}>Total Amount(Rs):</Text>
-                         <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>750</Text>
-                         {/* <View
-                         style={{
-                           borderRadius:10,
-                           backgroundColor:'#fff',
-                           color:'#217756',
-                           marginLeft:50,
-                           paddingLeft:10,
-                           paddingRight:10,
-                         }}>
-                           <Text>Paid</Text>
-                         </View> */}
+                     
 
                        </View>
 
@@ -378,18 +467,7 @@ import { StyleSheet,
                        <View style={{flexDirection:'row'}}>
                          <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0}}>Total Amount(Rs):</Text>
                          <Text style={{color:'#000',fontSize:13,marginLeft:10,marginTop:0,}}>750</Text>
-                         {/* <View
-                         style={{
-                           borderRadius:10,
-                           backgroundColor:'#fff',
-                           color:'#217756',
-                           marginLeft:50,
-                           paddingLeft:10,
-                           paddingRight:10,
-                         }}>
-                           <Text>Paid</Text>
-                         </View> */}
-
+                       
                        </View>
 
 
@@ -420,15 +498,13 @@ import { StyleSheet,
                       </View>
                     </Collapsible>
 
-                    </Animatable.View>
+                    </Animatable.View> */}
 
 
 
 
 
-                 
-
-                    </ScrollView>  
+             
               
 
            
