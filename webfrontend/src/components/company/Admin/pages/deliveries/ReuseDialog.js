@@ -63,6 +63,9 @@ export default function DialogView(props) {
         onClose={onclose}
         aria-labelledby="customized-dialog-title"
         open={open}
+        style={{
+          width: "100vw",
+        }}
       >
         <DialogTitle id="customized-dialog-title" onClose={onclose}>
           {dialogTitle}

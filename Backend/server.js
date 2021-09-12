@@ -14,6 +14,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const adminPanel = require("./routes/company/AdminPanel");
 app.use(adminPanel);
 
+///admin panel ddelivery route
+const adminPanelDelivery = require("./routes/company/AdminPanelDelivery");
+app.use(adminPanelDelivery);
+
 //Login and Register Route
 const regLogin = require("./routes/Register");
 app.use(regLogin);

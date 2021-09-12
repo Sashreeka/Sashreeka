@@ -175,6 +175,17 @@ router.get("/admin/getdeliveyagentetails", (req, res) => {
   });
 });
 
+//  display a full details of delivery agent + vehicle details by id.................
+router.get("/admin/getdeliveyagentetailsById/:userId", (req, res) => {
+  const userId = req.params.userId;
+  const sqlget =
+    "SELECT userId,CONCAT(firstName,' ',lastName) AS name ,availability,nic,phoneNumber,address,drivingLicence ,vehicle.vehicleId,vehicle.maxLoad,vehicle.vehicleTypeId FROM `deliveryagent` LEFT JOIN vehicle ON vehicle.deliveryAgentPhoneNumber=deliveryagent.phoneNumber WHERE userId=?";
+  db.query(sqlget, userId, (err, result) => {
+    console.log(result);
+    res.send(result);
+  });
+});
+
 //display farmer details.....................
 router.get("/getFarmerDetails", (req, res) => {
   const sqlGet =
@@ -258,6 +269,40 @@ router.post("/save", (req, res) => {
     // console.log(err);
   });
 });
+
+//Delivery agent Update
+// router.post("/updatedeliveryagent/:userId", upload.single("image"), (req, res) => {
+//   const name=req.body.name,
+//   const NIC=req.body.NIC,
+//   const phoneNumber=req.body.phoneNumber,
+//   const address=req.body.address,
+//   const drivingLicence=req.body.drivingLicence,
+//   const profileImage=req.file.profileImage,
+//   const vehicalNumber=req.body.vehicalNumber,
+//   const maxLoad=req.body.maxLoad,
+
+//   const sqlUpdate =
+//   "UPDATE fertilizer SET name=?,description=?,offer=?,unitPrice=?,unitWeight=?,photo=?,stock=?,reOrderLevel=?,measurementUnit=?,caption=? WHERE fertilizerId=?";
+
+//   db.query(
+//     sqlUpdate,
+//     [
+//       name,
+// NIC,
+// phoneNumber,
+// address,
+// drivingLicence,
+// profileImage,
+// vehicalNumber,
+// maxLoad,
+//     ],
+//     (err, result) => {
+//       console.log(err);
+//       console.log(result);
+//       res.send(result);
+//     }
+//   );
+// });
 
 ////SELECT DATE_FORMAT(date,'%Y-%m') AS date FROM ordercontainsfertilizer;
 
