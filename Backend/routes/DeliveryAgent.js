@@ -36,7 +36,7 @@ router.get("/deliveryAgent/today", (req, res) => {
   db.query(sqlget, (err, result) => {
    // console.log("today"+result);
     res.send(result);
-    console.log("today error"+err);
+   // console.log("today error"+err);
   });
 });
 
@@ -50,9 +50,22 @@ router.get("/deliveryAgent/todayItem", (req, res) => {
   db.query(sqlget, (err, result) => {
   //  console.log("today"+result);
     res.send(result);
-    console.log("today error"+err);
+    //console.log("today error"+err);
   });
 });
+
+//confirm deliveryAgent
+router.put("/deliveryAgent/confirmDeliverByDAgent/:orderId",(req,res)=>{
+
+  const orderId=req.params.orderId;
+
+  const updateSql="UPDATE orders SET status=3 WHERE status=2 AND orderId=?";
+  db.query(updateSql,orderId,(err,result)=>{
+    res.send(result);
+    console.log(err);
+    console.log(result);
+  })
+})
 
 
 //history deleveries display the dagent mobile app

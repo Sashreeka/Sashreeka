@@ -11,6 +11,7 @@ import { StyleSheet,
     TouchableRipple,
     Dimensions,
     ScrollView,
+   
     
   } from 'react-native';
 
@@ -49,7 +50,7 @@ import axios from 'axios';
       axios.get("http://192.168.1.11:4000/deliveryAgent/today").then((response)=>{
 
         setData(response.data);
-        console.log("today"+response.data);
+      //  console.log("today"+response.data);
         
 
 
@@ -58,7 +59,7 @@ import axios from 'axios';
       axios.get("http://192.168.1.11:4000/deliveryAgent/todayItem").then((response)=>{
 
         setfertilizer(response.data);
-        console.log("today"+response.data);
+      //  console.log("today"+response.data);
         
 
 
@@ -67,8 +68,43 @@ import axios from 'axios';
 
 
     const confirmOrder =(orderId)=>{
-      alert(orderId);
-      
+
+
+      //alert(orderId);
+      Alert.alert(
+        //title
+        'Confirmation Order',
+        //body
+        'Are you sure',
+        [
+          {text:'Yes',
+         onPress:()=>{
+          axios.put("http://192.168.1.11:4000/deliveryAgent/confirmDeliverByDAgent/"+orderId).then((response)=>{
+
+            console.log("updated"+response);
+            if(response)
+            {
+              setData((prevData)=>{
+                return prevData.filter(todo=>todo.orderId!=orderId);
+              });
+              
+            }
+          })
+
+         }
+        },
+        {
+          text:'no'
+        }
+        ]
+      )
+
+
+
+    
+
+
+
     }
 
 
@@ -96,7 +132,7 @@ import axios from 'axios';
               <View
               style={styles.todayFirstRowIcon}
              >
-              <Text>3</Text>
+              <Text>{data.length}</Text>
 
               </View>
              
@@ -162,6 +198,7 @@ import axios from 'axios';
             data.map((item)=>(
               <Animatable.View
                   animation="fadeInUpBig"
+                  key={item.orderId}
                  
 
                   >
@@ -204,7 +241,7 @@ import axios from 'axios';
                        {
                          fertilizer.filter((ffertilizer)=>(ffertilizer.orderId===item.orderId)).map((fertilizerItem)=>(
 
-                          <View style={styles.order}>
+                          <View style={styles.order} key={fertilizerItem.date}>
                               <Text style={{color:'#000000',fontSize:13,marginLeft:5,marginTop:0,width:100}}>{fertilizerItem.fertilizerName}</Text>
                               <Text style={{color:'#000000',fontSize:13,marginLeft:5,marginTop:0,width:100}}>{fertilizerItem.quantity}</Text>
 
