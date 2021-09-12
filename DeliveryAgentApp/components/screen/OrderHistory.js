@@ -204,7 +204,17 @@ export default function OrderHistory() {
               </View>
             </View>
 
-            <View
+            <View>
+            <TextInput
+                style={styles.textInputStyle}
+                // value={searchText}
+                placeholder="search here"
+                underlineColorAndroid="transparent"
+                onChangeText={(e)=>{handleChange(e)}}
+            /> 
+            </View>
+
+            {/* <View
               style={{
                 flexDirection: "row",
                 marginLeft: 20,
@@ -219,6 +229,7 @@ export default function OrderHistory() {
                 width: deviceWidth * 0.5,
               }}
             >
+            
               <Text
                 style={{
                   marginLeft: -30,
@@ -235,7 +246,7 @@ export default function OrderHistory() {
                   marginLeft: 90,
                 }}
               />
-            </View>
+            </View> */}
              
             {/* <FlatList
 
@@ -252,13 +263,7 @@ export default function OrderHistory() {
 
             <ScrollView style={{ marginTop: 20 }}>
 
-            <TextInput
-                style={styles.textInputStyle}
-                // value={searchText}
-                placeholder="search here"
-                underlineColorAndroid="transparent"
-                onChangeText={(e)=>{handleChange(e)}}
-            />  
+            
 
            
 
@@ -364,7 +369,7 @@ export default function OrderHistory() {
 
 
               } 
-              {searchData.length===0 && <Text>No records found to display</Text>}
+              {searchData.length===0 && <Text style={styles.noRecordText}>No records found to display</Text>}
             </ScrollView>
           </Animatable.View>
         </Modal>
@@ -411,7 +416,11 @@ const styles=StyleSheet.create({
         paddingLeft:20,
         margin:5,
         borderColor:'#009688',
-        backgroundColor:'white'
+        backgroundColor:'white',
+        borderRadius:20,
+        marginLeft:10,
+        marginRight:20,
+        marginTop:10,
       },
       DeliveryItemWrapperIcon2: {
         marginTop: 2,
@@ -449,6 +458,13 @@ const styles=StyleSheet.create({
             // borderBottomRightRadius:20,
             flexDirection: "row",
           },
+          noRecordText:{
+              marginLeft:20,
+              marginTop:5,
+            
+              color:'black',
+              fontSize:16,
+          }
 
 
 
