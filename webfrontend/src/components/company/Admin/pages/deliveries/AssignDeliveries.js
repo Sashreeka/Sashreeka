@@ -106,7 +106,6 @@ export default function AssignDeliveries() {
         <Paper className={classes.papers}>
           <h5>Assign Deliveries</h5>
           <hr />
-          {/* ########## assign Deliveries############# */}
           <div style={{ display: "flex", alignItems: "center" }}>
             <i class="fas fa-truck" style={{ paddingRight: 10 }}></i>
 
@@ -123,12 +122,10 @@ export default function AssignDeliveries() {
               ))}
             </select>
           </div>
-          {/* ################# delivery date ############# */}
           <div style={{ display: "flex", alignItems: "center" }}>
             <i class="fas fa-hourglass-start" style={{ paddingRight: 20 }}></i>
-            <Control.DatePicker onChange={() => setDate} />
+            {/* <Control.DatePicker onChange={() => setDate} /> */}
           </div>
-          {/* ########## unassigned orders list ############# */}
           <div
             style={{ display: "flex", alignItems: "center", paddingTop: 20 }}
           >
@@ -149,9 +146,9 @@ export default function AssignDeliveries() {
               ))}
             </select>
           </div>
-          {/* ################################################### */}
         </Paper>
       </div>
+
       <div className={classes.innerdiv2}>
         <Paper className={classes.papers}>
           <h5>Delivery Summary</h5>
@@ -223,7 +220,6 @@ export default function AssignDeliveries() {
                         .filter((x) => x.orderId == item.orderId)
                         .map((item) => (
                           <span>
-                            {/* {item.orderId} &nbsp;&nbsp;&nbsp;{" "} */}
                             {item.fertilizerName} &nbsp;&nbsp;&nbsp;{" "}
                             {item.weight}kg x {item.quantity}
                             <br />
