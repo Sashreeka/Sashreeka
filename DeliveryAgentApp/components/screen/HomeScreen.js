@@ -113,8 +113,6 @@ const HomeScreen = ({navigation}) => {
     },
   ];
 
-
-
   const [collapsed, setCollapsed] = useState(true);
   const [details, setDetails] = useState([]);
 
@@ -235,7 +233,7 @@ const HomeScreen = ({navigation}) => {
           
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("DetailsScreen");
+            navigation.navigate("Map");
           }}
         >
           <View

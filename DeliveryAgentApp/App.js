@@ -35,6 +35,7 @@ import LoginStack from "./components/stack/LoginStack";
 
 import DetailsScreen from "./components/screen/DetailsScreen";
 import axios from "axios";
+import Map from "./components/screen/Map";
 
 const Drawer = createDrawerNavigator();
 
@@ -158,6 +159,7 @@ export default function App({ navigation }) {
             <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
             <Drawer.Screen name="PaymentScreen" component={PaymentScreen} />
             <Drawer.Screen name="DetailsScreen" component={DetailsScreen} />
+            <Drawer.Screen name="Map" component={Map}/>
           </Drawer.Navigator>
         ) : (
           <LoginStack />

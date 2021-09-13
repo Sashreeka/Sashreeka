@@ -36,6 +36,7 @@ export default function UpcomingDelivery() {
           }
         });
     },[]);
+    //upcomingDelivery
     const toggleExpanded = () => {
         setCollapsed(!collapsed);
         //  this.setState({ collapsed: !this.state.collapsed });
@@ -177,7 +178,7 @@ export default function UpcomingDelivery() {
                             fontWeight: "bold",
                           }}
                         >
-                          Jul
+                          {item.shortMonth}
                         </Text>
                         <Text
                           style={{
@@ -186,7 +187,7 @@ export default function UpcomingDelivery() {
                             fontSize: 12,
                           }}
                         >
-                          23
+                         {item.dateD}
                         </Text>
                       </View>
 
