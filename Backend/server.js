@@ -30,6 +30,9 @@ app.use(DAgent);
 const Farmer = require("./routes/Farmer");
 app.use(Farmer);
 
+const ContactUs=require("./routes/ContactUs");
+app.use(ContactUs);
+
 app.listen(4000, () => {
   console.log("running port 4000");
 });
