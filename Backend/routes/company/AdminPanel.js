@@ -166,7 +166,7 @@ router.get("/admin/viewDAgentDetails", (req, res) => {
 });
 
 //  display the delivery agent+ vehicle details details..................
-router.get("/admin/getdeliveyagentetails", (req, res) => {
+router.get("/ ", (req, res) => {
   const sqlget =
     "SELECT userId,CONCAT(firstName,' ',lastName) AS Name ,availability,vehicle.vehicleId,vehicle.maxLoad,drivingLicence FROM `deliveryagent` LEFT JOIN vehicle ON vehicle.deliveryAgentPhoneNumber=deliveryagent.phoneNumber ORDER BY userId";
   db.query(sqlget, (err, result) => {
