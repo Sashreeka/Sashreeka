@@ -403,7 +403,7 @@ export default function AgentTable() {
           open={Editable}
           dialogTitle={"Edit Agent Details"}
         >
-          <AgentEdit />
+          <AgentEdit userId={userId} />
         </ReuseDialog>
       </div>
 

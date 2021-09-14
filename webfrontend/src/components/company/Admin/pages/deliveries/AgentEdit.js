@@ -1,18 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Control from "../../../../common/Control";
 import { MDBInput } from "mdbreact";
 import { makeStyles, Paper, Button, TextField } from "@material-ui/core";
 import { Form, ReuseForm } from "./ReuseForm";
+import axios from "axios";
 
 const initialFValues = {
+  userId: 0,
   name: "",
-  NIC: "",
-  phoneNumber: "",
   address: "",
+  availability: 0,
   drivingLicence: "",
-  profileImage: "",
-  vehicalNumber: "",
   maxLoad: 0,
+  nic: "",
+  phoneNumber: "",
+  vehicleId: "",
+  vehicleTypeId: "",
 };
 
 const useStyles = makeStyles({
@@ -27,10 +30,35 @@ const useStyles = makeStyles({
   },
 });
 
-export default function AgentEdit() {
-  // useEffect(() => {
-  //   axios.get('http://localhost:4000/admin/getdeliveyagentetailsById/2')
-  // }, []);
+export default function AgentEdit(props) {
+  const { userId } = props;
+  const [user, setUser] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:4000/admin/getdeliveyagentetailsById/" + userId)
+      .then((res) => {
+        setUser(res.data[0]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const initialFValues = {
+    userId: userId,
+    name: user.name,
+    address: user.address,
+    availability: user.availability,
+    drivingLicence: user.drivingLicence,
+    maxLoad: user.maxLoad,
+    nic: user.nic,
+    phoneNumber: user.phoneNumber,
+    vehicleId: user.vehicleId,
+    vehicleTypeId: user.vehicleTypeId,
+  };
+  const { values, setValues, errors, setErrors, handleInputChange, resetForm } =
+    ReuseForm(initialFValues, false);
 
   const validation = (fieldValues = values) => {
     let temp = { ...errors };
@@ -59,16 +87,13 @@ export default function AgentEdit() {
     if (fieldValues == values) return Object.values(temp).every((x) => x == ""); // returns true or false
   };
 
-  const { values, setValues, errors, setErrors, handleInputChange, resetForm } =
-    ReuseForm(initialFValues, true, validation);
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validation()) {
-      window.alert(validation());
-      // axois. function
-      resetForm();
-    }
+    console.log("handleSubmit : running!");
+    // if (validation()) {
+    //   window.alert(validation());
+    //   // axois. function
+    // }
   };
 
   const classes = useStyles();
@@ -86,11 +111,14 @@ export default function AgentEdit() {
               value={values.name}
               onChange={handleInputChange}
             />
-            <Control.Input
+
+            <p>hello{values.name}</p>
+            <p>hello{initialFValues.name}</p>
+            {/* <Control.Input
               variant="outlined"
               label="NIC"
-              name="NIC"
-              value={values.NIC}
+              name="nic"
+              value={values.nic}
               onChange={handleInputChange}
             />
             <Control.Input
@@ -114,11 +142,11 @@ export default function AgentEdit() {
               value={values.drivingLicence}
               onChange={handleInputChange}
             />
-            <Control.Upload name="profileImage" label="profile Image upload" />
+            <Control.Upload name="profileImage" label="profile Image upload" /> */}
           </Paper>
           <Paper className={classes.paperdiv}>
             <h6 style={{ fontWeight: "bold" }}>Vehical Details</h6>
-            <Control.Input
+            {/* <Control.Input
               variant="outlined"
               label="Vehical Number"
               placeholder="AAB-5433"
@@ -134,7 +162,7 @@ export default function AgentEdit() {
               value={values.maxLoad}
               style={{ width: 200 }}
               onChange={handleInputChange}
-            />
+            /> */}
 
             <p>vehicle type</p>
             <p>unit price</p>

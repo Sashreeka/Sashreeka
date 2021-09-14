@@ -57,4 +57,71 @@ router.get("/admin/getitemsofsunassignedordersall", (req, res) => {
   });
 });
 
+// insert staff member....................
+router.post("/admin/insertstaffmember", (req, res) => {
+  const phoneNumber = req.body.phoneNumber;
+  const email = req.body.email;
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const address = req.body.address;
+  const appointedDate = req.body.appointedDate;
+  const nic = req.body.nic;
+  const roleId = req.body.roleId;
+
+  console.log(
+    phoneNumber,
+    email,
+    firstName,
+    lastName,
+    address,
+    nic,
+    roleId,
+    appointedDate
+  );
+  const sqlInsert =
+    "INSERT INTO companystaff(phoneNumber, email,firstName, lastName, address, nic,roleId,appointedDate) VALUES (?,?,?,?,?,?,?,?)";
+  db.query(
+    sqlInsert,
+    [
+      phoneNumber,
+      email,
+      firstName,
+      lastName,
+      address,
+      nic,
+      roleId,
+      appointedDate,
+    ],
+    (err, result) => {
+      console.log("console :", result);
+      res.send(result);
+    }
+  );
+});
+
+// router.post("/admin/insertstaffmember", (req, res) => {
+//   const phoneNumber = req.body.phoneNumber;
+//   const email = req.body.email;
+//   const firstName = req.body.firstName;
+//   const lastName = req.body.lastName;
+// const address = req.body.address;
+// const appointedDate = req.body.appointedDate;
+// const nic = req.body.nic;
+// const roleId = req.body.roleId;
+
+//   const sqlInsert =
+//     "INSERT INTO companystaff(phoneNumber, email,firstName, lastName) VALUES (?,?,?,?)";
+//   db.query(
+//     sqlInsert,
+//     [phoneNumber, email, firstName, lastName],
+//     (err, result) => {
+//       if (err) {
+//         res.send({ err: err });
+//       } else {
+//         res.send("success");
+//       }
+//     }
+//   );
+// });
+
 module.exports = router;

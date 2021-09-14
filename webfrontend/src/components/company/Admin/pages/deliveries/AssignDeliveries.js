@@ -1,8 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { Avatar, Chip, makeStyles, Paper } from "@material-ui/core";
+import {
+  Avatar,
+  Chip,
+  Fab,
+  makeStyles,
+  Paper,
+  Tooltip,
+} from "@material-ui/core";
 import axios from "axios";
 import Control from "../../../../common/Control";
-import { Done, Face, Today } from "@material-ui/icons";
+import {
+  Add,
+  Autorenew,
+  CheckCircle,
+  Done,
+  Face,
+  PersonAdd,
+  Remove,
+  RemoveCircle,
+  Today,
+} from "@material-ui/icons";
+import PieChart from "../../components/chart/PieChart";
 
 const useStyles = makeStyles({
   outer: {
@@ -19,6 +37,18 @@ const useStyles = makeStyles({
   papers: {
     padding: 20,
   },
+  absolute: {
+    // position: "absolute",
+    float: "right",
+    backgroundColor: "#ffffff",
+    "&:hover": {
+      backgroundColor: "#F5F5F5",
+    },
+  },
+  Tooltips: {
+    width: 34,
+    height: 34,
+  },
 });
 
 export default function AssignDeliveries() {
@@ -30,6 +60,7 @@ export default function AssignDeliveries() {
   const [orders, setOrders] = useState([]);
   const [loads, setLoads] = useState([]);
   const [totalLoad, setTotalLoad] = useState(0);
+  const [assigned, setAssighed] = useState(false);
   // const [select1, setSelect1] = useState("");
 
   useEffect(() => {
@@ -72,11 +103,18 @@ export default function AssignDeliveries() {
     console.log("item selected : ", e.target.value);
     console.log("ddddssssssss : ", unassignedOrders[e.target.value]);
     setOrders([...orders, unassignedOrders[e.target.value]]);
+    const orderId = unassignedOrders[e.target.value].orderId;
+    setUnassignedOrders(unassignedOrders.filter((x) => x.orderId != orderId));
     console.log("after setorder : ", orders);
     loading(unassignedOrders[e.target.value].orderId);
     // setTotalLoad();
 
     console.log("totalLoad :", totalLoad);
+  };
+
+  const removebtn = (orderId, index) => {
+    setUnassignedOrders([...unassignedOrders, orders[index]]);
+    setOrders(orders.filter((x) => x.orderId != orderId));
   };
 
   const loading = (orderId) => {
@@ -146,12 +184,88 @@ export default function AssignDeliveries() {
               ))}
             </select>
           </div>
+
+          {/* <div style={{ display: "flex" }}>
+            <div style={{ width: "15vw" }}>
+              <PieChart />
+            </div>
+            <div></div>
+          </div> */}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <div></div>
+            <div>
+              {assigned ? (
+                <div>
+                  <Tooltip title="refresh" arrow>
+                    <Control.Button
+                      varient="contained"
+                      size="medium"
+                      color="primary"
+                      onClick={() => console.log("reset button pressed!!")}
+                      type="reset"
+                      style={{ width: 50 }}
+                      startIcon={<Autorenew />}
+                      placement="right-end"
+                    />
+                  </Tooltip>
+                  <Control.Button
+                    disabled
+                    varient="contained"
+                    size="medium"
+                    color="primary"
+                    onClick={() => console.log("submit button pressed!!")}
+                    text="Assigned"
+                    type="submit"
+                    style={{ width: 150 }}
+                    startIcon={<CheckCircle />}
+                    placement="right-end"
+                  />
+                </div>
+              ) : (
+                <Control.Button
+                  varient="contained"
+                  size="medium"
+                  color="primary"
+                  onClick={() => console.log("submit button pressed!!")}
+                  text="Assign"
+                  type="submit"
+                  onClick={() => {
+                    setAssighed(true);
+                  }}
+                  style={{ width: 150 }}
+                  // startIcon={<PersonAdd />}
+                  placement="right-end"
+                />
+              )}
+            </div>
+          </div>
         </Paper>
       </div>
 
       <div className={classes.innerdiv2}>
         <Paper className={classes.papers}>
-          <h5>Delivery Summary</h5>
+          <div style={{ display: "flex" }}>
+            <div>
+              <h5>Delivery Summary</h5>
+            </div>
+            {assigned ? (
+              <div style={{ paddingLeft: 10 }}>
+                <Control.Label
+                  label="Assigned"
+                  colour="green"
+                  icon={<CheckCircle />}
+                  size="large"
+                />
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
           <hr />
           Assigned To :<b>{agent.name}</b>
           <br />
@@ -228,8 +342,36 @@ export default function AssignDeliveries() {
                     </div>
                   </b>
                   <br />
-                  Payment status:
+                  <div
+                    style={{
+                      display: "flex",
+                      marginTop: -15,
+                      paddingTop: 5,
+                    }}
+                  >
+                    <div style={{ flex: 6 }}> Payment status:</div>
+                    <div style={{ flex: 1 }}>
+                      <Tooltip
+                        title="Remove"
+                        aria-label="remove"
+                        size="small"
+                        placement="right-end"
+                        className={classes.Tooltips}
+                      >
+                        <Fab
+                          color="secondary"
+                          className={classes.absolute}
+                          onClick={() => {
+                            removebtn(item.orderId, index);
+                          }}
+                        >
+                          <Remove />
+                        </Fab>
+                      </Tooltip>
+                    </div>
+                  </div>
                 </p>
+
                 <hr style={{ color: "#C0C0C0" }} />
               </div>
             </div>
