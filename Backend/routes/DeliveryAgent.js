@@ -81,4 +81,17 @@ router.get("/deliveryAgent/history", (req, res) => {
   });
 });
 
+//delivery agent get availability
+router.get("/getAvailabilityDAgent/:phoneNumber",(req,res)=>{
+ const  phoneNumber=req.params.phoneNumber;
+ const sqlget="SELECT availability FROM deliveryagent WHERE phoneNumber=?;";
+
+ db.query(sqlget,phoneNumber,(err,result)=>{
+   console.log(err);
+   console.log(result);
+   res.send(result);
+ })
+
+})
+
 module.exports = router;

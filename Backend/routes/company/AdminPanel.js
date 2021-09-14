@@ -3,8 +3,8 @@ const router = express.Router();
 const db = require("../../connection/database");
 
 //upload image library
-const multer = require("multer");
-const path = require("path");
+// const multer = require("multer");
+// const path = require("path");
 
 //display fertilizer
 router.get("/getfertilizer", (req, res) => {
@@ -21,31 +21,32 @@ router.get("/getfertilizer", (req, res) => {
 //get a specific fertilizer id
 ////////
 router.get("/getImage", (req, res) => {
-  const sql = "select * from photo";
+  const sql = "select photo from fertilizer where fertilizerId=21";
   db.query(sql, (err, result) => {
     res.send(result);
   });
 });
 
 ///upload images
-const storage = multer.diskStorage({
-  destination: "./public/image/",
-  filename: (req, file, cb) => {
-    return cb(
-      null,
-      `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`
-    );
-  },
-});
+// const storage = multer.diskStorage({
+//   destination: "./public/image/",
+//   filename: (req, file, cb) => {
+//     return cb(
+//       null,
+//       `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`
+//     );
+//   },
+// });
 
-const upload = multer({
-  storage: storage,
-});
+// const upload = multer({
+//   storage: storage,
+// });
 
 ///////////////sample
-router.post("/addFertilizer", upload.single("image"), (req, res) => {
+router.post("/addFertilizer", (req, res) => {
+
   const name = req.body.name;
-  const image = req.file.filename;
+  const image = req.body.image;
   const description = req.body.description;
   const offer = req.body.offer;
   const unitPrice = req.body.unitPrice;
@@ -54,6 +55,9 @@ router.post("/addFertilizer", upload.single("image"), (req, res) => {
   const reOrderLevel = req.body.reOrderLevel;
   const measurementUnit = req.body.measurementUnit;
   const caption = req.body.caption;
+
+  console.log(name);
+
 
   //const sqlInsert="INSERT INTO photo(name,image) VALUE(?,?)";
   const sqlInsert =
@@ -83,7 +87,9 @@ router.post("/addFertilizer", upload.single("image"), (req, res) => {
 });
 
 //update fertilizer item
-router.put("/updateFertilizerItem/:id", upload.single("image"), (req, res) => {
+router.put("/updateFertilizerItem/:id", 
+//upload.single("image"), 
+(req, res) => {
   const id = req.params.id;
   const name = req.body.name;
   const image = req.file.filename;
@@ -95,7 +101,7 @@ router.put("/updateFertilizerItem/:id", upload.single("image"), (req, res) => {
   const reOrderLevel = req.body.reOrderLevel;
   const measurementUnit = req.body.measurementUnit;
   const caption = req.body.caption;
-  name,
+    name,
     description,
     offer,
     unitPrice,

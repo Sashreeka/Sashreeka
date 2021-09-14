@@ -22,6 +22,7 @@ import { StyleSheet,
   import { AuthContext } from '../context/context';
   //import { AuthContext } from '../context';
   import  Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import axios from 'axios';
 
   
 
@@ -31,6 +32,9 @@ import { StyleSheet,
      const [isAvailable,setisAvailable]=useState('UnAvailable');
 
      const [isEnabled, setIsEnabled] = useState(false);
+
+     const [availability,setAvailability]=useState(0);
+
      const toggleSwitch = () =>{ 
         
       setIsEnabled(previousState => !previousState);
@@ -45,7 +49,26 @@ import { StyleSheet,
   
       }    
   }
+  const phoneNumber="0712345678";
      
+  useEffect(()=>{
+
+    axios.get("http://192.168.1.11:4000/getAvailabilityDAgent/"+phoneNumber).then((response)=>{
+        // console.log(response.data);
+        if(response.data.availability===0)
+        {
+
+            setIsEnabled(false);
+            setisAvailable('UnAvailable');
+        }else if(response.data.availability===1){
+
+            setIsEnabled(true);
+            setisAvailable('Available')
+
+        }
+    })
+  },[])
+  //availability
 
 
       const {signOut}=useContext(AuthContext);
