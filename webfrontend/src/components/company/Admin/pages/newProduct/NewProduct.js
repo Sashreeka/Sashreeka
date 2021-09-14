@@ -16,6 +16,14 @@ const useStyles=makeStyles(theme=>({
 
    
 }))
+
+
+// "@date-io/date-fns": "^2.11.0",
+// =======
+//     "@fortawesome/fontawesome-free": "^5.15.4",
+//     "@fortawesome/fontawesome-svg-core": "^1.2.36",
+//     "@fortawesome/free-solid-svg-icons": "^5.15.4",
+//     "@fortawesome/react-fontawesome": "^0.1.15",
 export default function NewProduct() {
 
     const [name,setName]=useState('');
