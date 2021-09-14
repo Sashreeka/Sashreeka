@@ -64,7 +64,7 @@ import axios from 'axios';
 
 
       })
-    },[])
+    },[data])
 
 
     const confirmOrder =(orderId)=>{

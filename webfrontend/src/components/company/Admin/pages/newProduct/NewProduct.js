@@ -5,6 +5,7 @@ import axios from 'axios';
 import NewForm from './NewForm';
 import { Paper ,makeStyles} from '@material-ui/core';
 import { Publish } from '@material-ui/icons';
+import {Image} from 'cloudinary-react';
 
 
 const useStyles=makeStyles(theme=>({
@@ -16,7 +17,27 @@ const useStyles=makeStyles(theme=>({
 
    
 }))
+
+
+// "@date-io/date-fns": "^2.11.0",
+// =======
+//     "@fortawesome/fontawesome-free": "^5.15.4",
+//     "@fortawesome/fontawesome-svg-core": "^1.2.36",
+//     "@fortawesome/free-solid-svg-icons": "^5.15.4",
+//     "@fortawesome/react-fontawesome": "^0.1.15",
 export default function NewProduct() {
+    const [s,setS]=useState('');
+
+    useEffect(()=>{
+        axios.get("http://localhost:4000/getImage").then((res)=>{
+
+            console.log(res.data[0].photo);
+            setS(res.data[0].photo);
+
+        })
+
+
+    },[])
 
     const [name,setName]=useState('');
     const [description,setDescription]=useState('');
@@ -26,7 +47,7 @@ export default function NewProduct() {
     const [stock,setStock]=useState('');
     const [reOrderLevel,setReOrderLevel]=useState('');
     const [measurementUnit,setMeasurementUnit]=useState('Kg');
-    const [image,setImage]=useState(null);
+    const [image,setImage]=useState('');
     
     const [caption,setCaption]=useState('');
 
@@ -111,7 +132,27 @@ export default function NewProduct() {
     // });
 
     
-    const changeIma=(e)=>{
+    const changeIma= async(e)=>{
+
+        const files=e.target.files;
+        const data=new FormData();
+
+        data.append('file',files[0])
+        data.append('upload_preset','uploadimages')
+
+        const res=await fetch("https://api.cloudinary.com/v1_1/do1sv3tbt/image/upload",
+        {
+            method:'POST',
+            body:data
+        });
+
+        const file=await res.json();
+        console.log(file.secure_url);
+
+        setImage(file.secure_url);
+
+
+
         // const reader=new FileReader();
         // reader.onload=()=>{
         //     if(reader.readyState===2){
@@ -122,33 +163,45 @@ export default function NewProduct() {
         // }
         // reader.readAsDataURL(e.target.files[0])
       
-         setImage(e.target.files[0]);
+        //  setImage(e.target.files[0]);
          setFilePreview(URL.createObjectURL(e.target.files[0]));
 
 
 
     }
 
-    const submitform=(e)=>{
+    const sendData=(e)=>{
         e.preventDefault();
 
 
 
-        const formdata=new FormData();
-        formdata.append('name',name);
-        formdata.append('image',image);
-        formdata.append('description',description);
-        formdata.append('offer',offer);
-        formdata.append('unitPrice',unitPrice);
-        formdata.append('unitWeight',unitWeight);
-        formdata.append('stock',stock);
-        formdata.append('reOrderLevel',reOrderLevel);
-        formdata.append('measurementUnit',measurementUnit);
-        formdata.append('caption',caption);
+        // const formdata=new FormData();
+        // formdata.append('name',name);
+        // formdata.append('image',image);
+        // formdata.append('description',description);
+        // formdata.append('offer',offer);
+        // formdata.append('unitPrice',unitPrice);
+        // formdata.append('unitWeight',unitWeight);
+        // formdata.append('stock',stock);
+        // formdata.append('reOrderLevel',reOrderLevel);
+        // formdata.append('measurementUnit',measurementUnit);
+        // formdata.append('caption',caption);
 
-        const config = {     
-            headers: { 'content-type': 'multipart/form-data' }
+        const formdata={
+            name:name,
+            image:image,
+            description:description,
+            offer:offer,
+            unitPrice:unitPrice,
+            unitWeight:unitWeight,
+            stock:stock,
+            reOrderLevel:reOrderLevel,
+            measurementUnit:measurementUnit,
+            caption:caption
         }
+        // const config = {     
+        //     headers: { 'content-type': 'multipart/form-data' }
+        // }
 
         // const onInputChange = (e)=>{
             
@@ -156,9 +209,10 @@ export default function NewProduct() {
         //     }
 
 
+        console.log(formdata)
          
        
-        axios.post("http://localhost:4000/addFertilizer",formdata,config
+        axios.post("http://localhost:4000/addFertilizer",formdata
         // {
         //     name:name,
         //     // description:description,
@@ -190,6 +244,8 @@ export default function NewProduct() {
     return (
         <div className='newProductCon'>
             <Sidebar title="products"/>
+
+            {/* <img src={image} style={{width:"100px"}} alt=""/> */}
           
        
         <div className="newProduct">
@@ -217,7 +273,8 @@ export default function NewProduct() {
 
 
 
-            <form onSubmit={submitform} >
+
+            <form>
             <div className="mb-3 productUpload">
              {
                  filePreview!==null ?<img src={filePreview}
@@ -274,6 +331,7 @@ export default function NewProduct() {
                     <div class="col">
                         <input type="number" class="form-control" min="0" placeholder="reOrderLevel" aria-label="reOrderLevel" name="reOrderLevel"onChange={(e)=>{setReOrderLevel(e.target.value)}}/>
                     </div>
+                   
 
 
                     <div class="col">
@@ -316,8 +374,22 @@ export default function NewProduct() {
                    
                 </div>
                
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" onClick={sendData }>Submit</button>
             </form>
+
+
+            <Image
+            cloudName="do1sv3tbt"
+            publicId={image}
+
+
+
+            />
+
+            <Image
+                cloudName="do1sv3tbt"
+                publicId={s}
+            />
 
 {/* 
 {

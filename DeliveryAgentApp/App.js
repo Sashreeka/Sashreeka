@@ -35,46 +35,88 @@ import LoginStack from "./components/stack/LoginStack";
 
 import DetailsScreen from "./components/screen/DetailsScreen";
 import axios from "axios";
+import Map from "./components/screen/Map";
 
 const Drawer = createDrawerNavigator();
 
 export default function App({ navigation }) {
-  const [phoneNumber, setphoneNumber] = useState("");
+  const [phoneNumber, setphoneNumber] = useState(null);
+  
   const [userRole, setUserRole] = useState("");
 
+  useEffect(()=>{
+  
+    const phoneNumber1=AsyncStorage.getItem("phoneNumber");
+    
+    console.log(phoneNumber1);
+    console.log("ishan");
+   
+
+
+  },[])
   const authContext = useMemo(
     () => ({
       signIn: (telephone, password) => {
         axios
-          .post("http://192.168.1.12:4000/user/login", {
+          .post("http://192.168.1.11:4000/user/login", {
             phoneNumber: telephone,
             password: password,
           })
           .then((response) => {
-            //  console.log(response);
-            if (response) {
-              //  console.log(response.data[0].id);
-              // console.log(response.data[0].password);
-              // console.log(response.data[0].phoneNumber);
-              // console.log(response.data[0].userCategory);
+            if(response.data.message)
+            {
+              alert(response.data.message);
+            }else{
+              if(response.data[0].userCategory==="deliveryAgent"){
+                //console.log(response.data[0].userCategory)
+                try{
 
-              // setUserRole(response.data[0].userCategory);
-              // if(userRole==='deliveryAgent')
-              // {
+                  setphoneNumber(response.data[0].phoneNumber)
+                 // let phoneNumber=response.data[0].phoneNumber;
+                
+                  AsyncStorage.setItem("phoneNumber",response.data[0].phoneNumber);
 
-              try {
-                setphoneNumber(response.data[0].phoneNumber);
-                AsyncStorage.setItem("phoneNumber", phoneNumber);
-              } catch (e) {
-                console.log(e);
+
+                }catch(e)
+                {
+                  console.log(e);
+                }
+
+              }else{
+                alert("Wrong username/Password combination");
               }
-
-              // }else{
-              //   alert('Telephone Number or Password Invalid');
-              // }
-            } else {
-              alert("Telephone Number or Password Invalid");
+             
             }
+
+
+
+            //console.log(response);
+
+
+            //  console.log(response);
+            // if (response) {
+            //   //  console.log(response.data[0].id);
+            //   // console.log(response.data[0].password);
+            //   // console.log(response.data[0].phoneNumber);
+            //   // console.log(response.data[0].userCategory);
+
+            //   // setUserRole(response.data[0].userCategory);
+            //   // if(userRole==='deliveryAgent')
+            //   // {
+
+            //   try {
+            //     setphoneNumber(response.data[0].phoneNumber);
+            //     AsyncStorage.setItem("phoneNumber", phoneNumber);
+            //   } catch (e) {
+            //     console.log(e);
+            //   }
+
+            //   // }else{
+            //   //   alert('Telephone Number or Password Invalid');
+            //   // }
+            // } else {
+            //   alert("Telephone Number or Password Invalid");
+            // }
           })
           .catch((e) => {
             console.log(e);
@@ -96,7 +138,7 @@ export default function App({ navigation }) {
         //   {
         //     console.log("error",e);
         //   }
-
+        //CLOUDINARY_URL=cloudinary://893724358878283:gCESDBiCIz-8RmGMpL0EUK-V8kk@do1sv3tbt
         //  }else{
         //   alert('Username Or Password Invalid')
         //  }
@@ -148,7 +190,7 @@ export default function App({ navigation }) {
   return (
     <AuthContext.Provider value={authContext}>
       <NavigationContainer>
-        {phoneNumber !== null ? (
+        {phoneNumber!== null? (
           <Drawer.Navigator
             drawerContent={(props) => <DrawerContent {...props} />}
           >
@@ -158,6 +200,7 @@ export default function App({ navigation }) {
             <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
             <Drawer.Screen name="PaymentScreen" component={PaymentScreen} />
             <Drawer.Screen name="DetailsScreen" component={DetailsScreen} />
+            <Drawer.Screen name="Map" component={Map}/>
           </Drawer.Navigator>
         ) : (
           <LoginStack />

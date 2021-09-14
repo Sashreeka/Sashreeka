@@ -34,7 +34,7 @@ export default function OrderHistory() {
     .get("http://192.168.1.11:4000/deliveryAgent/history")
     .then((response) => {
       if (response) {
-        console.log(response.data);
+        // console.log(response.data);
         sethistoryDelivery(response.data);
         setSearchData(response.data);
       } else {
@@ -42,6 +42,7 @@ export default function OrderHistory() {
       }
     });
     },[]);
+    //historyDelivery
     const toggleExpanded = () => {
         setCollapsed(!collapsed);
         //  this.setState({ collapsed: !this.state.collapsed });
