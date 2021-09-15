@@ -22,6 +22,9 @@ function Signin() {
         password: password,
       })
       .then((response) => {
+
+    
+
         // add user info to local storage
         let userCategory = response.data[0].userCategory;
         let phoneNumber = response.data[0].phoneNumber;

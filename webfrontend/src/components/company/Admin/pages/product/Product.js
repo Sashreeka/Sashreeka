@@ -6,6 +6,7 @@ import { productData } from '../../dummyData';
 import { Publish } from '@material-ui/icons';
 import Sidebar from '../../components/sidebar/Sidebar';
 import axios from 'axios';
+import { Image } from 'cloudinary-react';
 
 
 
@@ -24,7 +25,7 @@ export default function Product(props) {
     const [stock,setStock]=useState('');
     const [reOrderLevel,setReOrderLevel]=useState('');
     const [measurementUnit,setMeasurementUnit]=useState('Kg');
-    const [image,setImage]=useState(null);
+    const [image,setImage]=useState('');
     const [caption,setCaption]=useState('');
 
 
@@ -34,7 +35,23 @@ export default function Product(props) {
 
 
    const changeIma=(e)=>{
-    setImage(e.target.files[0]);
+       const data=new FormData();
+       data.append('file',e.target.files[0]);
+       console.log(e.target.files[0]);
+       console.log(image) 
+       
+       data.append('upload_preset','uploadimages');
+
+       axios.post("https://api.cloudinary.com/v1_1/do1sv3tbt/image/upload",{data}).then((response)=>{
+           console.log(response);
+
+          // setImage(response.secure_url);
+       })
+       
+
+
+
+  //  setImage(e.target.files[0]);
 
 
 
@@ -55,7 +72,7 @@ export default function Product(props) {
         setUnitPrice(response.data[0].unitPrice);
         setUnitWeight(response.data[0].unitWeight);
         setImage(response.data[0].photo);
-        console.log(response.data[0].photo)
+       // console.log(response.data[0].photo)
         setStock(response.data[0].stock);
         setReOrderLevel(response.data[0].reOrderLevel);
         setMeasurementUnit(response.data[0].measurementUnit);
@@ -151,10 +168,15 @@ export default function Product(props) {
                  >
             <div className="mb-3 productUpload">
             {/* npm install react-scripts@latest */}
-                            <img src="./image/image_1630955080724.png"
-                                alt=""
-                                className="productUploadImg"
-                            />
+                        <Image
+                        cloudName="do1sv3tbt"
+                        publicId={image}
+                        className="productUploadImg"
+
+
+
+                        />
+                         
 
 
                             {/* <img src="./../../image/logo192.png" alt="" width="20%" height="20%"/> */}

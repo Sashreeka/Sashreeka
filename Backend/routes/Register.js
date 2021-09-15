@@ -9,7 +9,7 @@ const db=require('../connection/database');
 
 
 //login
-router.post("/user/login", (req, res) => {
+router.post("/user/login/", (req, res) => {
     const phoneNumber = req.body.phoneNumber;
     const password = req.body.password;
     const sqlSelect = "SELECT * FROM user WHERE phoneNumber=? AND  password=?";
