@@ -11,6 +11,7 @@ import {
   CheckCircle,
   FiberManualRecord,
   Close,
+  PersonAdd,
 } from "@material-ui/icons";
 import {
   Switch,
@@ -47,6 +48,7 @@ import Label from "../../../../common/labels/Label";
 import MaterialTable from "material-table";
 import ReuseDialog from "./ReuseDialog";
 import AgentView from "./AgentView";
+import AgentEdit from "./AgentEdit";
 // import ReuseDialog from "./ReuseDialog";
 
 const headCells = [
@@ -147,6 +149,7 @@ const EnhancedTableToolbar = (props) => {
   const { numSelected, rows } = props;
   const { useToolbarStyles, theme } = ReuseTable(rows);
   const classes = useToolbarStyles();
+  const [addNew, SetAddNew] = useState(false);
 
   return (
     <ThemeProvider theme={theme}>
@@ -182,11 +185,20 @@ const EnhancedTableToolbar = (props) => {
             </IconButton>
           </Tooltip>
         ) : (
-          <Tooltip title="Filter list">
-            <IconButton aria-label="filter list">
-              <FilterList />
-            </IconButton>
-          </Tooltip>
+          <div style={{ display: "flex" }}>
+            <Control.Button
+              variant="contained"
+              size="large"
+              color="secondary"
+              text="ADD NEW"
+              type="submit"
+              onClick={() => {
+                SetAddNew(true);
+              }}
+              style={{ width: 150 }}
+              startIcon={<PersonAdd />}
+            />
+          </div>
         )}
       </Toolbar>
     </ThemeProvider>
@@ -211,6 +223,7 @@ export default function AgentTable() {
   const [rows, setRows] = useState([]);
   const [visible, setVisible] = useState(false);
   const [Editable, setEditable] = useState(false);
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
     // console.log("useeffect working! ");
@@ -223,17 +236,19 @@ export default function AgentTable() {
       .catch((err) => console.log("Error in Agent Dtails: ", err));
   }, []);
 
-  const openVisibility = () => {
+  const openVisibility = (userId) => {
     console.log("visivle to you");
     setVisible(true);
+    setUserId(userId);
   };
   const closeVisibility = () => {
     console.log("visivle to you -closed");
     setVisible(false);
   };
-  const openEditability = () => {
+  const openEditability = (userId) => {
     console.log("Editable content");
     setEditable(true);
+    setUserId(userId);
   };
   const closeEditability = () => {
     console.log("Editable content closed");
@@ -334,12 +349,12 @@ export default function AgentTable() {
                           >
                             <Button
                               onClick={() => {
-                                openVisibility();
+                                openVisibility(row.userId);
                               }}
                             >
                               <Visibility fontSize="small" />
                             </Button>
-                            <Button onClick={() => openEditability()}>
+                            <Button onClick={() => openEditability(row.userId)}>
                               <Edit fontSize="small" />
                             </Button>
                             <Button onClick={() => console.log("Delete")}>
@@ -377,7 +392,7 @@ export default function AgentTable() {
           open={visible}
           dialogTitle={"Agent Details"}
         >
-          <AgentView />
+          <AgentView userId={userId} />
         </ReuseDialog>
       </div>
 
@@ -388,9 +403,11 @@ export default function AgentTable() {
           open={Editable}
           dialogTitle={"Edit Agent Details"}
         >
-          <h2>this is content of dialog</h2>
+          <AgentEdit userId={userId} />
         </ReuseDialog>
       </div>
+
+      <div></div>
     </ThemeProvider>
   );
 }

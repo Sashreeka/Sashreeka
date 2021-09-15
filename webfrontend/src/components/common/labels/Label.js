@@ -11,7 +11,7 @@ const useStyles = makeStyles({
 });
 
 export default function Label(props) {
-  const { label, colour, icon } = props;
+  const { label, colour, icon, size } = props;
 
   const classes = useStyles();
 
@@ -19,7 +19,7 @@ export default function Label(props) {
     <Chip
       className={classes.root}
       variant="outlined"
-      size="small"
+      size={size || "small"}
       icon={icon || <CheckCircle />}
       label={label}
       clickable

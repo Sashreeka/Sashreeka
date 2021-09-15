@@ -14,6 +14,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const adminPanel = require("./routes/company/AdminPanel");
 app.use(adminPanel);
 
+///admin panel ddelivery route
+const adminPanelDelivery = require("./routes/company/AdminPanelDelivery");
+app.use(adminPanelDelivery);
+
 //Login and Register Route
 const regLogin = require("./routes/Register");
 app.use(regLogin);
@@ -25,6 +29,9 @@ app.use(DAgent);
 //farmer app route
 const Farmer = require("./routes/Farmer");
 app.use(Farmer);
+
+const ContactUs=require("./routes/ContactUs");
+app.use(ContactUs);
 
 app.listen(4000, () => {
   console.log("running port 4000");

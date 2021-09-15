@@ -1,24 +1,23 @@
-.staffCon{
-    display: flex;
-    margin-top: 10px;
-    background-color: rgb(221, 216, 216);
+.staffCon {
+  display: flex;
+  margin-top: 10px;
 }
 
-.staff{
-    flex: 4;
+.staff {
+  flex: 4;
 }
 
-.staff-button{
-    border: none;
-    border-radius: 10px;
-    padding: 5px 10px;
-    background-color: #3bb077;
-    color: white;
-    margin-right: 20px;
-    cursor: pointer;
-    height: fit-content;
-    margin-bottom: 3px;
-    margin-top: 3px;
-    margin-left: 3px;
-    /* margin-top: 10px; */
+.staff-button {
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #3bb077;
+  color: white;
+  margin-right: 20px;
+  cursor: pointer;
+  height: fit-content;
+  margin-bottom: 3px;
+  margin-top: 3px;
+  margin-left: 3px;
+  /* margin-top: 10px; */
 }

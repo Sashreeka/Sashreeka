@@ -1,160 +1,149 @@
-import React, { useState,useEffect } from "react";
-import "./staff.css";
-import { Link } from "react-router-dom";
+import React from "react";
 import Sidebar from "../../components/sidebar/Sidebar";
-import axios from 'axios';
+import "./staff.css";
+import {
+  AppBar,
+  Tab,
+  Tabs,
+  makeStyles,
+  useTheme,
+  Box,
+  Typography,
+} from "@material-ui/core";
+import SwipeableViews from "react-swipeable-views";
+import PropTypes from "prop-types";
+import StaffTable from "./StaffTable";
+import CreateStaff from "./CreateStaff";
+import StaffMembers from "./StaffMembers";
 
-import MaterialTable from 'material-table';
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
+}
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.paper,
+  },
+  tab: {
+    backgroundColor: "#f2f4f2",
+    indicatorColor: "#00ff00",
+    color: "#00ff00",
+  },
+  tabtable: {
+    backgroundColor: "#f3f5f3",
+    fontWeight: "bold",
+    textTransform: "capitalize",
+    "&:hover": {
+      color: "#008000",
+      opacity: 1,
+      backgroundColor: "#d7ded7",
+    },
+    "&:focus": {
+      color: "##008000",
+      borderColor: "#003300",
+      backgroundColor: "#a1b1a1",
+    },
+    "&:select": {
+      color: "#008000",
+      borderColor: "#003300",
+      backgroundColor: "#a1b1a1",
+    },
+  },
+}));
 
 export default function Staff() {
+  const classes = useStyles();
+  const theme = useTheme();
+  const [value, setValue] = React.useState(0);
 
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
-    
-  const [data, setData] = useState([]);
-  // const [data1, setData1] = useState([]);
+  const handleChangeIndex = (index) => {
+    setValue(index);
+  };
 
-  // const handleDelete = (id) => {
-  //   setData(data.filter((item) => item.id !== id));
-  // };
-
-  useEffect(()=>{
-
-    axios.get("http://localhost:4000/admin/viewCStaffDetails").then((response)=>{
-      console.log('hi',response.data);
-      setData(response.data);
-
-    //  setData1(response.data);
-
-    })
-
-  },[])
-
-
-  const columns=[
-    {title:'Id',field:'userId',
-
-
-    cellStyle:{
-
-      //  backgroundColor:'red',
-        width:'10%',
-    }
-
-    
-
-  
-},
-    {title:'Full Name',field:'name',
-
-    cellStyle:{
-
-       // backgroundColor:'red',
-       width:'18%',
-    }
-  
-
-},
-    {title:'Is present',field:'active',
-
-
-    cellStyle:{
-
-        // backgroundColor:'red',
-        width:'20%',
-        
-     }
-},
-    {title:'NIC',field:'nic',
-
-
-    cellStyle:{
-
-        // backgroundColor:'red',
-        width:'20%',
-     }},
-    {title:'Phone Number',field:'phoneNumber',
-
-
-    cellStyle:{
-
-        // backgroundColor:'red',
-        width:'25%',
-     }},
-   
-  
-  ]
-
-
-    return(
-        <div className="staffCon">
-            <Sidebar title="staff"/>
-
-           
-            
-
-            <div className="staff">
-
-            <button className="staff-button">Create New staff</button>
-           
-            <MaterialTable
-
-            title="Company Staff Details"
-            data={data}
-            columns={columns}
-
-            options={{
-            search:true,
-            paging:true,
-            filtering:false,
-            exportButton:true,
-            backgroundColor: '#EEE',
-           // showTitle: false,
-           
-            actionsColumnIndex: -1,
-            headerStyle: {
-        //width:20,
-        //marginLeft:20,
-       
-     //  backgroundColor:'red',
-      color:"#000",
-      fontWeight:'bold',
-      width:'15%',
-      }
-
-
-          
-            
-            
-             
-            }}
-
-          
-      
-            actions={[
-                {
-            icon: 'edit',
-           
-            tooltip: 'Edit',
-            onClick: (event, rowData) => {
-                window.location.href='/staffCheck/'+rowData.userId
-            }
-            //  <Link to={"/user/" + params.row.id}>
-            //   <button className="userListEdit">Edit</button>
-            // </Link>
-            
-            // alert('You are editing ' + rowData.userId)
-          },
-          
-            ]}
-
-            
-         
-      
-            />
-               
-                
-            </div>
-            
+  return (
+    <div>
+      <div className="staffCon">
+        <Sidebar title="delivery" />
+        <div className="staff">
+          <div className={classes.root}>
+            <AppBar position="static">
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                indicatorColor="primary"
+                textColor="primary"
+                //   variant="fullWidth"
+                aria-label="full width tabs example"
+                className={classes.tab}
+              >
+                <Tab
+                  label="Staff Members"
+                  {...a11yProps(0)}
+                  className={classes.tabtable}
+                />
+                <Tab
+                  label="Table View"
+                  {...a11yProps(1)}
+                  className={classes.tabtable}
+                />
+                <Tab
+                  label="Add new member"
+                  {...a11yProps(2)}
+                  className={classes.tabtable}
+                />
+              </Tabs>
+            </AppBar>
+            <SwipeableViews
+              axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+              index={value}
+              onChangeIndex={handleChangeIndex}
+            >
+              <TabPanel value={value} index={0} dir={theme.direction}>
+                <StaffMembers />
+              </TabPanel>
+              <TabPanel value={value} index={1} dir={theme.direction}>
+                <StaffTable />
+              </TabPanel>
+              <TabPanel value={value} index={2} dir={theme.direction}>
+                <CreateStaff />
+              </TabPanel>
+            </SwipeableViews>
+          </div>
         </div>
-    )
+      </div>
+    </div>
+  );
 }

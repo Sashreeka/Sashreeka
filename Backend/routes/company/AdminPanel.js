@@ -175,6 +175,17 @@ router.get("/admin/getdeliveyagentetails", (req, res) => {
   });
 });
 
+//  display a full details of delivery agent + vehicle details by id.................
+router.get("/admin/getdeliveyagentetailsById/:userId", (req, res) => {
+  const userId = req.params.userId;
+  const sqlget =
+    "SELECT userId,CONCAT(firstName,' ',lastName) AS name ,availability,nic,phoneNumber,address,drivingLicence ,vehicle.vehicleId,vehicle.maxLoad,vehicle.vehicleTypeId FROM `deliveryagent` LEFT JOIN vehicle ON vehicle.deliveryAgentPhoneNumber=deliveryagent.phoneNumber WHERE userId=?";
+  db.query(sqlget, userId, (err, result) => {
+    console.log(result);
+    res.send(result);
+  });
+});
+
 //display farmer details.....................
 router.get("/getFarmerDetails", (req, res) => {
   const sqlGet =
@@ -188,11 +199,36 @@ router.get("/getFarmerDetails", (req, res) => {
 router.get("/admin/viewCStaffDetails", (req, res) => {
   // const sqlget = "select * from companystaff";
   const sqlget =
-    "select userId,phoneNumber,concat(firstName,'  ',lastName) as name,nic,active from companystaff;";
+    "select userId,profileimage,concat(firstName,' ',lastName) as name,phoneNumber,email,nic,address,role.roleName as role,DATE_FORMAT(appointedDate, '%b-%Y')as appointedDate FROM companystaff INNER JOIN role ON companystaff.roleId=role.roleId ORDER BY staffId ASC";
+
   db.query(sqlget, (err, result) => {
     //    console.log(result);
     res.send(result);
   });
+});
+
+//display the company staff details sort By roles..................
+router.post("/admin/viewCStaffDetailsSortByRole", (req, res) => {
+  const roleId = req.body.roleId;
+  console.log("this is roleid:", roleId);
+  if (roleId > 0 && roleId < 1000) {
+    const sqlget =
+      "select userId,phoneNumber,concat(firstName,' ',lastName) as name,email,address,appointedDate,nic,profileimage,companystaff.roleId,role.roleName FROM companystaff INNER JOIN role ON companystaff.roleId=role.roleId WHERE companystaff.roleId=?";
+    db.query(sqlget, roleId, (err, result) => {
+      if (err) {
+        res.send({ "err ": err });
+      }
+      console.log("backend id=", roleId, "====>");
+      res.send(result);
+    });
+  } else {
+    const sqlget =
+      "select userId,phoneNumber,concat(firstName,' ',lastName) as name,email,address,appointedDate,nic,profileimage,companystaff.roleId,role.roleName FROM companystaff INNER JOIN role ON companystaff.roleId=role.roleId ORDER BY staffId ASC";
+    db.query(sqlget, (err, result) => {
+      console.log("backend id=non");
+      res.send(result);
+    });
+  }
 });
 
 // display delivery details........................
@@ -231,8 +267,8 @@ router.delete("/deleteProductItems/:fertilizerId", (req, res) => {
 router.get("/admin/getAll_privilages_and_roles", (req, res) => {
   const sqlget = "SELECT * FROM `role`";
   db.query(sqlget, (err, result) => {
-    console.log(err);
-    console.log(result);
+    // console.log(err);
+    // console.log(result);
     res.send(result);
   });
 });
@@ -242,9 +278,12 @@ router.get("/admin/getRoleNames", (req, res) => {
   const sqlget =
     "SELECT `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='sashreeka_db' AND `TABLE_NAME`='role'";
   db.query(sqlget, (err, result) => {
-    console.log(err);
-    console.log(result);
-    res.send(result);
+    if (err) {
+      console.log("backend err :", err);
+    } else {
+      console.log("backend ress :", result);
+      res.send(result);
+    }
   });
 });
 
@@ -258,6 +297,40 @@ router.post("/save", (req, res) => {
     // console.log(err);
   });
 });
+
+//Delivery agent Update
+// router.post("/updatedeliveryagent/:userId", upload.single("image"), (req, res) => {
+//   const name=req.body.name,
+//   const NIC=req.body.NIC,
+//   const phoneNumber=req.body.phoneNumber,
+//   const address=req.body.address,
+//   const drivingLicence=req.body.drivingLicence,
+//   const profileImage=req.file.profileImage,
+//   const vehicalNumber=req.body.vehicalNumber,
+//   const maxLoad=req.body.maxLoad,
+
+//   const sqlUpdate =
+//   "UPDATE fertilizer SET name=?,description=?,offer=?,unitPrice=?,unitWeight=?,photo=?,stock=?,reOrderLevel=?,measurementUnit=?,caption=? WHERE fertilizerId=?";
+
+//   db.query(
+//     sqlUpdate,
+//     [
+//       name,
+// NIC,
+// phoneNumber,
+// address,
+// drivingLicence,
+// profileImage,
+// vehicalNumber,
+// maxLoad,
+//     ],
+//     (err, result) => {
+//       console.log(err);
+//       console.log(result);
+//       res.send(result);
+//     }
+//   );
+// });
 
 ////SELECT DATE_FORMAT(date,'%Y-%m') AS date FROM ordercontainsfertilizer;
 
