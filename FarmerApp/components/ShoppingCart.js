@@ -8,6 +8,7 @@ import {
   SafeAreaView,
   Image,
   ScrollView,
+  TouchableOpacity,
 } from "react-native";
 import Feather from "react-native-vector-icons/Feather";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -23,7 +24,7 @@ import RemoveButton from "./buttons";
 
 Feather.loadFont();
 
-export default Main = () => {
+export default function ShoppingCart({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={colors.primary} />
@@ -40,7 +41,7 @@ export default Main = () => {
 
       {/* titles */}
       <View style={styles.titleView}>
-        <Text style={styles.titlesTitle}>Organic Fertilizer</Text>
+        <Text style={styles.titlesTitle}>Shopping cart</Text>
       </View>
 
       <ScrollView
@@ -48,6 +49,12 @@ export default Main = () => {
         showsVerticalScrollIndicator={false}
         key={Math.random}
       >
+        <View style={styles.btnView}>
+          <TouchableOpacity onPress={() => navigation.navigate("CheckoutPage")}>
+            <Text style={styles.btnIcon}>CHECKOUT</Text>
+          </TouchableOpacity>
+        </View>
+
         <View style={styles.itemDetailcardWrapper}>
           <View style={styles.itemImg}>
             <Image source={photo} style={styles.itemCardImage} />
@@ -58,6 +65,7 @@ export default Main = () => {
             <Text style={styles.itemPrice}>Qty :</Text>
           </View>
         </View>
+
         <View style={styles.itemDetailcardWrapper2}>
           <View style={styles.itemratingcardcontainer}>
             <Text style={styles.topicBold}>Rating</Text>
@@ -152,7 +160,7 @@ export default Main = () => {
       </ScrollView>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -303,5 +311,14 @@ const styles = StyleSheet.create({
   commenter: {
     color: "#8C8C8C",
     fontSize: 13,
+  },
+  btnView: {
+    padding: 5,
+    marginRight: 30,
+    alignItems: "flex-end",
+  },
+  btnIcon: {
+    backgroundColor: "yellow",
+    padding: 10,
   },
 });

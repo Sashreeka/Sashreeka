@@ -8,6 +8,7 @@ import {
   SafeAreaView,
   Image,
   ScrollView,
+  TouchableOpacity,
 } from "react-native";
 import Feather from "react-native-vector-icons/Feather";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -18,13 +19,15 @@ import colors from "../assets/colors/colors";
 import Axios from "axios";
 import { Directions } from "react-native-gesture-handler";
 import photo from "../assets/images/bio3.png";
-import CheckoutForm from "./CkeckoutForm";
+import CheckoutForm from "./CheckoutForm";
 
 import ViewOrderButton from "./buttons";
 
+import Header from "./common/Header";
+
 Feather.loadFont();
 
-export default Main = () => {
+export default function CheckoutPage({ navigation }) {
   const [deliveryDetails, setDeliveryDetails] = useState([]);
 
   const checkoutDetails = (details) => {
@@ -39,18 +42,21 @@ export default Main = () => {
       <StatusBar backgroundColor={colors.primary} />
       <SafeAreaView>
         <View style={styles.headerWrapper}>
+          <Feather
+            name="menu"
+            size={24}
+            color={colors.textDark}
+            onPress={() => navigation.openDrawer()}
+          ></Feather>
           <Image
             source={require("../assets/images/profileimg_girl.jpg")}
             style={styles.profileImage}
           />
-          {/* style={styles.profileImage} */}
-          <Feather name="menu" size={24} color={colors.textDark}></Feather>
         </View>
       </SafeAreaView>
-
       {/* titles */}
       <View style={styles.titleView}>
-        <Text style={styles.titlesTitle}>Organic Fertilizer</Text>
+        <Text style={styles.titlesTitle}>Check out Page</Text>
       </View>
 
       <ScrollView
@@ -66,7 +72,7 @@ export default Main = () => {
       </ScrollView>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {

@@ -17,7 +17,6 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import categoriesData from "../assets/data/categoriesData";
 import itemsData from "../assets/data/itemsData";
 import colors from "../assets/colors/colors";
-import CheckoutForm from "./CkeckoutForm";
 import Axios from "axios";
 
 Feather.loadFont();
@@ -28,16 +27,10 @@ export default Home = ({ navigation }) => {
   useEffect(() => {
     Axios.get("http://192.168.8.222:4000/farmer/getfertilizerall").then(
       (response) => {
-        // console.log(response.data[0].caption);
-        // console.log(response.data[0].fertilizerId);
-        // console.log(response.data[0].photo);
-        //  console.log(response.data);
         setferlilizerlist(response.data);
       }
     );
   }, []);
-
-  //   console.log(moviereviewlist);
 
   const renderCategoryItem = ({ item }) => {
     return (
@@ -93,6 +86,13 @@ export default Home = ({ navigation }) => {
         showsVerticalScrollIndicator={false}
         key={Math.random}
       >
+        <View style={styles.btnView}>
+          <TouchableOpacity onPress={() => navigation.navigate("ShoppingCart")}>
+            <Text style={styles.btnIcon}>CART</Text>
+          </TouchableOpacity>
+        </View>
+        {/* <i className="fas fa-shopping-cart"></i> */}
+
         {/* Search */}
         <View style={styles.searchWrapper}>
           <Feather name="search" size={16} color={colors.textDark} />
@@ -175,51 +175,13 @@ export default Home = ({ navigation }) => {
             );
           })}
         </View>
-
-        {/* ********************************************************************* */}
-
-        {/* items list */}
-        {/* <View style={styles.itemsWrapper}>
-                <Text style={styles.itemsTitle}>Shop Items</Text>
-                {fertilizerlist.map((item)=>(
-                    
-                     <View 
-                     key={item.id}
-                     style={[styles.itemsCardwrapper,
-                     {
-                         marginTop:item.id==1 ? 10 : 20,
-                     }
-                     ]}>
-                         <View style={styles.itemCardWrapOuter}>
-                            <View>
-                                <View style={styles.itemWrapperMain}>
-                                    <Text style={styles.itemTitleMain}>{item.name}</Text>  
-                                </View>
-                                <View style={styles.itemDescriptionWrapper}>
-                                    <Text style={styles.itemDescription}>{item.description}</Text>
-                                    <Text style={styles.itemUnitWeight}>{item.UnitWeight}</Text>
-                                </View>
-                                <View style={styles.itemADDbutton}>
-                                    <Text>ADD<Feather name="plus" size={15} color='#000'/>
-                                    </Text>
-                                </View>
-                            </View>
-                            <View styles={styles.itemcardRight}>
-                                <Image source={item.image} styles={styles.itemcardimage}/>
-                            </View>
-                         </View>
-                         
-                 </View>
-                )   
-                )}
-            </View> */}
       </ScrollView>
     </View>
   );
 };
 
+// ************************************************** styles
 const styles = StyleSheet.create({
-  // **************************************************
   container: {
     flex: 1,
   },
@@ -414,5 +376,15 @@ const styles = StyleSheet.create({
     width: 140,
     height: 150,
     resizeMode: "contain",
+  },
+
+  btnView: {
+    padding: 5,
+    marginRight: 30,
+    alignItems: "flex-end",
+  },
+  btnIcon: {
+    backgroundColor: "yellow",
+    padding: 10,
   },
 });

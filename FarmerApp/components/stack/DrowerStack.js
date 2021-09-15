@@ -11,7 +11,8 @@ import OrderHistory from "../OrderHistory";
 import OrderHistoryInside from "../OrderHistoryInside";
 import Profile from "../Profile";
 
-// import CheckoutPage from './components/CheckoutPage';
+import ShoppingCart from "../ShoppingCart";
+import CheckoutPage from "../CheckoutPage";
 
 const Drawer = createDrawerNavigator();
 export default function DrowerStack({ navigation }) {
@@ -23,7 +24,9 @@ export default function DrowerStack({ navigation }) {
       <Drawer.Screen name="OrderHistory" component={OrderHistory} />
       <Drawer.Screen name="OrderHistoryInside" component={OrderHistoryInside} />
       <Drawer.Screen name="Profile" component={Profile} />
-      {/* <Drawer.Screen name="CheckoutPage" component={CheckoutPage}/> */}
+
+      <Drawer.Screen name="ShoppingCart" component={ShoppingCart} />
+      <Drawer.Screen name="CheckoutPage" component={CheckoutPage} />
     </Drawer.Navigator>
   );
 }
