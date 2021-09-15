@@ -2,7 +2,9 @@ import React,{useState} from "react";
 import "./Contact.css";
 import contactImg1 from '../../assets/images/Contact/contact5.jpg';
 import axios from "axios";
-
+//import { userSchema } from "./validations/UserValidation";
+//import * as yup from "yup";
+//import {formik From}  from "formik";
 
 import Navigation from "../../components/common/header/Navigation";
 import Footer from "../../components/common/footer/footer";
@@ -21,6 +23,8 @@ function Contact() {
         console.log(values);
     }
 
+    
+
 const onSubmit =()=>{
     axios.post("http://localhost:4000/user/contactus",{values})
     .then((res)=>{console.log(res)})
@@ -29,6 +33,7 @@ const onSubmit =()=>{
     
   return (
     <div>
+    
         <Navigation />
         <div className="mainSection">
             <section className="contact" id="contact">
