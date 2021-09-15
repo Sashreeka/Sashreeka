@@ -8,6 +8,7 @@ import Control from "../../../../common/Control";
 import MaterialTable from "material-table";
 import { PersonAdd } from "@material-ui/icons";
 import CreateStaff from "./CreateStaff";
+import { Avatar } from "@material-ui/core";
 
 export default function StaffTable() {
   const [data, setData] = useState([]);
@@ -32,41 +33,61 @@ export default function StaffTable() {
     // alert("clicked onclickBut");
     setCreate(true);
   };
-
+  // "select userId,concat(firstName,' ',lastName) as name,phoneNumber,email,nic,address,role.roleName as role,STR_TO_DATE(appointedDate, '%d/%m/%Y') FROM companystaff INNER JOIN role ON companystaff.roleId=role.roleId ORDER BY staffId ASC";
+  // render:(row)=> <div className={row.active?"Factive":"deactive"}>{row.active?"Active":"Deactive"}</div>
   const columns = [
     {
       title: "Id",
       field: "userId",
       cellStyle: {
-        width: "10%",
+        width: "5%",
       },
+    },
+    {
+      title: "",
+      field: "profileimage",
+      cellStyle: {
+        width: "3%",
+      },
+      render: (row) => (
+        <div>
+          <Avatar alt="Remy Sharp" src={row.profileimage} />
+        </div>
+      ),
     },
     {
       title: "Full Name",
       field: "name",
       cellStyle: {
-        width: "18%",
-      },
-    },
-    {
-      title: "Is present",
-      field: "active",
-      cellStyle: {
         width: "20%",
       },
     },
     {
-      title: "NIC",
-      field: "nic",
+      title: "Position",
+      field: "role",
       cellStyle: {
-        width: "20%",
+        width: "10%",
       },
     },
     {
       title: "Phone Number",
       field: "phoneNumber",
       cellStyle: {
-        width: "25%",
+        width: "10%",
+      },
+    },
+    {
+      title: "Email",
+      field: "email",
+      cellStyle: {
+        width: "10%",
+      },
+    },
+    {
+      title: "Appointed Date",
+      field: "appointedDate",
+      cellStyle: {
+        width: "10%",
       },
     },
   ];
@@ -104,6 +125,7 @@ export default function StaffTable() {
               filtering: false,
               exportButton: true,
               backgroundColor: "#EEE",
+
               // showTitle: false,
               actionsColumnIndex: -1,
               headerStyle: {

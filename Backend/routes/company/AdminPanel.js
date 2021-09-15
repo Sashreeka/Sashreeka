@@ -199,7 +199,8 @@ router.get("/getFarmerDetails", (req, res) => {
 router.get("/admin/viewCStaffDetails", (req, res) => {
   // const sqlget = "select * from companystaff";
   const sqlget =
-    "select userId,phoneNumber,concat(firstName,'  ',lastName) as name,nic,active from companystaff;";
+    "select userId,profileimage,concat(firstName,' ',lastName) as name,phoneNumber,email,nic,address,role.roleName as role,DATE_FORMAT(appointedDate, '%b-%Y')as appointedDate FROM companystaff INNER JOIN role ON companystaff.roleId=role.roleId ORDER BY staffId ASC";
+
   db.query(sqlget, (err, result) => {
     //    console.log(result);
     res.send(result);
@@ -277,9 +278,12 @@ router.get("/admin/getRoleNames", (req, res) => {
   const sqlget =
     "SELECT `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='sashreeka_db' AND `TABLE_NAME`='role'";
   db.query(sqlget, (err, result) => {
-    console.log(err);
-    console.log(result);
-    res.send(result);
+    if (err) {
+      console.log("backend err :", err);
+    } else {
+      console.log("backend ress :", result);
+      res.send(result);
+    }
   });
 });
 

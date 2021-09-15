@@ -1,4 +1,4 @@
-import { Grid, makeStyles, Paper } from "@material-ui/core";
+import { Avatar, Grid, makeStyles, Paper } from "@material-ui/core";
 import { BarChart } from "@material-ui/icons";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
@@ -150,7 +150,6 @@ export default function StaffMembers() {
             ))}
           </Grid>
         </div>
-        {/* <BarChart2 /> */}
       </div>
     </div>
   );
