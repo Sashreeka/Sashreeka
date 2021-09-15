@@ -3,8 +3,8 @@ const router = express.Router();
 const db = require("../../connection/database");
 
 //upload image library
-// const multer = require("multer");
-// const path = require("path");
+const multer = require("multer");
+const path = require("path");
 
 //display fertilizer
 router.get("/getfertilizer", (req, res) => {
@@ -21,32 +21,31 @@ router.get("/getfertilizer", (req, res) => {
 //get a specific fertilizer id
 ////////
 router.get("/getImage", (req, res) => {
-  const sql = "select photo from fertilizer where fertilizerId=21";
+  const sql = "select * from photo";
   db.query(sql, (err, result) => {
     res.send(result);
   });
 });
 
 ///upload images
-// const storage = multer.diskStorage({
-//   destination: "./public/image/",
-//   filename: (req, file, cb) => {
-//     return cb(
-//       null,
-//       `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`
-//     );
-//   },
-// });
+const storage = multer.diskStorage({
+  destination: "./public/image/",
+  filename: (req, file, cb) => {
+    return cb(
+      null,
+      `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`
+    );
+  },
+});
 
-// const upload = multer({
-//   storage: storage,
-// });
+const upload = multer({
+  storage: storage,
+});
 
 ///////////////sample
-router.post("/addFertilizer", (req, res) => {
-
+router.post("/addFertilizer", upload.single("image"), (req, res) => {
   const name = req.body.name;
-  const image = req.body.image;
+  const image = req.file.filename;
   const description = req.body.description;
   const offer = req.body.offer;
   const unitPrice = req.body.unitPrice;
@@ -55,9 +54,6 @@ router.post("/addFertilizer", (req, res) => {
   const reOrderLevel = req.body.reOrderLevel;
   const measurementUnit = req.body.measurementUnit;
   const caption = req.body.caption;
-
-  console.log(name);
-
 
   //const sqlInsert="INSERT INTO photo(name,image) VALUE(?,?)";
   const sqlInsert =
@@ -87,9 +83,7 @@ router.post("/addFertilizer", (req, res) => {
 });
 
 //update fertilizer item
-router.put("/updateFertilizerItem/:id", 
-//upload.single("image"), 
-(req, res) => {
+router.put("/updateFertilizerItem/:id", upload.single("image"), (req, res) => {
   const id = req.params.id;
   const name = req.body.name;
   const image = req.file.filename;
@@ -101,7 +95,7 @@ router.put("/updateFertilizerItem/:id",
   const reOrderLevel = req.body.reOrderLevel;
   const measurementUnit = req.body.measurementUnit;
   const caption = req.body.caption;
-    name,
+  name,
     description,
     offer,
     unitPrice,
@@ -172,7 +166,7 @@ router.get("/admin/viewDAgentDetails", (req, res) => {
 });
 
 //  display the delivery agent+ vehicle details details..................
-router.get("/ ", (req, res) => {
+router.get("/admin/getdeliveyagentetails", (req, res) => {
   const sqlget =
     "SELECT userId,CONCAT(firstName,' ',lastName) AS Name ,availability,vehicle.vehicleId,vehicle.maxLoad,drivingLicence FROM `deliveryagent` LEFT JOIN vehicle ON vehicle.deliveryAgentPhoneNumber=deliveryagent.phoneNumber ORDER BY userId";
   db.query(sqlget, (err, result) => {
@@ -212,6 +206,30 @@ router.get("/admin/viewCStaffDetails", (req, res) => {
   });
 });
 
+//display the company staff details sort By roles..................
+router.post("/admin/viewCStaffDetailsSortByRole", (req, res) => {
+  const roleId = req.body.roleId;
+  console.log("this is roleid:", roleId);
+  if (roleId > 0 && roleId < 1000) {
+    const sqlget =
+      "select userId,phoneNumber,concat(firstName,' ',lastName) as name,email,address,appointedDate,nic,profileimage,companystaff.roleId,role.roleName FROM companystaff INNER JOIN role ON companystaff.roleId=role.roleId WHERE companystaff.roleId=?";
+    db.query(sqlget, roleId, (err, result) => {
+      if (err) {
+        res.send({ "err ": err });
+      }
+      console.log("backend id=", roleId, "====>");
+      res.send(result);
+    });
+  } else {
+    const sqlget =
+      "select userId,phoneNumber,concat(firstName,' ',lastName) as name,email,address,appointedDate,nic,profileimage,companystaff.roleId,role.roleName FROM companystaff INNER JOIN role ON companystaff.roleId=role.roleId ORDER BY staffId ASC";
+    db.query(sqlget, (err, result) => {
+      console.log("backend id=non");
+      res.send(result);
+    });
+  }
+});
+
 // display delivery details........................
 router.get("/admin/viewDeliveryDetails", (req, res) => {
   const sqlget = "select * from deliveries";
@@ -248,8 +266,8 @@ router.delete("/deleteProductItems/:fertilizerId", (req, res) => {
 router.get("/admin/getAll_privilages_and_roles", (req, res) => {
   const sqlget = "SELECT * FROM `role`";
   db.query(sqlget, (err, result) => {
-    console.log(err);
-    console.log(result);
+    // console.log(err);
+    // console.log(result);
     res.send(result);
   });
 });
