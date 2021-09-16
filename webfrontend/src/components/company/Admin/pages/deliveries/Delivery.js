@@ -122,17 +122,17 @@ export default function Delivery() {
               className={classes.tab}
             >
               <Tab
-                label="Delivery History"
+                label="Assign Deliveries"
                 {...a11yProps(0)}
                 className={classes.tabtable}
               />
               <Tab
-                label="Agents"
+                label="Delivery History"
                 {...a11yProps(1)}
                 className={classes.tabtable}
               />
               <Tab
-                label="Assign Deliveries"
+                label="Agents"
                 {...a11yProps(2)}
                 className={classes.tabtable}
               />
@@ -144,13 +144,13 @@ export default function Delivery() {
             onChangeIndex={handleChangeIndex}
           >
             <TabPanel value={value} index={0} dir={theme.direction}>
-              <Tab1_DelivaryHistory />
+              <Tab3_AssignDelivaries />
             </TabPanel>
             <TabPanel value={value} index={1} dir={theme.direction}>
-              <Tab2_Agents />
+              <Tab1_DelivaryHistory />
             </TabPanel>
             <TabPanel value={value} index={2} dir={theme.direction}>
-              <Tab3_AssignDelivaries />
+              <Tab2_Agents />
             </TabPanel>
           </SwipeableViews>
         </div>

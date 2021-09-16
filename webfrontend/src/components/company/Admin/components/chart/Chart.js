@@ -1,34 +1,35 @@
-import React from 'react';
+import React from "react";
 import "./chart.css";
-import { LineChart, Line, XAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import {
+  LineChart,
+  Line,
+  XAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 
+export default function Chart({ title, data, dataKey, grid }) {
+  return (
+    <div className="chart">
+      <h3 className="chartTitle">{title}</h3>
 
-
-export default function Chart({title,data,dataKey,grid}) {
-
-
-
-
-
-    return (
-        <div className="chart">
-            <h3 className="chartTitle">{title}</h3>
-
-            <ResponsiveContainer width="100%" aspect={4/1}>
-                <LineChart data={data}>
-                    <XAxis dataKey="name" stroke="#5550bd"/>
-                    {/* monotone means drew chart */}
-                    <Line type="monotone" dataKey={dataKey} stroke="#5550bd"/>
-                    {/* tooltip means show mesurement */}
-                    <Tooltip/>
-                    {/* show the cartesean */}
-                {grid && <CartesianGrid stroke="#e0dfdf" strokeDasharray="5 5"/>}
-
-
-                </LineChart>
-
-            </ResponsiveContainer>
-            
-        </div>
-    )
+      <ResponsiveContainer width="100%" aspect={4 / 1}>
+        <LineChart data={data}>
+          <XAxis dataKey="name" stroke=" #737373" />
+          {/* monotone means drew chart */}
+          <Line
+            type="monotone"
+            dataKey={dataKey}
+            stroke="#00cc00"
+            strokeWidth={2}
+          />
+          {/* tooltip means show mesurement */}
+          <Tooltip />
+          {/* show the cartesean */}
+          {grid && <CartesianGrid stroke=" #b3b3b3" strokeDasharray="5 5" />}
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
+  );
 }
