@@ -9,28 +9,54 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
-  Dimensions,
-  ImageBackground,
 } from "react-native";
 import Feather from "react-native-vector-icons/Feather";
+import FontAwsome from "react-native-vector-icons/FontAwesome";
+// import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+
+import categoriesData from "../../assets/data/categoriesData";
 import colors from "../../assets/colors/colors";
 import Axios from "axios";
 
 Feather.loadFont();
 
-const windowWidth = Dimensions.get("window").width;
-const image = { uri: "https://reactjs.org/logo-og.png" };
-
 export default function HomeScreen({ navigation }) {
-  const [categorylist, setcategorylist] = useState([]);
+  const [ferlilizerlist, setferlilizerlist] = useState([]);
 
   useEffect(() => {
-    Axios.get("http://192.168.8.222:4000/farmer/getcategories").then(
+    Axios.get("http://192.168.8.222:4000/farmer/getfertilizerall").then(
       (response) => {
-        setcategorylist(response.data);
+        setferlilizerlist(response.data);
       }
     );
   }, []);
+
+  const renderCategoryItem = ({ item }) => {
+    return (
+      // <View style={styles.categoriesListWrapper}>
+      <View
+        style={[
+          styles.categoryItemWrapper,
+          {
+            backgroundColor: item.selected
+              ? colors.secondaryT50
+              : colors.background,
+            marginLeft: item.id == 1 ? 20 : 0,
+          },
+        ]}
+      >
+        <Image source={item.image} style={styles.categoryItemImage} />
+        <Text style={styles.categoryItemTitle}>{item.title}</Text>
+        <View style={styles.categorySelectWrapper}>
+          {/* <Feather
+                   name="shevron-right"
+                   size={8}
+                   style={styles.categorySelectIcon}
+                   /> */}
+        </View>
+      </View>
+    );
+  };
 
   return (
     <View style={styles.container}>
@@ -51,107 +77,102 @@ export default function HomeScreen({ navigation }) {
       </SafeAreaView>
       {/* titles */}
       <View style={styles.titleView}>
+        {/* <View style={styles.titleCart}> */}
         <Text style={styles.titlesTitle}>Organic Fertilizer</Text>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("CartScreen")}
+          style={styles.cartIcon}
+        >
+          <FontAwsome name="shopping-cart" color="#05375a" size={30} />
+        </TouchableOpacity>
+        {/* </View> */}
       </View>
 
-      {/* Search */}
-      <View style={styles.searchWrapper}>
-        <Feather name="search" size={16} color={colors.textDark} />
-        <View style={styles.search}>
-          <Text style={styles.searchText}>Search...</Text>
-        </View>
-      </View>
-
-      <FlatList
-        numColumns={2}
-        data={categorylist}
-        keyExtractor={(item) => item.fertilizerCategoryId}
-        renderItem={({ item }) => (
-          <View style={styles.contentContainerNew}>
-            <TouchableOpacity
-              onPress={() => navigation.navigate("ViewFertilizerCategory")}
-            >
-              <View style={styles.cardNew}>
-                <ImageBackground
-                  source={{ uri: item.photo }}
-                  resizeMode="cover"
-                  style={styles.imageBg}
-                >
-                  <Text style={styles.imageBgText}>{item.description}</Text>
-                </ImageBackground>
-                {/* <ImageBackground
-                  source={{ uri: item.photo }}
-                  style={styles.imageBackgroundNew}
-                />
-                // <Text>{item.description}</Text>
-                <ImageBackground /> */}
-              </View>
-            </TouchableOpacity>
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        showsVerticalScrollIndicator={false}
+        key={Math.random}
+      >
+        {/* Search */}
+        <View style={styles.searchWrapper}>
+          <Feather name="search" size={16} color={colors.textDark} />
+          <View style={styles.search}>
+            <Text style={styles.searchText}>Search...</Text>
           </View>
-        )}
-      />
+        </View>
+
+        {/* Categories */}
+        <View style={styles.categoriesWrapper}>
+          <Text style={styles.categoriesTitle}>Categories</Text>
+          <View style={styles.categoriesListWrapper}>
+            <FlatList
+              data={categoriesData}
+              renderItem={renderCategoryItem}
+              keyExtractor={(item) => item.id}
+              horizontal={true}
+            />
+          </View>
+        </View>
+
+        <View style={styles.itemsWrapper}>
+          <Text style={styles.itemsTitle}>Shop Items</Text>
+          {ferlilizerlist.map((val) => {
+            return (
+              <View
+                key={val.fertilizerId}
+                style={[
+                  styles.itemsCardwrapper,
+                  {
+                    marginTop: val.fertilizerId == 1 ? 10 : 20,
+                  },
+                ]}
+              >
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("ItemDetailsScreen")}
+                >
+                  <View style={styles.itemCardWrapOuter}>
+                    <View
+                      style={styles.itemcardLeft}
+                      onPress={() => navigation.navigate("ItemDetailsScreen")}
+                    >
+                      <View style={styles.itemWrapperMain}>
+                        <Text style={styles.itemTitleMain}>{val.name}</Text>
+                      </View>
+                      <View style={styles.itemDescriptionWrapper}>
+                        <Text style={styles.itemDescription}>
+                          {val.caption}
+                        </Text>
+                      </View>
+                      <View style={styles.itemADDbutton}>
+                        <Text
+                          style={styles.itemADDbuttonText}
+                          onPress={() =>
+                            navigation.navigate("ItemDetailsScreen")
+                          }
+                        >
+                          ADD
+                          <Feather name="plus" size={15} color="#000" />
+                        </Text>
+                      </View>
+                    </View>
+                    <View style={styles.itemcardRight}>
+                      <Image
+                        source={{ uri: `${val.photo}` }}
+                        style={styles.itemcardimage}
+                      />
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              </View>
+            );
+          })}
+        </View>
+      </ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  imageBg: {
-    flex: 1,
-    justifyContent: "flex-end",
-    width: windowWidth / 2 - 10,
-    height: 150,
-  },
-  imageBgText: {
-    width: windowWidth / 2 - 10,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 3,
-    elevation: 1,
-    alignSelf: "center",
-    color: "#292929",
-    fontSize: 20,
-    fontWeight: "bold",
-    textAlign: "center",
-    padding: 5,
-    backgroundColor: "rgba(255,255,255,0.6)",
-  },
-  col1: {
-    flex: 1,
-    padding: 5,
-  },
-  col2: {
-    flex: 2,
-    padding: 5,
-  },
-  colBanner: {
-    width: "100%",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 5,
-  },
-
-  // imageNew: {
-  //   width: windowWidth / 2 - 10,
-  //   height: 150,
-  //   alignItems: "center",
-  //   justifyContent: "center",
-  //   padding: 5,
-  // },
-
-  imageBackgroundNew: {
-    flex: 1,
-    justifyContent: "center",
-  },
-  contentContainerNew: {
-    flex: 1,
-    flexDirection: "row",
-    // flexWrap: "wrap",
-  },
-  cardNew: {
-    margin: 5,
-  },
-
   container: {
     flex: 1,
   },
@@ -200,7 +221,6 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.textlight,
     borderBottomWidth: 2,
     marginHorizontal: 20,
-    marginBottom: 10,
   },
   search: {
     marginLeft: 20,

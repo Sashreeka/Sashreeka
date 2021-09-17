@@ -14,6 +14,7 @@ import OrderHistoryScreen from "../screens/OrderHistoryScreen";
 import PaymentMethodsScreen from "../screens/PaymentMethodsScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import SupportScreen from "../screens/SupportScreen";
+import ViewFertilizerCategory from "../screens/ViewFertilizerCategory";
 
 const Drawer = createDrawerNavigator();
 
@@ -37,6 +38,10 @@ export default function DrowerStack({ navigation }) {
       />
       <Drawer.Screen name="ProfileScreen" component={ProfileScreen} />
       <Drawer.Screen name="SupportScreen" component={SupportScreen} />
+      <Drawer.Screen
+        name="ViewFertilizerCategory"
+        component={ViewFertilizerCategory}
+      />
     </Drawer.Navigator>
   );
 }
