@@ -102,7 +102,7 @@ router.post("/admin/insertstaffmember", (req, res) => {
 //  display all unassigned orders.................. need to district='gampaha' AND part + date sorting + less than selected
 router.get("/admin/getAllunssigedorders", (req, res) => {
   const sqlget =
-    "SELECT orderId as id,amount, CONCAT(houseNumber,', ',streetName,', ',City) as address, district, quickFlag, status,DATE_FORMAT(graceenddate, '%d %b %Y') as graceenddate,(SELECT SUM(quantity*weight) as totalweight FROM `ordercontainsfertilizer`WHERE orderId=orders.orderId GROUP by orderId)as loads FROM `orders` WHERE status=0";
+    "SELECT orderId as id,amount, CONCAT(houseNumber,', ',streetName,', ',City) as address, district, quickFlag, status,DATE_FORMAT(graceenddate, '%d %b %Y') as graceenddate,(SELECT SUM(quantity*weight) FROM ordercontainsfertilizer WHERE orderId=orders.orderId GROUP by orderId) as loads FROM orders WHERE status=0";
   db.query(sqlget, (err, result) => {
     console.log(result);
     res.send(result);

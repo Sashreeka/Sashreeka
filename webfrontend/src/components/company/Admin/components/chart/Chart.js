@@ -9,7 +9,16 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-export default function Chart({ title, data, dataKey, grid }) {
+export default function Chart({
+  title,
+  data,
+  dataKey,
+  grid,
+  line2 = false,
+  dataKey2,
+  line3 = false,
+  dataKey3,
+}) {
   return (
     <div className="chart">
       <h3 className="chartTitle">{title}</h3>
@@ -21,9 +30,29 @@ export default function Chart({ title, data, dataKey, grid }) {
           <Line
             type="monotone"
             dataKey={dataKey}
-            stroke="#00cc00"
+            stroke="#0000ff"
             strokeWidth={2}
           />
+          {line2 ? (
+            <Line
+              type="monotone"
+              dataKey={dataKey2}
+              stroke="#00cc00"
+              strokeWidth={2}
+            />
+          ) : (
+            ""
+          )}
+          {line3 ? (
+            <Line
+              type="monotone"
+              dataKey={dataKey3}
+              stroke="#cc0000"
+              strokeWidth={2}
+            />
+          ) : (
+            ""
+          )}
           {/* tooltip means show mesurement */}
           <Tooltip />
           {/* show the cartesean */}

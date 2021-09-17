@@ -125,10 +125,21 @@ export default function Sidebar({ title }) {
               </Link>
             )}
 
-            <li className="sidebarListItem">
-              <BarChart className="sidebarIcon" />
-              Orders
-            </li>
+            {title === "orders" ? (
+              <Link to="/orders" className="link">
+                <li className="sidebarListItem active">
+                  <BarChart className="sidebarIcon" />
+                  Orders
+                </li>
+              </Link>
+            ) : (
+              <Link to="/orders" className="link">
+                <li className="sidebarListItem">
+                  <BarChart className="sidebarIcon" />
+                  Orders
+                </li>
+              </Link>
+            )}
           </ul>
         </div>
       </div>
@@ -169,19 +180,52 @@ export default function Sidebar({ title }) {
               </Link>
             )}
 
-            <li className="sidebarListItem">
-              <NotificationsIcon className="sidebarIcon" />
-              Notifications
-            </li>
+            {title === "notification" ? (
+              <Link to="/notification" className="link">
+                <li className="sidebarListItem active">
+                  <NotificationsIcon className="sidebarIcon" />
+                  Notifications
+                </li>
+              </Link>
+            ) : (
+              <Link to="/notification" className="link">
+                <li className="sidebarListItem">
+                  <NotificationsIcon className="sidebarIcon" />
+                  Notifications
+                </li>
+              </Link>
+            )}
 
-            <li className="sidebarListItem">
-              <ChatBubbleOutline className="sidebarIcon" />
-              Announcements
-            </li>
-            <li className="sidebarListItem">
-              <AttachMoney className="sidebarIcon" />
-              Revenue
-            </li>
+            {title === "announcements" ? (
+              <Link to="/announcements" className="link">
+                <li className="sidebarListItem active">
+                  <ChatBubbleOutline className="sidebarIcon" />
+                  Announcements
+                </li>
+              </Link>
+            ) : (
+              <Link to="/announcements" className="link">
+                <li className="sidebarListItem">
+                  <ChatBubbleOutline className="sidebarIcon" />
+                  Announcements
+                </li>
+              </Link>
+            )}
+            {title === "complains" ? (
+              <Link to="/complains" className="link">
+                <li className="sidebarListItem active">
+                  <AttachMoney className="sidebarIcon" />
+                  Complains & Contact Us
+                </li>
+              </Link>
+            ) : (
+              <Link to="/complains" className="link">
+                <li className="sidebarListItem">
+                  <AttachMoney className="sidebarIcon" />
+                  Complains & Contact Us
+                </li>
+              </Link>
+            )}
           </ul>
         </div>
       </div>
