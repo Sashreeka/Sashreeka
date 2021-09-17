@@ -24,7 +24,7 @@ import ViewOrderButton from "./buttons";
 
 Feather.loadFont();
 
-export default Main = ({ navigation }) => {
+export default function OrderHistory({ navigation }) {
   const [historylist, setHistoryList] = useState([]);
 
   useEffect(() => {
@@ -113,7 +113,7 @@ export default Main = ({ navigation }) => {
       </ScrollView>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {

@@ -11,17 +11,16 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Feather from "react-native-vector-icons/Feather";
-import FontAwsome from "react-native-vector-icons/FontAwesome";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+// import FontAwsome from "react-native-vector-icons/FontAwesome";
+// import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
-import categoriesData from "../assets/data/categoriesData";
-import itemsData from "../assets/data/itemsData";
-import colors from "../assets/colors/colors";
+import categoriesData from "../../assets/data/categoriesData";
+import colors from "../../assets/colors/colors";
 import Axios from "axios";
 
 Feather.loadFont();
 
-export default Home = ({ navigation }) => {
+export default function HomeScreen({ navigation }) {
   const [ferlilizerlist, setferlilizerlist] = useState([]);
 
   useEffect(() => {
@@ -71,7 +70,7 @@ export default Home = ({ navigation }) => {
             onPress={() => navigation.openDrawer()}
           ></Feather>
           <Image
-            source={require("../assets/images/profileimg_girl.jpg")}
+            source={require("../../assets/images/profileimg_girl.jpg")}
             style={styles.profileImage}
           />
         </View>
@@ -87,7 +86,7 @@ export default Home = ({ navigation }) => {
         key={Math.random}
       >
         <View style={styles.btnView}>
-          <TouchableOpacity onPress={() => navigation.navigate("ShoppingCart")}>
+          <TouchableOpacity onPress={() => navigation.navigate("CartScreen")}>
             <Text style={styles.btnIcon}>CART</Text>
           </TouchableOpacity>
         </View>
@@ -138,12 +137,12 @@ export default Home = ({ navigation }) => {
                 ]}
               >
                 <TouchableOpacity
-                  onPress={() => navigation.navigate("ItemPage")}
+                  onPress={() => navigation.navigate("ItemDetailsScreen")}
                 >
                   <View style={styles.itemCardWrapOuter}>
                     <View
                       style={styles.itemcardLeft}
-                      onPress={() => navigation.navigate("ItemPage")}
+                      onPress={() => navigation.navigate("ItemDetailsScreen")}
                     >
                       <View style={styles.itemWrapperMain}>
                         <Text style={styles.itemTitleMain}>{val.name}</Text>
@@ -156,7 +155,9 @@ export default Home = ({ navigation }) => {
                       <View style={styles.itemADDbutton}>
                         <Text
                           style={styles.itemADDbuttonText}
-                          onPress={() => navigation.navigate("ItemPage")}
+                          onPress={() =>
+                            navigation.navigate("ItemDetailsScreen")
+                          }
                         >
                           ADD
                           <Feather name="plus" size={15} color="#000" />
@@ -178,9 +179,8 @@ export default Home = ({ navigation }) => {
       </ScrollView>
     </View>
   );
-};
+}
 
-// ************************************************** styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -207,15 +207,17 @@ const styles = StyleSheet.create({
     // fontFamily:"Roboto-bold",
     fontSize: 32,
     color: colors.textDark,
-    paddingLeft: 10,
+    paddingLeft: 20,
+    marginLeft: 10,
   },
+
   titleView: {
     backgroundColor: colors.secondary,
-    padding: 10,
+    padding: 5,
     paddingBottom: 10,
-    borderBottomLeftRadius: 40,
-    borderBottomRightRadius: 40,
+    borderBottomLeftRadius: 75,
   },
+
   searchWrapper: {
     paddingTop: 20,
     paddingBottom: 10,

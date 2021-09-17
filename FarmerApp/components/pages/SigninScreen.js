@@ -147,13 +147,20 @@ export default function SigninScreen({ navigation }) {
             </LinearGradient>
           </TouchableOpacity>
         </View>
-
-        <Text
-          style={styles.forget}
-          onPress={() => navigation.navigate("ForgetPassword")}
-        >
-          Forget Password
-        </Text>
+        <View style={styles.flexBarLast}>
+          <Text
+            style={styles.Signupbtn}
+            onPress={() => navigation.navigate("SignupScreen")}
+          >
+            Create New User
+          </Text>
+          <Text
+            style={styles.forget}
+            onPress={() => navigation.navigate("ForgetPassword")}
+          >
+            Forget Password
+          </Text>
+        </View>
       </Animatable.View>
     </View>
   );
@@ -233,8 +240,22 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
   },
+  flexBarLast: {
+    flex: 1,
+    justifyContent: "space-between",
+    flexDirection: "row",
+    marginTop: 5,
+  },
   forget: {
     fontSize: 14,
     paddingTop: 10,
+    color: "green",
+    // textAlign: "right",
+  },
+  Signupbtn: {
+    fontSize: 14,
+    paddingTop: 10,
+    color: "red",
+    // textAlign: "left",
   },
 });

@@ -44,17 +44,6 @@ export function DrawerContent(props) {
                 <Caption style={styles.caption}>{}</Caption>
               </View>
             </View>
-            {/* <View style={styles.row}>
-                                    <View style={styles.section}>
-                                        <Paragraph style={[styles.paragarph,styles.caption]}>100</Paragraph>
-                                        <Caption style={styles.caption}>Following</Caption>
-                                    </View>
-                                    <View style={styles.section}>
-                                        <Paragraph style={[styles.paragarph,styles.caption]}>80</Paragraph>
-                                        <Caption style={styles.caption}>Follower</Caption>
-                                    </View>
-
-                            </View> */}
           </View>
 
           <Drawer.Section style={styles.drawerSection}>
@@ -64,7 +53,7 @@ export function DrawerContent(props) {
               )}
               label="Home"
               onPress={() => {
-                props.navigation.navigate("Home");
+                props.navigation.navigate("HomeScreen");
               }}
             />
 
@@ -74,16 +63,16 @@ export function DrawerContent(props) {
               )}
               label="Profile"
               onPress={() => {
-                props.navigation.navigate("Profile");
+                props.navigation.navigate("ProfileScreen");
               }}
             />
             <DrawerItem
               icon={({ color, size }) => (
                 <Icon name="wallet" color={color} size={size} />
               )}
-              label="Payment"
+              label="Payment Methods"
               onPress={() => {
-                props.navigation.navigate("PaymentScreen");
+                props.navigation.navigate("PaymentMethodsScreen");
               }}
             />
             <DrawerItem
@@ -92,11 +81,11 @@ export function DrawerContent(props) {
               )}
               label="Order History"
               onPress={() => {
-                props.navigation.navigate("OrderHistory");
+                props.navigation.navigate("OrderHistoryScreen");
               }}
             />
 
-            <DrawerItem
+            {/* <DrawerItem
               icon={({ color, size }) => (
                 <Icon name="account-outline" color={color} size={size} />
               )}
@@ -104,7 +93,7 @@ export function DrawerContent(props) {
               onPress={() => {
                 props.navigation.navigate("SettingsScreen");
               }}
-            />
+            /> */}
 
             <DrawerItem
               icon={({ color, size }) => (

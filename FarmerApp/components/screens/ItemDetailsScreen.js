@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
-  FlatList,
   StatusBar,
   View,
   Text,
@@ -10,21 +9,14 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import Feather from "react-native-vector-icons/Feather";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import FontAwsome from "react-native-vector-icons/FontAwesome";
-import categoriesData from "../assets/data/categoriesData";
-import itemsData from "../assets/data/itemsData";
-import colors from "../assets/colors/colors";
-import Axios from "axios";
-import { Directions } from "react-native-gesture-handler";
-import PlusMinusButton from "./common/Buttons";
 
-import RemoveButton from "./buttons";
+import colors from "../../assets/colors/colors";
+import Feather from "react-native-vector-icons/Feather";
+import FontAwsome from "react-native-vector-icons/FontAwesome";
 
 Feather.loadFont();
 
-export default Main = ({ navigation }) => {
+export default function ItemDetailsScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={colors.primary} />
@@ -36,17 +28,15 @@ export default Main = ({ navigation }) => {
             color={colors.textDark}
             onPress={() => navigation.openDrawer()}
           ></Feather>
-          <Image
-            source={require("../assets/images/profileimg_girl.jpg")}
+          {/* <Image
+            source={require("../../assets/images/profileimg_girl.jpg")}
             style={styles.profileImage}
-          />
-          {/* style={styles.profileImage} */}
+          /> */}
         </View>
       </SafeAreaView>
 
-      {/* titles */}
       <View style={styles.titleView}>
-        <Text style={styles.titlesTitle}>Organic Fertilizer</Text>
+        <Text style={styles.titlesTitle}>Fertilizer Details</Text>
       </View>
 
       <ScrollView
@@ -144,10 +134,10 @@ export default Main = ({ navigation }) => {
               {/* one comments */}
               <View style={styles.oneCommentContainer}>
                 <View style={styles.commenterImage}>
-                  <Image
+                  {/* <Image
                     source={require("../assets/images/profileimg_girl.jpg")}
                     style={styles.profileImage}
-                  />
+                  /> */}
                 </View>
                 <View style={styles.commentfull}>
                   <Text style={styles.commentline}>This Product is good.</Text>
@@ -158,10 +148,10 @@ export default Main = ({ navigation }) => {
               {/* one comments */}
               <View style={styles.oneCommentContainer}>
                 <View style={styles.commenterImage}>
-                  <Image
+                  {/* <Image
                     source={require("../assets/images/profileimg_girl.jpg")}
                     style={styles.profileImage}
-                  />
+                  /> */}
                 </View>
                 <View style={styles.commentfull}>
                   <Text style={styles.commentline}>
@@ -174,10 +164,10 @@ export default Main = ({ navigation }) => {
               {/* one comments */}
               <View style={styles.oneCommentContainer}>
                 <View style={styles.commenterImage}>
-                  <Image
+                  {/* <Image
                     source={require("../assets/images/profileimg_girl.jpg")}
                     style={styles.profileImage}
-                  />
+                  /> */}
                 </View>
                 <View style={styles.commentfull}>
                   <Text style={styles.commentline}>good :)</Text>
@@ -198,7 +188,7 @@ export default Main = ({ navigation }) => {
       </ScrollView>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -226,15 +216,17 @@ const styles = StyleSheet.create({
     // fontFamily:"Roboto-bold",
     fontSize: 32,
     color: colors.textDark,
-    paddingLeft: 10,
+    paddingLeft: 20,
+    marginLeft: 10,
   },
+
   titleView: {
     backgroundColor: colors.secondary,
-    padding: 10,
+    padding: 5,
     paddingBottom: 10,
-    borderBottomLeftRadius: 40,
-    borderBottomRightRadius: 40,
+    borderBottomLeftRadius: 75,
   },
+
   itemDetailcardWrapper: {
     backgroundColor: "white",
     margin: 20,
