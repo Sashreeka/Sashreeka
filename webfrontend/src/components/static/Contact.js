@@ -35,17 +35,6 @@ function Contact() {
       });
   };
 
-  const onSubmit = () => {
-    axios
-      .post("http://localhost:4000/user/contactus", { values })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   return (
     <div>
       <Navigation />
