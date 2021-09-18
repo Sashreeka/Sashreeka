@@ -4,9 +4,10 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 
 const Tab = createMaterialBottomTabNavigator();
 
-import { Ionicons,MaterialCommunityIcons } from '@expo/vector-icons';
+import { Ionicons,MaterialCommunityIcons,Entypo } from '@expo/vector-icons';
 import HomeScreen from './HomeScreen';
 import DetailsScreen from './DetailsScreen';
+import DeliveryAccept from './DeliveryAccept';
 import ProfileScreen from './ProfileScreen';
 import ExploreScreen from './ExploreScreen';
 import ModalScreen from './ModalScreen';
@@ -39,6 +40,19 @@ const MainTabScreen = ()=>(
           ),
         }}
       />
+
+<Tab.Screen
+        name="DeliveryAccept"
+        component={DeliveryAccept}
+        options={{
+          tabBarLabel: 'New Orders',
+          tabBarColor:'#fff',
+          tabBarIcon: ({ color }) => (
+            <Entypo name="back-in-time" size={26} color="black" />
+          ),
+        }}
+      />
+
       <Tab.Screen
         name="Details"
         component={DetailsStackScreen}

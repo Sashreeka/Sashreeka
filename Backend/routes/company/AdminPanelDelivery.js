@@ -103,12 +103,33 @@ router.post("/admin/insertstaffmember", (req, res) => {
 router.get("/admin/getAllunssigedorders", (req, res) => {
   const sqlget =
     "SELECT orderId as id,amount, CONCAT(houseNumber,', ',streetName,', ',City) as address, district, quickFlag, status,DATE_FORMAT(graceenddate, '%d %b %Y') as graceenddate,(SELECT SUM(quantity*weight) FROM ordercontainsfertilizer WHERE orderId=orders.orderId GROUP by orderId) as loads FROM orders WHERE status=0";
+  // if you are changing the query, change below api as well(/admin/getAllunssigedordersDistrictList)
   db.query(sqlget, (err, result) => {
     console.log(result);
     res.send(result);
   });
 });
 
+//  display all unassigned order's  district List.................. need to district='gampaha'
+router.get("/admin/getAllunssigedordersDistrictList", (req, res) => {
+  const sqlget = "SELECT DISTINCT(district) FROM orders WHERE status=0";
+  db.query(sqlget, (err, result) => {
+    console.log(result);
+    res.send(result);
+  });
+});
+
+router.post("/dummy/deletableAPI", (req, res) => {
+  const values = req.body;
+  sqlInsert = "INSERT INTO `dummytable`(`id`, `name`, `age`) VALUES ?";
+  db.query(sqlInsert, [values], (err, result) => {
+    if (err) {
+      res.send(err);
+    }
+    console.log("", result);
+    res.send(result);
+  });
+});
 // router.post("/admin/insertstaffmember", (req, res) => {
 //   const phoneNumber = req.body.phoneNumber;
 //   const email = req.body.email;

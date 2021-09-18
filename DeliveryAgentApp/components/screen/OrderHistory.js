@@ -18,6 +18,8 @@ import Collapsible from "react-native-collapsible";
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
+import {HTTP_URL} from '../context/Common';
+
 
 export default function OrderHistory() {
     const [openModal1, setOpenModal1] = useState(false);
@@ -27,11 +29,12 @@ export default function OrderHistory() {
     const [searchText,setSearchText]=useState('');
     const [collapsed, setCollapsed] = useState(true);
 
+
     useEffect(()=>{
 
       
     axios
-    .get("http://192.168.1.11:4000/deliveryAgent/history")
+    .get("http://192.168.1.12:4000/deliveryAgent/history")
     .then((response) => {
       if (response) {
         // console.log(response.data);
