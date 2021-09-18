@@ -233,6 +233,7 @@ button.sc-bdnxRM.ehkxHv.rec.rec-arrow.rec.rec-arrow-right {
     height: 170px;
     left: 317px;
     top: 522px;
+    object-fit: contain;
 
     background: #FFFFFF;
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -248,6 +249,16 @@ button.sc-bdnxRM.ehkxHv.rec.rec-arrow.rec.rec-arrow-right {
     border: 1px solid rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
     border-radius: 0px 0px 8px 8px;
+}
+
+.fer-product-description h6{
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+.fer-price-text h6{
+    font-weight: normal;
+    font-size: 120%;
 }
 
 .rightLeft{
@@ -278,7 +289,7 @@ h6{
 }
 
 .fer-price h6{
-    font-size: 95%;
+    /* font-size: 95%; */
     margin-top: 5px;
 }
 
@@ -302,11 +313,22 @@ h6{
 
 .offer-price-text h6{
     margin: 0;
-    font-size: 95%;
+    /* font-size: 95%; */
+}
+
+.offer-nor-price{
+    width:fit-content;
 }
 
 .offer-nor-price h6{
-    color: red;
+    background-color: #e23a3a;
+    color: white;
+    padding-left:8px;
+    padding-right:8px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 0px 8px;
+
 }
 
 /* Search fertilizer store */
@@ -576,6 +598,8 @@ h6{
     padding:10px;
     margin-top: 50px;
     margin-bottom: 50px;
+    margin-right: 20px;
+    margin-left: 20px;
 
 }
 

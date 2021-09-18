@@ -134,7 +134,7 @@ const StoreCart = () => {
                             <button onClick={() => emptyCart()}>Drop Cart</button>
                         </div>
                     </div>
-                    <Link to="/storesuccess"> 
+                    <Link to="/storecheckout"> 
                         <button>Confirm Order</button>
                     </Link>
                 </div>

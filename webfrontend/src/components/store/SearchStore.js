@@ -80,7 +80,7 @@ function SearchStore() {
                     </div>
                         
                     <div className="shopping_details">
-                        <p className="Subtotal">{totalItems} items - Rs. {cartTotal}.00</p>
+                        <p className="Subtotal">{totalItems} items - Rs. {cartTotal}</p>
                         <Link to="/storecart">
                             <button type="submit" className="shopping_cart"><i className="fas fa-shopping-cart"></i></button>
                         </Link>
@@ -129,7 +129,7 @@ function SearchStore() {
                         <div className="fer-search-results">
                         {ofrfer.map((item,index)=>{
                             return(
-                                <FerProductItem ferProImage = {item.photo} ferWeight={item.unitWeight} ferName={item.name} ferPrice = {item.unitPrice} item={item} key ={index}/>
+                                <FerProOffer ferProImage = {item.img} ferWeight={item.weight} ferName={item.name} ferOffer={item.offer} ferPrice = {item.price} item={item} key ={index}/>
                             )
                         })}
                         </div>

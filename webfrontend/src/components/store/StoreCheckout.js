@@ -3,7 +3,7 @@ import "./Store.css";
 import { Link } from "react-router-dom";
 import { useCart } from "react-use-cart";
 
-const StoreSuccess = () => {
+const StoreCheckout = () => {
     const {
         isEmpty,
         totalUniqueItems,
@@ -18,6 +18,29 @@ const StoreSuccess = () => {
     return(
 
         <div className="Store-fer-cart-container">
+            <div className  = "StoreferCartsuccess">
+                <p>Your contact Number</p>
+                <p>Order Id</p>
+
+                <label>Receiver's Name</label>
+                <input></input>
+
+                <br/>
+                <label>Address</label>
+                <br/>
+                <input placeholder="House number"></input>
+                <input placeholder="Street name"></input>
+                <input placeholder="City"></input>
+                <input placeholder="District"></input>
+
+                <br/>
+                <label>Share your location if your location is the delivery location</label>
+                <button>Share</button>
+
+                <br/>
+                <label>Payment Method</label>
+            </div>
+
             <div className="StoreferCartsuccess">
                 <div className = "store-path">
                     <Link to="/store">
@@ -57,9 +80,9 @@ const StoreSuccess = () => {
                             <h5>Rs.{cartTotal + 200}.00</h5>
                     </div>
                     
-                    <div className="cart-sucs-msg">
+                   {/*  <div className="cart-sucs-msg">
                     <h2>Your Order has Successfully Placed....</h2>
-                    </div>
+                    </div> */}
 
                 </div>
             
@@ -69,4 +92,4 @@ const StoreSuccess = () => {
     );
 };
 
-export default StoreSuccess;
+export default StoreCheckout;
