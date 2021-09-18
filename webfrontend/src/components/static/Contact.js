@@ -133,6 +133,11 @@ function Contact() {
                 onclick={onSubmit}
               />
               </div>
+              <div className="complaints-button">
+              <a href="./Complaints">
+            <button >Complaint</button></a>
+        
+              </div>
               
              
             
@@ -141,7 +146,7 @@ function Contact() {
           
          </div>
          <a href="./Complaints">
-            <button className="cmpbtn">Complaint</button></a>
+            <button className="cmpbtn">Complaints ?</button></a>
         </section>
       </div>
       
