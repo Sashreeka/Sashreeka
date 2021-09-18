@@ -69,4 +69,18 @@ router.get("/farmer/getcategoriesNames", (req, res) => {
   });
 });
 
+router.get("/farmer/getproducts", (req, res) => {
+  console.log("farmer.js------->getproducts");
+  const sqlget = "select * from fertilizer";
+  db.query(sqlget, (err, result) => {
+    res.send(result);
+    console.log("/farmer/getproducts");
+    console.log(result);
+
+    if (err) {
+      console.log(err);
+    }
+  });
+});
+
 module.exports = router;

@@ -2,8 +2,13 @@ import React from "react";
 import { View, SafeAreaView, Image, Text, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import COLORS from "../../assets/consts/colors";
+import Feather from "react-native-vector-icons/Feather";
+import FontAwsome from "react-native-vector-icons/FontAwesome";
+import colors from "../../assets/colors/colors";
 
-export default function DetailsScreen() {
+export default function ViewFertilizerDetails({ navigation, route }) {
+  const plant = route.params;
+
   return (
     <SafeAreaView
       style={{
@@ -11,12 +16,41 @@ export default function DetailsScreen() {
         backgroundColor: COLORS.white,
       }}
     >
-      <View style={styles.header}>
+      <View
+        style={{
+          backgroundColor: colors.secondary,
+          padding: 8,
+          flexDirection: "row",
+          justifyContent: "space-between",
+          paddingHorizontal: 20,
+          paddingTop: 15,
+          alignItems: "center",
+          backgroundColor: colors.secondary,
+        }}
+      >
+        {/* <Feather
+          name="menu"
+          size={24}
+          color={colors.textDark}
+          onPress={() => navigation.openDrawer()}
+        ></Feather> */}
         <Icon name="arrow-back" size={28} onPress={() => navigation.goBack()} />
         <Icon name="shopping-cart" size={28} />
+        {/* <Image
+          source={require("../../assets/images/profileimg_girl.jpg")}
+          style={{ width: 40, height: 40, borderRadius: 40 }}
+        /> */}
       </View>
+
+      {/* <View style={styles.header}>
+         <Icon name="shopping-cart" size={28} /> 
+      </View> */}
       <View style={styles.imageContainer}>
-        <Image source={plant.img} style={{ resizeMode: "contain", flex: 1 }} />
+        <Image
+          // source={{ uri: plant.photo }}
+          source={require("../../assets/consts/pictures/dummypic2.png")}
+          style={{ resizeMode: "contain", flex: 1 }}
+        />
       </View>
       <View style={styles.detailsContainer}>
         <View
@@ -48,7 +82,7 @@ export default function DetailsScreen() {
                 fontSize: 16,
               }}
             >
-              ${plant.price}
+              ${plant.unitPrice}
             </Text>
           </View>
         </View>
@@ -62,7 +96,7 @@ export default function DetailsScreen() {
               marginTop: 10,
             }}
           >
-            {plant.about}
+            {plant.description}
           </Text>
           <View
             style={{
@@ -117,7 +151,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     marginTop: 20,
     flexDirection: "row",
-    justifyContent: "space-between",
+    alignSelf: "flex-end",
+    // justifyContent: "space-between",
   },
   imageContainer: {
     flex: 0.45,

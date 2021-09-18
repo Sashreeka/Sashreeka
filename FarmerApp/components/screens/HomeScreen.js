@@ -20,7 +20,7 @@ import Axios from "axios";
 Feather.loadFont();
 
 const windowWidth = Dimensions.get("window").width;
-const image = { uri: "https://reactjs.org/logo-og.png" };
+// const image = { uri: "https://reactjs.org/logo-og.png" };
 
 export default function HomeScreen({ navigation }) {
   const [categorylist, setcategorylist] = useState([]);

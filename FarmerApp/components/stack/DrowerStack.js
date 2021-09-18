@@ -15,6 +15,7 @@ import PaymentMethodsScreen from "../screens/PaymentMethodsScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import SupportScreen from "../screens/SupportScreen";
 import ViewFertilizerCategory from "../screens/ViewFertilizerCategory";
+import ViewFertilizerDetails from "../screens/ViewFertilizerDetails";
 
 const Drawer = createDrawerNavigator();
 
@@ -42,7 +43,10 @@ export default function DrowerStack({ navigation }) {
         name="ViewFertilizerCategory"
         component={ViewFertilizerCategory}
       />
-      
+      <Drawer.Screen
+        name="ViewFertilizerDetails"
+        component={ViewFertilizerDetails}
+      />
     </Drawer.Navigator>
   );
 }

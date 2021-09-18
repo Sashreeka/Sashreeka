@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StatusBar } from "react-native";
+import { ImageBackground, StatusBar } from "react-native";
 
 import {
   View,
@@ -30,6 +30,7 @@ export default function ViewFertilizerCategory({ route, navigation }) {
   const { id, category } = route.params;
 
   const [categorylist, setcategorylist] = useState([]);
+  const [productlist, setproductlist] = useState([]);
 
   useEffect(() => {
     Axios.get("http://192.168.8.222:4000/farmer/getcategories").then(
@@ -38,11 +39,19 @@ export default function ViewFertilizerCategory({ route, navigation }) {
         console.log(response.data);
       }
     );
+
+    Axios.get("http://192.168.8.222:4000/farmer/getproducts").then(
+      (response) => {
+        setproductlist(response.data);
+        console.log(response.data);
+      }
+    );
   }, []);
 
-  const [catergoryIndex, setCategoryIndex] = React.useState(0);
+  const [catergoryIndex, setCategoryIndex] = React.useState(3);
 
   const categories = [
+    "All",
     "Paddy",
     "Flowers",
     "Tea",
@@ -89,27 +98,39 @@ export default function ViewFertilizerCategory({ route, navigation }) {
     return (
       <TouchableOpacity
         activeOpacity={0.8}
-        onPress={() => navigation.navigate("Details", plant)}
+        onPress={() => navigation.navigate("ViewFertilizerDetails", plant)}
       >
         <View style={styles.card}>
-          <View style={{ alignItems: "flex-end" }}>
+          <View style={{ alignItems: "flex-start" }}>
             <View
               style={{
-                width: 30,
-                height: 30,
-                borderRadius: 20,
-                justifyContent: "center",
-                alignItems: "center",
-                backgroundColor: plant.like
-                  ? "rgba(245, 42, 42,0.2)"
-                  : "rgba(0,0,0,0.2) ",
+                width: 80,
+                height: 20,
+                borderColor: "red",
+                borderBottomRightRadius: 20,
+
+                // alignItems: "flex-start",
+                // backgroundColor:"red",
+                backgroundColor: plant.offer ? "red" : colors.light,
               }}
             >
-              <Icon
+              {/* <Icon
                 name="favorite"
                 size={18}
-                color={plant.like ? COLORS.red : COLORS.black}
-              />
+                // color={plant.like ? COLORS.red : COLORS.black}
+                color={COLORS.red}
+              /> */}
+              <Text
+                style={{
+                  // color=colors.white,
+                  fontSize: 14,
+                  fontWeight: "bold",
+                  marginLeft: 5,
+                  color: colors.light,
+                }}
+              >
+                {plant.offer} % OFF
+              </Text>
             </View>
           </View>
 
@@ -120,12 +141,26 @@ export default function ViewFertilizerCategory({ route, navigation }) {
             }}
           >
             <Image
-              source={plant.img}
-              style={{ flex: 1, resizeMode: "contain" }}
+              source={require("../../assets/consts/pictures/dummypic.png")}
+              // source={{ uri: plant.photo }}
+              style={{
+                flex: 1,
+                resizeMode: "contain",
+                width: 250,
+                height: 150,
+                alignSelf: "center",
+              }}
             />
           </View>
 
-          <Text style={{ fontWeight: "bold", fontSize: 17, marginTop: 10 }}>
+          <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: 16,
+              marginTop: 10,
+              marginLeft: 10,
+            }}
+          >
             {plant.name}
           </Text>
           <View
@@ -135,8 +170,10 @@ export default function ViewFertilizerCategory({ route, navigation }) {
               marginTop: 5,
             }}
           >
-            <Text style={{ fontSize: 19, fontWeight: "bold" }}>
-              ${plant.price}
+            <Text
+              style={{ fontSize: 16, fontWeight: "normal", marginLeft: 10 }}
+            >
+              Rs. {plant.unitPrice}
             </Text>
             <View
               style={{
@@ -150,12 +187,12 @@ export default function ViewFertilizerCategory({ route, navigation }) {
             >
               <Text
                 style={{
-                  fontSize: 22,
+                  fontSize: 14,
                   color: COLORS.white,
                   fontWeight: "bold",
                 }}
               >
-                +
+                <Icon name="shopping-cart" size={15} />
               </Text>
             </View>
           </View>
@@ -183,10 +220,11 @@ export default function ViewFertilizerCategory({ route, navigation }) {
             color={colors.textDark}
             onPress={() => navigation.openDrawer()}
           ></Feather>
-          <Image
+          <Icon name="shopping-cart" size={28} />
+          {/* <Image
             source={require("../../assets/images/profileimg_girl.jpg")}
             style={styles.profileImage}
-          />
+          /> */}
         </View>
       </View>
 
@@ -240,7 +278,7 @@ export default function ViewFertilizerCategory({ route, navigation }) {
               Sanduni,
             </Text>
           </View>
-          <Icon name="shopping-cart" size={28} />
+          {/* <Icon name="shopping-cart" size={28} /> */}
         </View>
         <View style={{ marginTop: 10, flexDirection: "row" }}>
           <View style={styles.searchContainer}>
@@ -262,7 +300,8 @@ export default function ViewFertilizerCategory({ route, navigation }) {
             paddingBottom: 50,
           }}
           numColumns={2}
-          data={plants}
+          data={productlist}
+          keyExtractor={(item) => item.fertilizerId}
           renderItem={({ item }) => {
             return <Card plant={item} />;
           }}
@@ -352,13 +391,15 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   card: {
-    height: 225,
+    height: 200,
     backgroundColor: COLORS.light,
     width,
     marginHorizontal: 2,
-    borderRadius: 10,
+    borderRadius: 25,
     marginBottom: 20,
-    padding: 15,
+    paddingBottom: 15,
+    // paddingLeft: 15,
+    paddingRight: 15,
   },
   headerNew: {
     marginTop: 10,
