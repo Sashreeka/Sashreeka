@@ -37,7 +37,15 @@ export default function HomeScreen({ navigation }) {
     <View style={styles.container}>
       <StatusBar backgroundColor={colors.primary} />
       <SafeAreaView>
-        <View style={styles.headerWrapper}>
+        <View
+          style={[
+            styles.headerWrapper,
+            {
+              backgroundColor: colors.secondary,
+              padding: 8,
+            },
+          ]}
+        >
           <Feather
             name="menu"
             size={24}
@@ -50,9 +58,28 @@ export default function HomeScreen({ navigation }) {
           />
         </View>
       </SafeAreaView>
+
       {/* titles */}
-      <View style={styles.titleView}>
-        <Text style={styles.titlesTitle}>Organic Fertilizer</Text>
+      {/* <View style={styles.titleView}>
+        <Text style={styles.titlesTitle}>Shashreeka</Text>
+      </View> */}
+
+      <View
+        style={{
+          paddingHorizontal: 20,
+          marginTop: 10,
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
+        <View>
+          <Text style={{ fontSize: 25, fontWeight: "bold" }}>Welcome to</Text>
+          <Text
+            style={{ fontSize: 38, color: colors.green, fontWeight: "bold" }}
+          >
+            Sashreeka
+          </Text>
+        </View>
       </View>
 
       {/* Search */}
@@ -101,6 +128,7 @@ export default function HomeScreen({ navigation }) {
         style={{
           marginTop: 2,
           height: 200,
+          backgroundColor: "#f5f5f5",
         }}
       >
         <View style={styles.categoryIcon}>
@@ -218,6 +246,9 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    //
+    backgroundColor: colors.white,
+    // marginTop: 1,
   },
 
   // advertisements
@@ -342,6 +373,7 @@ const styles = StyleSheet.create({
     color: colors.textDark,
     paddingLeft: 20,
     marginLeft: 10,
+    // textAlign: "center",
   },
 
   titlesSub: {

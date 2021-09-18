@@ -42,6 +42,7 @@ export default function DrowerStack({ navigation }) {
         name="ViewFertilizerCategory"
         component={ViewFertilizerCategory}
       />
+      
     </Drawer.Navigator>
   );
 }

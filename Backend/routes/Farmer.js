@@ -55,4 +55,18 @@ router.get("/farmer/getcategories", (req, res) => {
   });
 });
 
+router.get("/farmer/getcategoriesNames", (req, res) => {
+  console.log("farmer.js------->getcategoriesNames");
+  const sqlget = "select description from fertilizercategory";
+  db.query(sqlget, (err, result) => {
+    res.send(result);
+    console.log("/farmer/getcategoriesNames");
+    console.log(result);
+
+    if (err) {
+      console.log(err);
+    }
+  });
+});
+
 module.exports = router;
