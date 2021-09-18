@@ -48,9 +48,20 @@ const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
 
 const HomeScreen = ({navigation}) => {
+
+  const [len,setLen]=useState([])
  
 
   
+  useEffect(()=>{
+    const deliveryAgentPhoneNumber="0712345678";
+    axios.get("http://192.168.1.12:4000/deliveryAgent/newOrders/"+deliveryAgentPhoneNumber).then((response)=>{
+     // console.log(response.data);
+      setLen(response.data);
+    })
+
+
+  },[])
 
 
 
@@ -148,6 +159,36 @@ const HomeScreen = ({navigation}) => {
                         </View>
                 </View>
             </TouchableRipple> */}
+          
+           <View
+           style={{marginLeft:270,}}
+           >
+              <Ionicons 
+              name="notifications" 
+              size={30} 
+              color="black" />
+              <View
+                style={{
+                  backgroundColor:'red',
+                  borderRadius:20,
+                  width:20,
+                  height:20,
+                  marginTop:-13,
+                  marginLeft:10,
+                  alignItems:'center'
+                }}
+                >
+                 <TouchableOpacity
+                 onPress={()=>{
+                   navigation.navigate('DeliveryAccept')
+                 }}
+                 >
+                 <Text>{len.length}</Text>
+                 </TouchableOpacity>
+                </View>
+          
+           </View> 
+          
           <Image
             style={styles.profileImage}
             source={require("../../assets/ishan.png")}
@@ -233,7 +274,7 @@ const HomeScreen = ({navigation}) => {
           
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("Map");
+            navigation.navigate("MapViewNew");
           }}
         >
           <View

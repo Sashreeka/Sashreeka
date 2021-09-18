@@ -36,11 +36,13 @@ import LoginStack from "./components/stack/LoginStack";
 import DetailsScreen from "./components/screen/DetailsScreen";
 import axios from "axios";
 import Map from "./components/screen/Map";
+import MapViewNew from "./components/screen/MapViewNew";
+import DeliveryAccept from "./components/screen/DeliveryAccept";
 
 const Drawer = createDrawerNavigator();
 
 export default function App({ navigation }) {
-  const [phoneNumber, setphoneNumber] = useState(null);
+  const [phoneNumber, setphoneNumber] = useState("");
   
   const [userRole, setUserRole] = useState("");
 
@@ -201,6 +203,8 @@ export default function App({ navigation }) {
             <Drawer.Screen name="PaymentScreen" component={PaymentScreen} />
             <Drawer.Screen name="DetailsScreen" component={DetailsScreen} />
             <Drawer.Screen name="Map" component={Map}/>
+            <Drawer.Screen name="MapViewNew" component={MapViewNew}/>
+            <Drawer.Screen name="DeliveryAccept" component={DeliveryAccept}/>
           </Drawer.Navigator>
         ) : (
           <LoginStack />
