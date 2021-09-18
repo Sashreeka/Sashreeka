@@ -138,12 +138,12 @@ export default function ProfileScreen({ navigation }) {
                   <Text style={styles.menuItemText}>My Favorites</Text>
                 </View>
               </TouchableRipple>
-              <TouchableRipple onPress={() => {}}>
+              {/* <TouchableRipple onPress={() => {}}>
                 <View style={styles.menuItem}>
                   <Icon name="credit-card" color="#FF6347" size={25} />
                   <Text style={styles.menuItemText}>Payment Methods</Text>
                 </View>
-              </TouchableRipple>
+              </TouchableRipple> */}
               <TouchableRipple onPress={() => {}}>
                 <View style={styles.menuItem}>
                   <Icon name="share-outline" color="#FF6347" size={25} />
@@ -160,7 +160,7 @@ export default function ProfileScreen({ navigation }) {
                   <Text style={styles.menuItemText}>Change Password</Text>
                 </View>
               </TouchableRipple>
-              <TouchableRipple onPress={() => {}}>
+              {/* <TouchableRipple onPress={() => {}}>
                 <View style={styles.menuItem}>
                   <Icon
                     name="account-check-outline"
@@ -169,8 +169,8 @@ export default function ProfileScreen({ navigation }) {
                   />
                   <Text style={styles.menuItemText}>Support</Text>
                 </View>
-              </TouchableRipple>
-              <TouchableRipple onPress={() => {}}>
+              </TouchableRipple> */}
+              {/* <TouchableRipple onPress={() => {}}>
                 <View style={styles.menuItem}>
                   <Icon
                     name="account-check-outline"
@@ -179,7 +179,7 @@ export default function ProfileScreen({ navigation }) {
                   />
                   <Text style={styles.menuItemText}>Settings</Text>
                 </View>
-              </TouchableRipple>
+              </TouchableRipple> */}
             </View>
           </View>
         ))}

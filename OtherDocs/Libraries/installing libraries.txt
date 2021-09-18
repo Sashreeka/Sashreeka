@@ -1,4 +1,4 @@
-web site............................................................
+.....................................................web frontend............................................................
 
 
 npm install axios
@@ -16,5 +16,32 @@ https://www.npmjs.com/package/react-use-cart
 npm i�react-use-cart
 
 
+npm install react-confirm-alert
 
-mobile app.............................................
+npm install cloudinary-react
+
+npm install @date-io/date-fns@1.x
+
+...........................................Backend..........................................................................................
+
+npm install multer
+
+npm install path
+
+
+...........................................Farmer app..........................................................................................
+// cart
+npm install --save redux react-redux react-navigation react-navigation-header-buttons
+
+expo install react-native-gesture-handler react-native-reanimated
+
+
+
+
+
+
+
+
+
+
+...........................................DeliveryAgent app....................................................................

@@ -40,4 +40,47 @@ router.get("/farmer/getorderhistory", (req, res) => {
   });
 });
 
+//home page fertilizer categories
+router.get("/farmer/getcategories", (req, res) => {
+  console.log("farmer.js------->getcategories");
+  const sqlget = "select * from fertilizercategory";
+  db.query(sqlget, (err, result) => {
+    res.send(result);
+    console.log("/farmer/getcategories");
+    console.log(result);
+
+    if (err) {
+      console.log(err);
+    }
+  });
+});
+
+router.get("/farmer/getcategoriesNames", (req, res) => {
+  console.log("farmer.js------->getcategoriesNames");
+  const sqlget = "select description from fertilizercategory";
+  db.query(sqlget, (err, result) => {
+    res.send(result);
+    console.log("/farmer/getcategoriesNames");
+    console.log(result);
+
+    if (err) {
+      console.log(err);
+    }
+  });
+});
+
+router.get("/farmer/getproducts", (req, res) => {
+  console.log("farmer.js------->getproducts");
+  const sqlget = "select * from fertilizer";
+  db.query(sqlget, (err, result) => {
+    res.send(result);
+    console.log("/farmer/getproducts");
+    console.log(result);
+
+    if (err) {
+      console.log(err);
+    }
+  });
+});
+
 module.exports = router;
