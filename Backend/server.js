@@ -30,6 +30,10 @@ app.use(DAgent);
 const Farmer = require("./routes/Farmer");
 app.use(Farmer);
 
+//fertilizer store route
+const Store = require("./routes/store/Store");
+app.use(Store);
+
 const ContactUs=require("./routes/ContactUs");
 app.use(ContactUs);
 
