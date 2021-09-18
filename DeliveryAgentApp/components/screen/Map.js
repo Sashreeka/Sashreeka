@@ -233,7 +233,7 @@ export default function Map() {
 <MapViewDirections
             origin={fromLocation}
             destination={toLocation}
-            apikey="AIzaSyDXSx-wA0A02LG-75L2oJKv2LRm_bxMEHM"
+            apikey=""
             strokeWidth={5}
             strokeColor="red"
             optimizeWaypoints={true}
