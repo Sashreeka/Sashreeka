@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { DataGrid } from "@material-ui/data-grid";
-import {
-  Avatar,
-  CardActionArea,
-  Chip,
-  Grid,
-  makeStyles,
-  Paper,
-} from "@material-ui/core";
+import { Avatar, Chip, Grid, makeStyles, Paper } from "@material-ui/core";
 import Control from "../../../../common/Control";
 import { deepOrange } from "@material-ui/core/colors";
 import Button from "../../../../common/form_Elements/Button";
@@ -71,13 +64,13 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 20,
   },
   papers: {
-    padding: 20,
+    padding: 10,
   },
   paper: {
     height: 85,
     width: 150,
+    marginRight: 20,
     backgroundColor: "#00cc00",
-    padding: 10,
   },
 }));
 
@@ -134,88 +127,48 @@ const NotQuick = () => (
     icon={<FiberManualRecord />}
   ></Control.Label>
 );
-// https://stackoverflow.com/questions/64232909/how-to-delete-a-specific-row-in-material-ui-datagrid-reactjs?rq=1
 
 export default function AssignDeliveries() {
   const classes = useStyles();
   const [rows, setRows] = useState([]);
   const [listDistricts, setListDistricts] = useState([]);
   const [selectedDistrict, setSelectedDistrict] = useState("all");
-  const [dilOrders, setDilOrders] = useState([
-    { id: 1, name: "xxx", age: "33" },
-    { id: 2, name: "xxx", age: "38" },
-    { id: 3, name: "xxx", age: "43" },
-    { id: 4, name: "xxx", age: "23" },
-  ]);
-
-  const [deletedRows, setDeletedRows] = useState([]);
-  const [load, setload] = useState(0);
-
-  const [selectedOrders, setSelectedOrders] = useState([]);
-
-  const handleRowSelection = (e) => {
-    console.log("selected : ", e.isSelected);
-    // console.log("loads : ", e.data);
-    setload(calcLoad(load, e.data.loads, e.isSelected));
-    console.log("my total : ", load);
-    console.log("rows : ", rows);
-
-    console.log("hello :", [rows.map((x) => x.id == e.data.id)]);
-    console.log("hello 2 :", [
-      rows.map((x) => x.id == e.data.id).findIndex((item) => item == true),
-    ]);
-
-    if (e.isSelected) {
-      setSelectedOrders([
-        ...selectedOrders,
-        rows[
-          rows.map((x) => x.id == e.data.id).findIndex((item) => item == true)
-        ],
-      ]);
-      console.log("selectedOrders : ", selectedOrders);
-    } else {
-      setSelectedOrders(selectedOrders.filter((r) => r.id !== e.data.id));
-      console.log("selectedOrders : ", selectedOrders);
-    }
-
-    // setDeletedRows([...deletedRows, ...rows.filter((r) => r.id === e.data.id)]);
-  };
-
-  const calcLoad = (tot, newval, isSelected) => {
-    if (isSelected) {
-      return (tot = tot + newval);
-    } else {
-      return (tot = tot - newval);
-    }
-  };
 
   useEffect(() => {
+    // axios
+    //   .get("http://localhost:4000/admin/getAllunssigedorders")
+    //   .then((res) => {
+    //     console.log("success :", res.data);
+    //     setRows(res.data);
+    //   })
+    //   .catch((err) => console.log("err :", err));
+    var district = selectedDistrict;
     axios
-      .get("http://localhost:4000/admin/getAllunssigedorders")
+      .get("http://localhost:4000/admin/getAllunssigedorders" + district)
       .then((res) => {
         console.log("success :", res.data);
         setRows(res.data);
-        console.log(rows.filter((r) => r.quickFlag == 1));
       })
       .catch((err) => console.log("err :", err));
 
+    // selectedDistrictFun();
     axios
       .get("http://localhost:4000/admin/getAllunssigedordersDistrictList")
       .then((res) => setListDistricts(res.data))
       .catch((err) => console.log("err :", err));
   }, []);
 
-  // const selectedDistrictFun = () => {
-  //   axios
-  //     .post(
-  //       "http://localhost:4000/admin/getAllunssigedorders",
-  //       selectedDistrict
-  //     )
-  //     .then((res) => {
-  //       setRows(res.data);
-  //     })
-  //     .catch((err) => console.log("err :", err));
-  // };
+  const selectedDistrictFun = () => {
+    var district = selectedDistrict;
+    axios
+      .get("http://localhost:4000/admin/getAllunssigedorders" + district)
+      .then((res) => {
+        console.log("success :", res.data);
+        setRows(res.data);
+      })
+      .catch((err) => console.log("err :", err));
+  };
+
   return (
     <div className={classes.outer}>
       <div className={classes.innerdiv1}>
@@ -255,10 +208,10 @@ export default function AssignDeliveries() {
                   value={selectedDistrict}
                   onChange={(e) => {
                     setSelectedDistrict(e.target.value);
-                    console.log(e.target.value);
+                    selectedDistrictFun();
                   }}
                 >
-                  <option selected key="all" value="all">
+                  <option selected key="all">
                     District -All
                   </option>
                   {listDistricts.map((item, index) => (
@@ -274,15 +227,10 @@ export default function AssignDeliveries() {
           <div style={{ backgroundColor: "#ecf9ec", height: 290 }}>
             <div style={{ height: 290, width: "100%" }}>
               <DataGrid
-                rows={
-                  selectedDistrict == "all"
-                    ? rows
-                    : rows.filter((r) => r.district == selectedDistrict)
-                }
+                rows={rows}
                 columns={columns}
                 // pageSize={5}
                 // rowsPerPageOptions={[5]}
-                onRowSelected={handleRowSelection}
                 checkboxSelection
                 // disableSelectionOnClick
                 // scrollbarSize={5}
@@ -310,14 +258,10 @@ export default function AssignDeliveries() {
             >
               <Grid container spacing={3}>
                 <Grid item xs={3}>
-                  <CardActionArea>
-                    <Paper className={classes.paper}>xs=12</Paper>
-                  </CardActionArea>
+                  <Paper className={classes.paper}>xs=12</Paper>
                 </Grid>
                 <Grid item xs={3}>
-                  <CardActionArea>
-                    <Paper className={classes.paper}>xs=12</Paper>
-                  </CardActionArea>
+                  <Paper className={classes.paper}>xs=6</Paper>
                 </Grid>
                 <Grid item xs={3}>
                   <Paper className={classes.paper}>xs=6</Paper>
@@ -347,21 +291,11 @@ export default function AssignDeliveries() {
           <div
             style={{
               display: "flex",
-              justifyContent: "space-between",
+              justifyContent: "right",
               height: 40,
               marginTop: 20,
-              backgroundColor: "red",
             }}
           >
-            <div
-              style={{
-                marginLeft: 20,
-              }}
-            >
-              Total Load :{load} Kg
-              <br />
-              max load
-            </div>
             <Control.Button
               variant="contained"
               color="primary"
@@ -387,25 +321,34 @@ export default function AssignDeliveries() {
             </div>
             <hr />
             <div>
-              {rows
-                .filter((r) => r.quickFlag == 1)
-                .map((item, index) => (
-                  <Paper key={index} className={classes.quickboxes}>
-                    <div>
-                      <Avatar variant="square" className={classes.square}>
-                        <div className={classes.date}>14th</div>
-                      </Avatar>
-                    </div>
-                    <div>
-                      September 2021
-                      <br />
-                      <b>{item.district}</b>
-                      <br />
-                      <span className={classes.load}>{item.loads} Kg load</span>
-                    </div>
-                  </Paper>
-                ))}
-
+              <Paper className={classes.quickboxes}>
+                <div>
+                  <Avatar variant="square" className={classes.square}>
+                    <div className={classes.date}>14th</div>
+                  </Avatar>
+                </div>
+                <div>
+                  September 2021
+                  <br />
+                  <b>Hambanthota</b>
+                  <br />
+                  <span className={classes.load}>25kg load</span>
+                </div>
+              </Paper>
+              <Paper className={classes.quickboxes}>
+                <div>
+                  <Avatar variant="square" className={classes.square}>
+                    <div className={classes.date}>15th</div>
+                  </Avatar>
+                </div>
+                <div>
+                  September 2021
+                  <br />
+                  <b>Sigiriya</b>
+                  <br />
+                  <span className={classes.load}>100kg load</span>
+                </div>
+              </Paper>
               <Chip size="small" label="Basic" />
             </div>
           </div>

@@ -55,7 +55,104 @@ export default function Roles_and_privilages() {
     );
   };
 
-  const Available = () => (
+  const columnlist = [
+    {
+      title: camelTospace("roleId"),
+      field: "roleId",
+      cellStyle: {
+        width: "23px",
+      },
+    },
+    {
+      title: camelTospace("roleName"),
+      field: "roleName",
+      cellStyle: {
+        width: "23px",
+      },
+    },
+    {
+      title: camelTospace("addOrders"),
+      field: "addOrders",
+      render: (row) => (
+        <div>{row.addOrders ? <Available /> : <Unavailable />}</div>
+      ),
+      cellStyle: {
+        width: "23px",
+      },
+    },
+    {
+      title: camelTospace("manageSales"),
+      field: "manageSales",
+      render: (row) => (
+        <div>{row.manageSales ? <Available /> : <Unavailable />}</div>
+      ),
+      cellStyle: {
+        width: "23px",
+      },
+    },
+    {
+      title: camelTospace("manageStocks"),
+      field: "manageStocks",
+      render: (row) => (
+        <div>{row.manageStocks ? <Available /> : <Unavailable />}</div>
+      ),
+      cellStyle: {
+        width: "23px",
+      },
+    },
+    {
+      title: camelTospace("manageDeliveries"),
+      field: "manageDeliveries",
+      render: (row) => (
+        <div>{row.manageDeliveries ? <Available /> : <Unavailable />}</div>
+      ),
+      cellStyle: {
+        width: "23px",
+      },
+    },
+    {
+      title: camelTospace("manageLoyaltyPoints"),
+      field: "manageLoyaltyPoints",
+      render: (row) => (
+        <div>{row.manageLoyaltyPoints ? <Available /> : <Unavailable />}</div>
+      ),
+      cellStyle: {
+        width: "23px",
+      },
+    },
+    {
+      title: camelTospace("managePayments"),
+      field: "managePayments",
+      render: (row) => (
+        <div>{row.managePayments ? <Available /> : <Unavailable />}</div>
+      ),
+      cellStyle: {
+        width: "23px",
+      },
+    },
+    {
+      title: camelTospace("createCompanyStaff"),
+      field: "createCompanyStaff",
+      render: (row) => (
+        <div>{row.createCompanyStaff ? <Available /> : <Unavailable />}</div>
+      ),
+      cellStyle: {
+        width: "23px",
+      },
+    },
+    {
+      title: camelTospace("addOffers"),
+      field: "addOffers",
+      render: (row) => (
+        <div>{row.addOffers ? <Available /> : <Unavailable />}</div>
+      ),
+      cellStyle: {
+        width: "23px",
+      },
+    },
+  ];
+
+  const Unavailable = () => (
     <Control.Label
       label="Disabled"
       colour="red"
@@ -63,7 +160,7 @@ export default function Roles_and_privilages() {
     ></Control.Label>
   );
 
-  const Unavailable = () => (
+  const Available = () => (
     <Control.Label
       label="Enabled"
       colour="green"
@@ -82,11 +179,11 @@ export default function Roles_and_privilages() {
         <div style={{ width: 400 }}>
           <BarChart2 />
         </div>
-        <div>
+        <div style={{ paddingRight: 20 }}>
           <MaterialTable
             title="Company Staff Details"
             data={data}
-            columns={columns}
+            columns={columnlist}
             options={{
               search: true,
               paging: true,

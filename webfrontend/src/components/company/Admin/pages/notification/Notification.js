@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import "./delivery.css";
+import React from "react";
+import "./notification.css";
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
 import {
@@ -12,12 +12,7 @@ import {
   withStyles,
   useTheme,
 } from "@material-ui/core";
-import { green } from "@material-ui/core/colors";
-
 import Sidebar from "../../components/sidebar/Sidebar";
-import Tab1_DelivaryHistory from "./Tab1_DelivaryHistory";
-import Tab2_Agents from "./Tab2_Agents";
-import Tab3_AssignDelivaries from "./Tab3_AssignDelivaries";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -93,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Delivery() {
+export default function Notification() {
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -105,10 +100,9 @@ export default function Delivery() {
   const handleChangeIndex = (index) => {
     setValue(index);
   };
-
   return (
-    <div className="deliveryCon">
-      <Sidebar title="delivery" />
+    <div className="notificationCon">
+      <Sidebar title="notification" />
       <div style={{ flex: 4 }}>
         <div className={classes.root}>
           <AppBar position="static">
@@ -117,23 +111,17 @@ export default function Delivery() {
               onChange={handleChange}
               indicatorColor="primary"
               textColor="primary"
-              //   variant="fullWidth"
               aria-label="full width tabs example"
               className={classes.tab}
             >
               <Tab
-                label="Assign Deliveries"
+                label="Notification1"
                 {...a11yProps(0)}
                 className={classes.tabtable}
               />
               <Tab
-                label="Delivery History"
+                label="Notification2"
                 {...a11yProps(1)}
-                className={classes.tabtable}
-              />
-              <Tab
-                label="Agents"
-                {...a11yProps(2)}
                 className={classes.tabtable}
               />
             </Tabs>
@@ -144,13 +132,10 @@ export default function Delivery() {
             onChangeIndex={handleChangeIndex}
           >
             <TabPanel value={value} index={0} dir={theme.direction}>
-              <Tab3_AssignDelivaries />
+              these are the main tabs of notification1
             </TabPanel>
             <TabPanel value={value} index={1} dir={theme.direction}>
-              <Tab1_DelivaryHistory />
-            </TabPanel>
-            <TabPanel value={value} index={2} dir={theme.direction}>
-              <Tab2_Agents />
+              these are the main tabs of notification2
             </TabPanel>
           </SwipeableViews>
         </div>

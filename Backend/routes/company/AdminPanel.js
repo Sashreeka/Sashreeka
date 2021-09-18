@@ -160,7 +160,7 @@ router.get("/admin/viewDAgentDetails", (req, res) => {
   const sqlget =
     "SELECT userId ,phoneNumber,email,CONCAT(firstName,' ',lastName) AS name,address,active,nic FROM deliveryagent;";
   db.query(sqlget, (err, result) => {
-    // console.log(result);
+    console.log(result);
     res.send(result);
   });
 });

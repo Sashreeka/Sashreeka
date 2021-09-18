@@ -3,6 +3,11 @@ import MapView, { Callout, Circle, Marker,PROVIDER_GOOGLE } from 'react-native-m
 import { StyleSheet, Text, View, Dimensions,TouchableOpacity,Image } from 'react-native';
 import MapViewDirections from 'react-native-maps-directions'; 
 
+import{car}from './../../assets/car.png';
+import{pin}from './../../assets/pin.png';
+
+
+import {GOOGLE_API_KEY} from './../../Important';
 
 export default function Map() {
 
@@ -73,43 +78,43 @@ export default function Map() {
 
 
 
+  const initialCurrentLocation = {
+    streetName: "Kuching",
+    gps: {
+      latitude: 1.5496614931250685,
+      longitude: 110.36381866919922,
+    },
+    location1: {
+      latitude: 1.5347282806345879,
+      longitude: 110.35632207358996,
+    },
+    location2: {
+      latitude: 1.556306570595712,
+      longitude: 110.35504616746915,
+    },
+    markers: [{
+      title: 'narammala',
+      coordinates: {
+        latitude: 3.148561,
+        longitude: 101.652778
+      },
+    },
+    {
+      title: 'Katupotha',
+      coordinates: {
+        latitude: 3.149771,
+        longitude: 101.655449
+      },  
+    }]
+
+  };
 
 
 
 
   useEffect(()=>{
 
-    const initialCurrentLocation = {
-      streetName: "Kuching",
-      gps: {
-        latitude: 1.5496614931250685,
-        longitude: 110.36381866919922,
-      },
-      location1: {
-        latitude: 1.5347282806345879,
-        longitude: 110.35632207358996,
-      },
-      location2: {
-        latitude: 1.556306570595712,
-        longitude: 110.35504616746915,
-      },
-      markers: [{
-        title: 'narammala',
-        coordinates: {
-          latitude: 3.148561,
-          longitude: 101.652778
-        },
-      },
-      {
-        title: 'Katupotha',
-        coordinates: {
-          latitude: 3.149771,
-          longitude: 101.655449
-        },  
-      }]
-
-    };
-
+    
 
     let currenLocation="ganna one";
 
@@ -152,7 +157,7 @@ export default function Map() {
     return Math.atan2(dy,dx)*180/Math.PI
   }
 
-  const renderMap=()=>{
+  const renderMap=()=>{ 
     const destinationMarker= ()=>{
 
       <Marker coordinate={toLocation}>
@@ -174,14 +179,14 @@ export default function Map() {
           justifyContent:"center",
           backgroundColor:"red"
         }}>
-        {/* <Image
-          source={}
+        <Image
+          source={pin}
           style={{
             width:25,
             height:25,
             tintColor:'white'
           }}
-        /> */}
+        />
 
 
           </View>
@@ -203,7 +208,7 @@ export default function Map() {
 
 
       >
-      {/* <Image
+      <Image
         source={car}
         style={{
           width:40,
@@ -211,7 +216,7 @@ export default function Map() {
         }}
 
 
-      /> */}
+      />
 
       </Marker>
     }
@@ -225,20 +230,55 @@ export default function Map() {
 
 
   >
-{/* <MapViewDirections
+<MapViewDirections
             origin={fromLocation}
             destination={toLocation}
-            apikey={GOOGLE_API_KEY}
+            apikey=""
             strokeWidth={5}
-            strokeColor={COLORS.primary}
+            strokeColor="red"
             optimizeWaypoints={true}
-          /> */}
+
+            
+    onReady={result=>{
+     setDuration( result.duration)
+
+     if(!isReady){
+       //fit route into maps
+       mapView.current.fitToCoordinates(result.coordinates,{
+         edgePadding:{
+           right:(300/20),
+           bottom: (300/4),
+           left:(300/20),
+           top: (300/8)
+         }
+       })
+
+       //repostion the car
+
+       let nextLoc={
+         latitude: result.coordinates[0]['latitude'],
+         longitude: result.coordinates[0]['longitude']
+       }
+
+       if(result.coordinates.length>=2){
+         let angle=calculateAngle(result.coordinates)
+         setAngle(angle)
+       }
+       setFromLocation(nextLoc)
+       setIsReady(true)
 
 
-  <MapViewDirections
+     }
+    }}
+
+
+          />
+
+
+  {/* <MapViewDirections
     origin={fromLocation}
     destination={toLocation}
-    //apikey={GOOGLE_MAPS_APIKEY}
+    apikey={GOOGLE_API_KEY}
     strokeWidth={5}
     strokeColor="red"
     optimizeWaypoints={true}
@@ -274,7 +314,7 @@ export default function Map() {
      }
     }}
 
-  />
+  /> */}
 
 
   {destinationMarker()}
@@ -303,20 +343,20 @@ const renderDestinationHeader=()=>{
     <View  style={{
       flexDirection:"row",
       alignItems:'center',
-      width:SIZES*0.9,
-      paddingVertical: SIZES.padding,
-      paddingHorizontal:SIZES.padding*2,
-      borderRadius: SIZES.radius,
+      width:300,
+      paddingVertical: 10,
+      paddingHorizontal:20,
+      borderRadius: 30,
       backgroundColor:'white'
     }}>
-    <Image
+    {/* <Image
       source={icons.red_pin}
       style={{
         width:30,
         height:30,
         marginRight:SIZES.padding
       }}
-    />
+    /> */}
     <View style={{flex:1}}>
       <Text>{streetName}</Text>
 
