@@ -13,6 +13,7 @@ import {
   useTheme,
 } from "@material-ui/core";
 import Sidebar from "../../components/sidebar/Sidebar";
+import Tab_Orders from "./Tab_Orders";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -137,7 +138,7 @@ export default function Orders() {
             onChangeIndex={handleChangeIndex}
           >
             <TabPanel value={value} index={0} dir={theme.direction}>
-              these are the main tabs of orders
+              <Tab_Orders />
             </TabPanel>
             <TabPanel value={value} index={1} dir={theme.direction}>
               these are the main tabs of orders
