@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../connection/database");
 
-<<<<<<< HEAD
+ 
 
 router.post("/user/contactus",(req,res)=>{
     const name = req.body.name;
@@ -27,7 +27,7 @@ router.post("/user/contactus",(req,res)=>{
             
         }
     );
-=======
+      
 router.post("/user/contactus", (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
@@ -45,7 +45,9 @@ router.post("/user/contactus", (req, res) => {
       res.send(result);
     }
   });
->>>>>>> 8a7e5db1d981953a8da4367d63d523bef9849d00
+
+});
+
 });
 
 //INSERT INTO `contactus`(`id`, `name`, `email`, `phoneNumber`, `massage`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5])
