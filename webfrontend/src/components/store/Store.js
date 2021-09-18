@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import "./Store.css";
 import Carousel from 'react-elastic-carousel';
 import FerCatItem from './storeComponents/FerCatItem';
@@ -8,6 +8,7 @@ import FerProData from './storeComponents/FerProData';
 import {useCart} from 'react-use-cart';
 import Slider from 'infinite-react-carousel';
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 import Navigation from "../../components/common/header/Navigation";
 import Footer from "../../components/common/footer/footer";
@@ -51,6 +52,15 @@ function Store() {
         {width: 1450, itemsToShow: 7},
 
     ];
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        axios.get("http://localhost:4000/getstore").then((response) => {
+            setData(response.data);
+            console.log(response.data);
+          })
+        }, []);
 
     return(
         <>
@@ -101,6 +111,19 @@ function Store() {
                         <FerCatItem ferCatImage = {'https://i.pinimg.com/originals/00/07/75/000775ea917ffcd49521da19da4c2ba4.png'} ferCatName = 'Animal' />
                         <FerCatItem ferCatImage = {'https://cdn.vox-cdn.com/thumbor/HQ4WlkwPK0zG5L8CVrLds8QhaIE=/0x0:3000x1854/1200x800/filters:focal(1260x687:1740x1167)/cdn.vox-cdn.com/uploads/chorus_image/image/66181105/leaf_mold.0.jpg'} ferCatName = 'Leaf' />
                         <FerCatItem ferCatImage = {'https://www.ecofarmingdaily.com/wp-content/uploads/GettyImages-1140803112-scaled.jpg'} ferCatName = 'Regular' />
+                    </Carousel>
+                </div>
+
+                {/*Popular products*/}
+                <h3 className="fer-topic"><i class="fas fa-leaf"></i> Popular products</h3>
+                <hr/>
+                <div className="fer-products_row">
+                    <Carousel breakPoints={breakPoints1}>
+                        {data.map((item,index)=>{
+                            return(
+                                <FerProductItem ferProImage = {item.photo} ferWeight={item.unitWeight} ferName={item.name} ferPrice = {item.unitPrice} item={item} key ={index}/>
+                            )
+                        })}
                     </Carousel>
                 </div>
 
