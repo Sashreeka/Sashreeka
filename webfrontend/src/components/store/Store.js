@@ -4,7 +4,7 @@ import Carousel from 'react-elastic-carousel';
 import FerCatItem from './storeComponents/FerCatItem';
 import FerProductItem from './storeComponents/FerProductItem';
 import FerProOffer from './storeComponents/FerProOffer';
-import FerProData from './storeComponents/FerProData';
+//import FerProData from './storeComponents/FerProData';
 import {useCart} from 'react-use-cart';
 import Slider from 'infinite-react-carousel';
 import { Link } from "react-router-dom";
@@ -53,13 +53,28 @@ function Store() {
 
     ];
 
-    const [data, setData] = useState([]);
-
+    const [newfer, setNewData] = useState([]);
     useEffect(() => {
-        axios.get("http://localhost:4000/getstore").then((response) => {
-            setData(response.data);
+        axios.get("http://localhost:4000/getnewarrival").then((response) => {
+            setNewData(response.data);
             console.log(response.data);
           })
+        }, []);
+
+    const [popfer, setPopData] = useState([]);
+    useEffect(() => {
+         axios.get("http://localhost:4000/getpopular").then((response) => {
+            setPopData(response.data);
+            console.log(response.data);
+          })
+        }, []);
+
+    const [ofrfer, setOfrData] = useState([]);
+    useEffect(() => {
+            axios.get("http://localhost:4000/getoffer").then((response) => {
+            setOfrData(response.data);
+            console.log(response.data);
+            })
         }, []);
 
     return(
@@ -114,27 +129,28 @@ function Store() {
                     </Carousel>
                 </div>
 
-                {/*Popular products*/}
-                <h3 className="fer-topic"><i class="fas fa-leaf"></i> Popular products</h3>
+                {/*Popular products 1*/}
+               {/*  <h3 className="fer-topic"><i class="fas fa-leaf"></i> Popular products 1</h3>
                 <hr/>
                 <div className="fer-products_row">
                     <Carousel breakPoints={breakPoints1}>
-                        {data.map((item,index)=>{
+                        {console.log(FerProData.ferprodata)}
+                        {FerProData.ferprodata.map((item,index)=>{
                             return(
-                                <FerProductItem ferProImage = {item.photo} ferWeight={item.unitWeight} ferName={item.name} ferPrice = {item.unitPrice} item={item} key ={index}/>
+                                <FerProductItem ferProImage = {item.img} ferWeight={item.weight} ferName={item.name} ferPrice = {item.price} item={item} key ={index}/>
                             )
                         })}
                     </Carousel>
-                </div>
+                </div> */}
 
                 {/*Popular products*/}
                 <h3 className="fer-topic"><i class="fas fa-leaf"></i> Popular products</h3>
                 <hr/>
                 <div className="fer-products_row">
                     <Carousel breakPoints={breakPoints1}>
-                        {FerProData.ferprodata.map((item,index)=>{
+                        {popfer.map((item,index)=>{
                             return(
-                                <FerProductItem ferProImage = {item.img} ferWeight={item.weight} ferName={item.name} ferPrice = {item.price} item={item} key ={index}/>
+                                <FerProductItem ferProImage = {item.img} ferWeight={item.weight} ferName={item.name} ferPrice = {item.price} ferOffer={item.offer} item={item} key ={index}/>
                             )
                         })}
                     </Carousel>
@@ -145,9 +161,9 @@ function Store() {
                 <hr/>
                 <div className="fer-products_row">
                     <Carousel breakPoints={breakPoints1}>
-                        {FerProData.ferprodata1.map((item,index)=>{
+                        {newfer.map((item,index)=>{
                             return(
-                                <FerProductItem ferProImage = {item.img} ferName={item.name} ferWeight={item.weight} ferPrice = {item.price} item={item} key ={index}/>
+                                <FerProductItem ferProImage = {item.img} ferName={item.name} ferWeight={item.weight} ferPrice = {item.price} ferOffer={item.offer} item={item} key ={index}/>
                             )
                         })}
                     </Carousel>
@@ -158,9 +174,9 @@ function Store() {
                 <hr/>
                 <div className="fer-products_row">
                     <Carousel breakPoints={breakPoints1}>
-                        {FerProData.ferofferdata.map((item,index)=>{
+                        {ofrfer.map((item,index)=>{
                             return(
-                                <FerProOffer ferProImage = {item.img} ferName={item.name} ferWeight={item.weight} ferPrice = {item.price} ferOfferPrice={item.offer} item={item} key ={index}/>
+                                <FerProOffer ferProImage = {item.img} ferName={item.name} ferWeight={item.weight} ferPrice = {item.price} ferOffer={item.offer} item={item} key ={index}/>
                             )
                         })}
                     </Carousel>
