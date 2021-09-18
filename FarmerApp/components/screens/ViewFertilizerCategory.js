@@ -20,7 +20,9 @@ import Axios from "axios";
 
 Feather.loadFont();
 
-export default function ViewFertilizerCategory({ navigation }) {
+export default function ViewFertilizerCategory({ route, navigation }) {
+  const { id, category } = route.params;
+
   const [categorylist, setcategorylist] = useState([]);
 
   useEffect(() => {
@@ -42,21 +44,15 @@ export default function ViewFertilizerCategory({ navigation }) {
             color={colors.textDark}
             onPress={() => navigation.openDrawer()}
           ></Feather>
-          {/* <Image
+          <Image
             source={require("../../assets/images/profileimg_girl.jpg")}
             style={styles.profileImage}
-          /> */}
+          />
         </View>
       </SafeAreaView>
 
       <View style={styles.titleView}>
-        <Text style={styles.titlesTitle}>Categories</Text>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("CartScreen")}
-          style={styles.cartIcon}
-        >
-          <FontAwsome name="shopping-cart" color="#05375a" size={30} />
-        </TouchableOpacity>
+        <Text style={styles.titlesTitle}>{category}</Text>
       </View>
 
       {categorylist.map((val) => {
