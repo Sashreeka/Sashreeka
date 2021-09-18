@@ -165,8 +165,13 @@
   margin-left: 0;
 
  }
+
+ .complaints-button{
+  display: inline-block;
+  margin-top: 16px;
+ }
  
- .cmpbtn{
+ .complaints-button{
   color: #1d1d7e;
   padding: 8px 16px;
   background-color: white;
