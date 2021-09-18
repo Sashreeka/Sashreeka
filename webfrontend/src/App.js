@@ -37,6 +37,10 @@ import StaffCheck from "./components/company/Admin/pages/staff/staffCheck/StaffC
 import RolesPrivilages from "./components/company/Admin/pages/roles_&_privilages/Roles_and_privilages";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import { green, grey } from "@material-ui/core/colors";
+import Orders from "./components/company/Admin/pages/orders/Orders";
+import Notification from "./components/company/Admin/pages/notification/Notification";
+import Announcements from "./components/company/Admin/pages/announcements/Announcements";
+import Complains from "./components/company/Admin/pages/complainsAndContactUs/Complains";
 
 // Dashboard of Staff and Delivery Agent
 import DeliveryAgentD from "./components/company/DeliveryAgent";
@@ -109,6 +113,18 @@ function App() {
 
                 <Route path="/rolesPrivilages">
                   <RolesPrivilages />
+                </Route>
+                <Route path="/notification">
+                  <Notification />
+                </Route>
+                <Route path="/announcements">
+                  <Announcements />
+                </Route>
+                <Route path="/complains">
+                  <Complains />
+                </Route>
+                <Route path="/orders">
+                  <Orders />
                 </Route>
               </Switch>
             </ThemeProvider>
