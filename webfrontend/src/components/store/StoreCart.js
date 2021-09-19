@@ -98,32 +98,13 @@ const StoreCart = () => {
                         )
                     })}
                 </table>
+
                 <div className="store-cart-line">
-                    <h5>{totalItems} item(s) added    Total:</h5>
-                    <h5> Rs. {cartTotal}.00</h5>
+                    <h5>Sub Total - {totalItems} item(s):</h5>
+                    <h5>Rs. {cartTotal}.00</h5>
                 </div>
-                <div className="store-cart-line">
-                    <h6>Delivery Charges</h6>
-                    <h6>Rs. 200.00</h6>
-                </div>
-                <div className="store-cart-line">
-                    <h5>Sub Total:</h5>
-                    <h5>Rs. {cartTotal + 200}.00</h5>
-                </div>
-                <div className="store-bottom-cart-line">
-                    <h5>Redeem Loyalty Points</h5>
-                    <h5><i class="fas fa-caret-down"></i></h5>
-                </div>
-                <div className="store-bottom-cart-line">
-                    <div className = "store-payment-method">
-                        <div>
-                            <input type="radio" name="payment-type" value="Online payment"/><label for="payment-type"> Online payment</label>
-                        </div>
-                        <div>
-                            <input type="radio" name="payment-type" value="Cash on delivery"/><label for="payment-type"> Cash on delivery</label>
-                        </div>
-                    </div>
-                </div>
+
+                <li>Dilivery Charge will be added</li>
                 
                 <div className="store-bottom-cart-line">
                     <div className = "store-carttwo-button">
@@ -135,7 +116,7 @@ const StoreCart = () => {
                         </div>
                     </div>
                     <Link to="/storecheckout"> 
-                        <button>Confirm Order</button>
+                        <button>Proceed</button>
                     </Link>
                 </div>
                 
