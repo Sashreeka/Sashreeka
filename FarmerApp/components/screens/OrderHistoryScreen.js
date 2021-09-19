@@ -35,11 +35,11 @@ export default function OrderHistoryScreen({ navigation }) {
 
   const orderstatus = (flag) => {
     if (flag === 0) {
-      return <Text style={styles.PendingDelivery}>Pending delivery</Text>;
+      return <Text style={styles.PendingDelivery}>Please wait fot grace period.</Text>;
     } else if (flag === 1) {
-      return <Text style={styles.outForDelivery}>Out for Delivery</Text>;
+      return <Text style={styles.outForDelivery}>Delivery is on the way.</Text>;
     } else if (flag === 2) {
-      return <Text style={styles.SuccessfulDelivery}>Successful delivery</Text>;
+      return <Text style={styles.SuccessfulDelivery}>Successfully delivered.</Text>;
     } else {
     }
   };
@@ -120,14 +120,12 @@ export default function OrderHistoryScreen({ navigation }) {
                         ORD NO: {val.orderId}
                       </Text>
                       <Text style={styles.textRegular}>
-                        Order Date: {val.ordered}
+                        Order Date: {val.ordereddate}
                       </Text>
                       <Text style={styles.textRegular}>
-                        Delivery Date: {val.ordered}
+                        Delivery Date: {val.date}
                       </Text>
-                      <Text style={styles.textRegular}>
-                        Total Price: RS. {val.amount}
-                      </Text>
+
                       <Text style={styles.textRegular}>
                         Total Price: RS. {val.amount}
                       </Text>
@@ -135,7 +133,7 @@ export default function OrderHistoryScreen({ navigation }) {
                         Delivery Charge: RS. {val.deliveryCharge}
                       </Text>
                       <Text style={styles.textRegular}>
-                        Order Status:{orderstatus(val.status)}
+                        {orderstatus(val.status)}
                       </Text>
                     </View>
                   </TouchableOpacity>
@@ -234,7 +232,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   order: {
-    paddingVertical: 5,
+    paddingTop: 10,
+    paddingBottom: 15,
     alignItems: "center",
   },
   outForDelivery: {
