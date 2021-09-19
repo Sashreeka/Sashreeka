@@ -17,6 +17,8 @@ import Collapsible from "react-native-collapsible";
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
 
+import {HTTP_URL} from '../context/Common';
+
 export default function UpcomingDelivery() {
     const [openModal, setOpenModal] = useState(false);
     const [upcomingDelivery, setupcomingDelivery] = useState([]);
@@ -26,7 +28,7 @@ export default function UpcomingDelivery() {
     useEffect(()=>{
 
         axios
-        .get("http://192.168.1.11:4000/deliveryAgent/upcoming")
+        .get("http://192.168.1.12:4000/deliveryAgent/upcoming")
         .then((response) => {
           if (response) {
             // console.log(response.data);

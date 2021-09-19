@@ -41,8 +41,27 @@ function Contact() {
       <div className="mainSection">
         <section className="contact" id="contact">
           <div className="leftSection">
-            <div className="contact-image">
-              <img src={contactImg1} />
+            <div className="contact-details">
+
+            <div class="address details">
+          <i class="fas fa-map-marker-alt"></i>
+          <div class="topic">Address</div>
+          <div class="text-one">1/25,Temple Road</div>
+          <div class="text-two">Kottawa</div>
+        </div>
+        <div class="phone details">
+          <i class="fas fa-phone-alt"></i>
+          <div class="topic">Phone</div>
+          <div class="text-one">+9411 4235888</div>
+          <div class="text-two">+9411 4235889</div>
+        </div>
+        <div class="email details">
+          <i class="fas fa-envelope"></i>
+          <div class="topic">Email</div>
+          <div class="text-one">sashreeka@gmail.com</div>
+          
+        </div>
+              {/*<img src={contactImg1} />*/}
             </div>
 
             <div class="mapouter">
@@ -52,64 +71,89 @@ function Contact() {
 
           <div className="formSection">
             <form action="">
-              <h1 className="contact-heading">Contact Us</h1>
+              <h1 className="contact-heading">Send us a message</h1>
               <div className="contact-inputBox">
                 <input
                   type="text"
+                  placeholder="Enter your name"
                   name="name"
                   value={values.name}
                   onChange={handleInputChange}
                   required
                 />
-                <label>Your Name</label>
+                
               </div>
 
               <div className="contact-inputBox">
                 <input
                   type="email"
+                  placeholder="Enter your email"
                   name="email"
                   value={values.email}
                   onChange={handleInputChange}
                   required
                 />
-                <label>Your Email</label>
+                
               </div>
 
               <div className="contact-inputBox">
                 <input
                   type="number"
                   name="phone"
+                  placeholder="Enter your phone number"
                   value={values.phone}
                   onChange={handleInputChange}
                   required
                 />
-                <label>Phone</label>
+                
               </div>
 
               <div className="contact-inputBox">
                 <textarea
                   required
                   name=""
+  
                   id=""
                   cols="30"
                   rows="10"
                   name="massage"
+                  placeholder="Enter your massage"
+
                   value={values.massage}
                   onChange={handleInputChange}
                 ></textarea>
-                <label>Message</label>
+                
               </div>
-
+              
+              <div className="contact-button">
               <input
                 type="submit"
                 className="contactbtn"
                 value="Send"
                 onclick={onSubmit}
               />
+              </div>
+              
+              <a href="./Complaints">
+                <button className="cmpbtn">Complaints ?</button>
+              </a>
+             {/*  <div className="complaints-button">
+                <a href="./Complaints">
+                  <button >Complaint</button>
+                </a>
+              </div> */}
+              
+             
+            
             </form>
-          </div>
+            
+          
+         </div>
+          
         </section>
       </div>
+      
+          
       <Footer />
     </div>
   );

@@ -9,60 +9,43 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
+  Dimensions,
+  ImageBackground,
 } from "react-native";
 import Feather from "react-native-vector-icons/Feather";
-// import FontAwsome from "react-native-vector-icons/FontAwesome";
-// import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-
-import categoriesData from "../../assets/data/categoriesData";
+import FontAwsome from "react-native-vector-icons/FontAwesome";
 import colors from "../../assets/colors/colors";
 import Axios from "axios";
 
 Feather.loadFont();
 
+const windowWidth = Dimensions.get("window").width;
+// const image = { uri: "https://reactjs.org/logo-og.png" };
+
 export default function HomeScreen({ navigation }) {
-  const [ferlilizerlist, setferlilizerlist] = useState([]);
+  const [categorylist, setcategorylist] = useState([]);
 
   useEffect(() => {
-    Axios.get("http://192.168.8.222:4000/farmer/getfertilizerall").then(
+    Axios.get("http://192.168.8.222:4000/farmer/getcategories").then(
       (response) => {
-        setferlilizerlist(response.data);
+        setcategorylist(response.data);
       }
     );
   }, []);
-
-  const renderCategoryItem = ({ item }) => {
-    return (
-      // <View style={styles.categoriesListWrapper}>
-      <View
-        style={[
-          styles.categoryItemWrapper,
-          {
-            backgroundColor: item.selected
-              ? colors.secondaryT50
-              : colors.background,
-            marginLeft: item.id == 1 ? 20 : 0,
-          },
-        ]}
-      >
-        <Image source={item.image} style={styles.categoryItemImage} />
-        <Text style={styles.categoryItemTitle}>{item.title}</Text>
-        <View style={styles.categorySelectWrapper}>
-          {/* <Feather
-                   name="shevron-right"
-                   size={8}
-                   style={styles.categorySelectIcon}
-                   /> */}
-        </View>
-      </View>
-    );
-  };
 
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={colors.primary} />
       <SafeAreaView>
-        <View style={styles.headerWrapper}>
+        <View
+          style={[
+            styles.headerWrapper,
+            {
+              backgroundColor: colors.secondary,
+              padding: 8,
+            },
+          ]}
+        >
           <Feather
             name="menu"
             size={24}
@@ -75,108 +58,187 @@ export default function HomeScreen({ navigation }) {
           />
         </View>
       </SafeAreaView>
+
       {/* titles */}
-      <View style={styles.titleView}>
-        <Text style={styles.titlesTitle}>Organic Fertilizer</Text>
+      {/* <View style={styles.titleView}>
+        <Text style={styles.titlesTitle}>Shashreeka</Text>
+      </View> */}
+
+      <View
+        style={{
+          paddingHorizontal: 20,
+          marginTop: 10,
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
+        <View>
+          <Text style={{ fontSize: 25, fontWeight: "bold" }}>Welcome to</Text>
+          <Text
+            style={{ fontSize: 38, color: colors.green, fontWeight: "bold" }}
+          >
+            Sashreeka
+          </Text>
+        </View>
+      </View>
+
+      {/* Search */}
+      {/* <View style={styles.searchWrapper}>
+        <Feather name="search" size={16} color={colors.textDark} />
+        <View style={styles.search}>
+          <Text style={styles.searchText}>Search...</Text>
+        </View>
+      </View> */}
+
+      {/* <Text style={styles.titlesSub}>Online Offers !!!</Text> */}
+      {/* line breal */}
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          marginLeft: 10,
+          marginRight: 10,
+        }}
+      >
+        <View style={{ flex: 1, height: 2, backgroundColor: colors.primary }} />
+        <View>
+          <Text
+            style={{
+              width: 150,
+              textAlign: "center",
+              fontFamily: "sans-serif-medium",
+              fontSize: 20,
+              color: colors.titleHead,
+            }}
+          >
+            Today Offers
+          </Text>
+        </View>
+        <View
+          style={{
+            flex: 1,
+            height: 2,
+            backgroundColor: colors.primary,
+          }}
+        />
       </View>
 
       <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        showsVerticalScrollIndicator={false}
-        key={Math.random}
+        horizontal={true}
+        style={{
+          marginTop: 2,
+          height: 200,
+          backgroundColor: "#f5f5f5",
+        }}
       >
-        <View style={styles.btnView}>
-          <TouchableOpacity onPress={() => navigation.navigate("CartScreen")}>
-            <Text style={styles.btnIcon}>CART</Text>
-          </TouchableOpacity>
+        <View style={styles.categoryIcon}>
+          <FontAwsome name="chevron-left" color="#05375a" size={30} />
         </View>
-        {/* <i className="fas fa-shopping-cart"></i> */}
-
-        {/* Search */}
-        <View style={styles.searchWrapper}>
-          <Feather name="search" size={16} color={colors.textDark} />
-          <View style={styles.search}>
-            <Text style={styles.searchText}>Search...</Text>
-          </View>
+        <View>
+          <ImageBackground
+            source={require("../../assets/images/a.png")}
+            // resizeMode="cover"
+            style={styles.categoryItemImage}
+          />
         </View>
-
-        {/* Categories */}
-        <View style={styles.categoriesWrapper}>
-          <Text style={styles.categoriesTitle}>Categories</Text>
-          <View style={styles.categoriesListWrapper}>
-            <FlatList
-              data={categoriesData}
-              renderItem={renderCategoryItem}
-              keyExtractor={(item) => item.id}
-              horizontal={true}
-            />
-          </View>
+        <View>
+          <ImageBackground
+            source={require("../../assets/images/c.png")}
+            // resizeMode="cover"
+            style={styles.categoryItemImage}
+          />
         </View>
 
-        {/* testcode map funation */}
-        {/* {
-               ferlilizerlist.map((val)=>{
-                   return <Text key={val.id}>
-                       {val.name}
-                   </Text>
-               })
-           } */}
+        <View>
+          <ImageBackground
+            source={require("../../assets/images/b.png")}
+            // resizeMode="cover"
+            style={styles.categoryItemImage}
+          />
+        </View>
 
-        {/* item list */}
-        <View style={styles.itemsWrapper}>
-          <Text style={styles.itemsTitle}>Shop Items</Text>
-          {ferlilizerlist.map((val) => {
-            return (
-              <View
-                key={val.fertilizerId}
-                style={[
-                  styles.itemsCardwrapper,
-                  {
-                    marginTop: val.fertilizerId == 1 ? 10 : 20,
-                  },
-                ]}
-              >
-                <TouchableOpacity
-                  onPress={() => navigation.navigate("ItemDetailsScreen")}
-                >
-                  <View style={styles.itemCardWrapOuter}>
-                    <View
-                      style={styles.itemcardLeft}
-                      onPress={() => navigation.navigate("ItemDetailsScreen")}
-                    >
-                      <View style={styles.itemWrapperMain}>
-                        <Text style={styles.itemTitleMain}>{val.name}</Text>
-                      </View>
-                      <View style={styles.itemDescriptionWrapper}>
-                        <Text style={styles.itemDescription}>
-                          {val.caption}
-                        </Text>
-                      </View>
-                      <View style={styles.itemADDbutton}>
-                        <Text
-                          style={styles.itemADDbuttonText}
-                          onPress={() =>
-                            navigation.navigate("ItemDetailsScreen")
-                          }
-                        >
-                          ADD
-                          <Feather name="plus" size={15} color="#000" />
-                        </Text>
-                      </View>
-                    </View>
-                    <View style={styles.itemcardRight}>
-                      <Image
-                        source={{ uri: `${val.photo}` }}
-                        style={styles.itemcardimage}
-                      />
-                    </View>
-                  </View>
-                </TouchableOpacity>
-              </View>
-            );
-          })}
+        <View>
+          <ImageBackground
+            source={require("../../assets/images/d.png")}
+            // resizeMode="cover"
+            style={styles.categoryItemImage}
+          />
+        </View>
+
+        <View style={styles.categoryIcon}>
+          <FontAwsome name="chevron-right" color="#05375a" size={30} />
         </View>
       </ScrollView>
+
+      {/* line breal */}
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          marginLeft: 10,
+          marginRight: 10,
+        }}
+      >
+        <View style={{ flex: 1, height: 2, backgroundColor: colors.primary }} />
+        <View>
+          <Text
+            style={{
+              width: 200,
+              textAlign: "center",
+              fontFamily: "sans-serif-medium",
+              fontSize: 20,
+              color: colors.titleHead,
+            }}
+          >
+            Fertilizer Categories
+          </Text>
+        </View>
+        <View
+          style={{
+            flex: 1,
+            height: 2,
+            backgroundColor: colors.primary,
+          }}
+        />
+      </View>
+
+      {/* <View
+        style={{
+          borderBottomColor: "grey",
+          borderBottomWidth: 1,
+          // padding: 2,
+          marginBottom: 5,
+          shadowColor: "black",
+        }}
+      /> */}
+
+      <FlatList
+        numColumns={2}
+        data={categorylist}
+        keyExtractor={(item) => item.fertilizerCategoryId}
+        renderItem={({ item }) => (
+          <View style={styles.contentContainerNew}>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("ViewFertilizerCategory", {
+                  id: item.fertilizerCategoryId,
+                  category: item.description,
+                })
+              }
+            >
+              <View style={styles.cardNew}>
+                <ImageBackground
+                  source={{ uri: item.photo }}
+                  resizeMode="cover"
+                  style={styles.imageBg}
+                >
+                  <Text style={styles.imageBgText}>{item.description}</Text>
+                </ImageBackground>
+              </View>
+            </TouchableOpacity>
+          </View>
+        )}
+      />
     </View>
   );
 }
@@ -184,7 +246,109 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    //
+    backgroundColor: colors.white,
+    // marginTop: 1,
   },
+
+  // advertisements
+  categoryIcon: {
+    //  backgroundColor:colors.secondaryT50,
+    display: "flex",
+    margin: 5,
+    padding: 5,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  categoryItemWrapper: {
+    //  backgroundColor:colors.secondaryT50,
+    display: "flex",
+    marginRight: 10,
+    borderRadius: 20,
+    height: 180,
+    width: 200,
+    padding: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    shadowColor: "black",
+    shadowOffset: {
+      width: 1,
+      height: 2,
+    },
+    shadowOpacity: 0.05,
+    shadowRadius: 20,
+    elevation: 2,
+  },
+
+  categoryItemImage: {
+    marginTop: 5,
+    alignSelf: "center",
+    // marginHorizontal: 27,
+    width: 180,
+    height: 100,
+    marginRight: 10,
+    borderRadius: 20,
+  },
+
+  //Flat list
+  imageBg: {
+    flex: 1,
+    justifyContent: "flex-end",
+    width: windowWidth / 2 - 10,
+    height: 150,
+  },
+  imageBgText: {
+    width: windowWidth / 2 - 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 3,
+    elevation: 1,
+    alignSelf: "center",
+    color: "#292929",
+    fontSize: 20,
+    fontWeight: "bold",
+    textAlign: "center",
+    padding: 5,
+    backgroundColor: "rgba(255,255,255,0.6)",
+  },
+  col1: {
+    flex: 1,
+    padding: 5,
+  },
+  col2: {
+    flex: 2,
+    padding: 5,
+  },
+  colBanner: {
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 5,
+  },
+
+  // imageNew: {
+  //   width: windowWidth / 2 - 10,
+  //   height: 150,
+  //   alignItems: "center",
+  //   justifyContent: "center",
+  //   padding: 5,
+  // },
+
+  imageBackgroundNew: {
+    flex: 1,
+    justifyContent: "center",
+  },
+  contentContainerNew: {
+    flex: 1,
+    flexDirection: "row",
+    // flexWrap: "wrap",
+  },
+  cardNew: {
+    margin: 5,
+  },
+
   headerWrapper: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -209,6 +373,15 @@ const styles = StyleSheet.create({
     color: colors.textDark,
     paddingLeft: 20,
     marginLeft: 10,
+    // textAlign: "center",
+  },
+
+  titlesSub: {
+    fontFamily: "sans-serif-medium",
+    fontSize: 24,
+    color: "red",
+    paddingLeft: 5,
+    marginLeft: 5,
   },
 
   titleView: {
@@ -217,6 +390,10 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     borderBottomLeftRadius: 75,
   },
+  // titleCart:{
+  //   flex:1,
+  //   flexDirection:"row",
+  // },
 
   searchWrapper: {
     paddingTop: 20,
@@ -226,6 +403,7 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.textlight,
     borderBottomWidth: 2,
     marginHorizontal: 20,
+    marginBottom: 10,
   },
   search: {
     marginLeft: 20,
@@ -249,31 +427,6 @@ const styles = StyleSheet.create({
     // paddingLeft:20,
   },
 
-  categoryItemWrapper: {
-    backgroundColor: colors.secondaryT50,
-    display: "flex",
-    marginRight: 20,
-    borderRadius: 20,
-    width: 130,
-    padding: 10,
-    alignItems: "center",
-    justifyContent: "center",
-    shadowColor: "black",
-    shadowOffset: {
-      width: 1,
-      height: 2,
-    },
-    shadowOpacity: 0.05,
-    shadowRadius: 10,
-    elevation: 2,
-  },
-
-  categoryItemImage: {
-    marginTop: 25,
-    alignSelf: "center",
-    marginHorizontal: 27,
-  },
-
   categoryItemTitle: {
     display: "flex",
     textAlign: "center",
@@ -288,8 +441,6 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     justifyContent: "center",
   },
-
-  categoryItemimage: {},
 
   itemsWrapper: {
     paddingHorizontal: 20,
@@ -384,9 +535,16 @@ const styles = StyleSheet.create({
     padding: 5,
     marginRight: 30,
     alignItems: "flex-end",
+    flex: 1,
+    flexDirection: "row",
   },
   btnIcon: {
     backgroundColor: "yellow",
     padding: 10,
+  },
+
+  cartIcon: {
+    alignSelf: "flex-end",
+    marginEnd: 15,
   },
 });
