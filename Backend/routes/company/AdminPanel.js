@@ -177,7 +177,7 @@ router.get("/admin/getdeliveyagentetails", (req, res) => {
 
 router.get("/admin/getdeliveyagentetailsvehicalsorted", (req, res) => {
   const sqlget =
-    "SELECT userId,CONCAT(firstName,' ',lastName) AS Name ,availability,vehicle.vehicleId,vehicle.maxLoad,drivingLicence FROM `deliveryagent` LEFT JOIN vehicle ON vehicle.deliveryAgentPhoneNumber=deliveryagent.phoneNumber ORDER BY maxLoad";
+    "SELECT userId,phoneNumber,CONCAT(firstName,' ',lastName) AS Name ,availability,vehicle.vehicleId,vehicle.maxLoad,drivingLicence FROM `deliveryagent` LEFT JOIN vehicle ON vehicle.deliveryAgentPhoneNumber=deliveryagent.phoneNumber ORDER BY maxLoad";
   db.query(sqlget, (err, result) => {
     // console.log(result);
     res.send(result);

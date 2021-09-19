@@ -226,12 +226,41 @@ export default function AssignDeliveries() {
     setVehicle(agentlist.filter((r) => r.userId == userId)[0]);
   };
 
+  const [vehicledetail, setVehicleDetail] = useState([]);
+  const [deliveryidPre, setDeliveryidPre] = useState("");
+
   const handleAssign = () => {
     console.log("hello assigned");
     var x = validate();
     if (x) {
       console.log("valid");
       openSuccessPop();
+
+      console.log("selectedOrders: ", selectedOrders);
+      console.log("vehicle: ", vehicle);
+      console.log("agents: ", agentlist);
+
+      console.log("delivery date : ", deliveryDate);
+      setVehicleDetail(agentlist.filter((r) => r.userId == vehicle.userId)[0]);
+      console.log("agentfilter: ", vehicledetail);
+
+      axios
+        .get("http://localhost:4000/assign/getpreviousdeliveryId")
+        .then((res) => {
+          console.log("last delid:", res.data[0]);
+          setDeliveryidPre(res.data[0]);
+        })
+        .catch((err) => console.log("err:", err));
+      axios
+        .post("http://localhost:4000/dummy/deletableapi", {
+          dilOrders,
+          selectedOrders,
+          vehicledetail,
+          deliveryDate,
+          deliveryidPre,
+        })
+        .then((res) => console.log("suvvess :", res))
+        .catch((err) => console.log("failed:", err));
     } else {
       console.log("NOT valid");
       openErrPop();
@@ -244,11 +273,6 @@ export default function AssignDeliveries() {
       //   item["name"],
       //   item["age"],
       // ]);
-
-      axios
-        .post("http://localhost:4000/dummy/deletableapi", dilOrders)
-        .then((res) => console.log("suvvess :", res))
-        .catch((err) => console.log("failed:", err));
     }
   };
 
