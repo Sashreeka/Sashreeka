@@ -26,25 +26,20 @@ const StoreCheckout = () => {
                     <button>My Cart  </button>
                 </Link>
                 <i class="fas fa-caret-right"></i>
+                <button>Cheakout  </button>
             </div>
 
             <div className="Store-fer-cart-container">
                 <div className  = "StoreferCartsuccess">
                     <div className="checkout-input"> 
                         <label>Your contact number</label><br/>
-                        <input></input>
-                    </div>
-                    <br/>
-
-                    <div className="checkout-input"> 
-                        <label>Order Id</label><br/>
-                        <input></input>
+                        <input type="text" placeholder="+94 7XXXXXXXX"></input>
                     </div>
                     <br/>
 
                     <div className="checkout-input">   
                         <label>Receiver's Name</label><br/>
-                        <input></input>
+                        <input type="text" placeholder="Type here..."></input>
                     </div>
                     <br/>
 

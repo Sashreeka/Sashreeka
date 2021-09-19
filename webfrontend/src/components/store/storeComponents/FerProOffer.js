@@ -31,7 +31,7 @@ const FerProOffer= (props) =>{
                     <Link to="/viewproduct"> 
                         <div className="offer-price-text">
                             {props.ferOffer==0?(<div className="fer-price-text"><h6>Rs. {props.ferPrice} <i className="fas fa-tag"></i></h6></div>):(<div className="fer-price-text"><h6 style={{color:"#e23a3a"}}>Rs. {props.ferPrice} <i className="fas fa-tag"></i></h6></div>)}
-                            {props.ferOffer==0?(''):(<div className="offer-nor-price"><h6>{props.ferOffer}% off</h6></div>)}
+                            {props.ferOffer==0?(''):(<div className="offer-nor-price"><h6>{props.ferOffer}% off</h6> <p>Rs.{props.ferUnitPrice}</p></div>)}
                         </div>
                     </Link>
                     

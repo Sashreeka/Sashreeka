@@ -35,18 +35,18 @@ const StoreCart = () => {
         </div>
     ) 
     return(
+        <>
+        <div className = "store-path">
+            <Link to="/store">
+                <button>Store</button>
+            </Link>
+            <i class="fas fa-caret-right"></i>
+            <Link to="/storecart">
+                <button>My Cart  </button>
+            </Link>
+        </div>
         <div className="Store-fer-cart-container">
             <div className="StoreferCart">
-                <div className = "store-path">
-                    <Link to="/store">
-                        <button>Store</button>
-                    </Link>
-                    <i class="fas fa-caret-right"></i>
-                    <Link to="/storecart">
-                        <button>My Cart  </button>
-                    </Link>
-                </div>
-                
                 <table>
                     <tr>
                         <th>
@@ -84,10 +84,10 @@ const StoreCart = () => {
                                 </div>
                             </td>
                             <td>
-                                <h6>Rs. {item.price}.00</h6>
+                                {item.offer==0?(<h6>Rs. {item.price}</h6>):(<div className="fer-cart-offer-price"><h6>Rs. {item.price}</h6><p>Rs.{item.unitPrice}</p></div>)}
                             </td>
                             <td>
-                                <h6>Rs. {item.quantity * item.price}.00</h6>
+                                {item.offer==0?(<h6>Rs. {item.quantity * item.price}</h6>):(<h6 style={{color:"#e23a3a"}}>Rs. {item.quantity * item.price}</h6>)}   
                             </td>
                             <td>
                                 <div className="store-cart-remove">
@@ -101,7 +101,7 @@ const StoreCart = () => {
 
                 <div className="store-cart-line">
                     <h5>Sub Total - {totalItems} item(s):</h5>
-                    <h5>Rs. {cartTotal}.00</h5>
+                    <h5>Rs. {cartTotal}</h5>
                 </div>
 
                 <li>Dilivery Charge will be added</li>
@@ -122,6 +122,7 @@ const StoreCart = () => {
                 
             </div>
         </div>
+        </>
     );
 };
 

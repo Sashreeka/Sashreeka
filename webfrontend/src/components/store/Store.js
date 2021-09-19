@@ -150,7 +150,7 @@ function Store() {
                     <Carousel breakPoints={breakPoints1}>
                         {popfer.map((item,index)=>{
                             return(
-                                <FerProOffer ferProImage = {item.img} ferWeight={item.weight} ferName={item.name} ferPrice = {item.price} ferOffer={item.offer} item={item} key ={index}/>
+                                <FerProOffer ferProImage = {item.img} ferWeight={item.weight} ferName={item.name} ferPrice = {item.price} ferUnitPrice = {item.unitPrice} ferOffer={item.offer} item={item} key ={index}/>
                             )
                         })}
                     </Carousel>
@@ -163,7 +163,7 @@ function Store() {
                     <Carousel breakPoints={breakPoints1}>
                         {newfer.map((item,index)=>{
                             return(
-                                <FerProOffer ferProImage = {item.img} ferName={item.name} ferWeight={item.weight} ferPrice = {item.price} ferOffer={item.offer} item={item} key ={index}/>
+                                <FerProOffer ferProImage = {item.img} ferName={item.name} ferWeight={item.weight} ferPrice = {item.price} ferUnitPrice = {item.unitPrice} ferOffer={item.offer} item={item} key ={index}/>
                             )
                         })}
                     </Carousel>
@@ -176,7 +176,7 @@ function Store() {
                     <Carousel breakPoints={breakPoints1}>
                         {ofrfer.map((item,index)=>{
                             return(
-                                <FerProOffer ferProImage = {item.img} ferName={item.name} ferWeight={item.weight} ferPrice = {item.price} ferOffer={item.offer} item={item} key ={index}/>
+                                <FerProOffer ferProImage = {item.img} ferName={item.name} ferWeight={item.weight} ferPrice = {item.price} ferUnitPrice = {item.unitPrice} ferOffer={item.offer} item={item} key ={index}/>
                             )
                         })}
                     </Carousel>
