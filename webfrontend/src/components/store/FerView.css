@@ -1,0 +1,57 @@
+.ferview-section{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    
+    flex-direction: row;
+    
+    
+  }
+  .left-ferview-container,.right-ferview-container{
+    width: 500px;
+    border: 2px solid rgb(241, 247, 241);
+    padding: 10px;
+    margin-left: 150px;
+    height:500px;
+  }
+  .left-ferview-container .ferview-image{
+    width: 150px;
+    height: 150px;
+    left: 305px;
+    top: 306px;
+    box-sizing: border-box;
+    border-radius: 75px;
+  }
+  .sum-rate{
+      margin-top:10px;
+  }
+  .rate{
+      margin-top: 0px;
+  }
+  .rating-head{
+      color:black;
+  }
+
+  .checked {
+    color: #ffd700;
+  }
+  .rating-comments{
+      margin-top: 20px;
+      color:black;
+  }
+  .rate{
+    display: flex;
+    /*align-items: center;
+    justify-content: center;*/
+    flex-direction: row;
+    
+    
+  }
+  .rate-right{
+      margin-left: 20px;
+  }
+  .rate-left-image img{
+      width:50px;
+      height: 50px;
+      border-radius: 50%;
+  }
