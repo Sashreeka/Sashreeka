@@ -175,6 +175,15 @@ router.get("/admin/getdeliveyagentetails", (req, res) => {
   });
 });
 
+router.get("/admin/getdeliveyagentetailsvehicalsorted", (req, res) => {
+  const sqlget =
+    "SELECT userId,phoneNumber,CONCAT(firstName,' ',lastName) AS Name ,availability,vehicle.vehicleId,vehicle.maxLoad,drivingLicence FROM `deliveryagent` LEFT JOIN vehicle ON vehicle.deliveryAgentPhoneNumber=deliveryagent.phoneNumber ORDER BY maxLoad";
+  db.query(sqlget, (err, result) => {
+    // console.log(result);
+    res.send(result);
+  });
+});
+
 //  display a full details of delivery agent + vehicle details by id.................
 router.get("/admin/getdeliveyagentetailsById/:userId", (req, res) => {
   const userId = req.params.userId;
@@ -251,6 +260,16 @@ router.get("/admin/viewStafffDetails/:userId", (req, res) => {
   });
 });
 
+// display delivery details of orders........................
+router.get("/admin/viewDeliveryDetailsOfOrders", (req, res) => {
+  const sqlget =
+    "SELECT deliveryAgentPhoneNumber,DATE_FORMAT(deliveryassigneddate, '%Y-%m-%d') as deliveryassigneddate ,DATE_FORMAT(SYSDATE(), '%Y-%m-%d'),deliveryId,orderId, confirmationFlag FROM deliveries WHERE DATE_FORMAT(deliveryassigneddate, '%Y-%m-%d')>=DATE_FORMAT(SYSDATE(), '%Y-%m-%d')";
+  db.query(sqlget, (err, result) => {
+    //  console.log(result);
+    res.send(result);
+  });
+});
+
 // delete a product item...........................
 router.delete("/deleteProductItems/:fertilizerId", (req, res) => {
   let fertilizerId = req.params.fertilizerId;
@@ -297,6 +316,8 @@ router.post("/save", (req, res) => {
     // console.log(err);
   });
 });
+
+// SELECT deliveryAgentPhoneNumber,DATE_FORMAT(deliveryassigneddate, "%Y-%m-%d"),DATE_FORMAT(SYSDATE(), "%Y-%m-%d"),deliveryId,orderId, confirmationFlag FROM deliveries WHERE DATE_FORMAT(deliveryassigneddate, "%Y-%m-%d")>=DATE_FORMAT(SYSDATE(), "%Y-%m-%d")
 
 //Delivery agent Update
 // router.post("/updatedeliveryagent/:userId", upload.single("image"), (req, res) => {

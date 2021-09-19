@@ -102,7 +102,7 @@ router.post("/admin/insertstaffmember", (req, res) => {
 //  display all unassigned orders.................. need to district='gampaha' AND part + date sorting + less than selected
 router.get("/admin/getAllunssigedorders", (req, res) => {
   const sqlget =
-    "SELECT orderId as id,amount, CONCAT(houseNumber,', ',streetName,', ',City) as address, district, quickFlag, status,DATE_FORMAT(graceenddate, '%d %b %Y') as graceenddate,(SELECT SUM(quantity*weight) FROM ordercontainsfertilizer WHERE orderId=orders.orderId GROUP by orderId) as loads FROM orders WHERE status=0";
+    "SELECT orderId as id,farmerPhoneNumber,amount, CONCAT(houseNumber,', ',streetName,', ',City) as address, district, quickFlag, status,DATE_FORMAT(graceenddate, '%d %b %Y') as graceenddate,(SELECT SUM(quantity*weight) FROM ordercontainsfertilizer WHERE orderId=orders.orderId GROUP by orderId) as loads FROM orders WHERE status=0";
   // if you are changing the query, change below api as well(/admin/getAllunssigedordersDistrictList)
   db.query(sqlget, (err, result) => {
     console.log(result);
@@ -119,40 +119,71 @@ router.get("/admin/getAllunssigedordersDistrictList", (req, res) => {
   });
 });
 
-router.post("/dummy/deletableAPI", (req, res) => {
-  const values = req.body;
-  sqlInsert = "INSERT INTO `dummytable`(`id`, `name`, `age`) VALUES ?";
-  db.query(sqlInsert, [values], (err, result) => {
+// dummy insert -multiple rows
+router.post("/dummy/deletableapi", (req, res) => {
+  console.log(req.body.selectedOrders);
+  console.log(req.body.dilOrders);
+  console.log(req.body.vehicledetail);
+  console.log(req.body.deliveryDate);
+  console.log("delivery id:", req.body.deliveryidPre.deliveryId);
+
+  const selectedOrders = req.body.selectedOrders;
+  const dilOrders = req.body.dilOrders;
+  const vehicledetail = req.body.vehicledetail;
+  const deliveryDate = req.body.deliveryDate;
+  const deliveryidPre = req.body.deliveryidPre;
+
+  const arr = req.body.selectedOrders.map((item) => [
+    deliveryidPre.deliveryId, // deliveryid
+    item["id"], //orderid
+    item["farmerPhoneNumber"], //farmerPhoneNumber
+    vehicledetail.phoneNumber, // deliveryAgentPhoneNumber
+    vehicledetail.maxLoad * 1000, // deliveryAgentPhoneNumber
+    200, // distance
+    1000, // deliveryAgentsPayment
+    deliveryDate, //  deliveryassigneddate
+  ]);
+
+  console.log("array our:", arr);
+  sqlInsert =
+    "INSERT INTO deliveries(deliveryId, orderId, famerPhoneNumber, deliveryAgentPhoneNumber, deliveryLoad,distance, deliveryAgentsPayment, deliveryassigneddate) VALUES ?";
+  db.query(sqlInsert, [arr], (err, result) => {
     if (err) {
       res.send(err);
+      console.log(err);
     }
     console.log("", result);
     res.send(result);
   });
 });
-// router.post("/admin/insertstaffmember", (req, res) => {
-//   const phoneNumber = req.body.phoneNumber;
-//   const email = req.body.email;
-//   const firstName = req.body.firstName;
-//   const lastName = req.body.lastName;
-// const address = req.body.address;
-// const appointedDate = req.body.appointedDate;
-// const nic = req.body.nic;
-// const roleId = req.body.roleId;
 
-//   const sqlInsert =
-//     "INSERT INTO companystaff(phoneNumber, email,firstName, lastName) VALUES (?,?,?,?)";
-//   db.query(
-//     sqlInsert,
-//     [phoneNumber, email, firstName, lastName],
-//     (err, result) => {
-//       if (err) {
-//         res.send({ err: err });
-//       } else {
-//         res.send("success");
-//       }
+router.get("/assign/getpreviousdeliveryId", (req, res) => {
+  sqlget =
+    "SELECT `deliveryId` FROM `deliveries` ORDER by deliveryId DESC LIMIT 1";
+  db.query(sqlget, (err, result) => {
+    if (err) {
+      res.send(err);
+      console.log(err);
+    } else {
+      console.log("", result);
+      res.send(result);
+    }
+  });
+});
+
+// router.post("/assign/insertmultipledeliveries", (req, res) => {
+//   const arr = req.body.map((item) => [item["id"], item["name"], item["age"]]);
+//   sqlget =
+//     "INSERT INTO deliveries(deliveryId, orderId, famerPhoneNumber, deliveryAgentPhoneNumber, deliveryLoad,distance, deliveryAgentsPayment, deliveryassigneddate) VALUES ?";
+//   db.query(sqlget,[arr], (err, result) => {
+//     if (err) {
+//       res.send(err);
+//       console.log(err);
+//     } else {
+//       console.log("", result);
+//       res.send(result);
 //     }
-//   );
+//   });
 // });
 
 module.exports = router;

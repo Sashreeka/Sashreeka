@@ -75,7 +75,7 @@ export default function DialogView(props) {
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={onclose} color="primary">
-            Save changes
+            ok
           </Button>
         </DialogActions>
       </Dialog>

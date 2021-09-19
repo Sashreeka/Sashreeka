@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import "./Store.css";
 import Carousel from 'react-elastic-carousel';
 import FerCatItem from './storeComponents/FerCatItem';
@@ -6,10 +6,11 @@ import FerProductItem from './storeComponents/FerProductItem';
 import FerProOffer from './storeComponents/FerProOffer';
 import FilterStore from './storeComponents/FilterStore';
 import FilterFerCat from './storeComponents/FilterFerCat';
-import FerProData from './storeComponents/FerProData';
+//import FerProData from './storeComponents/FerProData';
 import Slider from 'infinite-react-carousel';
 import {useCart} from 'react-use-cart';
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 import Navigation from "../../components/common/header/Navigation";
 import Footer from "../../components/common/footer/footer";
@@ -54,6 +55,14 @@ function SearchStore() {
 
     ];
 
+    const [ofrfer, setOfrData] = useState([]);
+        useEffect(() => {
+            axios.get("http://localhost:4000/getoffer").then((response) => {
+            setOfrData(response.data);
+            console.log(response.data);
+            })
+        }, []);
+
     return(
         <>
         <Navigation />
@@ -71,7 +80,7 @@ function SearchStore() {
                     </div>
                         
                     <div className="shopping_details">
-                        <p className="Subtotal">{totalItems} items - Rs. {cartTotal}.00</p>
+                        <p className="Subtotal">{totalItems} items - Rs. {cartTotal}</p>
                         <Link to="/storecart">
                             <button type="submit" className="shopping_cart"><i className="fas fa-shopping-cart"></i></button>
                         </Link>
@@ -118,9 +127,9 @@ function SearchStore() {
                         <h3 className="fer-topic"><i class="fas fa-leaf"></i> Search Results ...</h3>
                         <hr/>
                         <div className="fer-search-results">
-                        {FerProData.fersearchdata.map((item,index)=>{
+                        {ofrfer.map((item,index)=>{
                             return(
-                                <FerProductItem ferProImage = {item.img} ferName={item.name} ferPrice = {item.price} ferWeight={item.weight} item={item} key ={index}/>
+                                <FerProOffer ferProImage = {item.img} ferWeight={item.weight} ferName={item.name} ferOffer={item.offer} ferPrice = {item.price} item={item} key ={index}/>
                             )
                         })}
                         </div>
