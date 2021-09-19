@@ -119,40 +119,47 @@ router.get("/admin/getAllunssigedordersDistrictList", (req, res) => {
   });
 });
 
-router.post("/dummy/deletableAPI", (req, res) => {
-  const values = req.body;
-  sqlInsert = "INSERT INTO `dummytable`(`id`, `name`, `age`) VALUES ?";
-  db.query(sqlInsert, [values], (err, result) => {
+// dummy insert -multiple rows
+router.post("/dummy/deletableapi", (req, res) => {
+  const arr = req.body.map((item) => [item["id"], item["name"], item["age"]]);
+  sqlInsert = "INSERT INTO dummytable(id, name, age) VALUES ?";
+  db.query(sqlInsert, [arr], (err, result) => {
     if (err) {
       res.send(err);
+      console.log(err);
     }
     console.log("", result);
     res.send(result);
   });
 });
-// router.post("/admin/insertstaffmember", (req, res) => {
-//   const phoneNumber = req.body.phoneNumber;
-//   const email = req.body.email;
-//   const firstName = req.body.firstName;
-//   const lastName = req.body.lastName;
-// const address = req.body.address;
-// const appointedDate = req.body.appointedDate;
-// const nic = req.body.nic;
-// const roleId = req.body.roleId;
 
-//   const sqlInsert =
-//     "INSERT INTO companystaff(phoneNumber, email,firstName, lastName) VALUES (?,?,?,?)";
-//   db.query(
-//     sqlInsert,
-//     [phoneNumber, email, firstName, lastName],
-//     (err, result) => {
-//       if (err) {
-//         res.send({ err: err });
-//       } else {
-//         res.send("success");
-//       }
+router.get("/assign/getpreviousdeliveryId", (req, res) => {
+  sqlget =
+    "SELECT `deliveryId` FROM `deliveries` ORDER by deliveryId DESC LIMIT 1";
+  db.query(sqlget, (err, result) => {
+    if (err) {
+      res.send(err);
+      console.log(err);
+    } else {
+      console.log("", result);
+      res.send(result);
+    }
+  });
+});
+
+// router.post("/assign/insertmultipledeliveries", (req, res) => {
+//   const arr = req.body.map((item) => [item["id"], item["name"], item["age"]]);
+//   sqlget =
+//     "INSERT INTO deliveries(deliveryId, orderId, famerPhoneNumber, deliveryAgentPhoneNumber, deliveryLoad,distance, deliveryAgentsPayment, deliveryassigneddate) VALUES ?";
+//   db.query(sqlget,[arr], (err, result) => {
+//     if (err) {
+//       res.send(err);
+//       console.log(err);
+//     } else {
+//       console.log("", result);
+//       res.send(result);
 //     }
-//   );
+//   });
 // });
 
 module.exports = router;
