@@ -47,7 +47,7 @@ router.get("/farmer/getcategories", (req, res) => {
   db.query(sqlget, (err, result) => {
     res.send(result);
     console.log("/farmer/getcategories");
-    console.log(result);
+    console.log(result[0]);
 
     if (err) {
       console.log(err);
@@ -61,7 +61,7 @@ router.get("/farmer/getcategoriesNames", (req, res) => {
   db.query(sqlget, (err, result) => {
     res.send(result);
     console.log("/farmer/getcategoriesNames");
-    console.log(result);
+    console.log(result[0]);
 
     if (err) {
       console.log(err);
@@ -75,7 +75,7 @@ router.get("/farmer/getproducts", (req, res) => {
   db.query(sqlget, (err, result) => {
     res.send(result);
     console.log("/farmer/getproducts");
-    console.log(result);
+    console.log(result[0]);
 
     if (err) {
       console.log(err);
@@ -90,7 +90,21 @@ router.get("/farmer/getproductsall", (req, res) => {
   db.query(sqlget, (err, result) => {
     res.send(result);
     console.log("/farmer/getproductsall");
-    console.log(result);
+    console.log(result[0]);
+
+    if (err) {
+      console.log(err);
+    }
+  });
+});
+
+router.get("/farmer/getCart", (req, res) => {
+  console.log("farmer.js------->getCart");
+  const sqlget = "select * from fertilizer LIMIT 3";
+  db.query(sqlget, (err, result) => {
+    res.send(result);
+    console.log("/farmer/getCart");
+    console.log(result[0]);
 
     if (err) {
       console.log(err);

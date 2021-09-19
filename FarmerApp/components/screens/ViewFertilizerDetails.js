@@ -8,6 +8,7 @@ import {
   ScrollView,
   Dimensions,
   FlatList,
+  StatusBar,
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
@@ -65,12 +66,6 @@ export default function ViewFertilizerDetails({ navigation, route }) {
                 backgroundColor: val.offer ? "red" : colors.light,
               }}
             >
-              {/* <Icon
-                name="favorite"
-                size={18}
-                // color={val.like ? COLORS.red : COLORS.black}
-                color={COLORS.red}
-              /> */}
               <Text
                 style={{
                   // color=colors.white,
@@ -160,30 +155,32 @@ export default function ViewFertilizerDetails({ navigation, route }) {
         backgroundColor: COLORS.white,
       }}
     >
-      <View
-        style={{
-          backgroundColor: colors.secondary,
-          padding: 8,
-          flexDirection: "row",
-          justifyContent: "space-between",
-          paddingHorizontal: 20,
-          paddingTop: 15,
-          alignItems: "center",
-          backgroundColor: colors.secondary,
-        }}
-      >
-        <Icon name="arrow-back" size={28} onPress={() => navigation.goBack()} />
-        <Icon name="shopping-cart" size={28} />
-        {/* <Image
-          source={require("../../assets/images/profileimg_girl.jpg")}
-          style={{ width: 40, height: 40, borderRadius: 40 }}
-        /> */}
+      <StatusBar backgroundColor={colors.primary} />
+      <View>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            paddingHorizontal: 20,
+            paddingTop: 15,
+            alignItems: "center",
+            backgroundColor: colors.secondary,
+            backgroundColor: colors.secondary,
+            padding: 8,
+          }}
+        >
+          <Icon
+            name="arrow-back-ios"
+            size={28}
+            onPress={() => navigation.goBack()}
+          />
+          <Icon
+            name="shopping-cart"
+            size={28}
+            onPress={() => navigation.navigate("CartScreen")}
+          />
+        </View>
       </View>
-
-      {/* <View style={styles.header}>
-         <Icon name="shopp
-         ing-cart" size={28} /> 
-      </View> */}
 
       <ScrollView
         vertical={true}
@@ -213,6 +210,32 @@ export default function ViewFertilizerDetails({ navigation, route }) {
               alignItems: "flex-end",
             }}
           ></View>
+          <View style={{ alignItems: "flex-start" }}>
+            <View
+              style={{
+                width: 150,
+                height: 40,
+                borderColor: "red",
+                borderBottomRightRadius: 50,
+
+                // alignItems: "flex-start",
+                // backgroundColor:"red",
+                backgroundColor: plant.offer ? "red" : colors.light,
+              }}
+            >
+              <Text
+                style={{
+                  // color=colors.white,
+                  fontSize: 26,
+                  fontWeight: "bold",
+                  marginLeft: 20,
+                  color: colors.light,
+                }}
+              >
+                {plant.offer} % OFF
+              </Text>
+            </View>
+          </View>
           <View
             style={{
               marginLeft: 20,
@@ -345,7 +368,7 @@ export default function ViewFertilizerDetails({ navigation, route }) {
           //   paddingBottom: 50,
           // }}
           // numRows={2}
-          data={productlist}
+          data={productlist.filter((r) => r.fertilizerId != plant.fertilizerId)}
           keyExtractor={(item) => item.fertilizerId}
           renderItem={({ item }) => {
             return <Card val={item} />;
@@ -386,7 +409,8 @@ const styles = StyleSheet.create({
     marginBottom: 7,
     borderRadius: 20,
     marginTop: 5,
-    paddingVertical: 15,
+    // paddingVertical: 15,
+    paddingBottom: 15,
   },
   line: {
     width: 25,

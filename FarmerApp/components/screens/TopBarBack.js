@@ -1,14 +1,16 @@
-import React from "react";
-import { View, SafeAreaView, StyleSheet, StatusBar, Image } from "react-native";
-import { Text, TouchableOpacity } from "react-native-paper";
+import React, { Component } from "react";
+import { View, StatusBar } from "react-native";
+import { Text } from "react-native-paper";
 
 import colors from "../../assets/colors/colors";
-
+import Feather from "react-native-vector-icons/Feather";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
-export default function CheckoutScreen({ navigation }) {
+Feather.loadFont();
+
+export default function TopBarBack({ navigation }) {
   return (
-    <View style={styles.container}>
+    <View>
       <StatusBar backgroundColor={colors.primary} />
       <View>
         <View
@@ -35,22 +37,6 @@ export default function CheckoutScreen({ navigation }) {
           />
         </View>
       </View>
-
-      <View
-        style={{
-          paddingVertical: 20,
-          alignItems: "center",
-        }}
-      >
-        {/* <Icon name="arrow-back-ios" size={28} onPress={navigation.goBack} /> */}
-        <Text style={{ fontSize: 24, fontWeight: "bold" }}>CHECKOUT</Text>
-      </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});

@@ -33,22 +33,24 @@ export default function ViewFertilizerCategory({ route, navigation }) {
   const [productlist, setproductlist] = useState([]);
 
   useEffect(() => {
+    console.log(id);
+    console.log(category);
     Axios.get("http://192.168.8.222:4000/farmer/getcategories").then(
       (response) => {
         setcategorylist(response.data);
-        console.log(response.data);
+        console.log(response.data[0]);
       }
     );
 
     Axios.get("http://192.168.8.222:4000/farmer/getproductsall").then(
       (response) => {
         setproductlist(response.data);
-        console.log(response.data);
+        console.log(response.data[0]);
       }
     );
   }, []);
 
-  const [catergoryIndex, setCategoryIndex] = React.useState(3);
+  const [catergoryIndex, setCategoryIndex] = React.useState(0);
 
   const categories = [
     // "All",
@@ -220,7 +222,11 @@ export default function ViewFertilizerCategory({ route, navigation }) {
             color={colors.textDark}
             onPress={() => navigation.openDrawer()}
           ></Feather>
-          <Icon name="shopping-cart" size={28} />
+          <Icon
+            name="shopping-cart"
+            size={28}
+            onPress={() => navigation.navigate("CartScreen")}
+          />
           {/* <Image
             source={require("../../assets/images/profileimg_girl.jpg")}
             style={styles.profileImage}
@@ -274,7 +280,7 @@ export default function ViewFertilizerCategory({ route, navigation }) {
           }}
           numColumns={2}
           data={productlist.filter(
-            (r) => r.fertilizerCategoryId == catergoryIndex+1
+            (r) => r.fertilizerCategoryId == catergoryIndex + 1
           )}
           keyExtractor={(item) => item.fertilizerId}
           renderItem={({ item }) => {
