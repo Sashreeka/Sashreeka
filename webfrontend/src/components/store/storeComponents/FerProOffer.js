@@ -1,16 +1,20 @@
 import React from 'react';
 import {useCart} from 'react-use-cart';
+import { Link } from "react-router-dom";
 
 const FerProOffer= (props) =>{
 
     const {addItem} = useCart();
 
-    return(              
+    return( 
+                    
         <div className = "fer-product-container">
             
-            <div className="fer-product-avatar">
-                <img src={props.ferProImage}></img>
-            </div>
+            <Link to="/viewproduct"> 
+                <div className="fer-product-avatar">
+                    <img src={props.ferProImage}></img>
+                </div>
+            </Link>
             <div className="fer-product-description">
                 <h6>{props.ferName}</h6>
                 {/* <div className="rating">
@@ -31,6 +35,7 @@ const FerProOffer= (props) =>{
                 </div>
             </div>
         </div>
+        
     );
 }
             
