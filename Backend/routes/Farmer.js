@@ -83,4 +83,19 @@ router.get("/farmer/getproducts", (req, res) => {
   });
 });
 
+router.get("/farmer/getproductsall", (req, res) => {
+  console.log("farmer.js------->getproductsall");
+  const sqlget =
+    "SELECT * FROM fertilizer INNER JOIN fertilizerferlilizercategory ON fertilizer.fertilizerId =fertilizerferlilizercategory.fertilizerId";
+  db.query(sqlget, (err, result) => {
+    res.send(result);
+    console.log("/farmer/getproductsall");
+    console.log(result);
+
+    if (err) {
+      console.log(err);
+    }
+  });
+});
+
 module.exports = router;

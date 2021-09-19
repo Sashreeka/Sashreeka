@@ -40,7 +40,7 @@ export default function ViewFertilizerCategory({ route, navigation }) {
       }
     );
 
-    Axios.get("http://192.168.8.222:4000/farmer/getproducts").then(
+    Axios.get("http://192.168.8.222:4000/farmer/getproductsall").then(
       (response) => {
         setproductlist(response.data);
         console.log(response.data);
@@ -51,7 +51,7 @@ export default function ViewFertilizerCategory({ route, navigation }) {
   const [catergoryIndex, setCategoryIndex] = React.useState(3);
 
   const categories = [
-    "All",
+    // "All",
     "Paddy",
     "Flowers",
     "Tea",
@@ -94,11 +94,11 @@ export default function ViewFertilizerCategory({ route, navigation }) {
     );
   };
 
-  const Card = ({ plant }) => {
+  const Card = ({ val }) => {
     return (
       <TouchableOpacity
         activeOpacity={0.8}
-        onPress={() => navigation.navigate("ViewFertilizerDetails", plant)}
+        onPress={() => navigation.navigate("ViewFertilizerDetails", val)}
       >
         <View style={styles.card}>
           <View style={{ alignItems: "flex-start" }}>
@@ -111,13 +111,13 @@ export default function ViewFertilizerCategory({ route, navigation }) {
 
                 // alignItems: "flex-start",
                 // backgroundColor:"red",
-                backgroundColor: plant.offer ? "red" : colors.light,
+                backgroundColor: val.offer ? "red" : colors.light,
               }}
             >
               {/* <Icon
                 name="favorite"
                 size={18}
-                // color={plant.like ? COLORS.red : COLORS.black}
+                // color={val.like ? COLORS.red : COLORS.black}
                 color={COLORS.red}
               /> */}
               <Text
@@ -129,7 +129,7 @@ export default function ViewFertilizerCategory({ route, navigation }) {
                   color: colors.light,
                 }}
               >
-                {plant.offer} % OFF
+                {val.offer} % OFF
               </Text>
             </View>
           </View>
@@ -142,7 +142,7 @@ export default function ViewFertilizerCategory({ route, navigation }) {
           >
             <Image
               source={require("../../assets/consts/pictures/dummypic.png")}
-              // source={{ uri: plant.photo }}
+              // source={{ uri: val.photo }}
               style={{
                 flex: 1,
                 resizeMode: "contain",
@@ -161,7 +161,7 @@ export default function ViewFertilizerCategory({ route, navigation }) {
               marginLeft: 10,
             }}
           >
-            {plant.name}
+            {val.name}
           </Text>
           <View
             style={{
@@ -173,7 +173,7 @@ export default function ViewFertilizerCategory({ route, navigation }) {
             <Text
               style={{ fontSize: 16, fontWeight: "normal", marginLeft: 10 }}
             >
-              Rs. {plant.unitPrice}
+              Rs. {val.unitPrice}
             </Text>
             <View
               style={{
@@ -232,33 +232,6 @@ export default function ViewFertilizerCategory({ route, navigation }) {
         <Text>{JSON.stringify(categorylist[1].description)}</Text>
       </View> */}
 
-      {/* {categorylist.map((val) => {
-        return (
-          <View key={val.fertilizerCategoryId} style={styles.itemsCardwrapper}>
-            <TouchableOpacity
-              onPress={() => navigation.navigate("ViewFertilizerCategory")}
-            >
-              <View style={styles.itemCardWrapOuter}>
-                <View
-                  style={styles.itemcardLeft}
-                  onPress={() => navigation.navigate("ViewFertilizerCategory")}
-                >
-                  <View style={styles.itemWrapperMain}>
-                    <Text style={styles.itemTitleMain}>{val.description}</Text>
-                  </View>
-                </View>
-                <View style={styles.itemcardRight}>
-                  <Image
-                    source={{ uri: "${val.photo}" }}
-                    style={styles.imageNew}
-                  />
-                </View>
-              </View>
-            </TouchableOpacity>
-          </View>
-        );
-      })} */}
-
       {/* newly added ones */}
 
       <View
@@ -300,10 +273,12 @@ export default function ViewFertilizerCategory({ route, navigation }) {
             paddingBottom: 50,
           }}
           numColumns={2}
-          data={productlist}
+          data={productlist.filter(
+            (r) => r.fertilizerCategoryId == catergoryIndex+1
+          )}
           keyExtractor={(item) => item.fertilizerId}
           renderItem={({ item }) => {
-            return <Card plant={item} />;
+            return <Card val={item} />;
           }}
         />
       </View>
