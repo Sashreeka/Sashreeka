@@ -18,7 +18,7 @@ router.get("/farmer/getfertilizerall", (req, res) => {
 // get profile data from farmer table
 router.get("/farmer/getProfileDataById", (req, res) => {
   console.log("farmer.js------->getProfileData");
-  const sqlget = "select * from farmer WHERE userId = '1'";
+  const sqlget = "select * from farmer WHERE userId = '19'";
   db.query(sqlget, (err, result) => {
     res.send(result);
     console.log("/farmer/getProfileDataById");

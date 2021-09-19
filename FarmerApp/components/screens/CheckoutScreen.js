@@ -1,6 +1,13 @@
 import React from "react";
-import { View, SafeAreaView, StyleSheet, StatusBar, Image } from "react-native";
-import { Text, TouchableOpacity } from "react-native-paper";
+import {
+  View,
+  SafeAreaView,
+  StyleSheet,
+  StatusBar,
+  Image,
+  TouchableOpacity,
+} from "react-native";
+import { Text } from "react-native-paper";
 
 import colors from "../../assets/colors/colors";
 
@@ -28,11 +35,7 @@ export default function CheckoutScreen({ navigation }) {
             size={28}
             onPress={() => navigation.goBack()}
           />
-          <Icon
-            name="shopping-cart"
-            size={28}
-            onPress={() => navigation.navigate("CartScreen")}
-          />
+         
         </View>
       </View>
 
@@ -44,6 +47,17 @@ export default function CheckoutScreen({ navigation }) {
       >
         {/* <Icon name="arrow-back-ios" size={28} onPress={navigation.goBack} /> */}
         <Text style={{ fontSize: 24, fontWeight: "bold" }}>CHECKOUT</Text>
+      </View>
+
+      <View style={{ marginHorizontal: 30 }}>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={() => navigation.navigate("OnlinePaymentScreen")}
+        >
+          <View style={styles.btnContainer}>
+            <Text style={styles.btntitle}>CHECKOUT</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     </View>
   );

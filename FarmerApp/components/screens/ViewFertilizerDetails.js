@@ -247,7 +247,7 @@ export default function ViewFertilizerDetails({ navigation, route }) {
           >
             <Text
               style={{
-                fontSize: 22,
+                fontSize: 24,
                 fontWeight: "bold",
                 color: colors.green,
               }}
@@ -268,7 +268,9 @@ export default function ViewFertilizerDetails({ navigation, route }) {
             </View>
           </View>
           <View style={{ paddingHorizontal: 20, marginTop: 10 }}>
-            <Text style={{ fontSize: 20, fontWeight: "bold" }}>About</Text>
+            <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+              Description
+            </Text>
             <Text
               style={{
                 color: "grey",

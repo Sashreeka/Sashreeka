@@ -20,44 +20,94 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { DrawerContent } from "./components/pages/DrawerContent";
 import { AuthContext } from "./components/context/context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
 export default function App() {
   const [userToken, setUserToken] = useState(null);
+  const [phoneNumber, setphoneNumber] = useState("");
   //let userToken=null;
 
   const authContext = useMemo(
     () => ({
-      signIn: async (telephone, password) => {
-        // if(telephone =='119' && password=='pass')
-        // {
-        setUserToken("ishan");
-        // setIsLoading(false);
-        try {
-          userToken = "ishan";
+      signIn: (telephone, password) => {
+        console.log(telephone);
+        axios
+          .post("http://192.168.8.222:4000/user/login", {
+            phoneNumber: telephone,
+            password: password,
+          })
+          .then((response) => {
+            console.log(response);
+            if (response.data.message) {
+              alert(response.data.message);
+            } else {
+              if (response.data[0].userCategory === "farmer") {
+                //console.log(response.data[0].userCategory)
+                try {
+                  setphoneNumber(response.data[0].phoneNumber);
+                  // let phoneNumber=response.data[0].phoneNumber;
 
-          await AsyncStorage.setItem("userToken", userToken);
+                  // userToken = "ishan";
 
-          //console.log(userToken)
-        } catch (e) {
-          console.log("error", e);
-        }
+                  // AsyncStorage.setItem("userToken", userToken);
 
-        // }else{
-        //   alert('Username Or Password Invalid')
-        // }
-
-        // console.log(telephone,password);
+                  AsyncStorage.setItem(
+                    "phoneNumber",
+                    response.data[0].phoneNumber
+                  );
+                } catch (e) {
+                  console.log(e);
+                }
+              } else {
+                alert("Wrong username/Password combination");
+              }
+            }
+          })
+          .catch((e) => {
+            console.log(e);
+          });
       },
-      signOut: async () => {
-        setUserToken(null);
-        //   setIsLoading(false);
 
+      // signIn: async (telephone, password) => {
+      //   // if(telephone =='119' && password=='pass')
+      //   // {
+      //   setUserToken("ishan");
+      //   // setIsLoading(false);
+      //   try {
+      //     userToken = "ishan";
+
+      //     await AsyncStorage.setItem("userToken", userToken);
+
+      //     //console.log(userToken)
+      //   } catch (e) {
+      //     console.log("error", e);
+      //   }
+
+      //   // }else{
+      //   //   alert('Username Or Password Invalid')
+      //   // }
+
+      //   // console.log(telephone,password);
+      // },
+      // signOut: async () => {
+      //   setUserToken(null);
+      //   //   setIsLoading(false);
+
+      //   try {
+      //     await AsyncStorage.removeItem("userToken");
+      //     //  console.log(userToken)
+      //   } catch (e) {
+      //     console.log(e);
+      //   }
+      // },
+      signOut: () => {
         try {
-          await AsyncStorage.removeItem("userToken");
-          //  console.log(userToken)
+          AsyncStorage.removeItem("phoneNumber");
+          AsyncStorage.clear();
+          setphoneNumber(null);
         } catch (e) {
           console.log(e);
         }
@@ -81,7 +131,7 @@ export default function App() {
   return (
     <AuthContext.Provider value={authContext}>
       <NavigationContainer>
-        {userToken !== null ? <DrowerStack /> : <LoginStack />}
+        {phoneNumber !== null ? <DrowerStack /> : <LoginStack />}
       </NavigationContainer>
     </AuthContext.Provider>
   );

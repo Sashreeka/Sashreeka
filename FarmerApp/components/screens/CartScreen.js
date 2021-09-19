@@ -5,11 +5,19 @@ import { Text } from "react-native-paper";
 import colors from "../../assets/colors/colors";
 import Feather from "react-native-vector-icons/Feather";
 
-import { SafeAreaView, StyleSheet, View, Image, StatusBar } from "react-native";
+import {
+  SafeAreaView,
+  StyleSheet,
+  View,
+  Image,
+  StatusBar,
+  TouchableOpacity,
+} from "react-native";
 import { FlatList } from "react-native-gesture-handler";
-import { TouchableOpacity } from "react-native-gesture-handler";
+// import { TouchableOpacity } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import COLORS from "../../assets/consts/colors";
+
 // import foods from "../../assets/consts/foods";
 
 import Axios from "axios";
@@ -34,6 +42,7 @@ export default function CartScreen({ navigation }) {
           source={require("../../assets/consts/pictures/dummypic.png")}
           // source={{ uri: item.photo }}
           style={{ height: 80, width: 80 }}
+          resizeMode="contain"
         />
         <View
           style={{
@@ -137,6 +146,7 @@ export default function CartScreen({ navigation }) {
               </View>
             </View>
           )}
+          keyExtractor={(item) => item.fertilizerId}
           renderItem={({ item }) => <CartCard item={item} />}
         />
       </View>
@@ -168,7 +178,7 @@ const styles = StyleSheet.create({
   actionBtn: {
     width: 80,
     height: 30,
-    backgroundColor: COLORS.primary,
+    backgroundColor: COLORS.green,
     borderRadius: 30,
     paddingHorizontal: 5,
     flexDirection: "row",
@@ -177,7 +187,7 @@ const styles = StyleSheet.create({
   },
   btntitle: { color: COLORS.white, fontWeight: "bold", fontSize: 18 },
   btnContainer: {
-    backgroundColor: COLORS.primary,
+    backgroundColor: COLORS.green,
     height: 50,
     borderRadius: 30,
     justifyContent: "center",

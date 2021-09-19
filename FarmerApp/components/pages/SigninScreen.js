@@ -126,6 +126,7 @@ export default function SigninScreen({ navigation }) {
             style={styles.signIn}
             //  onPress={()=>{loginHandle(data.username,data.password)}}
             onPress={() => {
+              
               signIn(data.telephone, data.password);
             }}
           >

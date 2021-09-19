@@ -55,6 +55,7 @@ export default function HomeScreen({ navigation }) {
           <Image
             source={require("../../assets/images/profileimg_girl.jpg")}
             style={styles.profileImage}
+            // onPress={() => navigation.openDrawer()}
           />
         </View>
       </SafeAreaView>
@@ -76,6 +77,7 @@ export default function HomeScreen({ navigation }) {
           <Text style={{ fontSize: 25, fontWeight: "bold" }}>Welcome to</Text>
           <Text
             style={{ fontSize: 38, color: colors.green, fontWeight: "bold" }}
+            onPress={() => navigation.navigate("PaymentMethodsScreen")}
           >
             Sashreeka
           </Text>
@@ -228,9 +230,11 @@ export default function HomeScreen({ navigation }) {
             >
               <View style={styles.cardNew}>
                 <ImageBackground
-                  source={{ uri: item.photo }}
-                  resizeMode="cover"
+                  source={require("../../assets/consts/pictures/Vegetables.jpg")}
+                  // source={{ uri: item.photo }}
+
                   style={styles.imageBg}
+                  resizeMode="contain"
                 >
                   <Text style={styles.imageBgText}>{item.description}</Text>
                 </ImageBackground>

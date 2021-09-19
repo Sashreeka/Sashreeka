@@ -12,18 +12,18 @@ import {
   Switch,
 } from "react-native-paper";
 
-//import { AuthContext } from '../context/context';
+import { AuthContext } from '../context/context';
 //import { AuthContext } from '../context';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 export function DrawerContent(props) {
   const [isAvailable, setisAvailable] = useState(null);
 
-  //const {signOut}=useContext(AuthContext);
+  const {signOut}=useContext(AuthContext);
   const toggleTheme = () => {
     setisAvailable("Not Available");
     console.log(isAvailable);
-  };
+  }
   return (
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView {...props}>
@@ -40,7 +40,7 @@ export function DrawerContent(props) {
                 size={50}
               />
               <View style={{ marginLeft: 15, flexDirection: "column" }}>
-                <Title style={styles.title}>Anuki De Alwis</Title>
+                <Title style={styles.title}>Sanduni Fernando</Title>
                 <Caption style={styles.caption}>{}</Caption>
               </View>
             </View>

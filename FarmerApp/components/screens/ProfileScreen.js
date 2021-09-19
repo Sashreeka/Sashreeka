@@ -44,7 +44,15 @@ export default function ProfileScreen({ navigation }) {
     <View style={styles.container}>
       <StatusBar backgroundColor={colors.primary} />
       <SafeAreaView>
-        <View style={styles.headerWrapper}>
+        <View
+          style={[
+            styles.headerWrapper,
+            {
+              backgroundColor: colors.secondary,
+              padding: 8,
+            },
+          ]}
+        >
           <Feather
             name="menu"
             size={24}
@@ -54,11 +62,23 @@ export default function ProfileScreen({ navigation }) {
           <Image
             source={require("../../assets/images/profileimg_girl.jpg")}
             style={styles.profileImage}
+            // onPress={() => navigation.openDrawer()}
           />
         </View>
       </SafeAreaView>
-      <View style={styles.titleView}>
+
+      {/* <View style={styles.titleView}>
         <Text style={styles.titlesTitle}>My Profile</Text>
+      </View> */}
+      <View
+        style={{
+          paddingTop: 10,
+          marginTop: 10,
+          alignItems: "center",
+        }}
+      >
+        {/* <Icon name="arrow-back-ios" size={28} onPress={navigation.goBack} /> */}
+        <Text style={{ fontSize: 24, fontWeight: "bold" }}>My Profile</Text>
       </View>
 
       <ScrollView
@@ -69,7 +89,7 @@ export default function ProfileScreen({ navigation }) {
         {userDetails.map((item) => (
           <View key={item.userId} style={styles.inputs}>
             <View style={styles.userInfoSection}>
-              <View style={{ flexDirection: "row", marginTop: 15 }}>
+              <View style={{ flexDirection: "row", marginTop: 8 }}>
                 {/* <Avatar.Image
                   source={require("../assets/images/profileimg_girl.jpg")}
                   size={80}
