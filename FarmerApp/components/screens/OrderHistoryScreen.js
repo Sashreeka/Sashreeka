@@ -23,7 +23,7 @@ export default function OrderHistoryScreen({ navigation }) {
   const [historylist, setHistoryList] = useState([]);
 
   useEffect(() => {
-    Axios.get("http://192.168.8.222:4000/farmer/getorderhistory").then(
+    Axios.get("http://192.168.8.222:4000/farmer/getOrderHistoryById").then(
       (response) => {
         console.log(response.data[0].famerPhoneNumber);
         console.log(response.data[0].confirmationFlag);
@@ -47,25 +47,47 @@ export default function OrderHistoryScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={colors.primary} />
-      <SafeAreaView>
-        <View style={styles.headerWrapper}>
+      <View>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            paddingHorizontal: 20,
+            paddingTop: 15,
+            alignItems: "center",
+            backgroundColor: colors.secondary,
+            padding: 8,
+          }}
+        >
           <Feather
             name="menu"
             size={24}
             color={colors.textDark}
             onPress={() => navigation.openDrawer()}
           ></Feather>
-          {/* <Image
+          <Image
             source={require("../../assets/images/profileimg_girl.jpg")}
-            style={styles.profileImage}
-          /> */}
-          {/* style={styles.profileImage} */}
+            style={{
+              width: 40,
+              height: 40,
+              borderRadius: 40,
+              marginLeft: 10,
+            }}
+            // onPress={() => navigation.openDrawer()}
+          />
         </View>
-      </SafeAreaView>
+      </View>
 
-      {/* titles */}
-      <View style={styles.titleView}>
-        <Text style={styles.titlesTitle}>Organic Fertilizer</Text>
+      <View
+        style={{
+          paddingVertical: 20,
+          alignItems: "center",
+        }}
+      >
+        {/* <Icon name="arrow-back-ios" size={28} onPress={navigation.goBack} /> */}
+        <Text style={{ fontSize: 24, fontWeight: "bold" }}>
+          My Order History
+        </Text>
       </View>
 
       <ScrollView
@@ -73,10 +95,6 @@ export default function OrderHistoryScreen({ navigation }) {
         showsVerticalScrollIndicator={false}
         key={Math.random}
       >
-        <View style={styles.pageTopicView}>
-          <Text style={styles.pageTopic}>Order History</Text>
-        </View>
-
         <View style={styles.itemDetailcardWrapper2}>
           <View style={styles.itemratingcardcontainer}>
             {historylist.map((val) => {
@@ -113,38 +131,6 @@ export default function OrderHistoryScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  headerWrapper: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingHorizontal: 20,
-    paddingTop: 15,
-    alignItems: "center",
-    backgroundColor: colors.secondary,
-  },
-  profileImage: {
-    width: 40,
-    height: 40,
-    borderRadius: 40,
-  },
-  profileImage: {
-    width: 40,
-    height: 40,
-    borderRadius: 40,
-  },
-  titlesTitle: {
-    // fontFamily:"Roboto-bold",
-    fontSize: 32,
-    color: colors.textDark,
-    paddingLeft: 20,
-    marginLeft: 10,
-  },
-
-  titleView: {
-    backgroundColor: colors.secondary,
-    padding: 5,
-    paddingBottom: 10,
-    borderBottomLeftRadius: 75,
   },
 
   itemDetailcardWrapper2: {

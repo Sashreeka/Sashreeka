@@ -77,7 +77,7 @@ export default function HomeScreen({ navigation }) {
           <Text style={{ fontSize: 25, fontWeight: "bold" }}>Welcome to</Text>
           <Text
             style={{ fontSize: 38, color: colors.green, fontWeight: "bold" }}
-            onPress={() => navigation.navigate("PaymentMethodsScreen")}
+            // onPress={() => navigation.navigate("PaymentMethodsScreen")}
           >
             Sashreeka
           </Text>

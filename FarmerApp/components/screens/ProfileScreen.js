@@ -19,12 +19,12 @@ import {
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 import colors from "../../assets/colors/colors";
-import Feather from "react-native-vector-icons/Feather";
 
 import Axios from "axios";
 
 // import Header from "../common/Header";
 
+import Feather from "react-native-vector-icons/Feather";
 Feather.loadFont();
 
 export default function ProfileScreen({ navigation }) {
@@ -45,13 +45,15 @@ export default function ProfileScreen({ navigation }) {
       <StatusBar backgroundColor={colors.primary} />
       <SafeAreaView>
         <View
-          style={[
-            styles.headerWrapper,
-            {
-              backgroundColor: colors.secondary,
-              padding: 8,
-            },
-          ]}
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            paddingHorizontal: 20,
+            paddingTop: 15,
+            alignItems: "center",
+            backgroundColor: colors.secondary,
+            padding: 8,
+          }}
         >
           <Feather
             name="menu"

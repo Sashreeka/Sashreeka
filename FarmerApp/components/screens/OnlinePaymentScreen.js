@@ -51,49 +51,6 @@ export default function OnlinePaymentScreen({ navigation }) {
   ];
 
   const [details, setDetails] = useState([]);
-  const renderItem = ({ item }) => {
-    return (
-      <View>
-        <TouchableOpacity onPress={() => setDetails(item)}>
-          <View style={[styles.card, { backgroundColor: item.bg_color }]}>
-            <Text style={{ fontSize: 18, fontWeight: "bold", color: "#fff" }}>
-              {item.bankName}
-            </Text>
-            <Text
-              style={{
-                fontSize: 12,
-                fontWeight: "bold",
-                color: "#fff",
-                marginVertical: 10,
-              }}
-            >
-              {item.cardNo}
-            </Text>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <Text style={{ fontSize: 10, fontWeight: "bold", color: "#fff" }}>
-                {item.name}
-              </Text>
-              <Image
-                source={item.image}
-                style={{
-                  height: 25,
-                  width: 35,
-                  resizeMode: "contain",
-                  marginRight: 5,
-                }}
-              />
-            </View>
-          </View>
-        </TouchableOpacity>
-      </View>
-    );
-  };
 
   return (
     <View>
@@ -127,55 +84,117 @@ export default function OnlinePaymentScreen({ navigation }) {
       >
         {/* <Icon name="arrow-back-ios" size={28} onPress={navigation.goBack} /> */}
         <Text style={{ fontSize: 24, fontWeight: "bold" }}>
-          My Payment Methods
+          Online Card Payments
         </Text>
       </View>
 
-      <View style={{ marginVertical: 5 }}>
-        <FlatList
-          horizontal
-          data={DATA}
-          renderItem={renderItem}
-          showsHorizontalScrollIndicator={false}
-        />
+      <View
+        style={[
+          styles.card,
+          { backgroundColor: "#FC328A", alignSelf: "center" },
+        ]}
+      >
+        <Text style={{ fontSize: 18, fontWeight: "bold", color: "#fff" }}>
+          BOC
+        </Text>
+        <Text
+          style={{
+            fontSize: 12,
+            fontWeight: "bold",
+            color: "#fff",
+            marginVertical: 10,
+          }}
+        >
+          1452 2695 3502
+        </Text>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Text style={{ fontSize: 10, fontWeight: "bold", color: "#fff" }}>
+            SANDUNI FERNANDO
+          </Text>
+          <Image
+            source={require("../../assets/masterCard.png")}
+            style={{
+              height: 25,
+              width: 35,
+              resizeMode: "contain",
+              marginRight: 5,
+            }}
+          />
+        </View>
       </View>
+
+      <View
+        style={[
+          styles.card,
+          { backgroundColor: "#000", alignSelf: "center" },
+        ]}
+      >
+        <Text style={{ fontSize: 18, fontWeight: "bold", color: "#fff" }}>
+          BOC
+        </Text>
+        <Text
+          style={{
+            fontSize: 12,
+            fontWeight: "bold",
+            color: "#fff",
+            marginVertical: 10,
+          }}
+        >
+          1452 2695 3502
+        </Text>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Text style={{ fontSize: 10, fontWeight: "bold", color: "#fff" }}>
+            SANDUNI FERNANDO
+          </Text>
+          <Image
+            source={require("../../assets/visa.png")}
+            style={{
+              height: 25,
+              width: 35,
+              resizeMode: "contain",
+              marginRight: 5,
+            }}
+          />
+        </View>
+      </View>
+
+      <View style={{ marginVertical: 5 }}></View>
 
       <View style={{ paddingHorizontal: 30, marginTop: 20 }}>
         <Text style={styles.textLabel}>Card Number</Text>
         <View style={styles.textView}>
-          <Text style={styles.text}>{details.cardNo}</Text>
+          <Text style={styles.text}></Text>
         </View>
         <Text style={styles.textLabel}>Name</Text>
         <View style={styles.textView}>
-          <Text style={styles.text}>{details.name}</Text>
+          <Text style={styles.text}></Text>
         </View>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <View style={{ width: "40%" }}>
             <Text style={styles.textLabel}>Expiry date</Text>
             <View style={[styles.textView]}>
-              <Text style={styles.text}>{details.expireDate}</Text>
+              <Text style={styles.text}></Text>
             </View>
           </View>
           <View style={{ width: "45%" }}>
             <Text style={styles.textLabel}>CVV</Text>
             <View style={[styles.textView]}>
-              <Text style={styles.text}>{details.cvv}</Text>
+              <Text style={styles.text}></Text>
             </View>
           </View>
         </View>
-
-        {/* <TouchableOpacity
-          style={[
-            styles.textView,
-            {
-              backgroundColor: "#EE2A90",
-              alignItems: "center",
-              marginVertical: 30,
-            },
-          ]}
-        >
-          <Text style={[styles.text, { color: "#fff" }]}>CHECKOUT</Text>
-        </TouchableOpacity> */}
       </View>
     </View>
   );

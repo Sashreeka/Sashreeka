@@ -9,8 +9,11 @@ import {
   View,
   StatusBar,
 } from "react-native";
-import Feather from "react-native-vector-icons/Feather";
+
 import colors from "../../assets/colors/colors";
+
+import Feather from "react-native-vector-icons/Feather";
+Feather.loadFont();
 
 import Icon from "react-native-vector-icons/MaterialIcons";
 
@@ -107,14 +110,24 @@ export default function PaymentMethodsScreen({ navigation }) {
             paddingTop: 15,
             alignItems: "center",
             backgroundColor: colors.secondary,
-            backgroundColor: colors.secondary,
-            paddingBottom: 20,
+            padding: 8,
           }}
         >
-          <Icon
-            name="arrow-back-ios"
-            size={28}
-            onPress={() => navigation.goBack()}
+          <Feather
+            name="menu"
+            size={24}
+            color={colors.textDark}
+            onPress={() => navigation.openDrawer()}
+          ></Feather>
+          <Image
+            source={require("../../assets/images/profileimg_girl.jpg")}
+            style={{
+              width: 40,
+              height: 40,
+              borderRadius: 40,
+              marginLeft: 10,
+            }}
+            // onPress={() => navigation.openDrawer()}
           />
         </View>
       </View>
