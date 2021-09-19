@@ -40,6 +40,33 @@ router.get("/farmer/getorderhistory", (req, res) => {
   });
 });
 
+router.get("/farmer/getOrderHistoryById", (req, res) => {
+  console.log("farmer.js------->getOrderHistoryById");
+  const sqlget =
+    "SELECT * from orders LEFT JOIN ordercontainsfertilizer ON orders.orderId = ordercontainsfertilizer.orderId WHERE farmerPhoneNumber = '0713705751' GROUP BY orders.orderId ORDER BY ordereddate DESC";
+  // "select * from orders WHERE farmerPhoneNumber = '0713705751' ORDER BY ordereddate DESC ";
+  db.query(sqlget, (err, result) => {
+    res.send(result);
+    console.log("/farmer/getOrderHistoryById");
+    if (err) {
+      console.log(err);
+    }
+  });
+});
+
+router.get("/farmer/getOrderItemsById", (req, res) => {
+  console.log("farmer.js------->getOrderItemsById");
+  const sqlget =
+    "SELECT * from orders LEFT JOIN ordercontainsfertilizer ON orders.orderId = ordercontainsfertilizer.orderId WHERE farmerPhoneNumber = '0713705751' AND orders.orderId = 202100005";
+  db.query(sqlget, (err, result) => {
+    res.send(result);
+    console.log("/farmer/getOrderHistoryById");
+    if (err) {
+      console.log(err);
+    }
+  });
+});
+
 //home page fertilizer categories
 router.get("/farmer/getcategories", (req, res) => {
   console.log("farmer.js------->getcategories");

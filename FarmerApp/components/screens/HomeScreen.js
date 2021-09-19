@@ -230,11 +230,11 @@ export default function HomeScreen({ navigation }) {
             >
               <View style={styles.cardNew}>
                 <ImageBackground
-                  source={require("../../assets/consts/pictures/Vegetables.jpg")}
-                  // source={{ uri: item.photo }}
+                  // source={require("../../assets/consts/pictures/Vegetables.jpg")}
+                  source={{ uri: item.photo }}
 
                   style={styles.imageBg}
-                  resizeMode="contain"
+                  // resizeMode="contain"
                 >
                   <Text style={styles.imageBgText}>{item.description}</Text>
                 </ImageBackground>

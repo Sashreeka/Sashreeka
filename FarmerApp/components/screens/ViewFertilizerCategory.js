@@ -143,8 +143,8 @@ export default function ViewFertilizerCategory({ route, navigation }) {
             }}
           >
             <Image
-              source={require("../../assets/consts/pictures/dummypic.png")}
-              // source={{ uri: val.photo }}
+              // source={require("../../assets/consts/pictures/dummypic.png")}
+              source={{ uri: val.photo }}
               style={{
                 flex: 1,
                 resizeMode: "contain",

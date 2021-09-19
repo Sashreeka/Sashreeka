@@ -39,8 +39,8 @@ export default function CartScreen({ navigation }) {
     return (
       <View style={styles.cartCard}>
         <Image
-          source={require("../../assets/consts/pictures/dummypic.png")}
-          // source={{ uri: item.photo }}
+          // source={require("../../assets/consts/pictures/dummypic.png")}
+          source={{ uri: item.photo }}
           style={{ height: 80, width: 80 }}
           resizeMode="contain"
         />

@@ -17,7 +17,9 @@ import ViewOrderButton from "../buttons";
 
 Feather.loadFont();
 
-export default OrderDetailsScreen = ({ navigation }) => {
+export default OrderDetailsScreen = ({ navigation, route }) => {
+  const orderBlock = route.params;
+
   var getInitialState = () => {
     return {
       color: "orange",
@@ -85,7 +87,7 @@ export default OrderDetailsScreen = ({ navigation }) => {
                 <Text>Summary</Text>
               </View>
               <View>
-                <Text style={styles.topicBold}>Order ID: 112130000</Text>
+                <Text style={styles.topicBold}>Order ID: 202100005</Text>
               </View>
               <View style={styles.center}>
                 <Text style={styles.textRegular}>Date: 2021-06-21</Text>
@@ -144,11 +146,11 @@ export default OrderDetailsScreen = ({ navigation }) => {
                   </Text>
                 </View>
                 <View>
-                  <Text style={styles.itemValue}>Rs.7608.00</Text>
+                  <Text style={styles.itemValue}>Rs.7608</Text>
                 </View>
-                <View>
+                {/* <View>
                   <Text style={styles.itemValueWithoutOffer}>Rs.8430.00</Text>
-                </View>
+                </View> */}
               </View>
               <View style={styles.itemcardRight}>
                 <Image

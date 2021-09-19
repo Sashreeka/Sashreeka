@@ -25,9 +25,9 @@ export default function OrderHistoryScreen({ navigation }) {
   useEffect(() => {
     Axios.get("http://192.168.8.222:4000/farmer/getOrderHistoryById").then(
       (response) => {
-        console.log(response.data[0].famerPhoneNumber);
-        console.log(response.data[0].confirmationFlag);
-        console.log(response.data[0].distance);
+        // console.log(response.data[0].famerPhoneNumber);
+        // console.log(response.data[0].confirmationFlag);
+        console.log(response.data[0]);
         setHistoryList(response.data);
       }
     );
@@ -85,9 +85,19 @@ export default function OrderHistoryScreen({ navigation }) {
         }}
       >
         {/* <Icon name="arrow-back-ios" size={28} onPress={navigation.goBack} /> */}
-        <Text style={{ fontSize: 24, fontWeight: "bold" }}>
-          My Order History
-        </Text>
+        <Text style={{ fontSize: 24, fontWeight: "bold" }}>My Orders</Text>
+
+        <Image
+          source={require("../../assets/consts/pictures/orderdummypic5.png")}
+          style={{
+            height: 125,
+            width: 400,
+            resizeMode: "contain",
+            marginTop: 5,
+            borderTopLeftRadius: 50,
+            borderBottomRightRadius: 50,
+          }}
+        />
       </View>
 
       <ScrollView
@@ -100,23 +110,35 @@ export default function OrderHistoryScreen({ navigation }) {
             {historylist.map((val) => {
               return (
                 <View key={val.orderId}>
-                  <View style={styles.order}>
-                    <Text style={styles.topicBold}>
-                      <Text>ORD NO: {val.orderId}</Text>
-                    </Text>
-                    <Text style={styles.textRegular}>Date:12/05/2021</Text>
-                    <Text style={styles.textRegular}>Price:RS.389.00</Text>
-                    <Text style={styles.textRegular}>
-                      Order Status:{orderstatus(val.confirmationFlag)}
-                    </Text>
-                    <TouchableOpacity
-                      onPress={() => navigation.navigate("OrderDetailsScreen")}
-                    >
-                      <View style={styles.viewOrderButtonview}>
-                        <ViewOrderButton />
-                      </View>
-                    </TouchableOpacity>
-                  </View>
+                  <TouchableOpacity
+                    onPress={() =>
+                      navigation.navigate("OrderDetailsScreen", val)
+                    }
+                  >
+                    <View style={styles.order}>
+                      <Text style={styles.topicBold}>
+                        ORD NO: {val.orderId}
+                      </Text>
+                      <Text style={styles.textRegular}>
+                        Order Date: {val.ordered}
+                      </Text>
+                      <Text style={styles.textRegular}>
+                        Delivery Date: {val.ordered}
+                      </Text>
+                      <Text style={styles.textRegular}>
+                        Total Price: RS. {val.amount}
+                      </Text>
+                      <Text style={styles.textRegular}>
+                        Total Price: RS. {val.amount}
+                      </Text>
+                      <Text style={styles.textRegular}>
+                        Delivery Charge: RS. {val.deliveryCharge}
+                      </Text>
+                      <Text style={styles.textRegular}>
+                        Order Status:{orderstatus(val.status)}
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
                   <View style={styles.hr} />
                 </View>
               );
@@ -135,9 +157,10 @@ const styles = StyleSheet.create({
 
   itemDetailcardWrapper2: {
     backgroundColor: "white",
-    margin: 20,
-    paddingHorizontal: 20,
-    marginBottom: 5,
+    marginTop: 5,
+    marginHorizontal: 30,
+    paddingHorizontal: 5,
+    marginBottom: 10,
     borderRadius: 20,
     shadowColor: "black",
     shadowOffset: {
@@ -211,7 +234,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   order: {
-    paddingVertical: 20,
+    paddingVertical: 5,
     alignItems: "center",
   },
   outForDelivery: {

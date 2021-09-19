@@ -79,7 +79,7 @@ export function DrawerContent(props) {
               icon={({ color, size }) => (
                 <Icon name="history" color={color} size={size} />
               )}
-              label="Order History"
+              label="My Orders"
               onPress={() => {
                 props.navigation.navigate("OrderHistoryScreen");
               }}

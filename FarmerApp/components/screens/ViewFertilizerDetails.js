@@ -87,8 +87,8 @@ export default function ViewFertilizerDetails({ navigation, route }) {
             }}
           >
             <Image
-              source={require("../../assets/consts/pictures/dummypic.png")}
-              // source={{ uri: val.photo }}
+              // source={require("../../assets/consts/pictures/dummypic.png")}
+              source={{ uri: val.photo }}
               style={{
                 flex: 1,
                 resizeMode: "contain",
@@ -192,8 +192,8 @@ export default function ViewFertilizerDetails({ navigation, route }) {
       >
         <View style={styles.imageContainer}>
           <Image
-            // source={{ uri: plant.photo }}
-            source={require("../../assets/consts/pictures/dummypic2.png")}
+            source={{ uri: plant.photo }}
+            // source={require("../../assets/consts/pictures/dummypic2.png")}
             style={styles.imageNew}
             // style={{
             //   resizeMode: "contain",

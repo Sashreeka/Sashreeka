@@ -88,7 +88,7 @@ export default function OnlinePaymentScreen({ navigation }) {
         </Text>
       </View>
 
-      <View
+      {/* <View
         style={[
           styles.card,
           { backgroundColor: "#FC328A", alignSelf: "center" },
@@ -127,13 +127,10 @@ export default function OnlinePaymentScreen({ navigation }) {
             }}
           />
         </View>
-      </View>
+      </View> */}
 
       <View
-        style={[
-          styles.card,
-          { backgroundColor: "#000", alignSelf: "center" },
-        ]}
+        style={[styles.card, { backgroundColor: "#000", alignSelf: "center" }]}
       >
         <Text style={{ fontSize: 18, fontWeight: "bold", color: "#fff" }}>
           BOC
@@ -143,7 +140,7 @@ export default function OnlinePaymentScreen({ navigation }) {
             fontSize: 12,
             fontWeight: "bold",
             color: "#fff",
-            marginVertical: 10,
+            marginVertical: 20,
           }}
         >
           1452 2695 3502
@@ -217,8 +214,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   card: {
-    width: 200,
-    height: 110,
+    width: 250,
+    height: 130,
     marginHorizontal: 15,
     borderRadius: 14,
     padding: 8,
