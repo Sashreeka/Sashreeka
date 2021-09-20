@@ -27,11 +27,20 @@ export default function ViewFertilizerDetails({ navigation, route }) {
 
   const [productlist, setproductlist] = useState([]);
 
+  const [cartlist, setcartlist] = useState([]);
+
+  // const addToCart = (name) => {
+  //   console.log("addToCart");
+  //   console.log(name);
+  // };
+
   useEffect(() => {
+    console.log(cartlist);
+
     Axios.get("http://192.168.8.222:4000/farmer/getproducts").then(
       (response) => {
         setproductlist(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       }
     );
   }, []);
@@ -44,7 +53,7 @@ export default function ViewFertilizerDetails({ navigation, route }) {
       >
         <View
           style={{
-            height: 130,
+            height: 140,
             backgroundColor: colors.light,
             width: screenwidth,
             marginHorizontal: 10,
@@ -87,8 +96,8 @@ export default function ViewFertilizerDetails({ navigation, route }) {
             }}
           >
             <Image
-              // source={require("../../assets/consts/pictures/dummypic.png")}
-              source={{ uri: val.photo }}
+              source={require("../../assets/consts/pictures/dummypic.png")}
+              // source={{ uri: val.photo }}
               style={{
                 flex: 1,
                 resizeMode: "contain",
@@ -123,14 +132,29 @@ export default function ViewFertilizerDetails({ navigation, route }) {
             </Text>
             <View
               style={{
-                height: 15,
-                width: 15,
+                height: 25,
+                width: 25,
                 backgroundColor: COLORS.green,
                 borderRadius: 5,
                 justifyContent: "center",
                 alignItems: "center",
                 marginRight: 5,
               }}
+              onPress={() =>
+                setcartlist((cartlist) => [
+                  ...cartlist,
+                  {
+                    fertilizerId: plant.fertilizerId,
+                    name: plant.name,
+                    description: plant.description,
+                    unitPrice: plant.unitPrice,
+                    unitWeight: plant.unitWeight,
+                    measurementUnit: plant.measurementUnit,
+                    quantity: 5,
+                    photo: plant.photo,
+                  },
+                ])
+              }
             >
               <Text
                 style={{
@@ -139,7 +163,7 @@ export default function ViewFertilizerDetails({ navigation, route }) {
                   fontWeight: "bold",
                 }}
               >
-                <Icon name="shopping-cart" size={10} />
+                <Icon name="shopping-cart" size={20} />
               </Text>
             </View>
           </View>
@@ -177,7 +201,9 @@ export default function ViewFertilizerDetails({ navigation, route }) {
           <Icon
             name="shopping-cart"
             size={28}
-            onPress={() => navigation.navigate("CartScreen")}
+            onPress={() =>
+              navigation.navigate("CartScreen", { mycartlist: cartlist })
+            }
           />
         </View>
       </View>
@@ -319,9 +345,26 @@ export default function ViewFertilizerDetails({ navigation, route }) {
                     fontSize: 18,
                     fontWeight: "bold",
                   }}
+                  onPress={() =>
+                    setcartlist((cartlist) => [
+                      ...cartlist,
+                      {
+                        fertilizerId: plant.fertilizerId,
+                        name: plant.name,
+                        description: plant.description,
+                        unitPrice: plant.unitPrice,
+                        unitWeight: plant.unitWeight,
+                        measurementUnit: plant.measurementUnit,
+                        quantity: 5,
+                        photo: plant.photo,
+                      },
+                    ])
+                  }
+                  // onPress={() => addToCart(plant.name)}
                 >
                   Add To Cart
                 </Text>
+                {/* <Text>{state}</Text> */}
               </View>
             </View>
           </View>
@@ -365,13 +408,10 @@ export default function ViewFertilizerDetails({ navigation, route }) {
         <FlatList
           horizontal
           showsHorizontalScrollIndicator={false}
-          // contentContainerStyle={{
-          //   marginTop: 10,
-          //   paddingBottom: 50,
-          // }}
-          // numRows={2}
+          // showsVerticalScrollIndicator={false}
+          // numColumns={4}
           data={productlist.filter((r) => r.fertilizerId != plant.fertilizerId)}
-          keyExtractor={(item) => item.fertilizerId}
+          keyExtractor={(item) => item.fertilizerId.toString()}
           renderItem={({ item }) => {
             return <Card val={item} />;
           }}

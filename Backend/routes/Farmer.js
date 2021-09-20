@@ -43,7 +43,7 @@ router.get("/farmer/getorderhistory", (req, res) => {
 router.get("/farmer/getOrderHistoryById", (req, res) => {
   console.log("farmer.js------->getOrderHistoryById");
   const sqlget =
-    "SELECT * from orders LEFT JOIN ordercontainsfertilizer ON orders.orderId = ordercontainsfertilizer.orderId WHERE farmerPhoneNumber = '0713705751' GROUP BY orders.orderId ORDER BY ordereddate DESC";
+    "SELECT * from orders LEFT JOIN ordercontainsfertilizer ON orders.orderId = ordercontainsfertilizer.orderId WHERE farmerPhoneNumber = '+94713705751' GROUP BY orders.orderId ORDER BY ordereddate DESC";
   // "select * from orders WHERE farmerPhoneNumber = '0713705751' ORDER BY ordereddate DESC ";
   db.query(sqlget, (err, result) => {
     res.send(result);
@@ -110,10 +110,25 @@ router.get("/farmer/getproducts", (req, res) => {
   });
 });
 
+router.get("/farmer/getproducts5", (req, res) => {
+  console.log("farmer.js------->getproducts");
+  const sqlget = "select * from fertilizer LIMIT 5";
+  db.query(sqlget, (err, result) => {
+    res.send(result);
+    console.log("/farmer/getproducts");
+    console.log(result[0]);
+
+    if (err) {
+      console.log(err);
+    }
+  });
+});
+
 router.get("/farmer/getproductsall", (req, res) => {
   console.log("farmer.js------->getproductsall");
   const sqlget =
-    "SELECT * FROM fertilizer INNER JOIN fertilizerferlilizercategory ON fertilizer.fertilizerId =fertilizerferlilizercategory.fertilizerId";
+    "SELECT fertilizer.fertilizerId, name, description, offer, ROUND(unitPrice*(100-offer)/100) AS price, unitPrice, unitWeight, photo, stock, reOrderLevel, measurementUnit, caption, DATE_FORMAT(arrivalTime, '%d %b %Y') as arrivalTime, fertilizerCategoryId FROM fertilizer INNER JOIN fertilizerferlilizercategory ON fertilizer.fertilizerId =fertilizerferlilizercategory.fertilizerId";
+
   db.query(sqlget, (err, result) => {
     res.send(result);
     console.log("/farmer/getproductsall");
@@ -122,6 +137,14 @@ router.get("/farmer/getproductsall", (req, res) => {
     if (err) {
       console.log(err);
     }
+  });
+});
+router.get("/farmer/getOrdersOffers", (req, res) => {
+  const sqlgetfer =
+    "SELECT fertilizerId AS id, name, description, offer, ROUND(unitPrice*(100-offer)/100) AS price, unitPrice, unitWeight AS weight, photo AS img, stock, reOrderLevel, measurementUnit, caption, arrivalTime FROM fertilizer WHERE offer>0 ORDER BY offer DESC";
+  db.query(sqlgetfer, (err, result) => {
+    // console.log(result);
+    res.send(result);
   });
 });
 

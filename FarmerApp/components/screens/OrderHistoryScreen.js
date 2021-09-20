@@ -17,12 +17,20 @@ import Axios from "axios";
 
 import ViewOrderButton from "../common/Buttons";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 Feather.loadFont();
 
 export default function OrderHistoryScreen({ navigation }) {
   const [historylist, setHistoryList] = useState([]);
 
   useEffect(() => {
+    setTimeout(async () => {
+      const currentUser = await AsyncStorage.getItem("phoneNumber");
+      console.log(currentUser);
+      //    setIsLoading(false);
+    }, 1000);
+
     Axios.get("http://192.168.8.222:4000/farmer/getOrderHistoryById").then(
       (response) => {
         // console.log(response.data[0].famerPhoneNumber);
@@ -35,11 +43,17 @@ export default function OrderHistoryScreen({ navigation }) {
 
   const orderstatus = (flag) => {
     if (flag === 0) {
-      return <Text style={styles.PendingDelivery}>Please wait fot grace period.</Text>;
+      return (
+        <Text style={styles.PendingDelivery}>
+          Please wait fot grace period.
+        </Text>
+      );
     } else if (flag === 1) {
       return <Text style={styles.outForDelivery}>Delivery is on the way.</Text>;
     } else if (flag === 2) {
-      return <Text style={styles.SuccessfulDelivery}>Successfully delivered.</Text>;
+      return (
+        <Text style={styles.SuccessfulDelivery}>Successfully delivered.</Text>
+      );
     } else {
     }
   };

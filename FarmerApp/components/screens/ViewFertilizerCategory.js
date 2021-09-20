@@ -122,6 +122,7 @@ export default function ViewFertilizerCategory({ route, navigation }) {
                 // color={val.like ? COLORS.red : COLORS.black}
                 color={COLORS.red}
               /> */}
+
               <Text
                 style={{
                   // color=colors.white,
@@ -143,8 +144,8 @@ export default function ViewFertilizerCategory({ route, navigation }) {
             }}
           >
             <Image
-              // source={require("../../assets/consts/pictures/dummypic.png")}
-              source={{ uri: val.photo }}
+              source={require("../../assets/consts/pictures/dummypic.png")}
+              // source={{ uri: val.photo }}
               style={{
                 flex: 1,
                 resizeMode: "contain",
@@ -161,10 +162,36 @@ export default function ViewFertilizerCategory({ route, navigation }) {
               fontSize: 16,
               marginTop: 10,
               marginLeft: 10,
+              alignSelf: "flex-start",
             }}
           >
             {val.name}
           </Text>
+          <View
+            style={{
+              height: 18,
+              width: 75,
+              backgroundColor: COLORS.white,
+              borderRadius: 10,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 8,
+                color: COLORS.red,
+                fontWeight: "bold",
+              }}
+            >
+              {/* <Icon name="shopping-cart" size={15} /> */}
+              <Icon name="star" size={12} />
+              <Icon name="star" size={12} />
+              <Icon name="star" size={12} />
+              <Icon name="star-half" size={12} />
+              <Icon name="star-half" size={12} />
+            </Text>
+          </View>
           <View
             style={{
               flexDirection: "row",
@@ -172,31 +199,47 @@ export default function ViewFertilizerCategory({ route, navigation }) {
               marginTop: 5,
             }}
           >
-            <Text
-              style={{ fontSize: 16, fontWeight: "normal", marginLeft: 10 }}
-            >
-              Rs. {val.unitPrice}
-            </Text>
-            <View
-              style={{
-                height: 25,
-                width: 25,
-                backgroundColor: COLORS.green,
-                borderRadius: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text
+            {val.offer ? (
+              <View
                 style={{
-                  fontSize: 14,
-                  color: COLORS.white,
-                  fontWeight: "bold",
+                  flex: 1,
+                  flexDirection: "row",
                 }}
               >
-                <Icon name="shopping-cart" size={15} />
+                <Text
+                  style={{
+                    fontSize: 16,
+                    fontWeight: "normal",
+                    marginLeft: 10,
+                    textDecorationLine: "line-through",
+                    textDecorationStyle: "solid",
+                    // lineHeight:10,
+                  }}
+                >
+                  Rs. {val.unitPrice}
+                </Text>
+                <Text
+                  style={{
+                    fontSize: 16,
+                    fontWeight: "bold",
+                    marginLeft: 10,
+                    color: "#e23a3a",
+                  }}
+                >
+                  Rs. {val.price}
+                </Text>
+              </View>
+            ) : (
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontWeight: "normal",
+                  marginLeft: 10,
+                }}
+              >
+                Rs. {val.unitPrice}
               </Text>
-            </View>
+            )}
           </View>
         </View>
       </TouchableOpacity>
@@ -230,6 +273,7 @@ export default function ViewFertilizerCategory({ route, navigation }) {
           {/* <Image
             source={require("../../assets/images/profileimg_girl.jpg")}
             style={styles.profileImage}
+            // onPress={() => navigation.openDrawer()}
           /> */}
         </View>
       </View>

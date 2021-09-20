@@ -25,13 +25,26 @@ import Axios from "axios";
 
 Feather.loadFont();
 
-export default function CartScreen({ navigation }) {
-  const [cartlist, setcartlist] = useState([]);
+export default function CartScreen({ navigation, route }) {
+  const { mycartlist } = route.params;
+
+  const [cartlist, setcartlist] = useState(mycartlist);
+
+  const removeItem = (id) => {
+    console.log(id);
+    setcartlist((cartlist) => {
+      let newcart = cartlist.filter((item) => item.fertilizerId !== id);
+      return newcart;
+    });
+  };
 
   useEffect(() => {
+    // console.log("id");
+    // console.log(mycartlist);
+
     Axios.get("http://192.168.8.222:4000/farmer/getCart").then((response) => {
       setcartlist(response.data);
-      console.log(response.data[0]);
+      // console.log(response.data[0]);
     });
   }, []);
 
@@ -39,8 +52,8 @@ export default function CartScreen({ navigation }) {
     return (
       <View style={styles.cartCard}>
         <Image
-          // source={require("../../assets/consts/pictures/dummypic.png")}
-          source={{ uri: item.photo }}
+          source={require("../../assets/consts/pictures/dummypic.png")}
+          // source={{ uri: item.photo }}
           style={{ height: 80, width: 80 }}
           resizeMode="contain"
         />
@@ -59,6 +72,7 @@ export default function CartScreen({ navigation }) {
           <Text style={{ fontSize: 17, fontWeight: "bold" }}>
             Rs. {item.unitPrice} ({item.unitWeight} {item.measurementUnit})
           </Text>
+
           {/* <Text style={{ fontSize: 17, fontWeight: "bold" }}>
             {item.unitWeight}
              {item.measurementUnit}
@@ -70,9 +84,17 @@ export default function CartScreen({ navigation }) {
             <Text
               style={{ fontWeight: "bold", fontSize: 18, paddingHorizontal: 5 }}
             >
-              2
+              {item.fertilizerId}
             </Text>
             <Icon name="add" size={25} color={COLORS.white} />
+          </View>
+          <View style={styles.removeBtn}>
+            <Icon
+              name="delete-outline"
+              size={20}
+              color={COLORS.white}
+              onPress={() => removeItem(item.fertilizerId)}
+            />
           </View>
         </View>
       </View>
@@ -111,12 +133,13 @@ export default function CartScreen({ navigation }) {
       <View style={{ backgroundColor: COLORS.white, flex: 1 }}>
         <View style={styles.header}>
           {/* <Icon name="arrow-back-ios" size={28} onPress={navigation.goBack} /> */}
-          <Text style={{ fontSize: 24, fontWeight: "bold" }}>My Cart</Text>
+          <Text style={{ fontSize: 24, fontWeight: "bold" }}>Cart</Text>
         </View>
         <FlatList
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ paddingBottom: 80 }}
-          data={cartlist}
+          data={mycartlist}
+          // keyExtractor={(item) => item.fertilizerId.toString()}
           ListFooterComponentStyle={{ paddingHorizontal: 20, marginTop: 20 }}
           ListFooterComponent={() => (
             <View>
@@ -146,7 +169,7 @@ export default function CartScreen({ navigation }) {
               </View>
             </View>
           )}
-          keyExtractor={(item) => item.fertilizerId}
+          keyExtractor={(item) => item.fertilizerId.toString()}
           renderItem={({ item }) => <CartCard item={item} />}
         />
       </View>
@@ -190,6 +213,18 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.green,
     height: 50,
     borderRadius: 30,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  removeBtn: {
+    width: 28,
+    height: 28,
+    backgroundColor: COLORS.red,
+    // borderRadius: 30,
+    // paddingHorizontal: 5,
+    marginTop: 10,
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
   },
