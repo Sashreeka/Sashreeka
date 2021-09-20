@@ -4,7 +4,7 @@ import Sidebar from '../../components/sidebar/Sidebar';
 import axios from 'axios';
 import NewForm from './NewForm';
 import { Paper ,makeStyles} from '@material-ui/core';
-import { Publish } from '@material-ui/icons';
+import { HdrOffRounded, Publish } from '@material-ui/icons';
 import {Image} from 'cloudinary-react';
 
 
@@ -24,12 +24,12 @@ export default function NewProduct() {
     const [s,setS]=useState('');
 
     useEffect(()=>{
-        axios.get("http://localhost:4000/getImage").then((res)=>{
+        // axios.get("http://localhost:4000/getImage").then((res)=>{
 
-            console.log(res.data[0].photo);
-            setS(res.data[0].photo);
+        //     console.log(res.data[0].photo);
+        //     setS(res.data[0].photo);
 
-        })
+        // })
 
 
     },[])
@@ -53,67 +53,6 @@ export default function NewProduct() {
 
     const classes=useStyles();
 
-    // const dataset = [
-    //     {
-    //       id: "1",
-    //       name: "ishan",
-    //       age: 23,
-    //      item:[
-    //          {itemname:"f1",quantity:10},
-    //          {itemname:"f2",quantity:30},
-    //          {itemname:"f3",quantity:20},
-
-    //      ]
-    //     },
-    //     {
-    //       id: "2",
-    //       name: "ishan1",
-    //       age: 23,
-    //       item:[
-    //         {itemname:"f1",quantity:30},
-    //         {itemname:"f2",quantity:30},
-          
-
-    //     ]
-    //     },
-    //     {
-    //       id: "3",
-    //       name: "ishan2",
-    //       age: 23,
-    //       item:[
-    //         {itemname:"f1",quantity:10},
-           
-
-    //     ]
-    //     },
-    //     {
-    //       id: "4",
-    //       name: "ishan3",
-    //       age: 23,
-    //       item:[
-    //         {itemname:"f1",quantity:10},
-    //         {itemname:"f2",quantity:30},
-    //         {itemname:"f3",quantity:20},
-
-    //     ]
-    //     },
-       
-    //   ];
-
-    // const data=[
-    //     {"id":1,"name":"ishan","item":[{"iname":"f1"},{"iname":"f2"}]},
-    //     {"id":2,"name":"ishan","item":[{"iname":"f1"}]}
-    // ];
-
-
-    // useEffect(()=>{
-
-    //     axios.get("http://localhost:4000/getImage").then((response)=>{
-    //         setData(response.data);
-
-    //     })
-    // },[])
-
     // const [data,setData]=useState({
     //     name:'',
     //     description:'',
@@ -133,6 +72,7 @@ export default function NewProduct() {
         const data=new FormData();
 
         data.append('file',files[0])
+        setFilePreview(URL.createObjectURL(e.target.files[0]));
         data.append('upload_preset','uploadimages')
 
         const res=await fetch("https://api.cloudinary.com/v1_1/do1sv3tbt/image/upload",
@@ -159,7 +99,7 @@ export default function NewProduct() {
         // reader.readAsDataURL(e.target.files[0])
       
         //  setImage(e.target.files[0]);
-         setFilePreview(URL.createObjectURL(e.target.files[0]));
+        
 
 
 
@@ -223,7 +163,13 @@ export default function NewProduct() {
 
         // }
         ).then((response)=>{
+            if(response.status===200)
+            {
+                alert('Fertilizer Item added Successfully.');
+                window.location.href="/products"
+            }
            console.log('SUCCESS');
+           console.log()
         }).catch((e)=>{
             console.log("Errr"+e);
         })
@@ -291,6 +237,10 @@ export default function NewProduct() {
 
                         </div>  
 
+                        {/* <div class="form-outline">
+                            <input type="text" id="form1" class="form-control" />
+                            <label class="form-label" for="form1">Example label</label>
+                      </div> */}
                       
                 <div class="form-outline flex-fill mb-3">
                    
@@ -346,14 +296,7 @@ export default function NewProduct() {
                     </div>
                 </div> 
               
-            {/* <img src={image} alt=""/> */}
-               
-               
-                {/* <div class="mb-3">
-                    <label class="form-label">photo</label>
-                    <input type="file" class="form-control" name="image"onChange={changeIma}/>
-                   
-                </div> */}
+          
 
                 
 
@@ -372,7 +315,7 @@ export default function NewProduct() {
                 <button type="submit" class="btn btn-primary" onClick={sendData }>Submit</button>
             </form>
 
-
+{/* 
             <Image
             cloudName="do1sv3tbt"
             publicId={image}
@@ -384,68 +327,15 @@ export default function NewProduct() {
             <Image
                 cloudName="do1sv3tbt"
                 publicId={s}
-            />
-
-{/* 
-{
-    data.map((item)=>(
-        <div key={item.id}>
-            <p>{item.name}</p>
-
-            <img src={"http://localhost:3000/image/"+item.image} alt="" width="20%" height="20%"/>
-        </div>
-    ))
-} */}
-
-{/*            
-            <img src={require("./../../../../../../../../Backend/image/$`item.image`")  } alt=""/> */}
-            
-            {/* <img src="./../../image/image_1630947896098.PNG" alt="" width="20%" height="20%"/> that's correct 
-
-
-
-            
-            {/* <form className="addProductForm">
-                <div className="addProductItem">
-                    <label>Image</label>
-                    <input type="file" id="file"/>
-
-                </div>
-
-
-                <div className="addProductItem">
-                    <label>Name</label>
-                    <input type="text" placeholder="Apple Airpods"/>
-
-                </div>
-
-                <div className="addProductItem">
-                    <label>Stock</label>
-                    <input type="text" placeholder="123"/>
-
-                </div>
-
-               
+            /> */}
 
 
 
 
-                <div className="addProductItem">
-                    <label>Active</label>
-                    <select className="" name="active" id="active">
-                        <option value='yes'>Yes</option>
-                        <option value='no'>No</option>
 
-                    </select>
+           
 
-                </div>
-                <button className="addProductButton">Create</button>
-
-
-
-            </form> */}
-
-            <div className="card w-80">
+            {/* <div className="card w-80">
            
                 <div className="card-body">
                 <input type="text" placeholder="enter name"/>
@@ -459,10 +349,10 @@ export default function NewProduct() {
                 <input type="text" placeholder="enter name"/>
                 </div>
 
-            </div>
-           <Paper className={classes.pageContent} elevation={3}>
+            </div> */}
+           {/* <Paper className={classes.pageContent} elevation={3}>
              <NewForm/>
-           </Paper>
+           </Paper> */}
             
         </div>
         </div>

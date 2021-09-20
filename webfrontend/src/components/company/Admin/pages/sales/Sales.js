@@ -1,13 +1,26 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import "./sales.css";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { SalesData, UserData } from "../../dummyData";
 import Chart from "../../components/chart/Chart";
 import SalesDetails from "./salesDetails/SalesDetails";
+import axios from 'axios';
+
 
 import { BarChart } from "@material-ui/icons";
 
 export default function Sales() {
+
+  const [income,setIncome]=useState([]);
+
+  useEffect(()=>{
+    axios.get('http://localhost:4000/adminSales/getIncomeAnalytics').then((response)=>{
+     // console.log(response.data);
+      setIncome(response.data);
+    })
+
+    
+  },[])
   return (
     <div className="Salescon">
       <Sidebar title="sales" />
@@ -21,14 +34,14 @@ export default function Sales() {
                 </div> */}
 
         <Chart
-          data={UserData}
+          data={income}
           title="Growth of Income"
           grid
           line2={true}
-          dataKey="Monthly Income Rs."
-          dataKey2="Monthly sales income"
+          dataKey="totalIncome"
+          dataKey2="salesIncome"
           line3={true}
-          dataKey3="Delivery Income"
+          dataKey3="deliveryIncome"
         />
 
         <SalesDetails />

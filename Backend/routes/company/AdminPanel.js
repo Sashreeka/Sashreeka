@@ -43,9 +43,9 @@ const upload = multer({
 });
 
 ///////////////sample
-router.post("/addFertilizer", upload.single("image"), (req, res) => {
+router.post("/addFertilizer", (req, res) => {
   const name = req.body.name;
-  const image = req.file.filename;
+  const image = req.body.image;
   const description = req.body.description;
   const offer = req.body.offer;
   const unitPrice = req.body.unitPrice;
@@ -83,10 +83,10 @@ router.post("/addFertilizer", upload.single("image"), (req, res) => {
 });
 
 //update fertilizer item
-router.put("/updateFertilizerItem/:id", upload.single("image"), (req, res) => {
+router.put("/updateFertilizerItem/:id", (req, res) => {
   const id = req.params.id;
   const name = req.body.name;
-  const image = req.file.filename;
+  const image = req.body.image;
   const description = req.body.description;
   const offer = req.body.offer;
   const unitPrice = req.body.unitPrice;
@@ -95,16 +95,16 @@ router.put("/updateFertilizerItem/:id", upload.single("image"), (req, res) => {
   const reOrderLevel = req.body.reOrderLevel;
   const measurementUnit = req.body.measurementUnit;
   const caption = req.body.caption;
-  name,
-    description,
-    offer,
-    unitPrice,
-    unitWeight,
-    photo,
-    stock,
-    reOrderLevel,
-    measurementUnit,
-    caption;
+  // name,
+  //   description,
+  //   offer,
+  //   unitPrice,
+  //   unitWeight,
+  //   photo,
+  //   stock,
+  //   reOrderLevel,
+  //   measurementUnit,
+  //   caption;
 
   const sqlUpdate =
     "UPDATE fertilizer SET name=?,description=?,offer=?,unitPrice=?,unitWeight=?,photo=?,stock=?,reOrderLevel=?,measurementUnit=?,caption=? WHERE fertilizerId=?";
@@ -126,8 +126,8 @@ router.put("/updateFertilizerItem/:id", upload.single("image"), (req, res) => {
     ],
     (err, result) => {
       console.log(err);
-      // console.log(result);
-      // res.send(result);
+       console.log(result);
+       res.send(result);
     }
   );
 });
@@ -354,5 +354,146 @@ router.post("/save", (req, res) => {
 // });
 
 ////SELECT DATE_FORMAT(date,'%Y-%m') AS date FROM ordercontainsfertilizer;
+
+//home page sales analytics
+
+router.get('/adminHome/getSalesAnalytics',(req,res)=>{
+  const sqlget='SELECT DATE_FORMAT(reg_date, "%b") AS name,COUNT(*) AS count,DATE_FORMAT(reg_date, "%m-%Y") AS mName FROM user WHERE reg_date <= NOW() and reg_date >= Date_add(Now(),interval - 12 month) GROUP BY DATE_FORMAT(reg_date, "%m-%Y") ORDER BY reg_date ASC;';
+  db.query(sqlget,(err,result)=>{
+      res.send(result);
+    //  console.log(err);
+  })
+})
+
+
+
+
+//get current month cost
+router.get('/adminHome/getThisMonthCost',(req,res)=>{
+  const sqlget='select SUM(deliveryCharge) AS deliveryCharge,YEAR(ordereddate) AS year,MONTHNAME(ordereddate) AS month FROM orders where MONTH(ordereddate)=MONTH(now()) and YEAR(ordereddate)=YEAR(now());';
+  db.query(sqlget,(err,result)=>{
+      res.send(result);
+    //  console.log(err);
+  })
+})
+
+//get last month cost
+router.get('/adminHome/getLastMonthCost',(req,res)=>{
+  const sqlget='SELECT SUM(deliveryCharge) AS lastdeliveryCharge,YEAR(ordereddate) AS year,MONTHNAME(ordereddate) AS lastMonth FROM orders WHERE YEAR(ordereddate) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH) AND MONTH(ordereddate) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH);';
+  db.query(sqlget,(err,result)=>{
+      res.send(result);
+     // console.log(err);
+  })
+})
+
+
+
+//get current month sales
+router.get('/adminHome/getThisMonthSales',(req,res)=>{
+  const sqlget='select SUM(amount) AS amount,YEAR(ordereddate) AS year,MONTHNAME(ordereddate) AS month FROM orders where MONTH(ordereddate)=MONTH(now()) and YEAR(ordereddate)=YEAR(now());';
+  db.query(sqlget,(err,result)=>{
+      res.send(result);
+    //  console.log(err);
+  })
+})
+
+//get last month sales
+router.get('/adminHome/getLastMonthSales',(req,res)=>{
+  const sqlget='SELECT SUM(amount) AS amount,YEAR(ordereddate) AS year,MONTHNAME(ordereddate) AS month FROM orders WHERE YEAR(ordereddate) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH) AND MONTH(ordereddate) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH);';
+  db.query(sqlget,(err,result)=>{
+      res.send(result);
+    //  console.log(err);
+  })
+})
+
+
+//get current month Revenue
+router.get('/adminHome/getThisMonthRevenue',(req,res)=>{
+  const sqlget='select SUM((deliveryCharge*0.1) +amount) AS amount,YEAR(ordereddate) AS year,MONTHNAME(ordereddate) AS month FROM orders where MONTH(ordereddate)=MONTH(now()) and YEAR(ordereddate)=YEAR(now());';
+  db.query(sqlget,(err,result)=>{
+      res.send(result);
+   //   console.log(err);
+  })
+})
+
+//get last month Revenue
+router.get('/adminHome/getLastMonthRevenue',(req,res)=>{
+  const sqlget='SELECT SUM((deliveryCharge*0.1) +amount) AS amount,YEAR(ordereddate) AS year,MONTHNAME(ordereddate) AS month FROM orders WHERE YEAR(ordereddate) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH) AND MONTH(ordereddate) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH);';
+  db.query(sqlget,(err,result)=>{
+      res.send(result);
+      // console.log(err);
+  })
+})
+
+
+
+////////////////////////////sales page- chart
+
+router.get('/adminSales/getIncomeAnalytics',(req,res)=>{
+  const sqlget='SELECT DATE_FORMAT(ordereddate, "%b") AS name,COUNT(*) AS count,DATE_FORMAT(ordereddate, "%m-%Y") AS mName, SUM((deliveryCharge*0.1) +amount) AS totalIncome,SUM(amount) AS salesIncome, SUM(deliveryCharge*0.1) AS deliveryIncome FROM orders WHERE ordereddate <= NOW() and ordereddate >= Date_add(Now(),interval - 12 month) GROUP BY DATE_FORMAT(ordereddate, "%m-%Y") ORDER BY ordereddate ASC;';
+  db.query(sqlget,(err,result)=>{
+      res.send(result);
+      // console.log(err);
+  })
+})
+
+
+
+
+
+
+/////////////deliveries chart cash
+
+router.get('/adminDeliveries/getDeliveryCountLabel',(req,res)=>{
+//  const sqlget="select paymentDateTime,COUNT(*) AS data,DAY(paymentDateTime)AS dateD, MONTHNAME(paymentDateTime) AS monthName,DATE_FORMAT(paymentDateTime,'%b') AS shortMonth,DATE_FORMAT(paymentDateTime, '%Y-%m-%d') AS newdateTime from payment where paymentType='cash' AND paymentDateTime > now() - INTERVAL 7 day GROUP BY DAY(paymentDateTime) ORDER BY paymentDateTime;";
+ const sqlget="select DAY(paymentDateTime)AS dateD from payment where  paymentType IN ('cash','online') AND paymentDateTime > now() - INTERVAL 7 day GROUP BY DAY(paymentDateTime) ORDER BY paymentDateTime;";
+ db.query(sqlget,(err,result)=>{
+     res.send(result);
+      console.log(err);
+ })
+})
+
+
+
+router.get('/adminDeliveries/getDeliveryCountCash',(req,res)=>{
+   const sqlget="select paymentDateTime,COUNT(*) AS data,DAY(paymentDateTime)AS dateD, MONTHNAME(paymentDateTime) AS monthName,DATE_FORMAT(paymentDateTime,'%b') AS shortMonth,DATE_FORMAT(paymentDateTime, '%Y-%m-%d') AS newdateTime from payment where paymentType='cash' AND paymentDateTime > now() - INTERVAL 7 day GROUP BY DAY(paymentDateTime) ORDER BY paymentDateTime;";
+ // const sqlget="select DAY(paymentDateTime)AS dateD from payment where paymentType='cash' AND paymentDateTime > now() - INTERVAL 7 day GROUP BY DAY(paymentDateTime) ORDER BY paymentDateTime;";
+  db.query(sqlget,(err,result)=>{
+      res.send(result);
+       console.log(err);
+  })
+})
+
+router.get('/adminDeliveries/getDeliveryCountOnline',(req,res)=>{
+   const sqlget="select paymentDateTime,COUNT(*) AS data,DAY(paymentDateTime)AS dateD, MONTHNAME(paymentDateTime) AS monthName,DATE_FORMAT(paymentDateTime,'%b') AS shortMonth,DATE_FORMAT(paymentDateTime, '%Y-%m-%d') AS newdateTime from payment where paymentType='online' AND paymentDateTime > now() - INTERVAL 7 day GROUP BY DAY(paymentDateTime) ORDER BY paymentDateTime;";
+  //const sqlget="select DAY(paymentDateTime)AS dateD from payment where paymentType='cash' AND paymentDateTime > now() - INTERVAL 7 day GROUP BY DAY(paymentDateTime) ORDER BY paymentDateTime;";
+  db.query(sqlget,(err,result)=>{
+      res.send(result);
+       console.log(err);
+  })
+})
+
+
+
+
+//contactus 
+router.get('/adminContactUS/getDetails',(req,res)=>{
+  const sqlget="SELECT * FROM contactus";
+ db.query(sqlget,(err,result)=>{
+     res.send(result);
+      console.log(err);
+ })
+})
+
+//complain 
+router.get('/adminComplaints/getDetails',(req,res)=>{
+  const sqlget="SELECT * FROM complaints;";
+ db.query(sqlget,(err,result)=>{
+     res.send(result);
+      console.log(err);
+ })
+})
+
+
 
 module.exports = router;

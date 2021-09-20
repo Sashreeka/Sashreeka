@@ -37,6 +37,11 @@ app.use(Store);
 const ContactUs=require("./routes/ContactUs");
 app.use(ContactUs);
 
+
+///admin panel home page
+// const HomePageAdmin=require('./routes/company/HomePageAdmin.js');
+// app.use(HomePageAdmin);
+
 app.listen(4000, () => {
   console.log("running port 4000");
 });

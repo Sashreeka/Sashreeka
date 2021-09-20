@@ -32,17 +32,19 @@ export default function OrderHistory() {
 
     useEffect(()=>{
 
+      const deliveryAgentPhoneNumber="0712345678"
+
       
     axios
-    .get("http://192.168.1.12:4000/deliveryAgent/history")
+    .get("http://192.168.1.12:4000/deliveryAgent/history/"+deliveryAgentPhoneNumber)
     .then((response) => {
-      if (response) {
+      // if (response) {
         // console.log(response.data);
         sethistoryDelivery(response.data);
         setSearchData(response.data);
-      } else {
-        console.log("error");
-      }
+      // } else {
+      //   console.log("error");
+      // }
     });
     },[]);
     //historyDelivery
@@ -308,7 +310,7 @@ export default function OrderHistory() {
 
                   <View style={{ flexDirection: "column" }}>
                     <Text style={styles.historyTText}>
-                    {item.city} - {item.firstName+" "}{item.lastName}
+                    {item.city} - {item.receiverName}
                      
                     </Text>
 

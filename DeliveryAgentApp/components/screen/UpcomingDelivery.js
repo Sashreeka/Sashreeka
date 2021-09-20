@@ -27,15 +27,19 @@ export default function UpcomingDelivery() {
 
     useEffect(()=>{
 
+      const deliveryAgentPhoneNumber="0712345678";
+
         axios
-        .get("http://192.168.1.12:4000/deliveryAgent/upcoming")
+        .get("http://192.168.1.12:4000/deliveryAgent/upcoming/"+deliveryAgentPhoneNumber)
         .then((response) => {
-          if (response) {
+          // if (response) {
             // console.log(response.data);
             setupcomingDelivery(response.data);
-          } else {
-            console.log("error");
-          }
+          // } else {
+          //   console.log("error");
+          // }
+        }).catch((e)=>{
+          console.log(e);
         });
     },[]);
     //upcomingDelivery
@@ -73,7 +77,7 @@ export default function UpcomingDelivery() {
                 style={styles.DeliveryItemWrapperIcon1}
               />
               <Text style={styles.DeliveryItemWrappersunTitle1}>
-                Quick Delivery- 23 July
+                Quick Delivery
               </Text>
             </View>
           </TouchableOpacity>
@@ -164,7 +168,7 @@ export default function UpcomingDelivery() {
                   <TouchableOpacity onPress={toggleExpanded}>
                     <View style={headerList}>
                       <Text style={headerText}>
-                        {item.city}- {item.firstName} {item.lastName}
+                        {item.city}- {item.receiverName} 
                       </Text>
                     </View>
                   </TouchableOpacity>
@@ -202,7 +206,7 @@ export default function UpcomingDelivery() {
                             marginTop: 10,
                           }}
                         >
-                          {item.address}
+                          {item.houseNumber} {item.streetName} {item.city}
                         </Text>
                         <Text
                           style={{
@@ -211,7 +215,7 @@ export default function UpcomingDelivery() {
                             marginLeft: 10,
                           }}
                         >
-                          Tel : {item.phoneNumber}
+                          Tel : {item.farmerPhoneNumber }
                         </Text>
                       </View>
                     </View>
@@ -262,7 +266,7 @@ const styles=StyleSheet.create({
           DeliveryItemWrappersunTitle1: {
             fontSize: 12,
             fontWeight: "bold",
-            marginLeft: 8,
+            marginLeft: 30,
           },
           headerList: {
             backgroundColor: "#F0F0F0",

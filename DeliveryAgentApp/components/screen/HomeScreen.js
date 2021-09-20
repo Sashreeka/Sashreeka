@@ -47,6 +47,7 @@ import TodayDeliveryButton from "./Home/TodayDeliveryButton";
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
 
+
 const HomeScreen = ({navigation}) => {
 
   const [len,setLen]=useState([])
@@ -163,6 +164,7 @@ const HomeScreen = ({navigation}) => {
            <View
            style={{marginLeft:270,}}
            >
+         
               <Ionicons 
               name="notifications" 
               size={30} 

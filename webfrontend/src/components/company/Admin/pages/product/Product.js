@@ -29,33 +29,65 @@ export default function Product(props) {
     const [caption,setCaption]=useState('');
 
 
+    const [filePreview,setFilePreview]=useState(null);
+
    
    // const [data,setData]=useState([]);
 
 
+   const changeIma= async(e)=>{
 
-   const changeIma=(e)=>{
-       const data=new FormData();
-       data.append('file',e.target.files[0]);
-       console.log(e.target.files[0]);
-       console.log(image) 
-       
-       data.append('upload_preset','uploadimages');
+    setImage('');
+    const files=e.target.files;
+    const data=new FormData();
 
-       axios.post("https://api.cloudinary.com/v1_1/do1sv3tbt/image/upload",{data}).then((response)=>{
-           console.log(response);
+    data.append('file',files[0])
+    setFilePreview(URL.createObjectURL(e.target.files[0]));
+    data.append('upload_preset','uploadimages')
 
-          // setImage(response.secure_url);
-       })
-       
+    const res=await fetch("https://api.cloudinary.com/v1_1/do1sv3tbt/image/upload",
+    {
+        method:'POST',
+        body:data
+    });
+
+    const file=await res.json();
+    console.log(file.secure_url);
+
+    setImage(file.secure_url);
 
 
 
-  //  setImage(e.target.files[0]);
+    
 
 
 
 }
+
+
+//    const changeIma=(e)=>{
+//        const data=new FormData();
+//        data.append('file',e.target.files[0]);
+//        console.log(e.target.files[0]);
+//     //   console.log(image) 
+     
+       
+//        data.append('upload_preset','uploadimages');
+
+//        axios.post("https://api.cloudinary.com/v1_1/do1sv3tbt/image/upload",{data}).then((response)=>{
+//            console.log(response);
+
+//           // setImage(response.secure_url);
+//        })
+       
+
+
+
+//   //  setImage(e.target.files[0]);
+
+
+
+// }
 
     useEffect(()=>{
 
@@ -87,21 +119,24 @@ export default function Product(props) {
       const submitform=(e)=>{
         e.preventDefault();
 
-        const formdata=new FormData();
-        formdata.append('name',name);
-        formdata.append('image',image);
-        formdata.append('description',description);
-        formdata.append('offer',offer);
-        formdata.append('unitPrice',unitPrice);
-        formdata.append('unitWeight',unitWeight);
-        formdata.append('stock',stock);
-        formdata.append('reOrderLevel',reOrderLevel);
-        formdata.append('measurementUnit',measurementUnit);
-        formdata.append('caption',caption);
 
-        const config = {     
-            headers: { 'content-type': 'multipart/form-data' }
+
+    
+        const formdata={
+            name:name,
+            image:image,
+            description:description,
+            offer:offer,
+            unitPrice:unitPrice,
+            unitWeight:unitWeight,
+            stock:stock,
+            reOrderLevel:reOrderLevel,
+            measurementUnit:measurementUnit,
+            caption:caption
         }
+        // const config = {     
+        //     headers: { 'content-type': 'multipart/form-data' }
+        // }
 
         // const onInputChange = (e)=>{
             
@@ -109,26 +144,19 @@ export default function Product(props) {
         //     }
 
 
+        console.log(formdata)
          
        
-        axios.put("http://localhost:4000/updateFertilizerItem/"+fertilizerId,formdata,config
-        // {
-        //     name:name,
-        //     // description:description,
-        //     // offer:offer,
-        //     // unitPrice:unitPrice,
-        //     // unitWeight:unitWeight,
-        //     // stock:stock,
-        //     // reOrderLevel:reOrderLevel,
-        //     // measurementUnit:measurementUnit,
-        //     image:image,
-        //     // caption:caption
-
-
-        // }
+        axios.put("http://localhost:4000/updateFertilizerItem/"+fertilizerId,formdata
+        
         ).then((response)=>{
-           console.log('SUCCESS');
-           console.log(response);
+            if(response.status===200)
+            {
+                alert('Fertilizer Item Updated Successfully.');
+                window.location.href="/products"
+            }
+        //    console.log('SUCCESS');
+        //    console.log(response)
         }).catch((e)=>{
             console.log("Errr"+e);
         })
@@ -138,6 +166,66 @@ export default function Product(props) {
        
 
     }
+
+
+//https://res.cloudinary.com/do1sv3tbt/image/upload/v1632037082/uploadimages/avyv9bbncxeeuv3kcqz9.png
+//https://res.cloudinary.com/do1sv3tbt/image/upload/v1632037182/uploadimages/dmdy1mwj3vbku3t6b9uw.png
+
+
+    //   const submitform=(e)=>{
+    //     e.preventDefault();
+
+    //     const formdata=new FormData();
+    //     formdata.append('name',name);
+    //     formdata.append('image',image);
+    //     formdata.append('description',description);
+    //     formdata.append('offer',offer);
+    //     formdata.append('unitPrice',unitPrice);
+    //     formdata.append('unitWeight',unitWeight);
+    //     formdata.append('stock',stock);
+    //     formdata.append('reOrderLevel',reOrderLevel);
+    //     formdata.append('measurementUnit',measurementUnit);
+    //     formdata.append('caption',caption);
+
+    //     const config = {     
+    //         headers: { 'content-type': 'multipart/form-data' }
+    //     }
+
+    //     // const onInputChange = (e)=>{
+            
+        
+    //     //     }
+
+
+         
+       
+    //     axios.put("http://localhost:4000/updateFertilizerItem/"+fertilizerId,formdata,config
+    //     // {
+    //     //     name:name,
+    //     //     // description:description,
+    //     //     // offer:offer,
+    //     //     // unitPrice:unitPrice,
+    //     //     // unitWeight:unitWeight,
+    //     //     // stock:stock,
+    //     //     // reOrderLevel:reOrderLevel,
+    //     //     // measurementUnit:measurementUnit,
+    //     //     image:image,
+    //     //     // caption:caption
+
+
+    //     // }
+    //     ).then((response)=>{
+    //        console.log('SUCCESS');
+    //        console.log(response);
+    //     }).catch((e)=>{
+    //         console.log("Errr"+e);
+    //     })
+
+     
+
+       
+
+    // }
   
     //const sample=require("./image/image_1630955080724.png");
 
@@ -168,14 +256,21 @@ export default function Product(props) {
                  >
             <div className="mb-3 productUpload">
             {/* npm install react-scripts@latest */}
-                        <Image
+            {
+                 filePreview===null ? <Image
                         cloudName="do1sv3tbt"
                         publicId={image}
                         className="productUploadImg"
 
 
 
-                        />
+                        />:<img src={filePreview}
+                                alt="uploadImage"
+                                className="productUploadImg"
+                            />
+              
+             }
+                       
                          
 
 

@@ -76,13 +76,14 @@ export default function Delivery() {
     <div className="deliveryCon">
       <div style={{ flex: 4 }}>
         {/* *******charts**************** */}
+        
         <div style={{ display: "flex" }}>
           <div className="lineChart">
             <LineChart_Deliveries />
           </div>
-          <div className="doughnutChart">
+          {/* <div className="doughnutChart">
             <DoughnutChart />
-          </div>
+          </div> */}
         </div>
 
         {/* *******table****************** */}

@@ -13,6 +13,8 @@ import {
   useTheme,
 } from "@material-ui/core";
 import Sidebar from "../../components/sidebar/Sidebar";
+import ContactUSNew from "./ContactUSNew";
+import ComplainNew from "./ComplainNew";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -115,12 +117,12 @@ export default function Complains() {
               className={classes.tab}
             >
               <Tab
-                label="Notification1"
+                label="Complains"
                 {...a11yProps(0)}
                 className={classes.tabtable}
               />
               <Tab
-                label="Notification2"
+                label="Contact US"
                 {...a11yProps(1)}
                 className={classes.tabtable}
               />
@@ -132,10 +134,12 @@ export default function Complains() {
             onChangeIndex={handleChangeIndex}
           >
             <TabPanel value={value} index={0} dir={theme.direction}>
-              these are the main tabs of notification1
+
+              <ComplainNew/>
             </TabPanel>
             <TabPanel value={value} index={1} dir={theme.direction}>
-              these are the main tabs of notification2
+              {/* these are the main tabs of notification2 */}
+              <ContactUSNew/>
             </TabPanel>
           </SwipeableViews>
         </div>

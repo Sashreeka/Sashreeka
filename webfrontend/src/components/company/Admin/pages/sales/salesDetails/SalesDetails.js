@@ -74,8 +74,8 @@
 //     width: 200,
 //     renderCell: (params) => {
 //       return (
-//         <div className="salesDetailsUser">
-//           <img className="salesDetailsImg" src={params.row.avater} alt="" />
+//         <div classNameName="salesDetailsUser">
+//           <img classNameName="salesDetailsImg" src={params.row.avater} alt="" />
 //           {params.row.username}
 //         </div>
 //       );
@@ -100,11 +100,11 @@
 //       return (
 //         <>
 //           <Link to={"/user/" + params.row.id}>
-//             <button className="salesDetailsEdit">Edit</button>
+//             <button classNameName="salesDetailsEdit">Edit</button>
 //           </Link>
 
 //           <DeleteOutline
-//             className="salesDetailsDelete"
+//             classNameName="salesDetailsDelete"
 //             onClick={() => handleDelete(params.row.id)}
 //           />
 //         </>
@@ -116,7 +116,7 @@
 //   return (
     
       
-//       <div className="salesDetails">
+//       <div classNameName="salesDetails">
 //         <DataGrid
 //           rows={data}
 //           disableSelectionOnClick
@@ -130,109 +130,179 @@
 // }
 
 
-import * as React from 'react';
+import  React,{useState,useEffect} from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 import './salesDetails.css';
 import {Link} from 'react-router-dom';
 import {DeleteOutline} from '@material-ui/icons';
+import axios from 'axios';
 
-const columns = [
-  { field: 'id', headerName: 'ID', width: 100 },
-  { field: 'amount', headerName: ' Amount (Rs)', width: 160, 
-  // renderCell: (params)=>{
-  //     return (
-  //         <div className="productListItem">
-  //             <img className="productListImg" src={params.row.img} alt=""/>
-  //             {params.row.name}
-  //         </div>
-  //     )
-  // } 
-},
-  { field: 'deliverAddress', headerName: 'Delivery Address', width: 250 },
-  {
-    field: 'offer',
-    headerName: 'Offer',
-    width: 120,
-  },
-  {
-      field: 'deliverCharge',
-      headerName: 'Delivery Charge(Rs)',
-      width: 220,
-    },
-    {
-      field: 'status',
-      headerName: 'Status',
-      width: 150,
-      // renderCell: (params)=>{
-      //     return(
-      //         <>
-      //             <Link to={"/product/"+params.row.id}>
-      //                <button className='productListEdit'>Edit</button>
+// const columns = [
+//   { field: 'id', headerName: 'ID', width: 100 },
+//   { field: 'amount', headerName: ' Amount (Rs)', width: 160, 
+//   // renderCell: (params)=>{
+//   //     return (
+//   //         <div classNameName="productListItem">
+//   //             <img classNameName="productListImg" src={params.row.img} alt=""/>
+//   //             {params.row.name}
+//   //         </div>
+//   //     )
+//   // } 
+// },
+//   { field: 'deliverAddress', headerName: 'Delivery Address', width: 250 },
+//   {
+//     field: 'offer',
+//     headerName: 'Offer',
+//     width: 120,
+//   },
+//   {
+//       field: 'deliverCharge',
+//       headerName: 'Delivery Charge(Rs)',
+//       width: 220,
+//     },
+//     {
+//       field: 'status',
+//       headerName: 'Status',
+//       width: 150,
+//       // renderCell: (params)=>{
+//       //     return(
+//       //         <>
+//       //             <Link to={"/product/"+params.row.id}>
+//       //                <button classNameName='productListEdit'>Edit</button>
 
-      //             </Link>
+//       //             </Link>
                 
-      //             <DeleteOutline className='productListDelete' onClick={()=> handleDelete(params.row.id)}/>
-      //         </>
-      //     )
-      // }
-    },  
+//       //             <DeleteOutline classNameName='productListDelete' onClick={()=> handleDelete(params.row.id)}/>
+//       //         </>
+//       //     )
+//       // }
+//     },  
 
-];
-
-
-
-const productRows = [
-  { id: 1, 
-      amount: '21790.00', 
-      // img: 'https://images.unsplash.com/photo-1607203391514-b001be773a22?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXBwbGUlMjBwaG9uZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80', 
-      deliverAddress:'No.950/A, Kottawa(East), Pannipitiya',
-      offer: '5%',
-      deliverCharge: '150',
-      status: '1',
-   },
-   { id: 2, 
-      amount: '15740.00', 
-      // img: 'https://images.unsplash.com/photo-1607203391514-b001be773a22?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXBwbGUlMjBwaG9uZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80', 
-      deliverAddress:'No. 363/1, Mawathahena, Meegahathanna',
-      offer: '10%',
-      deliverCharge: '1000',
-      status: '1',
-   },
-   { id: 3, 
-      amount: '36584.00', 
-      // img: 'https://images.unsplash.com/photo-1607203391514-b001be773a22?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXBwbGUlMjBwaG9uZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80', 
-      deliverAddress:'No. 25/5, Polgasowita Rd, Maththegoda',
-      offer: '0%',
-      deliverCharge: '150',
-      status: '0',
-   },
-   { id: 4, 
-      amount: '12990.00', 
-      // img: 'https://images.unsplash.com/photo-1607203391514-b001be773a22?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXBwbGUlMjBwaG9uZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80', 
-      deliverAddress:'No. 224, Jalthara, Hanwella',
-      offer: '8%',
-      deliverCharge: '360',
-      status: '1',
-   },
-   { id: 5, 
-      amount: '17490.00', 
-      // img: 'https://images.unsplash.com/photo-1607203391514-b001be773a22?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXBwbGUlMjBwaG9uZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80', 
-      deliverAddress:'No. 143B, Ambagaswewa, Rideebendiella',
-      offer: '20%',
-      deliverCharge: '1500',
-      status: '0',
-   },
+// ];
 
 
 
-];
+// const productRows = [
+//   { id: 1, 
+//       amount: '21790.00', 
+//       // img: 'https://images.unsplash.com/photo-1607203391514-b001be773a22?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXBwbGUlMjBwaG9uZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80', 
+//       deliverAddress:'No.950/A, Kottawa(East), Pannipitiya',
+//       offer: '5%',
+//       deliverCharge: '150',
+//       status: '1',
+//    },
+//    { id: 2, 
+//       amount: '15740.00', 
+//       // img: 'https://images.unsplash.com/photo-1607203391514-b001be773a22?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXBwbGUlMjBwaG9uZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80', 
+//       deliverAddress:'No. 363/1, Mawathahena, Meegahathanna',
+//       offer: '10%',
+//       deliverCharge: '1000',
+//       status: '1',
+//    },
+//    { id: 3, 
+//       amount: '36584.00', 
+//       // img: 'https://images.unsplash.com/photo-1607203391514-b001be773a22?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXBwbGUlMjBwaG9uZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80', 
+//       deliverAddress:'No. 25/5, Polgasowita Rd, Maththegoda',
+//       offer: '0%',
+//       deliverCharge: '150',
+//       status: '0',
+//    },
+//    { id: 4, 
+//       amount: '12990.00', 
+//       // img: 'https://images.unsplash.com/photo-1607203391514-b001be773a22?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXBwbGUlMjBwaG9uZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80', 
+//       deliverAddress:'No. 224, Jalthara, Hanwella',
+//       offer: '8%',
+//       deliverCharge: '360',
+//       status: '1',
+//    },
+//    { id: 5, 
+//       amount: '17490.00', 
+//       // img: 'https://images.unsplash.com/photo-1607203391514-b001be773a22?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXBwbGUlMjBwaG9uZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80', 
+//       deliverAddress:'No. 143B, Ambagaswewa, Rideebendiella',
+//       offer: '20%',
+//       deliverCharge: '1500',
+//       status: '0',
+//    },
+
+
+
+// ];
 
 
 
 export default function SalesDetails() {
+
+  const [income,setIncome]=useState([]);
+
+  useEffect(()=>{
+    axios.get('http://localhost:4000/adminSales/getIncomeAnalytics').then((response)=>{
+      console.log(response.data);
+      setIncome(response.data);
+      
+    })
+
+    
+  },[])
+
+
   return (
     <div style={{ height: 400, width: '97%',marginLeft:5 }}>
-      <DataGrid rows={productRows} columns={columns} pageSize={5} checkboxSelection />
+
+<table className="table table-hover">
+  <thead>
+    <tr className="table-success">
+      <th scope="col">#</th>
+      {
+        income.map((item)=>(
+         
+          <th scope="col">{item.name}</th>
+
+        
+        ))
+      }
+      </tr>
+      </thead>
+    
+  
+
+  <tbody>
+    <tr>
+      <th scope="row">Sales income (Rs)</th>
+      {
+        income.map((sales)=>(
+          <td>{sales.salesIncome}</td>
+
+        ))
+      }
+     </tr>
+
+     <tr>
+      <th scope="row">Delivery income (Rs)</th>
+      {
+        income.map((del)=>(
+          <td>{del.deliveryIncome}</td>
+
+        ))
+      }
+     </tr>
+
+     <tr>
+      <th scope="row">Total income (Rs)</th>
+      {
+        income.map((total)=>(
+          <td>{total.totalIncome}</td>
+
+        ))
+      }
+     </tr>
+
+
+    </tbody>    
+
+  </table>  
+  
+
+      
     </div>
   );
 }
