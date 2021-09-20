@@ -160,7 +160,7 @@ button{
 .fer-cat-item:hover{
     margin-top:5px;
     margin-bottom: 5px;
-}
+} 
 
 .rec-pagination{
     display:none;
@@ -600,8 +600,8 @@ h6{
     display:flex;
     justify-content: space-between;
     margin:50px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .cart-success{
@@ -684,7 +684,18 @@ h6{
     padding:5px;
 }
 
-.checkout-input-address input{
+.checkout-input-address input {
+    width:48%;
+    border:none;
+    outline: none;
+    background: #F0F1F8;
+    border-radius: 5px;
+    padding:5px;
+    margin-top: 5px;
+    margin-bottom:5px;
+}
+
+.checkout-input-address select{
     width:48%;
     border:none;
     outline: none;
@@ -808,4 +819,30 @@ h6{
       display:flex;
       justify-content: space-between;
       align-items: center;
+  }
+  
+  .store-payment-block {
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+
+  .payhere-button button{
+      background-color: #2447d7;
+      font-weight: bold;
+      border-radius: 8px;
+      box-shadow: 0px 0px 5px rgb(0 0 0 / 50%);
+  }
+
+  .payhere-button button:hover{
+    box-shadow: 0px 0px 2px 1px #2447d7;
+  }
+
+  .payhere-style-text{
+      display:flex;
+  }
+
+  .payhere-style-text p{
+      margin-bottom: 0;
+      font-style: italic;
   }
