@@ -246,7 +246,7 @@ export default function SalesDetails() {
 
 
   return (
-    <div style={{ height: 400, width: '97%',marginLeft:5 }}>
+    <div style={{ height: 400, width: '98%',marginLeft:5 }}>
 
 <table className="table table-hover">
   <thead>
@@ -270,7 +270,7 @@ export default function SalesDetails() {
       <th scope="row">Sales income (Rs)</th>
       {
         income.map((sales)=>(
-          <td>{sales.salesIncome}</td>
+          <td>{Math.round(sales.salesIncome)}</td>
 
         ))
       }
@@ -280,7 +280,7 @@ export default function SalesDetails() {
       <th scope="row">Delivery income (Rs)</th>
       {
         income.map((del)=>(
-          <td>{del.deliveryIncome}</td>
+          <td>{Math.round(del.deliveryIncome)}</td>
 
         ))
       }
@@ -290,7 +290,7 @@ export default function SalesDetails() {
       <th scope="row">Total income (Rs)</th>
       {
         income.map((total)=>(
-          <td>{total.totalIncome}</td>
+          <td>{Math.round(total.totalIncome)}</td>
 
         ))
       }

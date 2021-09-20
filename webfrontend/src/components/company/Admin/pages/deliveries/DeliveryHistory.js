@@ -7,6 +7,7 @@ import axios from "axios";
 import LineChart_Deliveries from "../../components/chart/LineChart_Deliveries";
 import DoughnutChart from "../../components/chart/DoughnutChart";
 import MaterialTable from "material-table";
+import DeliveryHistoryNew from "./DeliveryHistoryNew";
 
 export default function Delivery() {
   const [data, setData] = useState([]);
@@ -88,6 +89,7 @@ export default function Delivery() {
 
         {/* *******table****************** */}
         <div className="delivery">
+        <DeliveryHistoryNew/>
           <MaterialTable
             title="Company delivery Details"
             data={data}

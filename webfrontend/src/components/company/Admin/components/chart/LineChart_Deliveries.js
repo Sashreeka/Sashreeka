@@ -29,7 +29,7 @@ function LineChart_Deliveries() {
     })
   },[])
 
-  var names = online.map(function(item) {
+  var names = label.map(function(item) {
     return item['dateD'];
   });
 
@@ -62,10 +62,12 @@ function LineChart_Deliveries() {
         label: "Cash on deliveries",
         // data: [3, 2, 2, 1, 5, 7, 6, 8, 4, 3],
         data: cashdata,
+        
         borderColor: ["rgba(255,206,86,0.5"],
         backgroundColor: ["rgba(255,206,86,0.5"],
         pointBackgroundColor: ["rgba(255,206,86,0.8"],
         pointBorderColor: ["rgba(255,206,86,0.5"],
+       
       },
       {
         label: "online Payment deliveries",
@@ -83,6 +85,7 @@ function LineChart_Deliveries() {
     title: {
       display: true,
       text: "Recent delivery Status",
+
     },
 
     scales: {
