@@ -215,9 +215,13 @@ INSERT INTO `orders` (`orderId`, `amount`, `houseNumber`, `streetName`, `city`, 
 (124, 6000, '143', 'Ramanathan Rd', 'wallawaththa', 'Colombo', 1, 'T C Alwis', 600, 2, '2021-09-22 08:51:09', '2021-09-23 08:51:09', '+94715680121', '+94779997776', 6.87559379872321, 79.86004282466106);
 
 
+-- notificationreceive................................................................
+INSERT INTO `notificationreceive` (`phoneNumber`, `notificationId`) VALUES ('+94771231231', '1'), ('+94774443331', '1'), ('+94775557676', '1'), ('+94777994499', '2');
 
 
 
+-- complaints..................................................................
+INSERT INTO `complaints` (`complaintId`, `orderId`, `phoneNumber`, `deliveryNotRecieved`, `wrongQualityOfOrderedProducts`, `differentProductsRecieved`, `billingOrPaymentMatters`, `other`, `content`) VALUES (NULL, '1', '+94756489712', '0', '1', '0', '0', '0', 'I requested 5kg of Manure fertilizer. But I got only 4kg.');
 
 
 
