@@ -32,7 +32,7 @@ export default function OrderHistory() {
 
     useEffect(()=>{
 
-      const deliveryAgentPhoneNumber="0712345678"
+      const deliveryAgentPhoneNumber="+94768610084"
 
       
     axios

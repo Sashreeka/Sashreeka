@@ -49,55 +49,10 @@ export default function Product(props) {
     setImage(file.secure_url);
   };
 
-<<<<<<< Updated upstream
   useEffect(() => {
     axios
       .get("http://localhost:4000/getfertilizeritem/" + fertilizerId)
       .then((response) => {
-=======
-
-
-    
-
-
-
-}
-
-
-//    const changeIma=(e)=>{
-//        const data=new FormData();
-//        data.append('file',e.target.files[0]);
-//        console.log(e.target.files[0]);
-//     //   console.log(image) 
-     
-       
-//        data.append('upload_preset','uploadimages');
-
-//        axios.post("https://api.cloudinary.com/v1_1/do1sv3tbt/image/upload",{data}).then((response)=>{
-//            console.log(response);
-
-//           // setImage(response.secure_url);
-//        })
-       
-
-
-
-//   //  setImage(e.target.files[0]);
-
-
-
-// }
-
-    useEffect(()=>{
-
-        // axios.get('http://localhost:4000/getfertilizer').then((response)=>{
-        //     setNewData(response.data);
-        //     console.log(response.data);
-        // })
-
-        axios.get('/getfertilizeritem/'+fertilizerId).then((response)=>{
-        //setData(response.data[0]);
->>>>>>> Stashed changes
         setName(response.data[0].name);
         setDescription(response.data[0].description);
         setOffer(response.data[0].offer);
@@ -138,7 +93,6 @@ export default function Product(props) {
           alert("Fertilizer Item Updated Successfully.");
           window.location.href = "/products";
         }
-<<<<<<< Updated upstream
       })
       .catch((e) => {
         console.log("Errr" + e);
@@ -192,132 +146,6 @@ export default function Product(props) {
                     {/* npm install react-scripts@latest */}
                     {filePreview === null ? (
                       <Image
-=======
-        // const config = {     
-        //     headers: { 'content-type': 'multipart/form-data' }
-        // }
-
-        // const onInputChange = (e)=>{
-            
-        
-        //     }
-
-
-        console.log(formdata)
-         
-       
-        axios.put("/updateFertilizerItem/"+fertilizerId,formdata
-        
-        ).then((response)=>{
-            if(response.status===200)
-            {
-                alert('Fertilizer Item Updated Successfully.');
-                window.location.href="/products"
-            }
-        //    console.log('SUCCESS');
-        //    console.log(response)
-        }).catch((e)=>{
-            console.log("Errr"+e);
-        })
-
-     
-
-       
-
-    }
-
-
-//https://res.cloudinary.com/do1sv3tbt/image/upload/v1632037082/uploadimages/avyv9bbncxeeuv3kcqz9.png
-//https://res.cloudinary.com/do1sv3tbt/image/upload/v1632037182/uploadimages/dmdy1mwj3vbku3t6b9uw.png
-
-
-    //   const submitform=(e)=>{
-    //     e.preventDefault();
-
-    //     const formdata=new FormData();
-    //     formdata.append('name',name);
-    //     formdata.append('image',image);
-    //     formdata.append('description',description);
-    //     formdata.append('offer',offer);
-    //     formdata.append('unitPrice',unitPrice);
-    //     formdata.append('unitWeight',unitWeight);
-    //     formdata.append('stock',stock);
-    //     formdata.append('reOrderLevel',reOrderLevel);
-    //     formdata.append('measurementUnit',measurementUnit);
-    //     formdata.append('caption',caption);
-
-    //     const config = {     
-    //         headers: { 'content-type': 'multipart/form-data' }
-    //     }
-
-    //     // const onInputChange = (e)=>{
-            
-        
-    //     //     }
-
-
-         
-       
-    //     axios.put("http://localhost:4000/updateFertilizerItem/"+fertilizerId,formdata,config
-    //     // {
-    //     //     name:name,
-    //     //     // description:description,
-    //     //     // offer:offer,
-    //     //     // unitPrice:unitPrice,
-    //     //     // unitWeight:unitWeight,
-    //     //     // stock:stock,
-    //     //     // reOrderLevel:reOrderLevel,
-    //     //     // measurementUnit:measurementUnit,
-    //     //     image:image,
-    //     //     // caption:caption
-
-
-    //     // }
-    //     ).then((response)=>{
-    //        console.log('SUCCESS');
-    //        console.log(response);
-    //     }).catch((e)=>{
-    //         console.log("Errr"+e);
-    //     })
-
-     
-
-       
-
-    // }
-  
-    //const sample=require("./image/image_1630955080724.png");
-
-    return (
-        <div className="productCon">
-        <Sidebar title="products"/>
-        <div className="product">
-            {/* <div className="productTitleContainer">
-                <h1 className="productTitle">Product</h1>
-                <Link to="/newproduct">
-
-                    <button className="productAddButton">Create</button>
-
-                </Link>
-
-            </div> */}
-            <h2>Fertilizer</h2>
-
-            <div className="productTop">
-               
-                <div className="productTopRight">
-
-
-
-
-                <form
-                  onSubmit={submitform} 
-                 >
-            <div className="mb-3 productUpload">
-            {/* npm install react-scripts@latest */}
-            {
-                 filePreview===null ? <Image
->>>>>>> Stashed changes
                         cloudName="do1sv3tbt"
                         publicId={image}
                         className="productUploadImg"

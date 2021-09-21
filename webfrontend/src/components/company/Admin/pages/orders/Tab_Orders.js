@@ -163,7 +163,7 @@ export default function TabOrders() {
 
   useEffect(() => {
     axios
-      .get("/admin/getAllunssigedorders")
+      .get("/admin/getAllassigedorders")
       .then((res) => {
         console.log("success :", res.data);
         setOrders(res.data);

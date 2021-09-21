@@ -100,9 +100,18 @@ router.post("/admin/insertstaffmember", (req, res) => {
 });
 
 //  display all unassigned orders.................. need to district='gampaha' AND part + date sorting + less than selected
+router.get("/admin/getAllassigedorders", (req, res) => {
+  const sqlget =
+    "SELECT orderId as id,farmerPhoneNumber,amount, CONCAT(houseNumber,', ',streetName,', ',city) as address, district, quickFlag, status,DATE_FORMAT(ordereddate, '%d %b %Y') as ordereddate,(SELECT SUM(quantity*weight) FROM ordercontainsfertilizer WHERE orderId=orders.orderId GROUP by orderId) as loads FROM orders ";
+  // if you are changing the query, change below api as well(/admin/getAllunssigedordersDistrictList)
+  db.query(sqlget, (err, result) => {
+    console.log(result);
+    res.send(result);
+  });
+});
 router.get("/admin/getAllunssigedorders", (req, res) => {
   const sqlget =
-    "SELECT orderId as id,farmerPhoneNumber,amount, CONCAT(houseNumber,', ',streetName,', ',City) as address, district, quickFlag, status,DATE_FORMAT(ordereddate, '%d %b %Y') as ordereddate,(SELECT SUM(quantity*weight) FROM ordercontainsfertilizer WHERE orderId=orders.orderId GROUP by orderId) as loads FROM orders ";
+    "SELECT orderId as id,farmerPhoneNumber,amount, CONCAT(houseNumber,', ',streetName,', ',city) as address, district, quickFlag, status,DATE_FORMAT(graceenddate, '%d %b %Y') as graceenddate,(SELECT SUM(quantity*weight) FROM ordercontainsfertilizer WHERE orderId=orders.orderId GROUP by orderId) as loads FROM orders WHERE status=0 ";
   // if you are changing the query, change below api as well(/admin/getAllunssigedordersDistrictList)
   db.query(sqlget, (err, result) => {
     console.log(result);
