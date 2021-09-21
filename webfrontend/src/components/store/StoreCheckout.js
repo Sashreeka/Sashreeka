@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import "./Store.css";
 import { Link } from "react-router-dom";
 import { useCart } from "react-use-cart";
+import DiliveryDistrict from './storeComponents/DiliveryDistrict';
+    
 
 const StoreCheckout = () => {
     const {
@@ -15,6 +17,29 @@ const StoreCheckout = () => {
         emptyCart,
     } = useCart();
 
+    const [shpaybtn,showPaymentGateway] = useState([]);
+    const showPaybtn = (event)=>{
+       // console.log(event.target.value)
+       showPaymentGateway(event.target.value);
+    };
+
+    const [quickchrg,quickCharged] = useState([]);
+    const quickCharge = (event) =>{
+         quickCharged(event.target.value);
+    };
+
+    const [dilivronw, dilchargeOnweight] = useState([]);
+    const diliverCharge = (event) =>{
+
+        function isDistrict(district) {
+            return district.dis === event.target.value;
+        }
+
+        const distance = DiliveryDistrict.districtdata.find(isDistrict);
+        console.log((distance.distance)*10);
+        dilchargeOnweight((items.reduce((a,v) =>  a = a + (v.quantity*v.weight*10) , 0 ))+((distance.distance)*10));
+    }
+
     return(
         <>
             <div className = "store-path">
@@ -26,7 +51,7 @@ const StoreCheckout = () => {
                     <button>My Cart  </button>
                 </Link>
                 <i class="fas fa-caret-right"></i>
-                <button>Cheakout  </button>
+                <button>Check out  </button>
             </div>
 
             <div className="Store-fer-cart-container">
@@ -51,34 +76,14 @@ const StoreCheckout = () => {
                         </div>
                         <div className="checkout-input-address-block">
                             <input placeholder="City"></input>
-                            <input placeholder="District" list="district" name="district"/>
-                                <datalist id="district">
-                                    <option value="Ampara"/>
-                                    <option value="Anuradhapura"/>
-                                    <option value="Badulla"/>
-                                    <option value="Baticaloa"/>
-                                    <option value="Colombo"/>
-                                    <option value="Galle"/>
-                                    <option value="Gampaha"/>
-                                    <option value="Hambanthota"/>
-                                    <option value="Jaffana"/>
-                                    <option value="Kaluthara"/>
-                                    <option value="Kandy"/>
-                                    <option value="Kegalle"/>
-                                    <option value="Kilinochchi"/>
-                                    <option value="Kurunagala"/>
-                                    <option value="Mannar"/>
-                                    <option value="Matale"/>
-                                    <option value="Mathara"/>
-                                    <option value="Moneragala"/>
-                                    <option value="Mullaitivu"/>
-                                    <option value="Nuwara Eliya"/>
-                                    <option value="Polonnaruwa"/>
-                                    <option value="Puttalama"/>
-                                    <option value="Rathnapura"/>
-                                    <option value="Trincomalee"/>
-                                    <option value="Vavuniya"/>
-                                </datalist>
+
+                            <select name="district" placeholder="District" id="district" onChange={diliverCharge}>
+                                {DiliveryDistrict.districtdata.map((data) =>{
+                                       return(
+                                        <option value={data.dis}>{data.dis}</option>
+                                        )
+                                    })}
+                            </select>
                         </div>
                     </div>
                     <br/>
@@ -89,26 +94,32 @@ const StoreCheckout = () => {
                     </div>
                     <br/>
                     <hr/>
-
-                    <div className="quick-dilivery-input">
-                        <label>Quick delivery</label>
-
-                        <label class="quick-switch">
-                            <input type="checkbox"/>
-                            <span class="quick-slider quick-round"></span>
-                        </label>
-                    </div>
+                    
+                    <label for="quickflag">Quick diliveries arrives whithin 24 hours to your door step.</label>
+                    <div className = "store-payment-method">
+                        <div>
+                            <input type="radio" name="quickflag" value="0" onChange={quickCharge}/><label for="quickflag" checked> Normal delivery</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="quickflag" value="1" onChange={quickCharge}/><label for="quickflag"> Quick dilivery</label>
+                        </div>
+                    </div>      
+                    
                     <br/>
                     <hr/>
                     
                     <label>Payment Method</label>
-                    <div className = "store-payment-method">
-                        <div>
-                            <input type="radio" name="payment-type" value="Online payment"/><label for="payment-type"> Online payment</label>
+                    <div className="store-payment-block">
+                        <div className = "store-payment-method">
+                            <div>
+                                <input type="radio" name="payment-type" value="online" onChange={showPaybtn}/><label for="payment-type"> Online payment</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="payment-type" value="cash" onChange={showPaybtn}/><label for="payment-type"> Cash on delivery</label>
+                            </div>
                         </div>
-                        <div>
-                            <input type="radio" name="payment-type" value="Cash on delivery"/><label for="payment-type"> Cash on delivery</label>
-                        </div>
+
+                        {shpaybtn == 'online'?(<div className="payhere-button"><button className="payhere-style-text"><p style={{color:"white"}}>Pay</p><p style={{color:"#fcac00"}}>Here</p></button></div>):('')}
                     </div>
 
                     <div className="checkout-input-loyalty">
@@ -143,14 +154,19 @@ const StoreCheckout = () => {
                         })}
                         <hr/>
                         <div className="cart-success-line">
+                            <h5>Sub Total - {totalItems} item(s):</h5>
+                            <h5>Rs. {cartTotal}</h5>
+                        </div>
+                        <hr/>
+                        <div className="cart-success-line">
                                 <h5>Dilivery charge:</h5>
-                                <h5>Rs.200</h5>
+                                {quickchrg==1?(<h5>Rs.{dilivronw*2}</h5>):(<h5>Rs.{dilivronw}</h5>)}
                         </div>
                         <hr/>
                         
                         <div className="cart-success-line">
                                 <h5>Sub total:</h5>
-                                <h5>Rs.{cartTotal+200}</h5>
+                                {quickchrg==1?(<h5>Rs.{cartTotal+(dilivronw*2)}</h5>):(<h5>Rs.{cartTotal+(dilivronw)}</h5>)}
                         </div>
 
                         <div className="store-checkout-bottom-cart-line">

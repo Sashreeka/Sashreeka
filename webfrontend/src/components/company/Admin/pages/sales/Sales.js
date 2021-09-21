@@ -15,7 +15,7 @@ export default function Sales() {
 
   useEffect(()=>{
     axios.get('http://localhost:4000/adminSales/getIncomeAnalytics').then((response)=>{
-     // console.log(response.data);
+      console.log(response.data);
       setIncome(response.data);
     })
 
@@ -33,7 +33,8 @@ export default function Sales() {
                 <BarChart/>
                 </div> */}
 
-        <Chart
+       {/* <div style={{width:'800px'}}> */}
+       <Chart
           data={income}
           title="Growth of Income"
           grid
@@ -43,6 +44,7 @@ export default function Sales() {
           line3={true}
           dataKey3="deliveryIncome"
         />
+       {/* </div> */}
 
         <SalesDetails />
       </div>

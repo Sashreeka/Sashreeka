@@ -358,7 +358,7 @@ router.post("/save", (req, res) => {
 //home page sales analytics
 
 router.get('/adminHome/getSalesAnalytics',(req,res)=>{
-  const sqlget='SELECT DATE_FORMAT(reg_date, "%b") AS name,COUNT(*) AS count,DATE_FORMAT(reg_date, "%m-%Y") AS mName FROM user WHERE reg_date <= NOW() and reg_date >= Date_add(Now(),interval - 12 month) GROUP BY DATE_FORMAT(reg_date, "%m-%Y") ORDER BY reg_date ASC;';
+  const sqlget='SELECT DATE_FORMAT(ordereddate, "%b") AS name,COUNT(*) AS count,DATE_FORMAT(ordereddate, "%m-%Y") AS mName FROM orders WHERE ordereddate <= NOW() and ordereddate >= Date_add(Now(),interval - 12 month) GROUP BY DATE_FORMAT(ordereddate, "%m-%Y") ORDER BY ordereddate ASC;';
   db.query(sqlget,(err,result)=>{
       res.send(result);
     //  console.log(err);
@@ -370,7 +370,7 @@ router.get('/adminHome/getSalesAnalytics',(req,res)=>{
 
 //get current month cost
 router.get('/adminHome/getThisMonthCost',(req,res)=>{
-  const sqlget='select SUM(deliveryCharge) AS deliveryCharge,YEAR(ordereddate) AS year,MONTHNAME(ordereddate) AS month FROM orders where MONTH(ordereddate)=MONTH(now()) and YEAR(ordereddate)=YEAR(now());';
+  const sqlget='select ROUND(SUM(deliveryCharge)) AS deliveryCharge,YEAR(ordereddate) AS year,MONTHNAME(ordereddate) AS month FROM orders where MONTH(ordereddate)=MONTH(now()) and YEAR(ordereddate)=YEAR(now());';
   db.query(sqlget,(err,result)=>{
       res.send(result);
     //  console.log(err);
@@ -379,7 +379,7 @@ router.get('/adminHome/getThisMonthCost',(req,res)=>{
 
 //get last month cost
 router.get('/adminHome/getLastMonthCost',(req,res)=>{
-  const sqlget='SELECT SUM(deliveryCharge) AS lastdeliveryCharge,YEAR(ordereddate) AS year,MONTHNAME(ordereddate) AS lastMonth FROM orders WHERE YEAR(ordereddate) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH) AND MONTH(ordereddate) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH);';
+  const sqlget='SELECT ROUND(SUM(deliveryCharge)) AS lastdeliveryCharge,YEAR(ordereddate) AS year,MONTHNAME(ordereddate) AS lastMonth FROM orders WHERE YEAR(ordereddate) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH) AND MONTH(ordereddate) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH);';
   db.query(sqlget,(err,result)=>{
       res.send(result);
      // console.log(err);
@@ -390,7 +390,7 @@ router.get('/adminHome/getLastMonthCost',(req,res)=>{
 
 //get current month sales
 router.get('/adminHome/getThisMonthSales',(req,res)=>{
-  const sqlget='select SUM(amount) AS amount,YEAR(ordereddate) AS year,MONTHNAME(ordereddate) AS month FROM orders where MONTH(ordereddate)=MONTH(now()) and YEAR(ordereddate)=YEAR(now());';
+  const sqlget='select ROUND(SUM(amount)) AS amount,YEAR(ordereddate) AS year,MONTHNAME(ordereddate) AS month FROM orders where MONTH(ordereddate)=MONTH(now()) and YEAR(ordereddate)=YEAR(now());';
   db.query(sqlget,(err,result)=>{
       res.send(result);
     //  console.log(err);
@@ -399,7 +399,7 @@ router.get('/adminHome/getThisMonthSales',(req,res)=>{
 
 //get last month sales
 router.get('/adminHome/getLastMonthSales',(req,res)=>{
-  const sqlget='SELECT SUM(amount) AS amount,YEAR(ordereddate) AS year,MONTHNAME(ordereddate) AS month FROM orders WHERE YEAR(ordereddate) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH) AND MONTH(ordereddate) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH);';
+  const sqlget='SELECT ROUND(SUM(amount)) AS amount,YEAR(ordereddate) AS year,MONTHNAME(ordereddate) AS month FROM orders WHERE YEAR(ordereddate) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH) AND MONTH(ordereddate) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH);';
   db.query(sqlget,(err,result)=>{
       res.send(result);
     //  console.log(err);
@@ -409,7 +409,7 @@ router.get('/adminHome/getLastMonthSales',(req,res)=>{
 
 //get current month Revenue
 router.get('/adminHome/getThisMonthRevenue',(req,res)=>{
-  const sqlget='select SUM((deliveryCharge*0.1) +amount) AS amount,YEAR(ordereddate) AS year,MONTHNAME(ordereddate) AS month FROM orders where MONTH(ordereddate)=MONTH(now()) and YEAR(ordereddate)=YEAR(now());';
+  const sqlget='select ROUND(SUM((deliveryCharge*0.1) +amount)) AS amount,YEAR(ordereddate) AS year,MONTHNAME(ordereddate) AS month FROM orders where MONTH(ordereddate)=MONTH(now()) and YEAR(ordereddate)=YEAR(now());';
   db.query(sqlget,(err,result)=>{
       res.send(result);
    //   console.log(err);
@@ -418,7 +418,7 @@ router.get('/adminHome/getThisMonthRevenue',(req,res)=>{
 
 //get last month Revenue
 router.get('/adminHome/getLastMonthRevenue',(req,res)=>{
-  const sqlget='SELECT SUM((deliveryCharge*0.1) +amount) AS amount,YEAR(ordereddate) AS year,MONTHNAME(ordereddate) AS month FROM orders WHERE YEAR(ordereddate) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH) AND MONTH(ordereddate) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH);';
+  const sqlget='SELECT ROUND(SUM((deliveryCharge*0.1) +amount)) AS amount,YEAR(ordereddate) AS year,MONTHNAME(ordereddate) AS month FROM orders WHERE YEAR(ordereddate) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH) AND MONTH(ordereddate) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH);';
   db.query(sqlget,(err,result)=>{
       res.send(result);
       // console.log(err);
@@ -430,7 +430,7 @@ router.get('/adminHome/getLastMonthRevenue',(req,res)=>{
 ////////////////////////////sales page- chart
 
 router.get('/adminSales/getIncomeAnalytics',(req,res)=>{
-  const sqlget='SELECT DATE_FORMAT(ordereddate, "%b") AS name,COUNT(*) AS count,DATE_FORMAT(ordereddate, "%m-%Y") AS mName, SUM((deliveryCharge*0.1) +amount) AS totalIncome,SUM(amount) AS salesIncome, SUM(deliveryCharge*0.1) AS deliveryIncome FROM orders WHERE ordereddate <= NOW() and ordereddate >= Date_add(Now(),interval - 12 month) GROUP BY DATE_FORMAT(ordereddate, "%m-%Y") ORDER BY ordereddate ASC;';
+  const sqlget='SELECT DATE_FORMAT(ordereddate, "%b") AS name,COUNT(*) AS count,DATE_FORMAT(ordereddate, "%m-%Y") AS mName, ROUND(SUM((deliveryCharge*0.1) +amount)) AS totalIncome,ROUND(SUM(amount)) AS salesIncome, ROUND(SUM(deliveryCharge*0.1)) AS deliveryIncome FROM orders WHERE ordereddate <= NOW() and ordereddate >= Date_add(Now(),interval - 12 month) GROUP BY DATE_FORMAT(ordereddate, "%m-%Y") ORDER BY ordereddate ASC;';
   db.query(sqlget,(err,result)=>{
       res.send(result);
       // console.log(err);
@@ -446,7 +446,7 @@ router.get('/adminSales/getIncomeAnalytics',(req,res)=>{
 
 router.get('/adminDeliveries/getDeliveryCountLabel',(req,res)=>{
 //  const sqlget="select paymentDateTime,COUNT(*) AS data,DAY(paymentDateTime)AS dateD, MONTHNAME(paymentDateTime) AS monthName,DATE_FORMAT(paymentDateTime,'%b') AS shortMonth,DATE_FORMAT(paymentDateTime, '%Y-%m-%d') AS newdateTime from payment where paymentType='cash' AND paymentDateTime > now() - INTERVAL 7 day GROUP BY DAY(paymentDateTime) ORDER BY paymentDateTime;";
- const sqlget="select DAY(paymentDateTime)AS dateD from payment where  paymentType IN ('cash','online') AND paymentDateTime > now() - INTERVAL 7 day GROUP BY DAY(paymentDateTime) ORDER BY paymentDateTime;";
+ const sqlget="select DAY(paymentDateTime)AS dateD from payment where  paymentType IN ('cash','online') AND paymentDateTime > now() - INTERVAL 10 day GROUP BY DAY(paymentDateTime) ORDER BY paymentDateTime;";
  db.query(sqlget,(err,result)=>{
      res.send(result);
       console.log(err);
@@ -456,7 +456,7 @@ router.get('/adminDeliveries/getDeliveryCountLabel',(req,res)=>{
 
 
 router.get('/adminDeliveries/getDeliveryCountCash',(req,res)=>{
-   const sqlget="select paymentDateTime,COUNT(*) AS data,DAY(paymentDateTime)AS dateD, MONTHNAME(paymentDateTime) AS monthName,DATE_FORMAT(paymentDateTime,'%b') AS shortMonth,DATE_FORMAT(paymentDateTime, '%Y-%m-%d') AS newdateTime from payment where paymentType='cash' AND paymentDateTime > now() - INTERVAL 7 day GROUP BY DAY(paymentDateTime) ORDER BY paymentDateTime;";
+   const sqlget="select paymentDateTime,COUNT(*) AS data,DAY(paymentDateTime)AS dateD, MONTHNAME(paymentDateTime) AS monthName,DATE_FORMAT(paymentDateTime,'%b') AS shortMonth,DATE_FORMAT(paymentDateTime, '%Y-%m-%d') AS newdateTime from payment where paymentType='cash' AND paymentDateTime > now() - INTERVAL 10 day GROUP BY DAY(paymentDateTime) ORDER BY paymentDateTime;";
  // const sqlget="select DAY(paymentDateTime)AS dateD from payment where paymentType='cash' AND paymentDateTime > now() - INTERVAL 7 day GROUP BY DAY(paymentDateTime) ORDER BY paymentDateTime;";
   db.query(sqlget,(err,result)=>{
       res.send(result);
@@ -465,7 +465,7 @@ router.get('/adminDeliveries/getDeliveryCountCash',(req,res)=>{
 })
 
 router.get('/adminDeliveries/getDeliveryCountOnline',(req,res)=>{
-   const sqlget="select paymentDateTime,COUNT(*) AS data,DAY(paymentDateTime)AS dateD, MONTHNAME(paymentDateTime) AS monthName,DATE_FORMAT(paymentDateTime,'%b') AS shortMonth,DATE_FORMAT(paymentDateTime, '%Y-%m-%d') AS newdateTime from payment where paymentType='online' AND paymentDateTime > now() - INTERVAL 7 day GROUP BY DAY(paymentDateTime) ORDER BY paymentDateTime;";
+   const sqlget="select paymentDateTime,COUNT(*) AS data,DAY(paymentDateTime)AS dateD, MONTHNAME(paymentDateTime) AS monthName,DATE_FORMAT(paymentDateTime,'%b') AS shortMonth,DATE_FORMAT(paymentDateTime, '%Y-%m-%d') AS newdateTime from payment where paymentType='online' AND paymentDateTime > now() - INTERVAL 10 day GROUP BY DAY(paymentDateTime) ORDER BY paymentDateTime;";
   //const sqlget="select DAY(paymentDateTime)AS dateD from payment where paymentType='cash' AND paymentDateTime > now() - INTERVAL 7 day GROUP BY DAY(paymentDateTime) ORDER BY paymentDateTime;";
   db.query(sqlget,(err,result)=>{
       res.send(result);
@@ -488,6 +488,26 @@ router.get('/adminContactUS/getDetails',(req,res)=>{
 //complain 
 router.get('/adminComplaints/getDetails',(req,res)=>{
   const sqlget="SELECT * FROM complaints;";
+ db.query(sqlget,(err,result)=>{
+     res.send(result);
+      console.log(err);
+ })
+})
+
+
+
+//admin delivery history page
+router.get('/adminDelivery/getDeliveryHistoryDetailsGroup',(req,res)=>{
+  const sqlget="SELECT SUM(deliveryAgentsPayment)AS deliveryFee,deliveryId,SUM(deliveryLoad) AS totalLoad,Date(deliveryassigneddate) AS deliveryDate,vehicle.vehicleId, DATE_FORMAT(deliveryassigneddate,'%b') AS shortMonth,DAY(deliveryassigneddate)AS dateD, YEAR(deliveries.deliveryassigneddate) AS year FROM ((deliveries INNER JOIN orders ON deliveries.orderId=orders.orderId) INNER JOIN vehicle  ON deliveries.deliveryAgentPhoneNumber=vehicle.deliveryAgentPhoneNumber) WHERE deliveries.orderId=orders.orderId   GROUP BY deliveries.deliveryId  ORDER BY deliveries.deliveryassigneddate ASC;";
+ db.query(sqlget,(err,result)=>{
+     res.send(result);
+      console.log(err);
+ })
+})
+
+
+router.get('/adminDelivery/getDeliveryHistoryAll',(req,res)=>{
+  const sqlget="SELECT * FROM deliveries INNER JOIN orders ON deliveries.orderId=orders.orderId;";
  db.query(sqlget,(err,result)=>{
      res.send(result);
       console.log(err);

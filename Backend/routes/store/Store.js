@@ -29,4 +29,13 @@ router.get("/getnewarrival", (req, res) => {
     });
   });
 
+  router.get("/getfercategory", (req, res) => {
+
+   const sqlgetfer = "SELECT * FROM fertilizercategory";
+   db.query(sqlgetfer, (err, result) => {
+      // console.log(result);
+      res.send(result);
+   });
+ });
+
   module.exports = router;
