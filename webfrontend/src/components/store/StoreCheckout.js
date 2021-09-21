@@ -3,8 +3,8 @@ import "./Store.css";
 import { Link } from "react-router-dom";
 import { useCart } from "react-use-cart";
 import DiliveryDistrict from './storeComponents/DiliveryDistrict';
-import GeoLocation from './storeComponents/GeoLocation'
-
+import GeoLocation from './storeComponents/GeoLocation';
+import PayPal from './storeComponents/PayPal';
 const StoreCheckout = () => {
 
     //shopping cart
@@ -73,12 +73,6 @@ const StoreCheckout = () => {
     },[])
 
     //share location
-   /*  const location = GeoLocation();
-
-    const setLocation = (event) => {
-        console.log(location);
-        console.log(location);
-    } */
     const [location,setLocation] = useState({
         loaded:false,
         coordinates:{lat:"", lng:""}
@@ -112,6 +106,8 @@ const StoreCheckout = () => {
         navigator.geolocation.getCurrentPosition(onSuccess, onError);
     };
     
+    //payment gateway paypal
+    const [checkout, setCheckout] = useState(false);
 
     // Data segments to be written to the backend
     const [farmernumber, setFarmer] = useState([]);
@@ -216,7 +212,7 @@ const StoreCheckout = () => {
                             </div>
                         </div>
 
-                        {shpaybtn == 'online'?(<div className="payhere-button"><button className="payhere-style-text"><p style={{color:"white"}}>Pay</p><p style={{color:"#fcac00"}}>Here</p></button></div>):('')}
+                        {shpaybtn == 'online'?(<div className="payhere-button">{checkout ? ( <PayPal />):(<button className="payhere-style-text" onClick ={() => {setCheckout(true);}}><p style={{color:"white"}}>Pay</p><p style={{color:"#fcac00"}}>Here</p></button>)}</div>):('')}
                     </div>
 
                     <div className="checkout-input-loyalty">
