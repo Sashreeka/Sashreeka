@@ -45,6 +45,7 @@ app.use(ContactUs);
 // const HomePageAdmin=require('./routes/company/HomePageAdmin.js');
 // app.use(HomePageAdmin);
 
-app.listen(4000, () => {
+const PORT=process.env.PORT || 4000;
+app.listen(PORT, () => {
   console.log("running port 4000");
 });

@@ -125,7 +125,7 @@ export default function Sidebar({ title }) {
               </Link>
             )}
 
-            {title === "orders" ? (
+            {title === "order" ? (
               <Link to="/orders" className="link">
                 <li className="sidebarListItem active">
                   <BarChart className="sidebarIcon" />

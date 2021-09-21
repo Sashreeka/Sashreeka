@@ -147,7 +147,7 @@ export default function NewProduct() {
         console.log(formdata)
          
        
-        axios.post("http://localhost:4000/addFertilizer",formdata
+        axios.post("/addFertilizer",formdata
         // {
         //     name:name,
         //     // description:description,

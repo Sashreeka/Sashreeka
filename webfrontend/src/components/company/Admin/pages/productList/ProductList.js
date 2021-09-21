@@ -10,7 +10,7 @@ export default function ProductList() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:4000/getfertilizer").then((response) => {
+    axios.get("/getfertilizer").then((response) => {
       setData(response.data);
     });
   }, []);
@@ -93,7 +93,7 @@ export default function ProductList() {
   //delete record
   const deleteProduct = (fertilizerId) => {
     axios
-      .delete("http://localhost:4000/deleteProductItems/" + fertilizerId)
+      .delete("/deleteProductItems/" + fertilizerId)
       .then((response) => {
         setData(data.filter((item) => item.fertilizerId !== fertilizerId));
       });
