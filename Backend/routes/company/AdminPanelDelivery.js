@@ -186,4 +186,13 @@ router.get("/assign/getpreviousdeliveryId", (req, res) => {
 //   });
 // });
 
+router.get("/reports/getallproductSales", (req, res) => {
+  const sqlget =
+    "SELECT DISTINCT(fertilizer.fertilizerId), fertilizer.name as fertilizerName,(SELECT SUM(quantity) FROM `ordercontainsfertilizer` WHERE ordercontainsfertilizer.fertilizerId=fertilizer.fertilizerId GROUP BY fertilizerId) as sales ,(fertilizer.unitPrice * (SELECT SUM(quantity) FROM `ordercontainsfertilizer` WHERE ordercontainsfertilizer.fertilizerId=fertilizer.fertilizerId GROUP BY fertilizerId) ) as income FROM fertilizer LEFT JOIN ordercontainsfertilizer ON fertilizer.fertilizerId=ordercontainsfertilizer.fertilizerId GROUP BY fertilizer.name ORDER BY `fertilizer`.`fertilizerId` ASC";
+  db.query(sqlget, (err, result) => {
+    //  console.log(result);
+    res.send(result);
+  });
+});
+
 module.exports = router;

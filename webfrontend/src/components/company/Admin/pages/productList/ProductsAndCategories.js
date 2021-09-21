@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./delivery.css";
+import "./productsAndCategories.css";
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
 import {
@@ -15,10 +15,8 @@ import {
 import { green } from "@material-ui/core/colors";
 
 import Sidebar from "../../components/sidebar/Sidebar";
-import Tab0_Delivaries from "./Tab0_Delivaries";
-import Tab1_DelivaryHistory from "./Tab1_DelivaryHistory";
-import Tab2_Agents from "./Tab2_Agents";
-import Tab3_AssignDelivaries from "./Tab3_AssignDelivaries";
+import ProductList from "./ProductList";
+import ProductSalesReport from "./ProductSalesReport";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -94,7 +92,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Delivery() {
+export default function ProductsAndCategories() {
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -108,62 +106,46 @@ export default function Delivery() {
   };
 
   return (
-    <div className="deliveryCon">
-      <Sidebar title="delivery" />
-      {/* <div style={{ flex: 4 }}> */}
-      <div className={classes.root}>
-        <AppBar position="static">
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            indicatorColor="primary"
-            textColor="primary"
-            //   variant="fullWidth"
-            aria-label="full width tabs example"
-            className={classes.tab}
+    <div className="productCategoryCon">
+      <Sidebar title="productCategory" />
+      <div style={{ flex: 4 }}>
+        <div className={classes.root}>
+          <AppBar position="static">
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              indicatorColor="primary"
+              textColor="primary"
+              //   variant="fullWidth"
+              aria-label="full width tabs example"
+              className={classes.tab}
+            >
+              <Tab
+                label="Product Details"
+                {...a11yProps(0)}
+                className={classes.tabtable}
+              />
+              <Tab
+                label="Product sales Summary"
+                {...a11yProps(1)}
+                className={classes.tabtable}
+              />
+            </Tabs>
+          </AppBar>
+          <SwipeableViews
+            axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+            index={value}
+            onChangeIndex={handleChangeIndex}
           >
-            <Tab
-              label="Deliveries"
-              {...a11yProps(0)}
-              className={classes.tabtable}
-            />
-            <Tab
-              label="Assign Deliveries"
-              {...a11yProps(1)}
-              className={classes.tabtable}
-            />
-            <Tab
-              label="Delivery History"
-              {...a11yProps(2)}
-              className={classes.tabtable}
-            />
-            <Tab
-              label="Agents"
-              {...a11yProps(3)}
-              className={classes.tabtable}
-            />
-          </Tabs>
-        </AppBar>
-        <SwipeableViews
-          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-          index={value}
-          onChangeIndex={handleChangeIndex}
-        >
-          <TabPanel value={value} index={0} dir={theme.direction}>
-            <Tab0_Delivaries />
-          </TabPanel>
-          <TabPanel value={value} index={1} dir={theme.direction}>
-            <Tab3_AssignDelivaries />
-          </TabPanel>
-          <TabPanel value={value} index={2} dir={theme.direction}>
-            <Tab1_DelivaryHistory />
-          </TabPanel>
-          <TabPanel value={value} index={3} dir={theme.direction}>
-            <Tab2_Agents />
-          </TabPanel>
-        </SwipeableViews>
+            <TabPanel value={value} index={0} dir={theme.direction}>
+              <ProductList />
+            </TabPanel>
+            <TabPanel value={value} index={1} dir={theme.direction}>
+              <ProductSalesReport />
+            </TabPanel>
+          </SwipeableViews>
+        </div>
       </div>
-      {/* </div> */}
     </div>
   );
 }

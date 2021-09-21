@@ -11,7 +11,7 @@ import Store from "./components/store/Store";
 import SearchStore from "./components/store/SearchStore";
 import StoreCart from "./components/store/StoreCart";
 import StoreCheckout from "./components/store/StoreCheckout";
-import FerView from "./components/store/FerView"
+import FerView from "./components/store/FerView";
 import { CartProvider } from "react-use-cart";
 
 import Handbook from "./components/handbook/Handbook";
@@ -42,6 +42,7 @@ import Orders from "./components/company/Admin/pages/orders/Orders";
 import Notification from "./components/company/Admin/pages/notification/Notification";
 import Announcements from "./components/company/Admin/pages/announcements/Announcements";
 import Complains from "./components/company/Admin/pages/complainsAndContactUs/Complains";
+import ProductsAndCategories from "./components/company/Admin/pages/productList/ProductsAndCategories";
 
 // Dashboard of Staff and Delivery Agent
 import DeliveryAgentD from "./components/company/DeliveryAgent";
@@ -87,8 +88,8 @@ function App() {
                   <NewUser />
                 </Route>
 
-                <Route path="/products">
-                  <ProductList />
+                <Route path="/productCategory">
+                  <ProductsAndCategories />
                 </Route>
                 <Route path="/product/:fertilizerId" component={Product} />
 
@@ -208,7 +209,6 @@ function App() {
                 <Route path="/storecheckout">
                   <StoreCheckout />
                 </Route>
-                
               </CartProvider>
             </Switch>
 
