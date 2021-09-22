@@ -131,7 +131,7 @@ router.get("/farmer/getproductsById/:id", (req, res) => {
 router.get("/farmer/getproducts5", (req, res) => {
   console.log("farmer.js------->getproducts");
   const sqlget =
-    "select fertilizerId, name, offer, ROUND(unitPrice*(100-offer)/100) AS price, unitPrice, unitWeight, photo, stock, reOrderLevel, measurementUnit, caption, DATE_FORMAT(arrivalTime, '%d %b %Y') as arrivalTime from fertilizer LIMIT 5";
+    "select fertilizerId, name, offer, ROUND(unitPrice*(100-offer)/100) AS price, unitPrice, unitWeight, photo, stock, reOrderLevel, measurementUnit, caption, DATE_FORMAT(arrivalTime, '%d %b %Y') as arrivalTime from fertilizer";
   db.query(sqlget, (err, result) => {
     res.send(result);
     console.log("/farmer/getproducts");

@@ -27,8 +27,14 @@ import { CartContext } from "../context/CartContext";
 Feather.loadFont();
 
 export default function CartScreen({ navigation }) {
-  const { items, getItemsCount, getTotalPrice, removeItem } =
-    useContext(CartContext);
+  const {
+    items,
+    getItemsCount,
+    getTotalPrice,
+    removeItem,
+    incrementQty,
+    decrementQty,
+  } = useContext(CartContext);
 
   function FooterBar() {
     let [total, setTotal] = useState(0);
@@ -45,6 +51,7 @@ export default function CartScreen({ navigation }) {
               flexDirection: "row",
               justifyContent: "space-between",
               marginVertical: 15,
+              marginHorizontal: 50,
             }}
           >
             <Text style={{ fontSize: 18, fontWeight: "bold" }}>
@@ -74,40 +81,18 @@ export default function CartScreen({ navigation }) {
     console.log(num);
     removeItem(num);
   }
-
-  function renderItem({ item }) {
-    return (
-      <View style={{ margin: 10 }}>
-        <Text>
-          {item.product.name} x {item.qty}
-        </Text>
-        {/* <Icon
-          name="remove"
-          onPress={() => items.find((i) => i.id == id)}
-        />
-        <Text
-          style={{ fontWeight: "bold", fontSize: 18, paddingHorizontal: 5 }}
-        >
-          {item.qty}
-        </Text>
-        <Icon
-          name="add"
-          onPress={() => setquantity(item.qty + 1)}
-        /> */}
-        <Text>$ {item.totalPrice}</Text>
-
-        <Icon
-          name="delete-outline"
-          size={20}
-          color={COLORS.white}
-          onPress={() => removeItemFromCart(item.id)}
-          // onPress={() => removeItem(item.id)}
-        />
-      </View>
-    );
+  function incrementQtyFromCart(num) {
+    console.log("incrementQtyFromCart");
+    console.log(num);
+    incrementQty(num);
+  }
+  function decrementQtyFromCart(num) {
+    console.log("decrementQtyFromCart");
+    console.log(num);
+    decrementQty(num);
   }
 
-  const CartCard = ({ item }) => {
+  const CartCardNew = ({ item }) => {
     return (
       <View style={styles.cartCard}>
         <Image
@@ -124,13 +109,33 @@ export default function CartScreen({ navigation }) {
             flex: 1,
           }}
         >
-          <Text style={{ fontWeight: "bold", fontSize: 16 }}>{item.name}</Text>
+          <Text style={{ fontWeight: "bold", fontSize: 16 }}>
+            {item.product.name}
+          </Text>
+          <Text>
+            ({item.product.unitWeight}
+            {item.product.measurementUnit})
+          </Text>
           <Text numberOfLines={2} style={{ fontSize: 13, color: COLORS.grey }}>
             {item.description}
           </Text>
-          <Text style={{ fontSize: 17, fontWeight: "bold" }}>
-            Rs. {item.unitPrice} ({item.unitWeight} {item.measurementUnit})
-          </Text>
+          {item.product.offer ? (
+            <Text>
+              <Text style={{ fontSize: 17, fontWeight: "bold" }}>
+                Rs. {item.product.price}
+              </Text>
+              <Text style={{ textDecorationLine: "line-through" }}>
+                {"  "}Rs. {item.product.unitPrice}
+              </Text>
+            </Text>
+          ) : (
+            <Text style={{ fontSize: 17, fontWeight: "bold" }}>
+              Rs. {item.product.unitPrice}
+            </Text>
+          )}
+          {/* <Text style={{ fontSize: 17, fontWeight: "bold" }}>
+            Rs. {item.product.unitPrice}
+          </Text> */}
 
           {/* <Text style={{ fontSize: 17, fontWeight: "bold" }}>
             {item.unitWeight}
@@ -144,18 +149,22 @@ export default function CartScreen({ navigation }) {
               name="remove"
               size={25}
               color={COLORS.white}
-              onPress={() => setquantity(quantity - 1)}
+              onPress={() => decrementQtyFromCart(item.id)}
             />
             <Text
-              style={{ fontWeight: "bold", fontSize: 18, paddingHorizontal: 5 }}
+              style={{
+                fontWeight: "bold",
+                fontSize: 18,
+                paddingHorizontal: 5,
+              }}
             >
-              {quantity}
+              {item.qty}
             </Text>
             <Icon
               name="add"
               size={25}
               color={COLORS.white}
-              onPress={() => setquantity(quantity + 1)}
+              onPress={() => incrementQtyFromCart(item.id)}
             />
           </View>
           <View style={styles.removeBtn}>
@@ -163,7 +172,7 @@ export default function CartScreen({ navigation }) {
               name="delete-outline"
               size={20}
               color={COLORS.white}
-              onPress={() => removeItem(item.fertilizerId)}
+              onPress={() => removeItemFromCart(item.id)}
             />
           </View>
         </View>
@@ -210,16 +219,33 @@ export default function CartScreen({ navigation }) {
       <View style={styles.header}>
         <Text style={{ fontSize: 24, fontWeight: "bold" }}>Cart</Text>
       </View>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 80 }}
-        // style={styles.itemsList}
-        data={items}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.product.id.toString()}
-        ListHeaderComponent={Headerbar}
-        ListFooterComponent={FooterBar}
-      />
+
+      {getItemsCount() == 0 ? (
+        <View style={[styles.cartCard, { alignSelf: "center" }]}>
+          <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: 20,
+              alignSelf: "center",
+              paddingHorizontal: 20,
+            }}
+          >
+            Your cart is empty !!!
+          </Text>
+        </View>
+      ) : (
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingBottom: 80 }}
+          // style={styles.itemsList}
+          data={items}
+          // renderItem={renderItem}
+          renderItem={CartCardNew}
+          keyExtractor={(item) => item.product.id.toString()}
+          // ListHeaderComponent={Headerbar}
+          ListFooterComponent={FooterBar}
+        />
+      )}
     </View>
   );
 }

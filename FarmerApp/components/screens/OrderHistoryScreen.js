@@ -27,6 +27,7 @@ export default function OrderHistoryScreen({ navigation }) {
   const [currentUser, setcurrentUser] = useState("");
 
   useEffect(() => {
+    
     setTimeout(async () => {
       const currentUser = await AsyncStorage.getItem("phoneNumber");
       console.log(currentUser);

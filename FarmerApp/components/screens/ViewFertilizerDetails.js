@@ -31,6 +31,7 @@ export default function ViewFertilizerDetails({ navigation, route }) {
 
   const { getItemsCount } = useContext(CartContext);
   const { addItemToCart } = useContext(CartContext);
+  const { incrementQty, decrementQty } = useContext(CartContext);
 
   const [productlist, setproductlist] = useState([]);
 
@@ -100,8 +101,8 @@ export default function ViewFertilizerDetails({ navigation, route }) {
             }}
           >
             <Image
-              source={require("../../assets/consts/pictures/dummypic.png")}
-              // source={{ uri: val.photo }}
+              // source={require("../../assets/consts/pictures/dummypic.png")}
+              source={{ uri: val.photo }}
               style={{
                 flex: 1,
                 resizeMode: "contain",
@@ -122,18 +123,8 @@ export default function ViewFertilizerDetails({ navigation, route }) {
           >
             {val.name}
           </Text>
-          {/* <View
-            style={{
-              height: 14,
-              width: 40,
-              backgroundColor: COLORS.white,
-              borderRadius: 10,
-              justifyContent: "center",
-              alignItems: "center",
-              marginLeft: 2,
-            }} 
-          >*/}
-          <Text
+
+          {/* <Text
             style={{
               fontSize: 8,
               color: COLORS.red,
@@ -142,20 +133,20 @@ export default function ViewFertilizerDetails({ navigation, route }) {
               marginLeft: 8,
             }}
           >
-            {/* <Icon name="shopping-cart" size={15} /> */}
+           
             <Icon name="star" size={8} />
             <Icon name="star" size={8} />
             <Icon name="star" size={8} />
             <Icon name="star-half" size={8} />
             <Icon name="star-half" size={8} />
-          </Text>
-          {/* </View> */}
+          </Text> */}
 
           <View
             style={{
               flexDirection: "row",
-              justifyContent: "space-between",
+              // justifyContent: "space-between",
               // marginTop: 5,
+              alignItems: "center",
             }}
           >
             {val.offer ? (
@@ -163,16 +154,18 @@ export default function ViewFertilizerDetails({ navigation, route }) {
                 style={{
                   flex: 1,
                   flexDirection: "column",
+                  alignItems: "center",
                 }}
               >
                 <Text
                   style={{
                     fontSize: 10,
                     fontWeight: "normal",
-                    marginLeft: 10,
+                    // marginLeft: 10,
                     textDecorationLine: "line-through",
                     textDecorationStyle: "solid",
                     // lineHeight:10,
+                    alignItems: "center",
                   }}
                 >
                   Rs. {val.unitPrice}
@@ -181,7 +174,7 @@ export default function ViewFertilizerDetails({ navigation, route }) {
                   style={{
                     fontSize: 12,
                     fontWeight: "bold",
-                    marginLeft: 10,
+                    // marginLeft: 10,
                     color: "#e23a3a",
                   }}
                 >
@@ -199,7 +192,7 @@ export default function ViewFertilizerDetails({ navigation, route }) {
                 Rs. {val.unitPrice}
               </Text>
             )}
-            <View
+            {/* <View
               style={{
                 height: 25,
                 width: 25,
@@ -209,21 +202,7 @@ export default function ViewFertilizerDetails({ navigation, route }) {
                 alignItems: "center",
                 marginRight: 5,
               }}
-              // onPress={() =>
-              //   setcartlist((cartlist) => [
-              //     ...cartlist,
-              //     {
-              //       fertilizerId: plant.fertilizerId,
-              //       name: plant.name,
-              //       description: plant.description,
-              //       unitPrice: plant.unitPrice,
-              //       unitWeight: plant.unitWeight,
-              //       measurementUnit: plant.measurementUnit,
-              //       // quantity: 1,
-              //       photo: plant.photo,
-              //     },
-              //   ])
-              // }
+              onPress={() => onAddToCart(val.fertilizerId)}
             >
               <Text
                 style={{
@@ -234,7 +213,7 @@ export default function ViewFertilizerDetails({ navigation, route }) {
               >
                 <Icon name="shopping-cart" size={20} />
               </Text>
-            </View>
+            </View> */}
           </View>
         </View>
       </TouchableOpacity>
@@ -272,28 +251,33 @@ export default function ViewFertilizerDetails({ navigation, route }) {
             size={28}
             onPress={() => navigation.goBack()}
           />
-          <Text>
-            <Icon
-              name="shopping-cart"
-              size={28}
-              onPress={
-                // () => navigation.navigate("CartScreen")
-                () => navigation.navigate("CartScreen")
-                // navigation.navigate("Cart")
-              }
-            />
+          <Text
+            onPress={
+              // () => navigation.navigate("CartScreen")
+              () => navigation.navigate("CartScreen")
+              // navigation.navigate("Cart")
+            }
+          >
+            <Icon name="shopping-cart" size={28} />
             <View>
-              <Text
-                style={{
-                  color: COLORS.white,
-                  fontSize: 12,
-                  fontWeight: "bold",
-                  backgroundColor: COLORS.green,
-                  borderRadius: 50,
-                  padding: 5,
-                }}
-              >
-                {getItemsCount() == 0 ? "" : <Text> {getItemsCount()} </Text>}
+              <Text>
+                {getItemsCount() == 0 ? (
+                  ""
+                ) : (
+                  <Text
+                    style={{
+                      color: COLORS.white,
+                      fontSize: 14,
+                      fontWeight: "bold",
+                      backgroundColor: COLORS.green,
+                      borderRadius: 100,
+                      padding: 20,
+                    }}
+                  >
+                    {" "}
+                    {getItemsCount()}{" "}
+                  </Text>
+                )}
               </Text>
             </View>
           </Text>
@@ -512,23 +496,6 @@ export default function ViewFertilizerDetails({ navigation, route }) {
                       fontSize: 18,
                       fontWeight: "bold",
                     }}
-                    // onPress={() =>
-                    //   setcartlist((cartlist) => [
-                    //     ...cartlist,
-                    //     {
-                    //       fertilizerId: plant.fertilizerId,
-                    //       name: plant.name,
-                    //       description: plant.description,
-                    //       unitPrice: plant.unitPrice,
-                    //       unitWeight: plant.unitWeight,
-                    //       measurementUnit: plant.measurementUnit,
-                    //       quantity: 5,
-                    //       photo: plant.photo,
-                    //     },
-                    //   ])
-                    // }
-                    // onPress={() => addToCart(plant.name)}
-                    // onPress={onAddToCart(5)}
                     onPress={() => onAddToCart(plant.fertilizerId)}
                   >
                     Add To Cart
