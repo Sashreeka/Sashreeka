@@ -99,11 +99,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const columns = [
-  { field: "id", headerName: "ID", width: 110 },
+  { field: "id", headerName: "ID", width: 70 },
   {
-    field: "address",
-    headerName: "Address",
-    width: 240,
+    field: "city",
+    headerName: "City",
+    width: 170,
     // editable: true,
   },
   {
@@ -112,18 +112,11 @@ const columns = [
     width: 120,
     // editable: true,
   },
-  {
-    field: "quickFlag",
-    headerName: "Quick",
-    renderCell: (params) => {
-      return <div>{params.value ? <Quick /> : "-"}</div>;
-    },
-    width: 90,
-  },
+
   {
     field: "loads",
     headerName: "Load",
-    width: 80,
+    width: 130,
     valueFormatter: (params) => {
       // const valueFormatted = Number(params.value).toLocaleString();
       return `${params.value} Kg`;
@@ -132,7 +125,15 @@ const columns = [
   {
     field: "graceenddate",
     headerName: "Delivery Deadline",
-    width: 110,
+    width: 200,
+  },
+  {
+    field: "quickFlag",
+    headerName: "Quick",
+    renderCell: (params) => {
+      return <div>{params.value ? <Quick /> : "-"}</div>;
+    },
+    width: 150,
   },
 ];
 
@@ -176,16 +177,16 @@ export default function AssignDeliveries() {
   const [errors, setErrors] = useState([]);
 
   const handleRowSelection = (e) => {
-    console.log("selected : ", e.isSelected);
+    // console.log("selected : ", e.isSelected);
     // console.log("loads : ", e.data);
     setload(calcLoad(load, e.data.loads, e.isSelected));
-    console.log("my total : ", load);
-    console.log("rows : ", rows);
+    // console.log("my total : ", load);
+    // console.log("rows : ", rows);
 
-    console.log("hello :", [rows.map((x) => x.id == e.data.id)]);
-    console.log("hello 2 :", [
-      rows.map((x) => x.id == e.data.id).findIndex((item) => item == true),
-    ]);
+    // console.log("hello :", [rows.map((x) => x.id == e.data.id)]);
+    // console.log("hello 2 :", [
+    //   rows.map((x) => x.id == e.data.id).findIndex((item) => item == true),
+    // ]);
 
     if (e.isSelected) {
       setSelectedOrders([
@@ -194,10 +195,10 @@ export default function AssignDeliveries() {
           rows.map((x) => x.id == e.data.id).findIndex((item) => item == true)
         ],
       ]);
-      console.log("selectedOrders : ", selectedOrders);
+      // console.log("selectedOrders : ", selectedOrders);
     } else {
       setSelectedOrders(selectedOrders.filter((r) => r.id !== e.data.id));
-      console.log("selectedOrders : ", selectedOrders);
+      // console.log("selectedOrders : ", selectedOrders);
     }
 
     // setDeletedRows([...deletedRows, ...rows.filter((r) => r.id === e.data.id)]);
@@ -214,59 +215,70 @@ export default function AssignDeliveries() {
   const calculatedate = (n) => {
     var date = new Date();
     var n = date.setDate(date.getDate() + n);
-    console.log(date.toISOString());
-    console.log(n.toString());
+    // console.log(date.toISOString());
+    // console.log(n.toString());
     // var x = n.toISOString();
     // return x.slice(0, 10);
   };
 
   const handleVehicleSelect = (userId) => {
-    console.log(userId);
-    console.log(agentlist.filter((r) => r.userId == userId)[0]);
-    setVehicle(agentlist.filter((r) => r.userId == userId)[0]);
+    // console.log(userId);
+    // console.log(agentlist.filter((r) => r.userId == userId)[0]);
+    setVehicle(agentlist.filter((r) => r.userId === userId)[0]);
   };
 
-  const [vehicledetail, setVehicleDetail] = useState([]);
-  const [deliveryidPre, setDeliveryidPre] = useState("");
+  const [vehicledetail, setVehicleDetail] = useState({});
+  const [deliveryidPre, setDeliveryidPre] = useState(0);
 
   const handleAssign = () => {
-    console.log("hello assigned");
+    // console.log("hello assigned");
     var x = validate();
     if (x) {
-      console.log("valid");
+      // console.log("valid");
       openSuccessPop();
 
-      console.log("selectedOrders: ", selectedOrders);
-      console.log("vehicle: ", vehicle);
-      console.log("agents: ", agentlist);
+      // console.log("selectedOrders: ", selectedOrders);
+      // console.log("vehicle: ", vehicle);
+      // console.log("agents: ", agentlist);
 
-      console.log("delivery date : ", deliveryDate);
-      setVehicleDetail(agentlist.filter((r) => r.userId == vehicle.userId)[0]);
-      console.log("agentfilter: ", vehicledetail);
+      // console.log("delivery date : ", deliveryDate);
+      console.log("vehical :", vehicle);
+      setVehicleDetail(agentlist.filter((r) => r.userId === vehicle.userId)[0]);
+      // console.log("agentfilter: ", vehicledetail);
 
       axios
         .get("http://localhost:4000/assign/getpreviousdeliveryId")
         .then((res) => {
-          console.log("last delid:", res.data[0]);
-          setDeliveryidPre(res.data[0]);
+          console.log("last delid:", res.data[0].deliveryId);
+          console.log(res.data[0].deliveryId + 1);
+
+          setDeliveryidPre(res.data[0].deliveryId + 1);
+          console.log("tttttttdelivery Pre tttttttt", deliveryidPre);
         })
         .catch((err) => console.log("err:", err));
+
+      console.log("selectedOrders: ", selectedOrders);
+      console.log("vahicle: ", vehicle);
+      console.log(" vehicledetail: ", vehicledetail);
+      console.log("deliveryDate: ", deliveryDate);
+      console.log("deliveryidPre: ", deliveryidPre);
       axios
         .post("http://localhost:4000/dummy/deletableapi", {
           dilOrders,
           selectedOrders,
-          vehicledetail,
+          // vehicledetail,
+          vehicle,
           deliveryDate,
           deliveryidPre,
         })
         .then((res) => console.log("suvvess :", res))
         .catch((err) => console.log("failed:", err));
     } else {
-      console.log("NOT valid");
+      // console.log("NOT valid");
       openErrPop();
-      console.log(
-        dilOrders.map((item) => [item["id"], item["name"], item["age"]])
-      );
+      // console.log(
+      //   dilOrders.map((item) => [item["id"], item["name"], item["age"]])
+      // );
 
       // const values = dilOrders.map((item) => [
       //   item["id"],
@@ -278,9 +290,9 @@ export default function AssignDeliveries() {
 
   const [valid, setvalid] = useState(false);
   const validate = () => {
-    console.log(vehicle ? true : false);
-    console.log(deliveryDate ? true : false);
-    console.log(load > 0 && load < vehicle.maxLoad * 1000 ? true : false);
+    // console.log(vehicle ? true : false);
+    // console.log(deliveryDate ? true : false);
+    // console.log(load > 0 && load < vehicle.maxLoad * 1000 ? true : false);
 
     const a = vehicle
       ? true
@@ -289,7 +301,7 @@ export default function AssignDeliveries() {
       ? true
       : setErrors(...errors, "You haven't assigned a delivery date");
     const c =
-      load > 0 && load < vehicle.maxLoad * 1000
+      load > 0 && load < vehicle.maxLoad
         ? true
         : setErrors(...errors, "Vehicle is overloded");
     const d =
@@ -306,19 +318,19 @@ export default function AssignDeliveries() {
   const [sucesspop, SetSuccesspop] = useState(false);
 
   const openErrPop = () => {
-    console.log("visivle to you");
+    // console.log("visivle to you");
     SetErrpop(true);
   };
   const closeErrPop = () => {
-    console.log("visivle to you -closed");
+    // console.log("visivle to you -closed");
     SetErrpop(false);
   };
   const openSuccessPop = () => {
-    console.log("Editable content");
+    // console.log("Editable content");
     SetSuccesspop(true);
   };
   const closeSuccessPop = () => {
-    console.log("Editable content closed");
+    // console.log("Editable content closed");
     SetSuccesspop(false);
   };
   useEffect(() => {
@@ -345,6 +357,17 @@ export default function AssignDeliveries() {
       .then((res) => setDeliverydetails(res.data))
       .catch((err) => console.log("err :", err));
   }, []);
+
+  axios
+    .get("http://localhost:4000/assign/getpreviousdeliveryId")
+    .then((res) => {
+      // console.log("last delid:", res.data[0].deliveryId);
+      // console.log(res.data[0].deliveryId + 1);
+
+      setDeliveryidPre(res.data[0].deliveryId + 1);
+      console.log("Aoios ttdelivery Pre tttttttt", deliveryidPre);
+    })
+    .catch((err) => console.log("err:", err));
 
   // const selectedDistrictFun = () => {
   //   axios
@@ -382,8 +405,8 @@ export default function AssignDeliveries() {
                       console.log("type:", e.target.value.toString());
                       console.log("deldate:", deliveryDate.toString());
                     }}
-                    min={"2021-09-20"}
-                    max={"2021-09-27"}
+                    min={"2021-09-23"}
+                    max={"2021-09-30"}
                   />
                   {/* <select
                   class="browser-default custom-select border-success"
@@ -488,7 +511,7 @@ export default function AssignDeliveries() {
                             &nbsp;&nbsp;&nbsp; {item.vehicleId}
                           </div>
                           <div style={{ alignItems: "center" }}>
-                            Max Load : {item.maxLoad}T
+                            Max Load : {item.maxLoad}Kg
                           </div>
                         </Paper>
                       </CardActionArea>
@@ -523,7 +546,7 @@ export default function AssignDeliveries() {
                   Total Load :{load} Kg
                   <br />
                   {vehicle ? (
-                    <div>max load : {vehicle.maxLoad * 1000} Kg</div>
+                    <div>max load : {vehicle.maxLoad} Kg</div>
                   ) : (
                     <div>No vehicle selected</div>
                   )}
@@ -571,7 +594,8 @@ export default function AssignDeliveries() {
                       <div>
                         <Avatar variant="square" className={classes.square}>
                           <div className={classes.date}>
-                            {parseInt(item.graceenddate.slice(0, 2))}
+                            {parseInt(item.graceenddate.slice(0, 2))}{" "}
+                            {/* {item.graceenddate} */}
                           </div>
                         </Avatar>
                       </div>
@@ -606,7 +630,7 @@ export default function AssignDeliveries() {
           </div>
           {vehicle ? "" : <div>You haven't selected a vehicle</div>}
           {deliveryDate ? "" : <div>You haven't assigned a delivery date</div>}
-          {load > 0 && load < vehicle.maxLoad * 1000 ? (
+          {load > 0 && load < vehicle.maxLoad ? (
             ""
           ) : (
             <div>Vehicle is overloded</div>

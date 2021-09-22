@@ -32,7 +32,7 @@ export default function UserList() {
       <Sidebar title="users" />
 
       <div className="userList">
-        <PageShiftButton />
+        {/* <PageShiftButton /> */}
 
         <MaterialTable
           title="Farmer Details"

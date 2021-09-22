@@ -111,7 +111,7 @@ router.get("/admin/getAllassigedorders", (req, res) => {
 });
 router.get("/admin/getAllunssigedorders", (req, res) => {
   const sqlget =
-    "SELECT orderId as id,farmerPhoneNumber,amount, CONCAT(houseNumber,', ',streetName,', ',city) as address, district, quickFlag, status,DATE_FORMAT(graceenddate, '%d %b %Y') as graceenddate,(SELECT SUM(quantity*weight) FROM ordercontainsfertilizer WHERE orderId=orders.orderId GROUP by orderId) as loads FROM orders WHERE status=0 ";
+    "SELECT orderId as id,farmerPhoneNumber,amount, city, district, quickFlag, status,DATE_FORMAT(graceenddate, '%d %b %Y') as graceenddate,(SELECT SUM(quantity*weight) FROM ordercontainsfertilizer WHERE orderId=orders.orderId GROUP by orderId) as loads FROM orders WHERE status=0 ";
   // if you are changing the query, change below api as well(/admin/getAllunssigedordersDistrictList)
   db.query(sqlget, (err, result) => {
     console.log(result);
@@ -130,24 +130,27 @@ router.get("/admin/getAllunssigedordersDistrictList", (req, res) => {
 
 // dummy insert -multiple rows
 router.post("/dummy/deletableapi", (req, res) => {
+  console.log("################################################");
   console.log(req.body.selectedOrders);
   console.log(req.body.dilOrders);
-  console.log(req.body.vehicledetail);
+  console.log(req.body.vehicle);
+  // console.log(req.body.vehicledetail);
   console.log(req.body.deliveryDate);
-  console.log("delivery id:", req.body.deliveryidPre.deliveryId);
+  console.log("delivery id:", req.body.deliveryidPre);
 
   const selectedOrders = req.body.selectedOrders;
   const dilOrders = req.body.dilOrders;
-  const vehicledetail = req.body.vehicledetail;
+  // const vehicledetail = req.body.vehicledetail;
+  const vehicledetail = req.body.vehicle;
   const deliveryDate = req.body.deliveryDate;
   const deliveryidPre = req.body.deliveryidPre;
 
   const arr = req.body.selectedOrders.map((item) => [
-    deliveryidPre.deliveryId, // deliveryid
+    deliveryidPre, // deliveryid
     item["id"], //orderid
     item["farmerPhoneNumber"], //farmerPhoneNumber
     vehicledetail.phoneNumber, // deliveryAgentPhoneNumber
-    vehicledetail.maxLoad * 1000, // deliveryAgentPhoneNumber
+    vehicledetail.maxLoad, // deliveryAgentPhoneNumber
     200, // distance
     1000, // deliveryAgentsPayment
     deliveryDate, //  deliveryassigneddate
@@ -197,9 +200,45 @@ router.get("/assign/getpreviousdeliveryId", (req, res) => {
 
 router.get("/reports/getallproductSales", (req, res) => {
   const sqlget =
-    "SELECT DISTINCT(fertilizer.fertilizerId), fertilizer.name as fertilizerName,(SELECT SUM(quantity) FROM `ordercontainsfertilizer` WHERE ordercontainsfertilizer.fertilizerId=fertilizer.fertilizerId GROUP BY fertilizerId) as sales ,(fertilizer.unitPrice * (SELECT SUM(quantity) FROM `ordercontainsfertilizer` WHERE ordercontainsfertilizer.fertilizerId=fertilizer.fertilizerId GROUP BY fertilizerId) ) as income FROM fertilizer LEFT JOIN ordercontainsfertilizer ON fertilizer.fertilizerId=ordercontainsfertilizer.fertilizerId GROUP BY fertilizer.name ORDER BY `fertilizer`.`fertilizerId` ASC";
+    "SELECT DISTINCT(fertilizer.fertilizerId), fertilizer.name as fertilizerName,(SELECT SUM(quantity) FROM `ordercontainsfertilizer` WHERE ordercontainsfertilizer.fertilizerId=fertilizer.fertilizerId GROUP BY fertilizerId) as sales ,(fertilizer.unitPrice * (SELECT SUM(quantity) FROM `ordercontainsfertilizer` WHERE ordercontainsfertilizer.fertilizerId=fertilizer.fertilizerId GROUP BY fertilizerId) ) as income  , fertilizer.unitWeight as weight ,fertilizer.measurementUnit as mesure FROM fertilizer LEFT JOIN ordercontainsfertilizer ON fertilizer.fertilizerId=ordercontainsfertilizer.fertilizerId GROUP BY fertilizer.name ORDER BY `fertilizer`.`fertilizerId` ASC";
   db.query(sqlget, (err, result) => {
     //  console.log(result);
+    res.send(result);
+  });
+});
+
+router.get("/reports/janMonthlyproductSales", (req, res) => {
+  const sqlget =
+    "SELECT fertilizer.fertilizerId, fertilizer.name as fertilizerName,SUM(ordercontainsfertilizer.quantity) AS quantity ,(SUM(ordercontainsfertilizer.quantity)*fertilizer.unitPrice) as monthlyincome FROM fertilizer LEFT JOIN ordercontainsfertilizer ON fertilizer.fertilizerId=ordercontainsfertilizer.fertilizerId WHERE ordercontainsfertilizer.date<='2021-01-30' AND ordercontainsfertilizer.date>='2021-01-01' GROUP BY fertilizer.name";
+  db.query(sqlget, (err, result) => {
+    //  console.log(result);
+    res.send(result);
+  });
+});
+
+router.get("/reports/sepMonthlyproductSales", (req, res) => {
+  const sqlget =
+    "SELECT fertilizer.fertilizerId, fertilizer.name as fertilizerName ,SUM(ordercontainsfertilizer.quantity) AS quantity ,(SUM(ordercontainsfertilizer.quantity)*fertilizer.unitPrice) as monthlyincome FROM fertilizer LEFT JOIN ordercontainsfertilizer ON fertilizer.fertilizerId=ordercontainsfertilizer.fertilizerId WHERE ordercontainsfertilizer.date<='2021-09-30' AND ordercontainsfertilizer.date>='2021-09-01' GROUP BY fertilizer.name";
+  db.query(sqlget, (err, result) => {
+    //  console.log(result);
+    res.send(result);
+  });
+});
+
+router.get("/reports/EmptyMonthlyproductSales", (req, res) => {
+  const sqlget =
+    "SELECT fertilizer.fertilizerId, fertilizer.name as fertilizerName ,SUM(ordercontainsfertilizer.quantity) AS quantity ,(SUM(ordercontainsfertilizer.quantity)*fertilizer.unitPrice) as monthlyincome FROM fertilizer LEFT JOIN ordercontainsfertilizer ON fertilizer.fertilizerId=ordercontainsfertilizer.fertilizerId WHERE ordercontainsfertilizer.date<='2021-11-30' AND ordercontainsfertilizer.date>='2021-11-01' GROUP BY fertilizer.name";
+  db.query(sqlget, (err, result) => {
+    //  console.log(result);
+    res.send(result);
+  });
+});
+
+// report - district vise delivery chart
+router.get("/reports/districtviseOrders", (req, res) => {
+  const sqlget =
+    "SELECT district,count(district) as orders FROM `orders` GROUP BY district ORDER BY district ASC";
+  db.query(sqlget, (err, result) => {
     res.send(result);
   });
 });

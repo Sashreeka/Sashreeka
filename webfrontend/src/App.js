@@ -116,7 +116,7 @@ function App() {
                 <Route path="/rolesPrivilages">
                   <RolesPrivilages />
                 </Route>
-                <Route path="/notification">
+                <Route path="/reports">
                   <Notification />
                 </Route>
                 <Route path="/announcements">

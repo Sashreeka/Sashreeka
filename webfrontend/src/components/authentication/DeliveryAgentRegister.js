@@ -46,7 +46,7 @@ export default function DeliverAgentRegister() {
     //   // .equals(9, "Must be 9 characters")
     //   .required("Required"),
     phoneNumber: Yup.string()
-      .matches("[0]{1}[7]{1}[0-9]{8}", "Phone Number is not Valid")
+      .matches("[+]{1}[9]{1}[4]{1}[7]{1}[0-9]{8}", "Phone Number is not Valid")
       //   .max(20, "Must be 20 characters or less")
       // .checkPhoneNum("0713705751")
       .required("Required"),

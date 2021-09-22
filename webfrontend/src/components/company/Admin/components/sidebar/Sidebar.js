@@ -58,14 +58,14 @@ export default function Sidebar({ title }) {
               <Link to="/sales" className="link">
                 <li className="sidebarListItem active">
                   <BarChartIcon className="sidebarIcon" />
-                  Sales
+                  Income
                 </li>
               </Link>
             ) : (
               <Link to="/sales" className="link">
                 <li className="sidebarListItem">
                   <BarChartIcon className="sidebarIcon" />
-                  Sales
+                  Income
                 </li>
               </Link>
             )}
@@ -89,22 +89,6 @@ export default function Sidebar({ title }) {
                 <li className="sidebarListItem">
                   <PeopleIcon className="sidebarIcon" />
                   Users
-                </li>
-              </Link>
-            )}
-
-            {title === "productCategory" ? (
-              <Link to="/productCategory" className="link">
-                <li className="sidebarListItem active">
-                  <WebAsset className="sidebarIcon" />
-                  Products & Categories
-                </li>
-              </Link>
-            ) : (
-              <Link to="/productCategory" className="link">
-                <li className="sidebarListItem">
-                  <WebAsset className="sidebarIcon" />
-                  Products & Categories
                 </li>
               </Link>
             )}
@@ -137,6 +121,22 @@ export default function Sidebar({ title }) {
                 <li className="sidebarListItem">
                   <BarChart className="sidebarIcon" />
                   Orders
+                </li>
+              </Link>
+            )}
+
+            {title === "productCategory" ? (
+              <Link to="/productCategory" className="link">
+                <li className="sidebarListItem active">
+                  <WebAsset className="sidebarIcon" />
+                  Products & Categories
+                </li>
+              </Link>
+            ) : (
+              <Link to="/productCategory" className="link">
+                <li className="sidebarListItem">
+                  <WebAsset className="sidebarIcon" />
+                  Products & Categories
                 </li>
               </Link>
             )}
@@ -181,22 +181,22 @@ export default function Sidebar({ title }) {
             )}
 
             {title === "notification" ? (
-              <Link to="/notification" className="link">
+              <Link to="/reports" className="link">
                 <li className="sidebarListItem active">
                   <NotificationsIcon className="sidebarIcon" />
-                  Notifications
+                  Reports
                 </li>
               </Link>
             ) : (
-              <Link to="/notification" className="link">
+              <Link to="/reports" className="link">
                 <li className="sidebarListItem">
                   <NotificationsIcon className="sidebarIcon" />
-                  Notifications
+                  Reports
                 </li>
               </Link>
             )}
 
-            {title === "announcements" ? (
+            {/* {title === "announcements" ? (
               <Link to="/announcements" className="link">
                 <li className="sidebarListItem active">
                   <ChatBubbleOutline className="sidebarIcon" />
@@ -225,7 +225,7 @@ export default function Sidebar({ title }) {
                   Complains & Contact Us
                 </li>
               </Link>
-            )}
+            )} */}
           </ul>
         </div>
       </div>

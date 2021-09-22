@@ -176,9 +176,7 @@ export default function Roles_and_privilages() {
         {/* <Control.Button title="control btn" color="secondary"></Control.Button> */}
         {/* <Available />
         <Unavailable /> */}
-        <div style={{ width: 400 }}>
-          <BarChart2 />
-        </div>
+        <div style={{ width: 400 }}>{/* <BarChart2 /> */}</div>
         <div style={{ paddingRight: 20 }}>
           <MaterialTable
             title="Company Staff Details"

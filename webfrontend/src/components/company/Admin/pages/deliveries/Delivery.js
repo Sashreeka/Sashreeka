@@ -119,7 +119,7 @@ export default function Delivery() {
             indicatorColor="primary"
             textColor="primary"
             //   variant="fullWidth"
-            aria-label="full width tabs example"
+            // aria-label="full width tabs example"
             className={classes.tab}
           >
             <Tab
