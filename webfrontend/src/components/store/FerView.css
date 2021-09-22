@@ -7,6 +7,10 @@
     
     
   }
+  .left-ferview-container{
+    display: flex;
+  flex-direction:column;
+  }
   .left-ferview-container,.right-ferview-container{
     width: 500px;
     border: 2px solid rgb(241, 247, 241);
@@ -30,6 +34,8 @@
   }
   .rating-head{
       color:black;
+      font-size: 15px;
+      font-weight: bold;
   }
 
   .checked {
@@ -40,6 +46,10 @@
 }
   .comment-section{
       margin-top: 30px;
+  }
+  .comment-section h{
+    font-size: 14px;
+    font-weight: bold;
   }
   .rating-comments{
       margin-top: 40px;
@@ -53,6 +63,22 @@
     
     
   }
+  /*.left-ferview-container{
+    display: flex;
+    
+    flex-direction: column;
+  }*/
+  .left-ferview-container img{
+    width:270px;
+      height: 300px;
+      margin-left: 90px;
+      border-radius: 10px;
+  }
+  .left-ferview-container .discription  h{
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 100px;
+  }
   .rate-right{
       margin-left: 20px;
   }
@@ -63,6 +89,10 @@
   }
   .rate-form{
       margin-top: 40px;
+  }
+  .rate-form h{
+    font-size: 14px;
+    font-weight: bold;
   }
   
   .comment_box{
@@ -108,10 +138,11 @@
     font-size: 1.4rem;
     color:black;
     transition: .2s linear;
+    
   }
   
   
-  .rate-button{
+  .rate-button input{
     text-align: center;
     border-radius: 5rem;
     background:linear-gradient(180deg, #80b953 2.08%, #2c9984 95.83%);
@@ -119,7 +150,7 @@
     color:white;
     cursor: pointer;
     transition: all .2s linear;
-    width:12rem; 
+    width:9rem; 
   
     
     
