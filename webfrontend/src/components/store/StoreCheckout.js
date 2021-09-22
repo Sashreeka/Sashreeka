@@ -5,6 +5,7 @@ import { useCart } from "react-use-cart";
 import DiliveryDistrict from './storeComponents/DiliveryDistrict';
 import GeoLocation from './storeComponents/GeoLocation';
 import PayPal from './storeComponents/PayPal';
+import axios from 'axios';
 const StoreCheckout = () => {
 
     //shopping cart
@@ -24,6 +25,13 @@ const StoreCheckout = () => {
     const showPaybtn = (event)=>{
        showPaymentGateway(event.target.value);
        setPayment(event.target.value);
+
+       if(event.target.value == 'online'){
+           setTrans(1);
+       }
+       else{
+           setTrans(0);
+       }
     };
 
     //quick delivery status
@@ -120,7 +128,6 @@ const StoreCheckout = () => {
     //payment gateway paypal
     const [checkout, setCheckout] = useState(false);
     //const success = PayPal();
-   // console.log(success);
 
     // Data segments to be written to the backend
     const [farmernumber, setFarmer] = useState([]);
@@ -132,11 +139,38 @@ const StoreCheckout = () => {
     const [quickflag, setQuick]= useState("");
     const [dilivercharge, setCharge]= useState("");
     const [paymenttype, setPayment]= useState("");
+    const [transactionst,setTrans] = useState("");
     const [loyaltyratio, setLoyalty]=useState("");
     const [amount, setAmount] = useState("");
     const [district, setDistrict]= useState("");
     const [latitude, setLatitude] = useState("");
     const [longitude, setLongitude] = useState("");
+
+    //write data to the database
+    const submitOrder = () => {
+        axios.post('http://localhost:4000/placeOrder',{
+            amount: amount,
+            houseNumber: housenumber,
+            streetName: streetname,
+            city: city,
+            district: district,
+            quickFlag: quickflag,
+            receiverName: receivername,
+            deliveryCharge: dilivercharge,
+            farmerPhoneNumber: farmernumber,
+            latitude: latitude,
+            longitude: longitude,
+            receiverNumber: receivernumber,
+
+            orderCfertilizer: items,
+            
+            paymentType: paymenttype,
+            transactionStatus: transactionst,
+
+            loyaltyPoints: loyaltyratio,
+        }).then(alert("Order placed successfully")
+        )
+    };
     
 
     return(
@@ -286,10 +320,25 @@ const StoreCheckout = () => {
                                     <div>
                                         {checkout ? 
                                             (<div>
-                                                <PayPal value={amount}/>
-                                                <button>
-                                                    Confirm Order
-                                                </button>
+                                                <PayPal amount= {amount}
+                                                        houseNumber= {housenumber}
+                                                        streetName= {streetname}
+                                                        city={city}
+                                                        district= {district}
+                                                        quickFlag= {quickflag}
+                                                        receiverName={receivername}
+                                                        deliveryCharge= {dilivercharge}
+                                                        farmerPhoneNumber= {farmernumber}
+                                                        latitude= {latitude}
+                                                        longitude= {longitude}
+                                                        receiverNumber= {receivernumber}
+
+                                                        orderCfertilizer= {items}
+                                                        
+                                                        paymentType= {paymenttype}
+                                                        transactionStatus= {transactionst}
+
+                                                        loyaltyPoints= {loyaltyratio}/>
                                             </div>
                                         )
                                             :
@@ -302,7 +351,7 @@ const StoreCheckout = () => {
                                 )
                                 :
                                 (
-                                    <button>
+                                    <button  onClick={submitOrder} >
                                         Confirm Order
                                     </button>
                                 )
