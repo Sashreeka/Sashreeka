@@ -35,8 +35,14 @@
   .checked {
     color: #ffd700;
   }
+.right-ferview-container{
+    margin-bottom: 30PX;
+}
+  .comment-section{
+      margin-top: 30px;
+  }
   .rating-comments{
-      margin-top: 20px;
+      margin-top: 40px;
       color:black;
   }
   .rate{
@@ -55,3 +61,69 @@
       height: 50px;
       border-radius: 50%;
   }
+  .rate-form{
+      margin-top: 40px;
+  }
+  
+  .comment_box{
+    /*position: relative;
+    height: 50px;
+    width: 100%;
+    margin: 12px 0;*/
+    height: 50px;
+    width: 100%;
+    margin: 12px 0;
+  }
+  
+  .comment_box, .comment_box textarea{
+    /*width:100%;
+    background:none;
+    color:#666;
+    margin:1rem 0;
+    padding:.4rem 0;
+    font-size: 1.2rem;
+    border-bottom: .1rem solid rgba(18, 247, 67, 0.1);
+    text-transform: none;*/
+    height: 100%;
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background: #F0F1F8;
+    border-radius: 6px;
+    padding: 0 15px;
+    resize: none;
+  }
+  
+  .comment_box textarea{
+    /*resize: none;
+    height: 8.5rem;*/
+    padding: 6PX;
+    margin-top: 8px;
+  }
+  
+  .comment_box label{
+    position: absolute;
+    top:1.7rem; left:0;
+    font-size: 1.4rem;
+    color:black;
+    transition: .2s linear;
+  }
+  
+  
+  .rate-button{
+    text-align: center;
+    border-radius: 5rem;
+    background:linear-gradient(180deg, #80b953 2.08%, #2c9984 95.83%);
+    font-size: 1.5rem;
+    color:white;
+    cursor: pointer;
+    transition: all .2s linear;
+    width:12rem; 
+  
+    
+    
+  
+  }
+  
+  

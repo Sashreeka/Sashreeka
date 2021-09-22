@@ -32,10 +32,10 @@ function FerView() {
 
                     </div>
 
-
+                    <div className="comment-section">
                     <h className="rating-comments">Comments</h>
-
-                    <div className="fa-comment-dots"></div>
+                    </div>
+                   
                         <div className="rate">
                             <div className="rate-left">
                             <div class="rate-left-image">
@@ -47,17 +47,39 @@ function FerView() {
 
                             </div>
                         </div>
-                       
-                        <ReactStars
-                            count={5}
-                            size={24}
-                            activeColor="#ffd700"
-                        /> 
+
+                       <div className="rate-form">
+                        <h>Add your comments and rates</h>
+                            <div className="comment_box">
+                                <textarea
+                                required
+                        
+                                name="comment"
+                                placeholder="Add your comment"></textarea>
+                            </div>
+                                <div className="your-rates">
+                                <ReactStars
+                                count={5}
+                                size={24}
+                                activeColor="#ffd700"
+                                />
+                                </div>
+              
+                            <div className="rate-button">
+                                <input
+                                    type="submit"
+                                    className="contactbtn"
+                                    value="Send"
+                
+                                />
+                            </div>
+                        </div>
+                        
                     </div>
                     </div>
                     
+                
                  </div>
-                 
              
 
              
@@ -74,6 +96,7 @@ function FerView() {
            <Footer />  
 
         </>
+        
     )
 }
 
