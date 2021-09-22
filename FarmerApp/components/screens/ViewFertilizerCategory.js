@@ -33,12 +33,12 @@ export default function ViewFertilizerCategory({ route, navigation }) {
   const [productlist, setproductlist] = useState([]);
 
   useEffect(() => {
-    console.log(id);
-    console.log(category);
+    // console.log(id);
+    // console.log(category);
     Axios.get("http://192.168.8.222:4000/farmer/getcategories").then(
       (response) => {
         setcategorylist(response.data);
-        console.log(response.data[0]);
+        // console.log(response.data[0]);
       }
     );
 
@@ -167,31 +167,23 @@ export default function ViewFertilizerCategory({ route, navigation }) {
           >
             {val.name}
           </Text>
-          <View
+
+          <Text
             style={{
-              height: 18,
-              width: 75,
-              backgroundColor: COLORS.white,
-              borderRadius: 10,
-              justifyContent: "center",
-              alignItems: "center",
+              fontSize: 8,
+              color: COLORS.red,
+              fontWeight: "bold",
+              marginLeft: 10,
             }}
           >
-            <Text
-              style={{
-                fontSize: 8,
-                color: COLORS.red,
-                fontWeight: "bold",
-              }}
-            >
-              {/* <Icon name="shopping-cart" size={15} /> */}
-              <Icon name="star" size={12} />
-              <Icon name="star" size={12} />
-              <Icon name="star" size={12} />
-              <Icon name="star-half" size={12} />
-              <Icon name="star-half" size={12} />
-            </Text>
-          </View>
+            {/* <Icon name="shopping-cart" size={15} /> */}
+            <Icon name="star" size={12} />
+            <Icon name="star" size={12} />
+            <Icon name="star" size={12} />
+            <Icon name="star-half" size={12} />
+            <Icon name="star-half" size={12} />
+          </Text>
+
           <View
             style={{
               flexDirection: "row",
@@ -265,16 +257,16 @@ export default function ViewFertilizerCategory({ route, navigation }) {
             color={colors.textDark}
             onPress={() => navigation.openDrawer()}
           ></Feather>
-          <Icon
+          {/* <Icon
             name="shopping-cart"
             size={28}
             onPress={() => navigation.navigate("CartScreen")}
-          />
-          {/* <Image
+          /> */}
+          <Image
             source={require("../../assets/images/profileimg_girl.jpg")}
             style={styles.profileImage}
             // onPress={() => navigation.openDrawer()}
-          /> */}
+          />
         </View>
       </View>
 

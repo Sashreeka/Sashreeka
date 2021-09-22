@@ -24,21 +24,24 @@ Feather.loadFont();
 export default function OrderHistoryScreen({ navigation }) {
   const [historylist, setHistoryList] = useState([]);
 
+  const [currentUser, setcurrentUser] = useState("");
+
   useEffect(() => {
     setTimeout(async () => {
       const currentUser = await AsyncStorage.getItem("phoneNumber");
       console.log(currentUser);
+      setcurrentUser(currentUser);
       //    setIsLoading(false);
     }, 1000);
 
-    Axios.get("http://192.168.8.222:4000/farmer/getOrderHistoryById").then(
-      (response) => {
-        // console.log(response.data[0].famerPhoneNumber);
-        // console.log(response.data[0].confirmationFlag);
-        console.log(response.data[0]);
-        setHistoryList(response.data);
-      }
-    );
+    Axios.get(
+      "http://192.168.8.222:4000/farmer/getOrderHistoryById/" + currentUser
+    ).then((response) => {
+      // console.log(response.data[0].famerPhoneNumber);
+      // console.log(response.data[0].confirmationFlag);
+      console.log(response.data[0]);
+      setHistoryList(response.data);
+    });
   }, []);
 
   const orderstatus = (flag) => {
@@ -48,9 +51,13 @@ export default function OrderHistoryScreen({ navigation }) {
           Please wait fot grace period.
         </Text>
       );
-    } else if (flag === 1) {
-      return <Text style={styles.outForDelivery}>Delivery is on the way.</Text>;
     } else if (flag === 2) {
+      return (
+        <Text style={styles.outForDelivery}>Your order is being assigned.</Text>
+      );
+    } else if (flag === 3) {
+      return <Text style={styles.outForDelivery}>Delivery is on the way.</Text>;
+    } else if (flag === 4) {
       return (
         <Text style={styles.SuccessfulDelivery}>Successfully delivered.</Text>
       );
@@ -136,9 +143,9 @@ export default function OrderHistoryScreen({ navigation }) {
                       <Text style={styles.textRegular}>
                         Order Date: {val.ordereddate}
                       </Text>
-                      <Text style={styles.textRegular}>
+                      {/* <Text style={styles.textRegular}>
                         Delivery Date: {val.date}
-                      </Text>
+                      </Text> */}
 
                       <Text style={styles.textRegular}>
                         Total Price: RS. {val.amount}

@@ -22,22 +22,26 @@ import Axios from "axios";
 // const width = Dimensions.get("window").width / 2 - 30;
 const screenwidth = Dimensions.get("window").width / 3 - 30;
 
+// context file
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
+
 export default function ViewFertilizerDetails({ navigation, route }) {
   const plant = route.params;
+
+  const { getItemsCount } = useContext(CartContext);
+  const { addItemToCart } = useContext(CartContext);
 
   const [productlist, setproductlist] = useState([]);
 
   const [cartlist, setcartlist] = useState([]);
 
-  // const addToCart = (name) => {
-  //   console.log("addToCart");
-  //   console.log(name);
-  // };
+  // const [quantity, setquantity] = useState(1);
 
   useEffect(() => {
-    console.log(cartlist);
+    // console.log(cartlist);
 
-    Axios.get("http://192.168.8.222:4000/farmer/getproducts").then(
+    Axios.get("http://192.168.8.222:4000/farmer/getproducts5").then(
       (response) => {
         setproductlist(response.data);
         // console.log(response.data);
@@ -53,7 +57,7 @@ export default function ViewFertilizerDetails({ navigation, route }) {
       >
         <View
           style={{
-            height: 140,
+            height: 145,
             backgroundColor: colors.light,
             width: screenwidth,
             marginHorizontal: 10,
@@ -118,6 +122,35 @@ export default function ViewFertilizerDetails({ navigation, route }) {
           >
             {val.name}
           </Text>
+          {/* <View
+            style={{
+              height: 14,
+              width: 40,
+              backgroundColor: COLORS.white,
+              borderRadius: 10,
+              justifyContent: "center",
+              alignItems: "center",
+              marginLeft: 2,
+            }} 
+          >*/}
+          <Text
+            style={{
+              fontSize: 8,
+              color: COLORS.red,
+              fontWeight: "bold",
+
+              marginLeft: 8,
+            }}
+          >
+            {/* <Icon name="shopping-cart" size={15} /> */}
+            <Icon name="star" size={8} />
+            <Icon name="star" size={8} />
+            <Icon name="star" size={8} />
+            <Icon name="star-half" size={8} />
+            <Icon name="star-half" size={8} />
+          </Text>
+          {/* </View> */}
+
           <View
             style={{
               flexDirection: "row",
@@ -125,11 +158,47 @@ export default function ViewFertilizerDetails({ navigation, route }) {
               // marginTop: 5,
             }}
           >
-            <Text
-              style={{ fontSize: 12, fontWeight: "normal", marginLeft: 10 }}
-            >
-              Rs. {val.unitPrice}
-            </Text>
+            {val.offer ? (
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: "column",
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: 10,
+                    fontWeight: "normal",
+                    marginLeft: 10,
+                    textDecorationLine: "line-through",
+                    textDecorationStyle: "solid",
+                    // lineHeight:10,
+                  }}
+                >
+                  Rs. {val.unitPrice}
+                </Text>
+                <Text
+                  style={{
+                    fontSize: 12,
+                    fontWeight: "bold",
+                    marginLeft: 10,
+                    color: "#e23a3a",
+                  }}
+                >
+                  Rs. {val.price}
+                </Text>
+              </View>
+            ) : (
+              <Text
+                style={{
+                  fontSize: 12,
+                  fontWeight: "normal",
+                  marginLeft: 10,
+                }}
+              >
+                Rs. {val.unitPrice}
+              </Text>
+            )}
             <View
               style={{
                 height: 25,
@@ -140,21 +209,21 @@ export default function ViewFertilizerDetails({ navigation, route }) {
                 alignItems: "center",
                 marginRight: 5,
               }}
-              onPress={() =>
-                setcartlist((cartlist) => [
-                  ...cartlist,
-                  {
-                    fertilizerId: plant.fertilizerId,
-                    name: plant.name,
-                    description: plant.description,
-                    unitPrice: plant.unitPrice,
-                    unitWeight: plant.unitWeight,
-                    measurementUnit: plant.measurementUnit,
-                    quantity: 5,
-                    photo: plant.photo,
-                  },
-                ])
-              }
+              // onPress={() =>
+              //   setcartlist((cartlist) => [
+              //     ...cartlist,
+              //     {
+              //       fertilizerId: plant.fertilizerId,
+              //       name: plant.name,
+              //       description: plant.description,
+              //       unitPrice: plant.unitPrice,
+              //       unitWeight: plant.unitWeight,
+              //       measurementUnit: plant.measurementUnit,
+              //       // quantity: 1,
+              //       photo: plant.photo,
+              //     },
+              //   ])
+              // }
             >
               <Text
                 style={{
@@ -171,6 +240,12 @@ export default function ViewFertilizerDetails({ navigation, route }) {
       </TouchableOpacity>
     );
   };
+
+  function onAddToCart(num) {
+    console.log("addItemToCart");
+    console.log(num);
+    addItemToCart(num);
+  }
 
   return (
     <View
@@ -189,7 +264,6 @@ export default function ViewFertilizerDetails({ navigation, route }) {
             paddingTop: 15,
             alignItems: "center",
             backgroundColor: colors.secondary,
-            backgroundColor: colors.secondary,
             padding: 8,
           }}
         >
@@ -198,13 +272,31 @@ export default function ViewFertilizerDetails({ navigation, route }) {
             size={28}
             onPress={() => navigation.goBack()}
           />
-          <Icon
-            name="shopping-cart"
-            size={28}
-            onPress={() =>
-              navigation.navigate("CartScreen", { mycartlist: cartlist })
-            }
-          />
+          <Text>
+            <Icon
+              name="shopping-cart"
+              size={28}
+              onPress={
+                // () => navigation.navigate("CartScreen")
+                () => navigation.navigate("CartScreen")
+                // navigation.navigate("Cart")
+              }
+            />
+            <View>
+              <Text
+                style={{
+                  color: COLORS.white,
+                  fontSize: 12,
+                  fontWeight: "bold",
+                  backgroundColor: COLORS.green,
+                  borderRadius: 50,
+                  padding: 5,
+                }}
+              >
+                {getItemsCount() == 0 ? "" : <Text> {getItemsCount()} </Text>}
+              </Text>
+            </View>
+          </Text>
         </View>
       </View>
 
@@ -236,32 +328,37 @@ export default function ViewFertilizerDetails({ navigation, route }) {
               alignItems: "flex-end",
             }}
           ></View>
-          <View style={{ alignItems: "flex-start" }}>
-            <View
-              style={{
-                width: 150,
-                height: 40,
-                borderColor: "red",
-                borderBottomRightRadius: 50,
 
-                // alignItems: "flex-start",
-                // backgroundColor:"red",
-                backgroundColor: plant.offer ? "red" : colors.light,
-              }}
-            >
-              <Text
+          {plant.offer ? (
+            <View style={{ alignItems: "flex-start" }}>
+              <View
                 style={{
-                  // color=colors.white,
-                  fontSize: 26,
-                  fontWeight: "bold",
-                  marginLeft: 20,
-                  color: colors.light,
+                  width: 150,
+                  height: 40,
+                  borderColor: "red",
+                  borderBottomRightRadius: 50,
+
+                  // alignItems: "flex-start",
+                  // backgroundColor:"red",
+                  backgroundColor: plant.offer ? "red" : colors.light,
                 }}
               >
-                {plant.offer} % OFF
-              </Text>
+                <Text
+                  style={{
+                    // color=colors.white,
+                    fontSize: 26,
+                    fontWeight: "bold",
+                    marginLeft: 20,
+                    color: colors.light,
+                  }}
+                >
+                  {plant.offer} % OFF
+                </Text>
+              </View>
             </View>
-          </View>
+          ) : (
+            <Text></Text>
+          )}
           <View
             style={{
               marginLeft: 20,
@@ -280,19 +377,78 @@ export default function ViewFertilizerDetails({ navigation, route }) {
             >
               {plant.name}
             </Text>
-            <View style={styles.priceTag}>
-              <Text
-                style={{
-                  marginLeft: 15,
-                  color: COLORS.white,
-                  fontWeight: "bold",
-                  fontSize: 16,
-                }}
-              >
-                Rs. {plant.unitPrice}
-              </Text>
+
+            <View
+              style={[
+                styles.priceTag,
+                {
+                  height: plant.offer ? 60 : 40,
+                  width: plant.offer ? 130 : 120,
+                },
+              ]}
+            >
+              {plant.offer ? (
+                <View
+                  style={
+                    {
+                      // flex: 1,
+                      // flexDirection: "row",
+                    }
+                  }
+                >
+                  <Text
+                    style={{
+                      marginLeft: 15,
+                      color: COLORS.white,
+                      fontWeight: "bold",
+                      fontSize: 20,
+                      textDecorationLine: "line-through",
+                      textDecorationStyle: "solid",
+                      // lineHeight:10,
+                    }}
+                  >
+                    Rs. {plant.unitPrice}
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 20,
+                      fontWeight: "bold",
+                      marginLeft: 10,
+                      color: "#e23a3a",
+                    }}
+                  >
+                    Rs. {plant.price}
+                  </Text>
+                </View>
+              ) : (
+                <Text
+                  style={{
+                    marginLeft: 15,
+                    color: COLORS.white,
+                    fontWeight: "bold",
+                    fontSize: 20,
+                  }}
+                >
+                  Rs. {plant.unitPrice}
+                </Text>
+              )}
             </View>
           </View>
+          <Text
+            style={{
+              fontSize: 8,
+              color: COLORS.red,
+              fontWeight: "bold",
+              marginLeft: 20,
+            }}
+          >
+            {/* <Icon name="shopping-cart" size={15} /> */}
+            <Icon name="star" size={15} />
+            <Icon name="star" size={15} />
+            <Icon name="star" size={15} />
+            <Icon name="star-half" size={15} />
+            <Icon name="star-half" size={15} />
+          </Text>
           <View style={{ paddingHorizontal: 20, marginTop: 10 }}>
             <Text style={{ fontSize: 18, fontWeight: "bold" }}>
               Description
@@ -311,17 +467,23 @@ export default function ViewFertilizerDetails({ navigation, route }) {
               style={{
                 marginTop: 20,
                 flexDirection: "row",
-                justifyContent: "space-between",
+                // justifyContent: "space-between",
+                alignSelf: "center",
               }}
             >
-              <View
+              {/* <View
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
                 }}
               >
                 <View style={styles.borderBtn}>
-                  <Text style={styles.borderBtnText}>-</Text>
+                  <Text
+                    style={styles.borderBtnText}
+                    onPress={() => setquantity(quantity - 1)}
+                  >
+                    -
+                  </Text>
                 </View>
                 <Text
                   style={{
@@ -331,41 +493,49 @@ export default function ViewFertilizerDetails({ navigation, route }) {
                     paddingHorizontal: 5,
                   }}
                 >
-                  1
+                  {quantity}
                 </Text>
                 <View style={styles.borderBtn}>
-                  <Text style={styles.borderBtnText}>+</Text>
+                  <Text
+                    style={styles.borderBtnText}
+                    onPress={() => setquantity(quantity + 1)}
+                  >
+                    +
+                  </Text>
                 </View>
-              </View>
-
-              <View style={styles.buyBtn}>
-                <Text
-                  style={{
-                    color: COLORS.white,
-                    fontSize: 18,
-                    fontWeight: "bold",
-                  }}
-                  onPress={() =>
-                    setcartlist((cartlist) => [
-                      ...cartlist,
-                      {
-                        fertilizerId: plant.fertilizerId,
-                        name: plant.name,
-                        description: plant.description,
-                        unitPrice: plant.unitPrice,
-                        unitWeight: plant.unitWeight,
-                        measurementUnit: plant.measurementUnit,
-                        quantity: 5,
-                        photo: plant.photo,
-                      },
-                    ])
-                  }
-                  // onPress={() => addToCart(plant.name)}
-                >
-                  Add To Cart
-                </Text>
-                {/* <Text>{state}</Text> */}
-              </View>
+              </View> */}
+              <TouchableOpacity>
+                <View style={styles.buyBtn}>
+                  <Text
+                    style={{
+                      color: COLORS.white,
+                      fontSize: 18,
+                      fontWeight: "bold",
+                    }}
+                    // onPress={() =>
+                    //   setcartlist((cartlist) => [
+                    //     ...cartlist,
+                    //     {
+                    //       fertilizerId: plant.fertilizerId,
+                    //       name: plant.name,
+                    //       description: plant.description,
+                    //       unitPrice: plant.unitPrice,
+                    //       unitWeight: plant.unitWeight,
+                    //       measurementUnit: plant.measurementUnit,
+                    //       quantity: 5,
+                    //       photo: plant.photo,
+                    //     },
+                    //   ])
+                    // }
+                    // onPress={() => addToCart(plant.name)}
+                    // onPress={onAddToCart(5)}
+                    onPress={() => onAddToCart(plant.fertilizerId)}
+                  >
+                    Add To Cart
+                  </Text>
+                  {/* <Text>{state}</Text> */}
+                </View>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -472,7 +642,9 @@ const styles = StyleSheet.create({
   },
   borderBtnText: { fontWeight: "bold", fontSize: 28 },
   buyBtn: {
-    width: 150,
+    // width: 150,
+    width: 250,
+    // alignSelf: "center",
     // height: 50,
     paddingVertical: 10,
     backgroundColor: COLORS.green,
@@ -482,8 +654,9 @@ const styles = StyleSheet.create({
   },
   priceTag: {
     backgroundColor: COLORS.green,
-    width: 100,
-    height: 40,
+    // width: 120,
+    // height: 40,
+    paddingLeft: 10,
     justifyContent: "center",
     borderTopLeftRadius: 25,
     borderBottomLeftRadius: 25,

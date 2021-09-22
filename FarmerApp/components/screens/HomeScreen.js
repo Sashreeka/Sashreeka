@@ -31,6 +31,12 @@ export default function HomeScreen({ navigation }) {
         setcategorylist(response.data);
       }
     );
+
+    // Axios.get("http://192.168.8.222:4000/farmer/getproducts").then(
+    //   (response) => {
+    //     console.log(response.data);
+    //   }
+    // );
   }, []);
 
   return (
@@ -77,7 +83,7 @@ export default function HomeScreen({ navigation }) {
           <Text style={{ fontSize: 25, fontWeight: "bold" }}>Welcome to</Text>
           <Text
             style={{ fontSize: 38, color: colors.green, fontWeight: "bold" }}
-             onPress={() => navigation.navigate("TestScreen")}
+            onPress={() => navigation.navigate("TestScreen")}
           >
             Sashreeka
           </Text>
