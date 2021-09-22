@@ -71,14 +71,15 @@
   .left-ferview-container img{
     width:200px;
       height: 170px;
-      margin-left: 20px;
+      margin-left: 120px;
       margin-top: 10px;
       border-radius: 10px;
   }
   
-  .left-ferview-container .discription  p{
+  .discription-head  {
     font-size: 14px;
-    margin-top: 30px;
+    margin-top: 60px;
+    font-weight: bold;
   }
   .left-ferview-container .discription  p{
     font-size: 14px;
@@ -161,6 +162,16 @@
     
     
   
+  }
+  .addToCart-button input{
+    text-align: center;
+    border-radius: 5rem;
+    background:linear-gradient(180deg, #80b953 2.08%, #2c9984 95.83%);
+    font-size: 1.5rem;
+    color:white;
+    cursor: pointer;
+    transition: all .2s linear;
+    width:9rem; 
   }
   
   
