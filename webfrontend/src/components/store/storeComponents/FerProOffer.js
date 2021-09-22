@@ -1,8 +1,14 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import {useCart} from 'react-use-cart';
 import { Link } from "react-router-dom";
 
 const FerProOffer= (props) =>{
+
+    const [farmer, setUser]=useState([]); 
+    useEffect(() => {
+        setUser(localStorage.phoneNumber);
+        console.log(farmer)
+    })
 
     const {addItem} = useCart();
 
@@ -35,7 +41,14 @@ const FerProOffer= (props) =>{
                         </div>
                     </Link>
                     
-                    <button onClick={() => addItem(props.item)}>Add<i className="fas fa-cart-arrow-down"></i></button>
+                    {/* <button onClick={() => addItem(props.item)}>Add<i className="fas fa-cart-arrow-down"></i></button> */}
+
+                    {
+                    farmer? (<button onClick={() => addItem(props.item)} >Add<i className="fas fa-cart-arrow-down"></i></button>):
+                        <button onClick = {()=>{
+                            window.location.href = '/signin'
+                        }} >  Add<i className="fas fa-cart-arrow-down"></i></button>
+                            }
                 </div>
             </div>
         </div>

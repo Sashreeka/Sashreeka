@@ -1,14 +1,20 @@
-import React, {useEffect} from 'react';
+import React, {useEffect,useState} from 'react';
 import {useCart} from 'react-use-cart';
 
 
 
 const FerProductItem = (props) => {
     
-    let userCategory; 
+   /*  let userCategory; 
     useEffect(() => {
-        userCategory = localStorage.getItem('userCategory');
+        userCategory = localStorage;
         console.log(userCategory)
+    }) */
+
+    const [farmer, setUser]=useState([]); 
+    useEffect(() => {
+        setUser(localStorage.phoneNumber);
+        console.log(farmer.length)
     })
 
     const {addItem} = useCart();
@@ -30,7 +36,7 @@ const FerProductItem = (props) => {
                 <div className="fer-price">
                     <h6>Rs. {props.ferPrice}.00 <i className="fas fa-tag"></i></h6>
                     {
-                            userCategory !== null? (<button onClick={() => addItem(props.item)} >Add<i className="fas fa-cart-arrow-down"></i></button>):
+                            farmer !== null? (<button onClick={() => addItem(props.item)} >Add<i className="fas fa-cart-arrow-down"></i></button>):
                             <button onClick = {()=>{
                                 window.location.href = '/signin'
                             }} >  Add<i className="fas fa-cart-arrow-down"></i></button>

@@ -223,7 +223,7 @@ const StoreCheckout = () => {
 
                     <div className="checkout-input-location">
                         <label>
-                            Share your location, to diliver to your door step
+                            Share your location, to deliver to your door step
                             <br/>
                             (if your current location is the delivery address)
                         </label>
@@ -235,13 +235,13 @@ const StoreCheckout = () => {
                     {latitude!=0?(<p className="success-location">location has successfully shared</p>):('')}
                     <hr/>
                     
-                    <label for="quickflag">Quick diliveries arrives whithin 24 hours to your door step.</label>
+                    <label for="quickflag">Quick deliveries arrives whithin 24 hours to your door step.</label>
                     <div className = "store-payment-method">
                         <div>
                             <input type="radio" name="quickflag" value="0" onChange={quickCharge}/><label for="quickflag" checked> Normal delivery</label>
                         </div>
                         <div>
-                            <input type="radio" name="quickflag" value="1" onChange={quickCharge}/><label for="quickflag"> Quick dilivery</label>
+                            <input type="radio" name="quickflag" value="1" onChange={quickCharge}/><label for="quickflag"> Quick delivery</label>
                         </div>
                     </div>      
                     
@@ -263,7 +263,7 @@ const StoreCheckout = () => {
                     </div>
 
                     <div className="checkout-input-loyalty">
-                        <label>Redeem loyalty points</label>
+                        <label>Redeem loyalty points ({maxloyal})</label>
                         <input type="number" min="0" max={maxloyal} placeholder="0" onChange={redeemAmount}></input>
                     </div>
                 </div>
@@ -299,11 +299,11 @@ const StoreCheckout = () => {
                         </div>
                         <hr/>
                         <div className="cart-success-line">
-                                    <h5>Dilivery charge:</h5>
+                                    <h5>Delivery charge:</h5>
                                     {quickchrg==1?(<h5>Rs.{dilivronw*2}</h5>):(<h5>Rs.{dilivronw}</h5>)}
                         </div>
                         <div className="cart-success-line">
-                                    <h6>Redeemed loyalty ammout:</h6>
+                                    <h6>Redeemed loyalty ammount:</h6>
                                     <h6>{loyaltyminus}</h6>
                         </div>
                         <hr/>

@@ -126,7 +126,7 @@ function Store() {
                     <Carousel breakPoints={breakPoints}>
                         {fercat.map((item,index)=>{
                             return(
-                                <FerCatItem ferCatImage = {item.photo} ferCatName={item.description} />
+                                <FerCatItem ferCatImage = {item.photo} ferCatName={item.description}  />
                             )
                         })}
                     </Carousel>
