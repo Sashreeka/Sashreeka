@@ -10,7 +10,7 @@ export default function ProductList() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:4000/getfertilizer").then((response) => {
+    axios.get("/getfertilizer").then((response) => {
       setData(response.data);
     });
   }, []);
@@ -59,7 +59,11 @@ export default function ProductList() {
       cellStyle: {
         width: "20%",
       },
-      render: (row)=><div className={row.stock>row.reOrderLevel?row.stock:"deactive"}>{row.stock?row.stock:row.stock}</div>
+      render: (row) => (
+        <div className={row.stock > row.reOrderLevel ? row.stock : "deactive"}>
+          {row.stock ? row.stock : row.stock}
+        </div>
+      ),
     },
     {
       title: "Unit",
@@ -89,7 +93,7 @@ export default function ProductList() {
   //delete record
   const deleteProduct = (fertilizerId) => {
     axios
-      .delete("http://localhost:4000/deleteProductItems/" + fertilizerId)
+      .delete("/deleteProductItems/" + fertilizerId)
       .then((response) => {
         setData(data.filter((item) => item.fertilizerId !== fertilizerId));
       });
@@ -97,14 +101,18 @@ export default function ProductList() {
 
   return (
     <div className="productListCon">
-      <Sidebar title="products" />
+      {/* <Sidebar title="products" /> */}
       <div className="productList">
         <div className="productTitleContainer">
           <h1></h1>
-          <button className="productAddButton" onClick={()=>window.location.href="/newproduct"}>Add</button>
+          <button
+            className="productAddButton"
+            onClick={() => (window.location.href = "/newproduct")}
+          >
+            Add
+          </button>
         </div>
 
-        
         <MaterialTable
           title="Product & Categories Details"
           data={data}

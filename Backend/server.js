@@ -18,6 +18,10 @@ app.use(adminPanel);
 const adminPanelDelivery = require("./routes/company/AdminPanelDelivery");
 app.use(adminPanelDelivery);
 
+///admin panel ddelivery route
+const adminPanelReport = require("./routes/company/AdminReport");
+app.use(adminPanelReport);
+
 //Login and Register Route
 const regLogin = require("./routes/Register");
 app.use(regLogin);
@@ -34,14 +38,14 @@ app.use(Farmer);
 const Store = require("./routes/store/Store");
 app.use(Store);
 
-const ContactUs=require("./routes/ContactUs");
+const ContactUs = require("./routes/ContactUs");
 app.use(ContactUs);
-
 
 ///admin panel home page
 // const HomePageAdmin=require('./routes/company/HomePageAdmin.js');
 // app.use(HomePageAdmin);
 
-app.listen(4000, () => {
+const PORT=process.env.PORT || 4000;
+app.listen(PORT, () => {
   console.log("running port 4000");
 });
