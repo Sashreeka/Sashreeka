@@ -863,3 +863,10 @@ h6{
       font-weight: bold;
       margin-bottom: 0;
   }
+
+  .fail-transaction{
+    color:#e23a3a;
+    font-size: 80%;
+    font-weight: bold;
+    margin-bottom: 0;
+  }

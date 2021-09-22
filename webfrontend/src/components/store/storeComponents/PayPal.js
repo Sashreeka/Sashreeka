@@ -1,7 +1,9 @@
-import React, { useRef, useEffect} from 'react'
+import React, { useRef, useEffect, useState} from 'react'
 
-export default function PayPal() {
+const PayPal= (props) =>{
     const paypal = useRef()
+
+    const [success, setStatus] = useState([]);
 
     useEffect(()=>{
         window.paypal.Buttons({
@@ -13,7 +15,7 @@ export default function PayPal() {
                             description: "Organic Fertilizer",
                             amount:{
                                 currency_code: "USD",
-                                value: 650.00
+                                value: props.value
                             }
                         }
                     ]
@@ -21,10 +23,11 @@ export default function PayPal() {
             },
             onApprove: async (data,actions) => {
                 const order = await actions.order.capture();
-                console.log(order);
+                setStatus(order.status);
             },
             onError: (err) =>{
                 console.log(err)
+                setStatus(0);
             }
         })
         .render(paypal.current)
@@ -32,6 +35,10 @@ export default function PayPal() {
     return (
         <div>
             <div ref={paypal}></div>
+            {success == 'COMPLETED'?(<p className="success-location">Payment successfull</p>):('')}
         </div>
+        
     )
 }
+
+export default PayPal;

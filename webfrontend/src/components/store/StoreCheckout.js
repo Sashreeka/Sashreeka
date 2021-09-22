@@ -38,7 +38,7 @@ const StoreCheckout = () => {
             setCharge(dilivronw);
         }
 
-        setAmount(cartTotal+dilivercharge-loyaltyminus);
+  //  setAmount(cartTotal+dilivercharge-loyaltyminus);
     };
 
     //calculate dilivery charge
@@ -53,7 +53,7 @@ const StoreCheckout = () => {
         dilchargeOnweight((items.reduce((a,v) =>  a = a + (v.quantity*v.weight*10) , 0 ))+((distance.distance)*10));
         
         setDistrict(event.target.value);
-        setAmount(cartTotal+dilivercharge-loyaltyminus);
+     //   setAmount(cartTotal+dilivercharge-loyaltyminus);
     }
 
     //redeem loyalty points
@@ -62,7 +62,7 @@ const StoreCheckout = () => {
         setRedeem(event.target.value);
         setLoyalty(maxloyal-(event.target.value)+(Math.round(cartTotal/100)))
 
-        setAmount(cartTotal+dilivercharge-loyaltyminus);
+      //  setAmount(cartTotal+dilivercharge-loyaltyminus);
     }
 
     //render data from local storage
@@ -105,9 +105,22 @@ const StoreCheckout = () => {
         
         navigator.geolocation.getCurrentPosition(onSuccess, onError);
     };
+
+    //set total amount
+    useEffect(()=>{
+        if(quickchrg == 1){
+            setAmount(cartTotal+(dilivronw*2)-loyaltyminus);
+        }
+        else{
+            setAmount(cartTotal+dilivronw-loyaltyminus);
+        }
+        console.log(amount)
+    })
     
     //payment gateway paypal
     const [checkout, setCheckout] = useState(false);
+    //const success = PayPal();
+   // console.log(success);
 
     // Data segments to be written to the backend
     const [farmernumber, setFarmer] = useState([]);
@@ -212,7 +225,7 @@ const StoreCheckout = () => {
                             </div>
                         </div>
 
-                        {shpaybtn == 'online'?(<div className="payhere-button">{checkout ? ( <PayPal />):(<button className="payhere-style-text" onClick ={() => {setCheckout(true);}}><p style={{color:"white"}}>Pay</p><p style={{color:"#fcac00"}}>Here</p></button>)}</div>):('')}
+                        {/* {shpaybtn == 'online'?(<div className="payhere-button">{checkout ? ( <PayPal />):(<button className="payhere-style-text" onClick ={() => {setCheckout(true);}}><p style={{color:"white"}}>Pay</p><p style={{color:"#fcac00"}}>Here</p></button>)}</div>):('')} */}
                     </div>
 
                     <div className="checkout-input-loyalty">
@@ -268,7 +281,32 @@ const StoreCheckout = () => {
                         </div>
 
                         <div className="store-checkout-bottom-cart-line">
-                            <button>Confirm Order</button>
+                            {shpaybtn == 'online'?
+                                (   
+                                    <div>
+                                        {checkout ? 
+                                            (<div>
+                                                <PayPal value={amount}/>
+                                                <button>
+                                                    Confirm Order
+                                                </button>
+                                            </div>
+                                        )
+                                            :
+                                            (
+                                            <button className="payhere-style-text" onClick ={() => {setCheckout(true);}}>
+                                                Confirm Order
+                                            </button>)
+                                        }
+                                    </div>
+                                )
+                                :
+                                (
+                                    <button>
+                                        Confirm Order
+                                    </button>
+                                )
+                            }
                         </div>
                     </div>
                 
