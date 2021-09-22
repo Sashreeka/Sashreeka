@@ -16,9 +16,21 @@ function FerView() {
                         <div class="ferview-image">
                             <img src={fer_img2} />
                         </div>
+
+                        
                         <div className="discription">
-                            <h>Coco Peat</h>
-                            <p>Coco peat is a non-fibrous, spongy, lightweight, corky material that holds the coir fibre in coconut husk together. Also known as coco pith, coco peat is a 100% organic, natural and biodegradable substance that was the by-product of the coconut fibre extraction process.</p>
+                            
+                        <h className="discription-head">Coco Peat</h>
+                            <p>Description <br/><br/>Coco peat is a non-fibrous, spongy, lightweight, corky material that holds the coir fibre in coconut husk together. Also known as coco pith, coco peat is a 100% organic, natural and biodegradable substance that was the by-product of the coconut fibre extraction process.</p>
+                        </div>
+                        <div>
+                        <div className="addToCart-button">
+                                <input
+                                    type="submit"
+                                    className="contactbtn"
+                                    value="Add to cart"
+                                />
+                            </div>
                         </div>
                     </div>
                     
