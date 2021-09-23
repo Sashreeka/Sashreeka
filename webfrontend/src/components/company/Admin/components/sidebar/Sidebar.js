@@ -93,15 +93,15 @@ export default function Sidebar({ title }) {
               </Link>
             )}
 
-            {title === "products" ? (
-              <Link to="/products" className="link">
+            {title === "productCategory" ? (
+              <Link to="/productCategory" className="link">
                 <li className="sidebarListItem active">
                   <WebAsset className="sidebarIcon" />
                   Products & Categories
                 </li>
               </Link>
             ) : (
-              <Link to="/products" className="link">
+              <Link to="/productCategory" className="link">
                 <li className="sidebarListItem">
                   <WebAsset className="sidebarIcon" />
                   Products & Categories
@@ -125,7 +125,7 @@ export default function Sidebar({ title }) {
               </Link>
             )}
 
-            {title === "orders" ? (
+            {title === "order" ? (
               <Link to="/orders" className="link">
                 <li className="sidebarListItem active">
                   <BarChart className="sidebarIcon" />

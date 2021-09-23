@@ -50,7 +50,9 @@ import {HTTP_URL} from '../context/Common';
 
     useEffect(()=>{
 
-      axios.get("http://192.168.1.12:4000/deliveryAgent/today").then((response)=>{
+      const deliveryAgentPhoneNumber="+94768610084";
+
+      axios.get("http://192.168.1.12:4000/deliveryAgent/today/"+deliveryAgentPhoneNumber).then((response)=>{
 
         setData(response.data);
        console.log("today",response.data);

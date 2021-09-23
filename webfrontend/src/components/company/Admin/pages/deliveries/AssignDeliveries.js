@@ -9,7 +9,7 @@ import {
   Paper,
 } from "@material-ui/core";
 import Control from "../../../../common/Control";
-import { deepOrange, green } from "@material-ui/core/colors";
+import { deepOrange, green, orange } from "@material-ui/core/colors";
 import Button from "../../../../common/form_Elements/Button";
 import axios from "axios";
 import { FiberManualRecord, LocalShipping } from "@material-ui/icons";
@@ -37,14 +37,14 @@ const useStyles = makeStyles((theme) => ({
   },
   square: {
     color: theme.palette.getContrastText(deepOrange[500]),
-    backgroundColor: deepOrange[500],
+    backgroundColor: orange[500],
     width: theme.spacing(8),
     height: theme.spacing(8),
     marginRight: 12,
   },
   quickboxes: {
     padding: 12,
-    backgroundColor: deepOrange[50],
+    backgroundColor: orange[50],
     display: "flex",
     fontSize: 15,
     marginBottom: 15,
@@ -382,8 +382,8 @@ export default function AssignDeliveries() {
                       console.log("type:", e.target.value.toString());
                       console.log("deldate:", deliveryDate.toString());
                     }}
-                    min={"2021-09-18"}
-                    max={"2021-09-24"}
+                    min={"2021-09-20"}
+                    max={"2021-09-27"}
                   />
                   {/* <select
                   class="browser-default custom-select border-success"

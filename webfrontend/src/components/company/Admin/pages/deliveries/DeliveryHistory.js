@@ -7,6 +7,7 @@ import axios from "axios";
 import LineChart_Deliveries from "../../components/chart/LineChart_Deliveries";
 import DoughnutChart from "../../components/chart/DoughnutChart";
 import MaterialTable from "material-table";
+import DeliveryHistoryNew from "./DeliveryHistoryNew";
 
 export default function Delivery() {
   const [data, setData] = useState([]);
@@ -76,17 +77,19 @@ export default function Delivery() {
     <div className="deliveryCon">
       <div style={{ flex: 4 }}>
         {/* *******charts**************** */}
+        
         <div style={{ display: "flex" }}>
           <div className="lineChart">
             <LineChart_Deliveries />
           </div>
-          <div className="doughnutChart">
+          {/* <div className="doughnutChart">
             <DoughnutChart />
-          </div>
+          </div> */}
         </div>
 
         {/* *******table****************** */}
         <div className="delivery">
+        <DeliveryHistoryNew/>
           <MaterialTable
             title="Company delivery Details"
             data={data}

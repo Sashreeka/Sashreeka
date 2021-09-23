@@ -1,5 +1,5 @@
-import React from "react";
-import "./complains.css";
+import React, { useState, useEffect } from "react";
+import "./productsAndCategories.css";
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
 import {
@@ -12,9 +12,11 @@ import {
   withStyles,
   useTheme,
 } from "@material-ui/core";
+import { green } from "@material-ui/core/colors";
+
 import Sidebar from "../../components/sidebar/Sidebar";
-import ContactUSNew from "./ContactUSNew";
-import ComplainNew from "./ComplainNew";
+import ProductList from "./ProductList";
+import ProductSalesReport from "./ProductSalesReport";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -90,7 +92,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Complains() {
+export default function ProductsAndCategories() {
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -102,9 +104,10 @@ export default function Complains() {
   const handleChangeIndex = (index) => {
     setValue(index);
   };
+
   return (
-    <div className="complainsCon">
-      <Sidebar title="complains" />
+    <div className="productCategoryCon">
+      <Sidebar title="productCategory" />
       <div style={{ flex: 4 }}>
         <div className={classes.root}>
           <AppBar position="static">
@@ -113,16 +116,17 @@ export default function Complains() {
               onChange={handleChange}
               indicatorColor="primary"
               textColor="primary"
+              //   variant="fullWidth"
               aria-label="full width tabs example"
               className={classes.tab}
             >
               <Tab
-                label="Complains"
+                label="Product Details"
                 {...a11yProps(0)}
                 className={classes.tabtable}
               />
               <Tab
-                label="Contact US"
+                label="Product sales Summary"
                 {...a11yProps(1)}
                 className={classes.tabtable}
               />
@@ -134,12 +138,10 @@ export default function Complains() {
             onChangeIndex={handleChangeIndex}
           >
             <TabPanel value={value} index={0} dir={theme.direction}>
-
-              <ComplainNew/>
+              <ProductList />
             </TabPanel>
             <TabPanel value={value} index={1} dir={theme.direction}>
-              {/* these are the main tabs of notification2 */}
-              <ContactUSNew/>
+              <ProductSalesReport />
             </TabPanel>
           </SwipeableViews>
         </div>

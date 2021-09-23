@@ -7,7 +7,7 @@ const db = require("../connection/database");
 router.post("/user/login/", (req, res) => {
   const phoneNumber = req.body.phoneNumber;
   const password = req.body.password;
-  const sqlSelect = "SELECT * FROM user WHERE phoneNumber=? AND  password=?";
+  const sqlSelect = "SELECT * FROM user LEFT JOIN farmer ON user.phoneNumber = farmer.phoneNumber WHERE user.phoneNumber=? AND  user.password=?;";
   db.query(sqlSelect, [phoneNumber, password], (err, result) => {
     if (err) {
       res.send({ err: err });

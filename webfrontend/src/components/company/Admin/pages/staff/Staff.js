@@ -96,7 +96,7 @@ export default function Staff() {
   return (
     <div>
       <div className="staffCon">
-        <Sidebar title="delivery" />
+        <Sidebar title="staff" />
         <div className="staff">
           <div className={classes.root}>
             <AppBar position="static">
