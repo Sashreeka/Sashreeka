@@ -43,6 +43,28 @@ export default function ViewFertilizerCategory({ route, navigation }) {
   const [categorylist, setcategorylist] = useState([]);
   const [productlist, setproductlist] = useState([]);
 
+  const [searchData, setSearchData] = useState([]);
+  const [searchText, setSearchText] = useState("");
+
+  const filterData = (value) => {
+    const lowerCaseValue = value.toLowerCase().trim();
+    if (!lowerCaseValue) {
+      setSearchData(productlist);
+    } else {
+      const filterData = productlist.filter((item) => {
+        return Object.keys(item).some((key) => {
+          return item[key].toString().toLowerCase().includes(lowerCaseValue);
+        });
+      });
+      setSearchData(filterData);
+    }
+  };
+
+  const handleChange = (text) => {
+    setSearchText(text);
+    filterData(text);
+  };
+
   function onAddToCart(num) {
     console.log("addItemToCart");
     console.log(num);
@@ -62,6 +84,7 @@ export default function ViewFertilizerCategory({ route, navigation }) {
     Axios.get("http://192.168.8.222:4000/farmer/getproductsall").then(
       (response) => {
         setproductlist(response.data);
+        setSearchData(response.data);
         console.log(response.data[0]);
       }
     );
@@ -126,13 +149,6 @@ export default function ViewFertilizerCategory({ route, navigation }) {
           paddingBottom: 15,
           // paddingLeft: 15,
           paddingRight: 15,
-          // height: 200,
-          // width,
-          // backgroundColor: colors.light,
-          // marginHorizontal: 10,
-          // borderRadius: 5,
-          // marginBottom: 20,
-          // paddingBottom: 10,
         }}
       >
         <View style={{ alignItems: "flex-start" }}>
@@ -172,8 +188,8 @@ export default function ViewFertilizerCategory({ route, navigation }) {
             onPress={() => navigation.navigate("ViewFertilizerDetails", val)}
           >
             <Image
-              source={require("../../assets/consts/pictures/dummypic.png")}
-              // source={{ uri: val.photo }}
+              // source={require("../../assets/consts/pictures/dummypic.png")}
+              source={{ uri: val.photo }}
               style={{
                 flex: 1,
                 resizeMode: "contain",
@@ -355,17 +371,7 @@ export default function ViewFertilizerCategory({ route, navigation }) {
           </View>
           {/* <Icon name="shopping-cart" size={28} /> */}
         </View>
-        <View style={{ marginTop: 10, flexDirection: "row" }}>
-          <View style={styles.searchContainer}>
-            {/* <Icon name="search" size={25} style={{ marginLeft: 20 }} /> */}
-            {/* <Icon name="search" size={25} style={{ marginLeft: 20 }} /> */}
-            <TextInput placeholder="Search Here" style={styles.inputNew} />
-          </View>
-          <View style={styles.sortBtn}>
-            <Icon name="search" size={30} color={COLORS.white} />
-            {/* <Icon name="sort" size={30} color={COLORS.white} /> */}
-          </View>
-        </View>
+
         <CategoryList />
         <FlatList
           columnWrapperStyle={{ justifyContent: "space-between" }}

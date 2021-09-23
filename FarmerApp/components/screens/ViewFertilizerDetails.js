@@ -418,7 +418,7 @@ export default function ViewFertilizerDetails({ navigation, route }) {
               )}
             </View>
           </View>
-          <Text
+          {/* <Text
             style={{
               fontSize: 8,
               color: COLORS.red,
@@ -426,13 +426,13 @@ export default function ViewFertilizerDetails({ navigation, route }) {
               marginLeft: 20,
             }}
           >
-            {/* <Icon name="shopping-cart" size={15} /> */}
+        
             <Icon name="star" size={15} />
             <Icon name="star" size={15} />
             <Icon name="star" size={15} />
             <Icon name="star-half" size={15} />
             <Icon name="star-half" size={15} />
-          </Text>
+          </Text> */}
           <View style={{ paddingHorizontal: 20, marginTop: 10 }}>
             <Text style={{ fontSize: 18, fontWeight: "bold" }}>
               Description

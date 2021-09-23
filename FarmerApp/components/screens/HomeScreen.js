@@ -147,7 +147,7 @@ export default function HomeScreen({ navigation }) {
         horizontal={true}
         style={{
           marginTop: 2,
-          height: 120,
+          height: 175,
           backgroundColor: "#f5f5f5",
         }}
       >
