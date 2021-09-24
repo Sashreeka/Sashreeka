@@ -36,7 +36,7 @@ export default function OrderHistory() {
 
       
     axios
-    .get("http://192.168.1.12:4000/deliveryAgent/history/"+deliveryAgentPhoneNumber)
+    .get("http://192.168.1.11:4000/deliveryAgent/history/"+deliveryAgentPhoneNumber)
     .then((response) => {
       // if (response) {
         // console.log(response.data);

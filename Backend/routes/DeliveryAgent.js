@@ -109,7 +109,7 @@ router.put("/deliveryAgent/confirmDeliverByDAgent/:orderId",(req,res)=>{
 
   const orderId=req.params.orderId;
 
-  const updateSql="UPDATE orders SET status=4 WHERE status=3 AND orderId=?";
+  const updateSql="UPDATE orders SET status=1 WHERE status=3 AND orderId=?";
   db.query(updateSql,orderId,(err,result)=>{
     res.send(result);
     // console.log(err);
@@ -119,9 +119,10 @@ router.put("/deliveryAgent/confirmDeliverByDAgent/:orderId",(req,res)=>{
 
 
 ///display today delivery location
-router.get('/deliveryAgent/displayMapLocation',(req,res)=>{
-  const sqlget="SELECT orderId,receiverName,district,houseNumber,streetName,city,latitude,longitude FROM orders;";
-  db.query(sqlget,(err,result)=>{
+router.get('/deliveryAgent/displayMapLocation/:deliveryAgentPhoneNumber',(req,res)=>{
+  const deliveryAgentPhoneNumber=req.params.deliveryAgentPhoneNumber;
+  const sqlget="SELECT orders.orderId,orders.receiverName,district,houseNumber,streetName,city,latitude,longitude FROM orders INNER JOIN deliveries ON orders.orderId=deliveries.orderId  WHERE deliveries.deliveryAgentPhoneNumber=? AND status=3  AND DATEDIFF(CURRENT_DATE,deliveryassigneddate)>=0 AND DATEDIFF(CURRENT_DATE,deliveryassigneddate)<1;";;
+  db.query(sqlget,deliveryAgentPhoneNumber,(err,result)=>{
     res.send(result);
     console.log(err);
   })
@@ -134,7 +135,7 @@ router.get("/deliveryAgent/history/:deliveryAgentPhoneNumber", (req, res) => {
   const deliveryAgentPhoneNumber=req.params.deliveryAgentPhoneNumber;
   // console.log('hi anu');
   const sqlget =
-  "select orders.farmerPhoneNumber,orders.receiverName,orders.city,deliveries.orderId,DAY(deliveries.deliveryassigneddate)AS dateD, MONTHNAME(deliveries.deliveryassigneddate) AS monthName,DATE_FORMAT(deliveries.deliveryassigneddate,'%b') AS shortMonth,DATE_FORMAT(deliveries.deliveryassigneddate, '%Y-%m-%d') AS newdateTime,orders.amount  from deliveries INNER JOIN orders on deliveries.orderId=orders.orderId WHERE deliveryAgentPhoneNumber=? AND orders.status=1 AND NOW() > deliveryassigneddate ORDER BY deliveryassigneddate desc;"
+  "select orders.farmerPhoneNumber,orders.receiverName,orders.city,deliveries.orderId,DAY(deliveries.deliveryassigneddate)AS dateD, MONTHNAME(deliveries.deliveryassigneddate) AS monthName,DATE_FORMAT(deliveries.deliveryassigneddate,'%b') AS shortMonth,DATE_FORMAT(deliveries.deliveryassigneddate, '%Y-%m-%d') AS newdateTime,orders.amount  from deliveries INNER JOIN orders on deliveries.orderId=orders.orderId WHERE deliveryAgentPhoneNumber=? AND orders.status=1 AND NOW() >= deliveryassigneddate ORDER BY deliveryassigneddate desc;"
     // "select * from deliveries WHERE 	deliveryAgentPhoneNumber='0712345678' AND confirmationFlag=1 AND NOW() > dateTime order by dateTime asc; ";
   db.query(sqlget,deliveryAgentPhoneNumber, (err, result) => {
   //  console.log(result);
@@ -155,5 +156,19 @@ router.get("/getAvailabilityDAgent/:phoneNumber",(req,res)=>{
 
 })
 
+
+//display profile details
+
+router.get("/deliveryAgent/displayProfile/:phoneNumber",(req,res)=>{
+  const  phoneNumber=req.params.phoneNumber;
+  const sqlget="SELECT * FROM deliveryagent WHERE phoneNumber=?;";
+ 
+  db.query(sqlget,phoneNumber,(err,result)=>{
+    console.log(err);
+    console.log(result);
+    res.send(result);
+  })
+ 
+ })
 
 module.exports = router;

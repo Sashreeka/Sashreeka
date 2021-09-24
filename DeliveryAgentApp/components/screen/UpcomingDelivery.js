@@ -24,13 +24,14 @@ export default function UpcomingDelivery() {
     const [upcomingDelivery, setupcomingDelivery] = useState([]);
 
     const [collapsed, setCollapsed] = useState(true);
+    
 
     useEffect(()=>{
 
       const deliveryAgentPhoneNumber="+94768610084";
 
         axios
-        .get("http://192.168.1.12:4000/deliveryAgent/upcoming/"+deliveryAgentPhoneNumber)
+        .get("http://192.168.1.11:4000/deliveryAgent/upcoming/"+deliveryAgentPhoneNumber)
         .then((response) => {
           // if (response) {
             // console.log(response.data);

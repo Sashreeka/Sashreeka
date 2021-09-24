@@ -78,12 +78,12 @@ export default function DeliveryAccept({navigation}) {
 
   useEffect(()=>{
 
-    const deliveryAgentPhoneNumber="0712345678";
-    axios.get("http://192.168.1.12:4000/deliveryAgent/newOrders/"+deliveryAgentPhoneNumber).then((response)=>{
+    const deliveryAgentPhoneNumber="+94768610084";
+    axios.get("http://192.168.1.11:4000/deliveryAgent/newOrders/"+deliveryAgentPhoneNumber).then((response)=>{
      // console.log(response.data);
       setData(response.data);
     })
-    axios.get("http://192.168.1.12:4000/deliveryAgent/newOrdersGroupBy/"+deliveryAgentPhoneNumber).then((response)=>{
+    axios.get("http://192.168.1.11:4000/deliveryAgent/newOrdersGroupBy/"+deliveryAgentPhoneNumber).then((response)=>{
       console.log(response.data);
       setDataGroup(response.data);
     })
@@ -93,15 +93,47 @@ export default function DeliveryAccept({navigation}) {
 
   const confirmOrder =(deliveryId)=>{
     
+    // Alert.alert(
+    //   //title
+    //   'Cancel Order',
+    //   //body
+    //   'Are you sure',
+    //   [
+    //     {text:'Yes',
+    //    onPress:()=>{
+    //     axios.put("http://192.168.1.11:4000/deliveryAgent/confirmDeliverByDAgent/"+orderId).then((response)=>{
+
+    //       console.log("updated"+response);
+    //       if(response)
+    //       {
+    //         setData((prevData)=>{
+    //           return prevData.filter(todo=>todo.orderId!=orderId);
+    //         });
+            
+    //       }
+    //     })
+
+    //    }
+    //   },
+    //   {
+    //     text:'no'
+    //   }
+    //   ]
+    // )
 
 
-    const deliveryAgentPhoneNumber="0712345678"
+
+
+
+    const deliveryAgentPhoneNumber="+94768610084"
     
-    axios.put('http://192.168.1.12:4000/deliveryAgent/newOrderConfirm',{
+    axios.put('http://192.168.1.11:4000/deliveryAgent/newOrderConfirm',{
       deliveryId:deliveryId,
       deliveryAgentPhoneNumber:deliveryAgentPhoneNumber
 
     }).then((response)=>{
+
+    
 
       // setData((prevData)=>{
       //   return prevData.filter(todo=>todo.orderId!=orderId);
@@ -114,25 +146,59 @@ export default function DeliveryAccept({navigation}) {
   }
 
   const cancelOrder =(deliveryId)=>{
+
+
+    
+      //alert(orderId);
+      Alert.alert(
+        //title
+        'Cancel Order',
+        //body
+        'Are you sure Cancel this delivery?',
+        [
+          {text:'Yes',
+         onPress:()=>{
+          axios.put('http://192.168.1.11:4000/deliveryAgent/newOrderCancel',{
+            deliveryId:deliveryId,
+            deliveryAgentPhoneNumber:deliveryAgentPhoneNumber
+      
+          }).then((response)=>{
+      
+            // setData((prevData)=>{
+            //   return prevData.filter(todo=>todo.orderId!=orderId);
+            // });
+      
+            setDataGroup(dataGroup.filter((item) => item.deliveryId !== deliveryId));
+      
+      
+          })
+
+         }
+        },
+        {
+          text:'no'
+        }
+        ]
+      )
     
 
 
-    const deliveryAgentPhoneNumber="0712345678"
+    const deliveryAgentPhoneNumber="+94768610084"
     
-    axios.put('http://192.168.1.12:4000/deliveryAgent/newOrderCancel',{
-      deliveryId:deliveryId,
-      deliveryAgentPhoneNumber:deliveryAgentPhoneNumber
+    // axios.put('http://192.168.1.11:4000/deliveryAgent/newOrderCancel',{
+    //   deliveryId:deliveryId,
+    //   deliveryAgentPhoneNumber:deliveryAgentPhoneNumber
 
-    }).then((response)=>{
+    // }).then((response)=>{
 
-      // setData((prevData)=>{
-      //   return prevData.filter(todo=>todo.orderId!=orderId);
-      // });
+    //   // setData((prevData)=>{
+    //   //   return prevData.filter(todo=>todo.orderId!=orderId);
+    //   // });
 
-      setDataGroup(dataGroup.filter((item) => item.deliveryId !== deliveryId));
+    //   setDataGroup(dataGroup.filter((item) => item.deliveryId !== deliveryId));
 
 
-    })
+    // })
   }
 
 
@@ -331,7 +397,7 @@ export default function DeliveryAccept({navigation}) {
                   >
 
                     <Text
-                    style={{color:'#fff'}}>Confirm</Text>
+                    style={{color:'#fff'}}>Accept</Text>
                     </TouchableOpacity>
 
 
@@ -348,7 +414,7 @@ export default function DeliveryAccept({navigation}) {
                   >
 
                     <Text
-                    style={{color:'#fff'}}>Cancel</Text>
+                    style={{color:'#fff'}}>Decline</Text>
                     </TouchableOpacity>
 
 

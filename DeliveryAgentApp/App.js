@@ -29,7 +29,7 @@ import { AuthContext } from "./components/context/context";
 
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { AsyncStorage } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import LoginStack from "./components/stack/LoginStack";
 
@@ -48,10 +48,10 @@ export default function App({ navigation }) {
 
   useEffect(()=>{
   
-    const phoneNumber1=AsyncStorage.getItem("phoneNumber");
+    // const phoneNumber1=AsyncStorage.getItem("phoneNumber");
     
-    console.log(phoneNumber1);
-    console.log("ishan");
+    // console.log("ishan",phoneNumber1);
+    // //console.log("ishan");
    
 
 
@@ -60,7 +60,7 @@ export default function App({ navigation }) {
     () => ({
       signIn: (telephone, password) => {
         axios
-          .post("http://192.168.1.12:4000/user/login", {
+          .post("http://192.168.1.11:4000/user/login", {
             phoneNumber: telephone,
             password: password,
           })
@@ -75,6 +75,7 @@ export default function App({ navigation }) {
 
                   setphoneNumber(response.data[0].phoneNumber)
                  // let phoneNumber=response.data[0].phoneNumber;
+                 console.log(response.data[0].phoneNumber)
                 
                   AsyncStorage.setItem("phoneNumber",response.data[0].phoneNumber);
 

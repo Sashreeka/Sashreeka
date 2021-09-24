@@ -46,23 +46,56 @@ import TodayDeliveryButton from "./Home/TodayDeliveryButton";
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const HomeScreen = ({navigation}) => {
+  let newNumber;
 
   const [len,setLen]=useState([])
+  const [todayData,setTodayData]=useState([])
  
+  const [phoneNumber,setPhoneNumber]=useState('');
 
-  
+ 
   useEffect(()=>{
-    const deliveryAgentPhoneNumber="0712345678";
-    axios.get("http://192.168.1.12:4000/deliveryAgent/newOrders/"+deliveryAgentPhoneNumber).then((response)=>{
+
+   
+
+    getStorageItem();
+   
+    // AsyncStorage.getItem("phoneNumber").then((res)=>{setPhoneNumber(res)});
+    // console.log('hi')
+
+    // console.log(phoneNumber)
+    // console.log('end')
+    
+    //console.log(phoneNumber1);
+    const deliveryAgentPhoneNumber="+94768610084";
+    axios.get("http://192.168.1.11:4000/deliveryAgent/newOrders/"+deliveryAgentPhoneNumber).then((response)=>{
      // console.log(response.data);
       setLen(response.data);
     })
 
+    axios.get("http://192.168.1.11:4000/deliveryAgent/today/"+deliveryAgentPhoneNumber).then((response)=>{
+
+      setTodayData(response.data);
+   //  console.log("today",response.data);
+      
+
+
+    })
+    console.log('new',newNumber)
+
 
   },[])
+
+
+
+  const getStorageItem = async ()=>{
+    
+    setPhoneNumber(await AsyncStorage.getItem("phoneNumber"));
+    
+  }
 
 
 
@@ -161,7 +194,36 @@ const HomeScreen = ({navigation}) => {
                 </View>
             </TouchableRipple> */}
           
-           <View
+           {
+             len.length===0?(<View
+           style={{marginLeft:270,}}
+           >
+         
+              <Ionicons 
+              name="notifications" 
+              size={30} 
+              color="black" />
+              {/* <View
+                style={{
+                  backgroundColor:'red',
+                  borderRadius:20,
+                  width:20,
+                  height:20,
+                  marginTop:-13,
+                  marginLeft:10,
+                  alignItems:'center'
+                }}
+                >
+                 <TouchableOpacity
+                 onPress={()=>{
+                   navigation.navigate('DeliveryAccept')
+                 }}
+                 >
+                 <Text>{len.length}</Text>
+                 </TouchableOpacity>
+                </View> */}
+          
+           </View>):(<View
            style={{marginLeft:270,}}
            >
          
@@ -189,7 +251,8 @@ const HomeScreen = ({navigation}) => {
                  </TouchableOpacity>
                 </View>
           
-           </View> 
+           </View>)
+           } 
           
           <Image
             style={styles.profileImage}
@@ -276,7 +339,7 @@ const HomeScreen = ({navigation}) => {
           
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("MapViewNew");
+            navigation.navigate("DetailsScreen");
           }}
         >
           <View
@@ -295,7 +358,7 @@ const HomeScreen = ({navigation}) => {
               <Text style={styles.todayFirstRowTitle}>Today</Text>
               <Text style={styles.todayFirstRowDel}>Deliveries</Text>
               <View style={styles.todayFirstRowIcon}>
-                <Text>3</Text>
+                <Text>{todayData.length}</Text>
               </View>
             </View>
 
@@ -316,8 +379,9 @@ const HomeScreen = ({navigation}) => {
                 />
                 <View style={styles.todaySecondRowNewText}>
                   <Text style={styles.todaySecondRowNewText1}>Colombo</Text>
-                  <Text style={styles.todaySecondRowNewText2}>Galle</Text>
-                  <Text style={styles.todaySecondRowNewText3}>Matara</Text>
+                  <Text style={styles.todaySecondRowNewText2}></Text>
+                  <Text style={styles.todaySecondRowNewText3}>Gampaha</Text>
+                  {/* {todayData[todayData.length-1].district} */}
                 </View>
               </View>
 
