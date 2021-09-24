@@ -18,29 +18,86 @@ import { FlatList } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import COLORS from "../../assets/consts/colors";
 
-// import foods from "../../assets/consts/foods";
-
 import Axios from "axios";
-// import TopBarBack from "./TopBarBack";
+
+// context file
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 
 Feather.loadFont();
 
 export default function CartScreen({ navigation }) {
-  const [cartlist, setcartlist] = useState([]);
+  const {
+    items,
+    getItemsCount,
+    getTotalPrice,
+    removeItem,
+    incrementQty,
+    decrementQty,
+  } = useContext(CartContext);
 
-  useEffect(() => {
-    Axios.get("http://192.168.8.222:4000/farmer/getCart").then((response) => {
-      setcartlist(response.data);
-      console.log(response.data[0]);
+  function FooterBar() {
+    let [total, setTotal] = useState(0);
+
+    useEffect(() => {
+      setTotal(getTotalPrice());
     });
-  }, []);
 
-  const CartCard = ({ item }) => {
+    return (
+      <View>
+        <View>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginVertical: 15,
+              marginHorizontal: 50,
+            }}
+          >
+            <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+              Total Price
+            </Text>
+            <Text style={{ fontSize: 18, fontWeight: "bold", marginRight: 10 }}>
+              Rs. {total}
+            </Text>
+          </View>
+          <View style={{ marginHorizontal: 30 }}>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => navigation.navigate("CheckoutScreen")}
+            >
+              <View style={styles.btnContainer}>
+                <Text style={styles.btntitle}>CHECKOUT</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+    );
+  }
+
+  function removeItemFromCart(num) {
+    console.log("removeItemFromCart");
+    console.log(num);
+    removeItem(num);
+  }
+  function incrementQtyFromCart(num) {
+    console.log("incrementQtyFromCart");
+    console.log(num);
+    incrementQty(num);
+  }
+  function decrementQtyFromCart(num) {
+    console.log("decrementQtyFromCart");
+    console.log(num);
+    decrementQty(num);
+  }
+
+  const CartCardNew = ({ item }) => {
     return (
       <View style={styles.cartCard}>
         <Image
-          // source={require("../../assets/consts/pictures/dummypic.png")}
-          source={{ uri: item.photo }}
+          source={require("../../assets/consts/pictures/dummypic.png")}
+          // source={{ uri: item.photo }}
           style={{ height: 80, width: 80 }}
           resizeMode="contain"
         />
@@ -52,35 +109,87 @@ export default function CartScreen({ navigation }) {
             flex: 1,
           }}
         >
-          <Text style={{ fontWeight: "bold", fontSize: 16 }}>{item.name}</Text>
+          <Text style={{ fontWeight: "bold", fontSize: 16 }}>
+            {item.product.name}
+          </Text>
+          <Text>
+            ({item.product.unitWeight}
+            {item.product.measurementUnit})
+          </Text>
           <Text numberOfLines={2} style={{ fontSize: 13, color: COLORS.grey }}>
             {item.description}
           </Text>
-          <Text style={{ fontSize: 17, fontWeight: "bold" }}>
-            Rs. {item.unitPrice} ({item.unitWeight} {item.measurementUnit})
-          </Text>
+          {item.product.offer ? (
+            <Text>
+              <Text style={{ fontSize: 17, fontWeight: "bold" }}>
+                Rs. {item.product.price}
+              </Text>
+              <Text style={{ textDecorationLine: "line-through" }}>
+                {"  "}Rs. {item.product.unitPrice}
+              </Text>
+            </Text>
+          ) : (
+            <Text style={{ fontSize: 17, fontWeight: "bold" }}>
+              Rs. {item.product.unitPrice}
+            </Text>
+          )}
+          {/* <Text style={{ fontSize: 17, fontWeight: "bold" }}>
+            Rs. {item.product.unitPrice}
+          </Text> */}
+
           {/* <Text style={{ fontSize: 17, fontWeight: "bold" }}>
             {item.unitWeight}
              {item.measurementUnit}
           </Text> */}
         </View>
+
         <View style={{ marginRight: 10, alignItems: "center" }}>
           <View style={styles.actionBtn}>
-            <Icon name="remove" size={25} color={COLORS.white} />
+            <Icon
+              name="remove"
+              size={25}
+              color={COLORS.white}
+              onPress={() => decrementQtyFromCart(item.id)}
+            />
             <Text
-              style={{ fontWeight: "bold", fontSize: 18, paddingHorizontal: 5 }}
+              style={{
+                fontWeight: "bold",
+                fontSize: 18,
+                paddingHorizontal: 5,
+              }}
             >
-              2
+              {item.qty}
             </Text>
-            <Icon name="add" size={25} color={COLORS.white} />
+            <Icon
+              name="add"
+              size={25}
+              color={COLORS.white}
+              onPress={() => incrementQtyFromCart(item.id)}
+            />
+          </View>
+          <View style={styles.removeBtn}>
+            <Icon
+              name="delete-outline"
+              size={20}
+              color={COLORS.white}
+              onPress={() => removeItemFromCart(item.id)}
+            />
           </View>
         </View>
       </View>
     );
   };
 
+  function Headerbar() {
+    return (
+      <View>
+        <Text>Yop bar</Text>
+      </View>
+    );
+  }
+
   return (
-    <View style={styles.container}>
+    <View>
       <StatusBar backgroundColor={colors.primary} />
       <View>
         <View
@@ -107,49 +216,36 @@ export default function CartScreen({ navigation }) {
           />
         </View>
       </View>
+      <View style={styles.header}>
+        <Text style={{ fontSize: 24, fontWeight: "bold" }}>Cart</Text>
+      </View>
 
-      <View style={{ backgroundColor: COLORS.white, flex: 1 }}>
-        <View style={styles.header}>
-          {/* <Icon name="arrow-back-ios" size={28} onPress={navigation.goBack} /> */}
-          <Text style={{ fontSize: 24, fontWeight: "bold" }}>My Cart</Text>
+      {getItemsCount() == 0 ? (
+        <View style={[styles.cartCard, { alignSelf: "center" }]}>
+          <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: 20,
+              alignSelf: "center",
+              paddingHorizontal: 20,
+            }}
+          >
+            Your cart is empty !!!
+          </Text>
         </View>
+      ) : (
         <FlatList
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ paddingBottom: 80 }}
-          data={cartlist}
-          ListFooterComponentStyle={{ paddingHorizontal: 20, marginTop: 20 }}
-          ListFooterComponent={() => (
-            <View>
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  marginVertical: 15,
-                }}
-              >
-                <Text style={{ fontSize: 18, fontWeight: "bold" }}>
-                  Total Price
-                </Text>
-                <Text style={{ fontSize: 18, fontWeight: "bold" }}>
-                  Rs. 12 960
-                </Text>
-              </View>
-              <View style={{ marginHorizontal: 30 }}>
-                <TouchableOpacity
-                  activeOpacity={0.8}
-                  onPress={() => navigation.navigate("CheckoutScreen")}
-                >
-                  <View style={styles.btnContainer}>
-                    <Text style={styles.btntitle}>CHECKOUT</Text>
-                  </View>
-                </TouchableOpacity>
-              </View>
-            </View>
-          )}
-          keyExtractor={(item) => item.fertilizerId}
-          renderItem={({ item }) => <CartCard item={item} />}
+          // style={styles.itemsList}
+          data={items}
+          // renderItem={renderItem}
+          renderItem={CartCardNew}
+          keyExtractor={(item) => item.product.id.toString()}
+          // ListHeaderComponent={Headerbar}
+          ListFooterComponent={FooterBar}
         />
-      </View>
+      )}
     </View>
   );
 }
@@ -190,6 +286,18 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.green,
     height: 50,
     borderRadius: 30,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  removeBtn: {
+    width: 28,
+    height: 28,
+    backgroundColor: COLORS.red,
+    // borderRadius: 30,
+    // paddingHorizontal: 5,
+    marginTop: 10,
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
   },

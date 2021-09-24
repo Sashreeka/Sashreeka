@@ -16,6 +16,8 @@ import ProfileScreen from "../screens/ProfileScreen";
 import SupportScreen from "../screens/SupportScreen";
 import ViewFertilizerCategory from "../screens/ViewFertilizerCategory";
 import ViewFertilizerDetails from "../screens/ViewFertilizerDetails";
+import TestScreen from "../screens/TestScreen";
+// import Cart from "../screens/Cart";
 
 const Drawer = createDrawerNavigator();
 
@@ -47,6 +49,8 @@ export default function DrowerStack({ navigation }) {
         name="ViewFertilizerDetails"
         component={ViewFertilizerDetails}
       />
+      <Drawer.Screen name="TestScreen" component={TestScreen} />
+      {/* <Drawer.Screen name="Cart" component={Cart} /> */}
     </Drawer.Navigator>
   );
 }

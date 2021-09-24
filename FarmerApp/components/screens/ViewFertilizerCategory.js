@@ -24,33 +24,73 @@ import categoriesData from "../../assets/data/categoriesData";
 import colors from "../../assets/colors/colors";
 import Axios from "axios";
 
+// context file
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
+
 Feather.loadFont();
 
 export default function ViewFertilizerCategory({ route, navigation }) {
   const { id, category } = route.params;
 
+  const { getItemsCount } = useContext(CartContext);
+  const { addItemToCart } = useContext(CartContext);
+
+  const screenwidth = Dimensions.get("window").width / 2 - 20;
+
+  const width = Dimensions.get("window").width / 2 - 30;
+
   const [categorylist, setcategorylist] = useState([]);
   const [productlist, setproductlist] = useState([]);
 
+  const [searchData, setSearchData] = useState([]);
+  const [searchText, setSearchText] = useState("");
+
+  const filterData = (value) => {
+    const lowerCaseValue = value.toLowerCase().trim();
+    if (!lowerCaseValue) {
+      setSearchData(productlist);
+    } else {
+      const filterData = productlist.filter((item) => {
+        return Object.keys(item).some((key) => {
+          return item[key].toString().toLowerCase().includes(lowerCaseValue);
+        });
+      });
+      setSearchData(filterData);
+    }
+  };
+
+  const handleChange = (text) => {
+    setSearchText(text);
+    filterData(text);
+  };
+
+  function onAddToCart(num) {
+    console.log("addItemToCart");
+    console.log(num);
+    addItemToCart(num);
+  }
+
   useEffect(() => {
-    console.log(id);
-    console.log(category);
+    // console.log(id);
+    // console.log(category);
     Axios.get("http://192.168.8.222:4000/farmer/getcategories").then(
       (response) => {
         setcategorylist(response.data);
-        console.log(response.data[0]);
+        // console.log(response.data[0]);
       }
     );
 
     Axios.get("http://192.168.8.222:4000/farmer/getproductsall").then(
       (response) => {
         setproductlist(response.data);
+        setSearchData(response.data);
         console.log(response.data[0]);
       }
     );
   }, []);
 
-  const [catergoryIndex, setCategoryIndex] = React.useState(0);
+  const [catergoryIndex, setCategoryIndex] = React.useState(1);
 
   const categories = [
     // "All",
@@ -98,49 +138,54 @@ export default function ViewFertilizerCategory({ route, navigation }) {
 
   const Card = ({ val }) => {
     return (
-      <TouchableOpacity
-        activeOpacity={0.8}
-        onPress={() => navigation.navigate("ViewFertilizerDetails", val)}
+      <View
+        style={{
+          height: 200,
+          backgroundColor: COLORS.light,
+          width,
+          marginHorizontal: 2,
+          borderRadius: 25,
+          marginBottom: 20,
+          paddingBottom: 15,
+          // paddingLeft: 15,
+          paddingRight: 15,
+        }}
       >
-        <View style={styles.card}>
-          <View style={{ alignItems: "flex-start" }}>
-            <View
-              style={{
-                width: 80,
-                height: 20,
-                borderColor: "red",
-                borderBottomRightRadius: 20,
-
-                // alignItems: "flex-start",
-                // backgroundColor:"red",
-                backgroundColor: val.offer ? "red" : colors.light,
-              }}
-            >
-              {/* <Icon
-                name="favorite"
-                size={18}
-                // color={val.like ? COLORS.red : COLORS.black}
-                color={COLORS.red}
-              /> */}
-              <Text
-                style={{
-                  // color=colors.white,
-                  fontSize: 14,
-                  fontWeight: "bold",
-                  marginLeft: 5,
-                  color: colors.light,
-                }}
-              >
-                {val.offer} % OFF
-              </Text>
-            </View>
-          </View>
-
+        <View style={{ alignItems: "flex-start" }}>
           <View
             style={{
-              height: 100,
-              alignItems: "center",
+              width: 80,
+              height: 20,
+              borderColor: "red",
+              borderBottomRightRadius: 20,
+
+              // alignItems: "flex-start",
+              // backgroundColor:"red",
+              backgroundColor: val.offer ? "red" : colors.light,
             }}
+          >
+            <Text
+              style={{
+                fontSize: 14,
+                fontWeight: "bold",
+                marginLeft: 5,
+                color: colors.light,
+              }}
+            >
+              {val.offer} % OFF
+            </Text>
+          </View>
+        </View>
+
+        <View
+          style={{
+            height: 90,
+            alignItems: "center",
+          }}
+        >
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() => navigation.navigate("ViewFertilizerDetails", val)}
           >
             <Image
               // source={require("../../assets/consts/pictures/dummypic.png")}
@@ -148,58 +193,114 @@ export default function ViewFertilizerCategory({ route, navigation }) {
               style={{
                 flex: 1,
                 resizeMode: "contain",
-                width: 250,
-                height: 150,
+                width: 90,
+                height: 90,
                 alignSelf: "center",
               }}
             />
-          </View>
+          </TouchableOpacity>
+        </View>
 
-          <Text
+        <Text
+          style={{
+            fontWeight: "bold",
+            fontSize: 16,
+            marginTop: 10,
+            marginLeft: 10,
+            marginLeft: 8,
+          }}
+        >
+          {val.name}
+        </Text>
+
+        {/* <Text
             style={{
-              fontWeight: "bold",
               fontSize: 16,
-              marginTop: 10,
-              marginLeft: 10,
+              color: COLORS.red,
+              fontWeight: "bold",
+
+              marginLeft: 8,
             }}
           >
-            {val.name}
-          </Text>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              marginTop: 5,
-            }}
-          >
-            <Text
-              style={{ fontSize: 16, fontWeight: "normal", marginLeft: 10 }}
-            >
-              Rs. {val.unitPrice}
-            </Text>
+            <Icon name="star" size={8} />
+            <Icon name="star" size={8} />
+            <Icon name="star" size={8} />
+            <Icon name="star-half" size={8} />
+            <Icon name="star-half" size={8} />
+          </Text> */}
+
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            // marginTop: 5,
+          }}
+        >
+          {val.offer ? (
             <View
               style={{
-                height: 25,
-                width: 25,
-                backgroundColor: COLORS.green,
-                borderRadius: 5,
-                justifyContent: "center",
-                alignItems: "center",
+                flex: 1,
+                flexDirection: "column",
               }}
             >
               <Text
                 style={{
-                  fontSize: 14,
-                  color: COLORS.white,
-                  fontWeight: "bold",
+                  fontSize: 16,
+                  fontWeight: "normal",
+                  marginLeft: 10,
+                  textDecorationLine: "line-through",
+                  textDecorationStyle: "solid",
+                  // lineHeight:10,
                 }}
               >
-                <Icon name="shopping-cart" size={15} />
+                Rs. {val.unitPrice}
+              </Text>
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontWeight: "bold",
+                  marginLeft: 10,
+                  color: "#e23a3a",
+                }}
+              >
+                Rs. {val.price}
               </Text>
             </View>
+          ) : (
+            <Text
+              style={{
+                fontSize: 16,
+                fontWeight: "normal",
+                marginLeft: 10,
+              }}
+            >
+              Rs. {val.unitPrice}
+            </Text>
+          )}
+          <View
+            style={{
+              height: 30,
+              width: 30,
+              backgroundColor: COLORS.green,
+              borderRadius: 5,
+              justifyContent: "center",
+              alignItems: "center",
+              marginRight: 5,
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 14,
+                color: COLORS.white,
+                fontWeight: "bold",
+              }}
+              onPress={() => onAddToCart(val.fertilizerId)}
+            >
+              <Icon name="shopping-cart" size={25} />
+            </Text>
           </View>
         </View>
-      </TouchableOpacity>
+      </View>
     );
   };
 
@@ -222,21 +323,32 @@ export default function ViewFertilizerCategory({ route, navigation }) {
             color={colors.textDark}
             onPress={() => navigation.openDrawer()}
           ></Feather>
-          <Icon
-            name="shopping-cart"
-            size={28}
-            onPress={() => navigation.navigate("CartScreen")}
-          />
-          {/* <Image
-            source={require("../../assets/images/profileimg_girl.jpg")}
-            style={styles.profileImage}
-          /> */}
+          <Text onPress={() => navigation.navigate("CartScreen")}>
+            <Icon name="shopping-cart" size={28} />
+            <View>
+              <Text>
+                {getItemsCount() == 0 ? (
+                  ""
+                ) : (
+                  <Text
+                    style={{
+                      color: COLORS.white,
+                      fontSize: 14,
+                      fontWeight: "bold",
+                      backgroundColor: COLORS.green,
+                      borderRadius: 100,
+                      padding: 20,
+                    }}
+                  >
+                    {" "}
+                    {getItemsCount()}{" "}
+                  </Text>
+                )}
+              </Text>
+            </View>
+          </Text>
         </View>
       </View>
-
-      {/* <View>
-        <Text>{JSON.stringify(categorylist[1].description)}</Text>
-      </View> */}
 
       {/* newly added ones */}
 
@@ -259,17 +371,7 @@ export default function ViewFertilizerCategory({ route, navigation }) {
           </View>
           {/* <Icon name="shopping-cart" size={28} /> */}
         </View>
-        <View style={{ marginTop: 10, flexDirection: "row" }}>
-          <View style={styles.searchContainer}>
-            {/* <Icon name="search" size={25} style={{ marginLeft: 20 }} /> */}
-            {/* <Icon name="search" size={25} style={{ marginLeft: 20 }} /> */}
-            <TextInput placeholder="Search Here" style={styles.inputNew} />
-          </View>
-          <View style={styles.sortBtn}>
-            <Icon name="search" size={30} color={COLORS.white} />
-            {/* <Icon name="sort" size={30} color={COLORS.white} /> */}
-          </View>
-        </View>
+
         <CategoryList />
         <FlatList
           columnWrapperStyle={{ justifyContent: "space-between" }}
@@ -282,7 +384,7 @@ export default function ViewFertilizerCategory({ route, navigation }) {
           data={productlist.filter(
             (r) => r.fertilizerCategoryId == catergoryIndex + 1
           )}
-          keyExtractor={(item) => item.fertilizerId}
+          keyExtractor={(item) => item.fertilizerId.toString()}
           renderItem={({ item }) => {
             return <Card val={item} />;
           }}

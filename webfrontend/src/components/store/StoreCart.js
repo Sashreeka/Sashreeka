@@ -104,7 +104,7 @@ const StoreCart = () => {
                     <h5>Rs. {cartTotal}</h5>
                 </div>
 
-                <li>Dilivery Charge will be added</li>
+                <li>Delivery Charge will be added</li>
                 
                 <div className="store-bottom-cart-line">
                     <div className = "store-carttwo-button">

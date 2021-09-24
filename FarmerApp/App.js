@@ -22,6 +22,9 @@ import { AuthContext } from "./components/context/context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 
+// context file
+import { CartProvider } from "./components/context/CartContext";
+
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
@@ -130,9 +133,11 @@ export default function App() {
 
   return (
     <AuthContext.Provider value={authContext}>
-      <NavigationContainer>
-        {phoneNumber !== null ? <DrowerStack /> : <LoginStack />}
-      </NavigationContainer>
+      <CartProvider>
+        <NavigationContainer>
+          {phoneNumber !== null ? <DrowerStack /> : <LoginStack />}
+        </NavigationContainer>
+      </CartProvider>
     </AuthContext.Provider>
   );
 }

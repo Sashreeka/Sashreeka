@@ -24,8 +24,10 @@ function Signin() {
         // add user info to local storage
         let userCategory = response.data[0].userCategory;
         let phoneNumber = response.data[0].phoneNumber;
+        let loyaltyPoints = response.data[0].loyaltyPoints;
         localStorage.setItem("userCategory", userCategory);
         localStorage.setItem("phoneNumber", phoneNumber);
+        localStorage.setItem("loyaltyPoints", loyaltyPoints);
 
         if (userCategory === "admin") {
           window.location.href = "/";

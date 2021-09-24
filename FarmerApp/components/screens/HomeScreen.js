@@ -16,6 +16,12 @@ import Feather from "react-native-vector-icons/Feather";
 import FontAwsome from "react-native-vector-icons/FontAwesome";
 import colors from "../../assets/colors/colors";
 import Axios from "axios";
+import Icon from "react-native-vector-icons/MaterialIcons";
+import COLORS from "../../assets/consts/colors";
+
+// context file
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 
 Feather.loadFont();
 
@@ -23,12 +29,20 @@ const windowWidth = Dimensions.get("window").width;
 // const image = { uri: "https://reactjs.org/logo-og.png" };
 
 export default function HomeScreen({ navigation }) {
+  const { getItemsCount } = useContext(CartContext);
+
   const [categorylist, setcategorylist] = useState([]);
 
   useEffect(() => {
     Axios.get("http://192.168.8.222:4000/farmer/getcategories").then(
       (response) => {
         setcategorylist(response.data);
+      }
+    );
+
+    Axios.get("http://192.168.8.222:4000/farmer/getproducts5").then(
+      (response) => {
+        console.log(response.data);
       }
     );
   }, []);
@@ -52,18 +66,32 @@ export default function HomeScreen({ navigation }) {
             color={colors.textDark}
             onPress={() => navigation.openDrawer()}
           ></Feather>
-          <Image
-            source={require("../../assets/images/profileimg_girl.jpg")}
-            style={styles.profileImage}
-            // onPress={() => navigation.openDrawer()}
-          />
+          <Text onPress={() => navigation.navigate("CartScreen")}>
+            <Icon name="shopping-cart" size={28} />
+            <View>
+              <Text>
+                {getItemsCount() == 0 ? (
+                  ""
+                ) : (
+                  <Text
+                    style={{
+                      color: COLORS.white,
+                      fontSize: 14,
+                      fontWeight: "bold",
+                      backgroundColor: COLORS.green,
+                      borderRadius: 100,
+                      padding: 20,
+                    }}
+                  >
+                    {" "}
+                    {getItemsCount()}{" "}
+                  </Text>
+                )}
+              </Text>
+            </View>
+          </Text>
         </View>
       </SafeAreaView>
-
-      {/* titles */}
-      {/* <View style={styles.titleView}>
-        <Text style={styles.titlesTitle}>Shashreeka</Text>
-      </View> */}
 
       <View
         style={{
@@ -77,22 +105,12 @@ export default function HomeScreen({ navigation }) {
           <Text style={{ fontSize: 25, fontWeight: "bold" }}>Welcome to</Text>
           <Text
             style={{ fontSize: 38, color: colors.green, fontWeight: "bold" }}
-            // onPress={() => navigation.navigate("PaymentMethodsScreen")}
           >
             Sashreeka
           </Text>
         </View>
       </View>
 
-      {/* Search */}
-      {/* <View style={styles.searchWrapper}>
-        <Feather name="search" size={16} color={colors.textDark} />
-        <View style={styles.search}>
-          <Text style={styles.searchText}>Search...</Text>
-        </View>
-      </View> */}
-
-      {/* <Text style={styles.titlesSub}>Online Offers !!!</Text> */}
       {/* line breal */}
       <View
         style={{
@@ -113,7 +131,7 @@ export default function HomeScreen({ navigation }) {
               color: colors.titleHead,
             }}
           >
-            Today Offers
+            News Feed
           </Text>
         </View>
         <View
@@ -129,7 +147,7 @@ export default function HomeScreen({ navigation }) {
         horizontal={true}
         style={{
           marginTop: 2,
-          height: 200,
+          height: 175,
           backgroundColor: "#f5f5f5",
         }}
       >
@@ -204,20 +222,11 @@ export default function HomeScreen({ navigation }) {
         />
       </View>
 
-      {/* <View
-        style={{
-          borderBottomColor: "grey",
-          borderBottomWidth: 1,
-          // padding: 2,
-          marginBottom: 5,
-          shadowColor: "black",
-        }}
-      /> */}
-
       <FlatList
+        showsVerticalScrollIndicator={false}
         numColumns={2}
         data={categorylist}
-        keyExtractor={(item) => item.fertilizerCategoryId}
+        keyExtractor={(item) => item.fertilizerCategoryId.toString()}
         renderItem={({ item }) => (
           <View style={styles.contentContainerNew}>
             <TouchableOpacity
@@ -232,7 +241,6 @@ export default function HomeScreen({ navigation }) {
                 <ImageBackground
                   // source={require("../../assets/consts/pictures/Vegetables.jpg")}
                   source={{ uri: item.photo }}
-
                   style={styles.imageBg}
                   // resizeMode="contain"
                 >
