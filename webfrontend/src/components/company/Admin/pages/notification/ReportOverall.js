@@ -47,21 +47,21 @@ export default function ProductList() {
     },
 
     {
-      title: "Sales Income",
+      title: "Sales Income (Rs.)",
       field: "salesIncome",
       cellStyle: {
         width: "20%",
       },
     },
     {
-      title: "Delivery Income",
+      title: "Delivery Income (Rs.)",
       field: "deliveryIncome",
       cellStyle: {
         width: "20%",
       },
     },
     {
-      title: "Total Income",
+      title: "Total Income (Rs.)",
       field: "totalIncome",
       cellStyle: {
         width: "20%",
@@ -78,7 +78,7 @@ export default function ProductList() {
         </div>
 
         <MaterialTable
-          title="Product & Categories Details"
+          title="Overall Income Report"
           data={income}
           columns={columns}
           options={{

@@ -5,6 +5,7 @@ const db = require("../../connection/database");
 //upload image library
 const multer = require("multer");
 const path = require("path");
+const { response } = require("express");
 
 //  display the delivery agent+ vehicle details details..................
 router.get("/admin/getdeliveyagentetails", (req, res) => {
@@ -129,45 +130,6 @@ router.get("/admin/getAllunssigedordersDistrictList", (req, res) => {
 });
 
 // dummy insert -multiple rows
-router.post("/dummy/deletableapi", (req, res) => {
-  console.log("################################################");
-  console.log(req.body.selectedOrders);
-  console.log(req.body.dilOrders);
-  console.log(req.body.vehicle);
-  // console.log(req.body.vehicledetail);
-  console.log(req.body.deliveryDate);
-  console.log("delivery id:", req.body.deliveryidPre);
-
-  const selectedOrders = req.body.selectedOrders;
-  const dilOrders = req.body.dilOrders;
-  // const vehicledetail = req.body.vehicledetail;
-  const vehicledetail = req.body.vehicle;
-  const deliveryDate = req.body.deliveryDate;
-  const deliveryidPre = req.body.deliveryidPre;
-
-  const arr = req.body.selectedOrders.map((item) => [
-    deliveryidPre, // deliveryid
-    item["id"], //orderid
-    item["farmerPhoneNumber"], //farmerPhoneNumber
-    vehicledetail.phoneNumber, // deliveryAgentPhoneNumber
-    vehicledetail.maxLoad, // deliveryAgentPhoneNumber
-    200, // distance
-    1000, // deliveryAgentsPayment
-    deliveryDate, //  deliveryassigneddate
-  ]);
-
-  console.log("array our:", arr);
-  sqlInsert =
-    "INSERT INTO deliveries(deliveryId, orderId, famerPhoneNumber, deliveryAgentPhoneNumber, deliveryLoad,distance, deliveryAgentsPayment, deliveryassigneddate) VALUES ?";
-  db.query(sqlInsert, [arr], (err, result) => {
-    if (err) {
-      res.send(err);
-      console.log(err);
-    }
-    console.log("", result);
-    res.send(result);
-  });
-});
 
 router.get("/assign/getpreviousdeliveryId", (req, res) => {
   sqlget =
@@ -239,6 +201,86 @@ router.get("/reports/districtviseOrders", (req, res) => {
   const sqlget =
     "SELECT district,count(district) as orders FROM `orders` GROUP BY district ORDER BY district ASC";
   db.query(sqlget, (err, result) => {
+    res.send(result);
+  });
+});
+
+router.post("/dummy/deletableapi", (req, res) => {
+  console.log("################################################");
+  // console.log(req.body.selectedOrders);
+  // console.log(req.body.dilOrders);
+  // console.log(req.body.vehicle);
+  // // console.log(req.body.vehicledetail);
+  // console.log(req.body.deliveryDate);
+  // console.log("delivery id:", req.body.deliveryidPre);
+
+  const selectedOrders = req.body.selectedOrders;
+  const dilOrders = req.body.dilOrders;
+  // const vehicledetail = req.body.vehicledetail;
+  const vehicledetail = req.body.vehicle;
+  const deliveryDate = req.body.deliveryDate;
+  const deliveryidPre = req.body.deliveryidPre;
+
+  const arr = req.body.selectedOrders.map((item) => [
+    deliveryidPre, // deliveryid
+    item["id"], //orderid
+    item["farmerPhoneNumber"], //farmerPhoneNumber
+    vehicledetail.phoneNumber, // deliveryAgentPhoneNumber
+    vehicledetail.maxLoad, // deliveryAgentPhoneNumber
+    200, // distance
+    1000, // deliveryAgentsPayment
+    deliveryDate, //  deliveryassigneddate
+  ]);
+
+  console.log("array our:", arr);
+  sqlInsert =
+    "INSERT INTO deliveries(deliveryId, orderId, famerPhoneNumber, deliveryAgentPhoneNumber, deliveryLoad,distance, deliveryAgentsPayment, deliveryassigneddate) VALUES ?";
+  db.query(sqlInsert, [arr], (err, result) => {
+    if (err) {
+      res.send(err);
+      console.log(err);
+    }
+    console.log("", result);
+    res.send(result);
+  });
+});
+
+router.put("/reports/updateorderstable", (req, res) => {
+  const id = req.body.orderId;
+  const sqlget = "UPDATE orders SET status=2 WHERE orderId=?";
+  db.query(sqlget, [id], (err, result) => {
+    res.send(result);
+  });
+});
+
+router.get("/admin/newordersanuki", (req, res) => {
+  const sqlget =
+    "select COUNT(*) AS count  from orders  WHERE  status=0 AND DATEDIFF(CURRENT_DATE,ordereddate)>=0 AND DATEDIFF(CURRENT_DATE,ordereddate)<1";
+  db.query(sqlget, (err, result) => {
+    // console.log(result);
+    res.send(result);
+  });
+});
+router.get("/admin/deliveredordersanuki", (req, res) => {
+  const sqlget =
+    "select COUNT(*) AS count from deliveries  INNER JOIN orders ON deliveries.orderId=orders.orderId WHERE  status=1 AND DATEDIFF(CURRENT_DATE,deliveryassigneddate)>=0 AND DATEDIFF(CURRENT_DATE,deliveryassigneddate)<1";
+  db.query(sqlget, (err, result) => {
+    // console.log(result);
+    res.send(result);
+  });
+});
+router.get("/admin/unassigedordersanuki", (req, res) => {
+  const sqlget = "SELECT COUNT(*)AS count  FROM orders WHERE status=0;";
+  db.query(sqlget, (err, result) => {
+    // console.log(result);
+    res.send(result);
+  });
+});
+router.get("/admin/assigeddeliveries", (req, res) => {
+  const sqlget =
+    "select COUNT(*) AS count from deliveries  INNER JOIN orders ON deliveries.orderId=orders.orderId WHERE  status=2 AND DATEDIFF(CURRENT_DATE,deliveryassigneddate)>=0 AND DATEDIFF(CURRENT_DATE,deliveryassigneddate)<1";
+  db.query(sqlget, (err, result) => {
+    // console.log(result);
     res.send(result);
   });
 });

@@ -230,13 +230,14 @@ export default function AssignDeliveries() {
   const [vehicledetail, setVehicleDetail] = useState({});
   const [deliveryidPre, setDeliveryidPre] = useState(0);
 
+  const [orderid, setorderid] = useState({ orderid: 3 });
   const handleAssign = () => {
     // console.log("hello assigned");
     var x = validate();
     if (x) {
       // console.log("valid");
       openSuccessPop();
-
+      removequick();
       // console.log("selectedOrders: ", selectedOrders);
       // console.log("vehicle: ", vehicle);
       // console.log("agents: ", agentlist);
@@ -273,6 +274,11 @@ export default function AssignDeliveries() {
         })
         .then((res) => console.log("suvvess :", res))
         .catch((err) => console.log("failed:", err));
+
+      axios
+        .put("http://localhost:4000/reports/updateorderstable", orderid)
+        .then((res) => console.log("1dddd", res))
+        .catch((err) => console.log("eerrrr", err));
     } else {
       // console.log("NOT valid");
       openErrPop();
@@ -286,6 +292,10 @@ export default function AssignDeliveries() {
       //   item["age"],
       // ]);
     }
+  };
+
+  const removequick = () => {
+    setRows(rows.filter((r) => r.orderId != 53));
   };
 
   const [valid, setvalid] = useState(false);

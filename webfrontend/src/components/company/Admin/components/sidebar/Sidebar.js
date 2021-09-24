@@ -27,6 +27,8 @@ export default function Sidebar({ title }) {
     localStorage.clear();
     window.location.href = "/";
   };
+
+  let userCategory = localStorage.getItem("userCategory");
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
@@ -144,59 +146,62 @@ export default function Sidebar({ title }) {
         </div>
       </div>
 
-      <div className="sidebarWrapper">
-        <div className="sidebarMenu">
-          <h3 className="sidebarTitleNew">Company</h3>
-          <ul className="sidebarList">
-            {title === "roles&privilages" ? (
-              <Link to="/rolesPrivilages" className="link">
-                <li className="sidebarListItem active">
-                  <AccessibilityNewIcon className="sidebarIcon" />
-                  User Roles & Privilages
-                </li>
-              </Link>
-            ) : (
-              <Link to="/rolesPrivilages" className="link">
-                <li className="sidebarListItem">
-                  <AccessibilityNewIcon className="sidebarIcon" />
-                  User Roles & Privilages
-                </li>
-              </Link>
-            )}
+      {userCategory === "staff" ? (
+        ""
+      ) : (
+        <div className="sidebarWrapper">
+          <div className="sidebarMenu">
+            <h3 className="sidebarTitleNew">Company</h3>
+            <ul className="sidebarList">
+              {title === "roles&privilages" ? (
+                <Link to="/rolesPrivilages" className="link">
+                  <li className="sidebarListItem active">
+                    <AccessibilityNewIcon className="sidebarIcon" />
+                    User Roles & Privilages
+                  </li>
+                </Link>
+              ) : (
+                <Link to="/rolesPrivilages" className="link">
+                  <li className="sidebarListItem">
+                    <AccessibilityNewIcon className="sidebarIcon" />
+                    User Roles & Privilages
+                  </li>
+                </Link>
+              )}
 
-            {title === "staff" ? (
-              <Link to="/staff" className="link">
-                <li className="sidebarListItem active">
-                  <PeopleIcon className="sidebarIcon" />
-                  Company Staff
-                </li>
-              </Link>
-            ) : (
-              <Link to="/staff" className="link">
-                <li className="sidebarListItem">
-                  <PeopleIcon className="sidebarIcon" />
-                  Company Staff
-                </li>
-              </Link>
-            )}
+              {title === "staff" ? (
+                <Link to="/staff" className="link">
+                  <li className="sidebarListItem active">
+                    <PeopleIcon className="sidebarIcon" />
+                    Company Staff
+                  </li>
+                </Link>
+              ) : (
+                <Link to="/staff" className="link">
+                  <li className="sidebarListItem">
+                    <PeopleIcon className="sidebarIcon" />
+                    Company Staff
+                  </li>
+                </Link>
+              )}
 
-            {title === "notification" ? (
-              <Link to="/reports" className="link">
-                <li className="sidebarListItem active">
-                  <NotificationsIcon className="sidebarIcon" />
-                  Reports
-                </li>
-              </Link>
-            ) : (
-              <Link to="/reports" className="link">
-                <li className="sidebarListItem">
-                  <NotificationsIcon className="sidebarIcon" />
-                  Reports
-                </li>
-              </Link>
-            )}
+              {title === "notification" ? (
+                <Link to="/reports" className="link">
+                  <li className="sidebarListItem active">
+                    <NotificationsIcon className="sidebarIcon" />
+                    Reports
+                  </li>
+                </Link>
+              ) : (
+                <Link to="/reports" className="link">
+                  <li className="sidebarListItem">
+                    <NotificationsIcon className="sidebarIcon" />
+                    Reports
+                  </li>
+                </Link>
+              )}
 
-            {/* {title === "announcements" ? (
+              {/* {title === "announcements" ? (
               <Link to="/announcements" className="link">
                 <li className="sidebarListItem active">
                   <ChatBubbleOutline className="sidebarIcon" />
@@ -226,9 +231,10 @@ export default function Sidebar({ title }) {
                 </li>
               </Link>
             )} */}
-          </ul>
+            </ul>
+          </div>
         </div>
-      </div>
+      )}
 
       <div className="sidebarWrapper">
         <div className="sidebarMenu">

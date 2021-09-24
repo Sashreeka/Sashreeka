@@ -130,7 +130,7 @@ export default function Tab0_Delivaries() {
                       <AllInboxRounded style={{ fontSize: 60 }} />
                     </Avatar>
                     <div className={classes.box}>
-                      <div className={classes.boxnumber}>6</div>
+                      <div className={classes.boxnumber}>2</div>
                       <div className={classes.boxtext}>New orders</div>
                     </div>
                   </Paper>
@@ -141,7 +141,7 @@ export default function Tab0_Delivaries() {
                       <LocalShippingOutlined style={{ fontSize: 60 }} />
                     </Avatar>
                     <div className={classes.box}>
-                      <div className={classes.boxnumber}>6</div>
+                      <div className={classes.boxnumber}>0</div>
                       <div className={classes.boxtext}>Delivered Orders</div>
                     </div>
                   </Paper>
@@ -152,7 +152,7 @@ export default function Tab0_Delivaries() {
                       <ErrorOutline style={{ fontSize: 60 }} />
                     </Avatar>
                     <div className={classes.box}>
-                      <div className={classes.boxnumber}>6</div>
+                      <div className={classes.boxnumber}>8</div>
                       <div className={classes.boxtext}>
                         Unassigned Deliveries
                       </div>
@@ -165,7 +165,7 @@ export default function Tab0_Delivaries() {
                       <BeenhereOutlined style={{ fontSize: 60 }} />
                     </Avatar>
                     <div className={classes.box}>
-                      <div className={classes.boxnumber}>6</div>
+                      <div className={classes.boxnumber}>0</div>
                       <div className={classes.boxtext}>Assigned deliveries</div>
                     </div>
                   </Paper>

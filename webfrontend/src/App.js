@@ -43,6 +43,7 @@ import Notification from "./components/company/Admin/pages/notification/Notifica
 import Announcements from "./components/company/Admin/pages/announcements/Announcements";
 import Complains from "./components/company/Admin/pages/complainsAndContactUs/Complains";
 import ProductsAndCategories from "./components/company/Admin/pages/productList/ProductsAndCategories";
+import Deliveries from "./components/company/Admin/pages/deliveries/Deliveries";
 
 // Dashboard of Staff and Delivery Agent
 import DeliveryAgentD from "./components/company/DeliveryAgent";
@@ -68,7 +69,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        {userCategory === "admin" ? (
+        {userCategory === "admin" || userCategory === "staff" ? (
           <div>
             <ThemeProvider theme={theme}>
               <Topbar />
@@ -107,7 +108,8 @@ function App() {
                   {/* <StaffCheck/> */}
                 </Route>
                 <Route path="/delivery">
-                  <Delivery />
+                  {/* <Delivery /> */}
+                  <Deliveries />
                 </Route>
                 <Route path="/deliveryagent">
                   <DeliveryAgent />
