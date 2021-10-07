@@ -1,0 +1,21 @@
+.deliverCon {
+  display: flex;
+  margin-top: 10px;
+}
+
+.deliver {
+  flex: 4;
+}
+
+.lineChart {
+  width: 40vw;
+}
+
+.doughnutChart {
+  width: 20vw;
+}
+
+.chartdiv {
+  display: flex;
+  flex-direction: row;
+}

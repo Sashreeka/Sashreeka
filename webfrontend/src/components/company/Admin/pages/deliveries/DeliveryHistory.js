@@ -77,7 +77,7 @@ export default function Delivery() {
     <div className="deliveryCon">
       <div style={{ flex: 4 }}>
         {/* *******charts**************** */}
-        
+
         <div style={{ display: "flex" }}>
           <div className="lineChart">
             <LineChart_Deliveries />
@@ -89,8 +89,8 @@ export default function Delivery() {
 
         {/* *******table****************** */}
         <div className="delivery">
-        <DeliveryHistoryNew/>
-          <MaterialTable
+          <DeliveryHistoryNew />
+          {/* <MaterialTable
             title="Company delivery Details"
             data={data}
             columns={columns}
@@ -116,7 +116,7 @@ export default function Delivery() {
                 },
               },
             ]}
-          />
+          /> */}
         </div>
       </div>
     </div>

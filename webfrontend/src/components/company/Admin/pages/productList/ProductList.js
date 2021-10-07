@@ -5,6 +5,7 @@ import axios from "axios";
 import MaterialTable from "material-table";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
+import { red } from "@material-ui/core/colors";
 
 export default function ProductList() {
   const [data, setData] = useState([]);
@@ -66,6 +67,18 @@ export default function ProductList() {
       ),
     },
     {
+      title: "Re Order Level",
+      field: "reOrderLevel",
+      cellStyle: {
+        width: "20%",
+      },
+      // render: (row) => (
+      //   <div className={row.stock > row.reOrderLevel ? row.stock : "deactive"}>
+      //     {row.stock ? row.stock : row.stock}
+      //   </div>
+      // ),
+    },
+    {
       title: "Unit",
       field: "unit",
       cellStyle: {
@@ -92,11 +105,9 @@ export default function ProductList() {
 
   //delete record
   const deleteProduct = (fertilizerId) => {
-    axios
-      .delete("/deleteProductItems/" + fertilizerId)
-      .then((response) => {
-        setData(data.filter((item) => item.fertilizerId !== fertilizerId));
-      });
+    axios.delete("/deleteProductItems/" + fertilizerId).then((response) => {
+      setData(data.filter((item) => item.fertilizerId !== fertilizerId));
+    });
   };
 
   return (
@@ -163,6 +174,14 @@ export default function ProductList() {
             },
           ]}
         />
+        <div style={{ display: "flex" }}>
+          {" "}
+          <div style={{ backgroundColor: "red", padding: 5 }}>XX</div> :
+          <div style={{ color: "red" }}>
+            This indicates that the stoke is below reorder level.
+            <br /> Please fill the stock!
+          </div>
+        </div>
       </div>
     </div>
   );

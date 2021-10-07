@@ -91,7 +91,7 @@ export default function Product(props) {
       .then((response) => {
         if (response.status === 200) {
           alert("Fertilizer Item Updated Successfully.");
-          window.location.href = "/products";
+          window.location.href = "/productCategory";
         }
       })
       .catch((e) => {
@@ -159,9 +159,9 @@ export default function Product(props) {
                     )}
                     <label for="file">
                       {/* <Tooltip title="upload image"> */}
-                      <IconButton>
-                        <Publish />
-                      </IconButton>
+                      {/* <IconButton> */}
+                      <Publish />
+                      {/* </IconButton> */}
                       {/* </Tooltip> */}
                     </label>
                     <input
@@ -267,7 +267,7 @@ export default function Product(props) {
                     }}
                   >
                     <button type="submit" class="btn btn-primary">
-                      Submit
+                      Update
                     </button>
                   </div>
                 </div>

@@ -1,19 +1,19 @@
-import React,{useState,useEffect} from 'react';
-import PropTypes from 'prop-types';
-import Box from '@mui/material/Box';
-import Collapse from '@mui/material/Collapse';
-import IconButton from '@mui/material/IconButton';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import Box from "@mui/material/Box";
+import Collapse from "@mui/material/Collapse";
+import IconButton from "@mui/material/IconButton";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Typography from "@mui/material/Typography";
+import Paper from "@mui/material/Paper";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import axios from "axios";
 
 // function createData(name, calories, fat, carbs, protein, price) {
 //   return {
@@ -133,82 +133,56 @@ import axios from 'axios';
 ///adminDelivery/getDeliveryHistoryAll
 
 export default function DeliveryHistoryNew() {
+  const [dataAll, setDataAll] = useState([]);
+  const [dataGroup, setDataGroup] = useState([]);
+  const [dataLen, setDataLen] = useState(0);
 
-  const [dataAll,setDataAll]=useState([]);
-  const [dataGroup,setDataGroup]=useState([]);
-  const [dataLen,setDataLen]=useState(0);
+  const [openArray, setopenArray] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:4000/adminDelivery/getDeliveryHistoryDetailsGroup")
+      .then((response) => {
+        console.log(response.data);
+        setDataGroup(response.data);
+        //console.log(response.data.length)
+        setDataLen(response.data.length);
+      });
 
-  const [openArray,setopenArray]=useState([]);
-  useEffect(()=>{
+    axios
+      .get("http://localhost:4000/adminDelivery/getDeliveryHistoryAll")
+      .then((response) => {
+        console.log("ishannnnnnnn", response.data);
+        setDataAll(response.data);
+        //  console.log(label)
+      });
 
-    axios.get('http://localhost:4000/adminDelivery/getDeliveryHistoryDetailsGroup').then((response)=>{
-      console.log(response.data);
-      setDataGroup(response.data)
-      //console.log(response.data.length)
-      setDataLen(response.data.length)
-    })
+    openArrayData(dataLen);
+  }, []);
 
-    axios.get('http://localhost:4000/adminDelivery/getDeliveryHistoryAll').then((response)=>{
-    console.log("ishannnnnnnn",response.data);
-      setDataAll(response.data)
-    //  console.log(label)
-    })
-
-   openArrayData(dataLen);
-
-
-  },[])
-
-
-  
-  
-
- 
- 
-
-
-  const openArrayData= (dataLen)=>{
-      //console.log(dataLen)
-    for(let i=0;i<dataLen;i++)
-    {
-        //openArray[i]=false
-        setopenArray({...openArray,i:false})
-        console.log("anu",openArray)
-        
-      
+  const openArrayData = (dataLen) => {
+    //console.log(dataLen)
+    for (let i = 0; i < dataLen; i++) {
+      //openArray[i]=false
+      setopenArray({ ...openArray, i: false });
+      console.log("anu", openArray);
     }
-    console.log("anu",openArray)
-   
+    console.log("anu", openArray);
+  };
 
-   
-   
+  const [open, setOpen] = React.useState([false]);
 
+  const openColloapse = (id) => {
+    console.log(id);
 
-
-  }
-
-
-
-    const [open, setOpen] = React.useState([false]);
-
-    const openColloapse=(id)=>{
-        console.log(id)
-
-       if(openArray[id]===true)
-       {
-        openArray[id]=false;
-
-       console.log(openArray[id])
-       }else{
-        openArray[id]=true;
-
-        console.log(openArray[id])
-       }
-
-
-
+    if (openArray[id] === true) {
+      openArray[id] = false;
+      console.log(openArray[id]);
+    } else {
+      openArray[id] = true;
+      console.log(openArray[id]);
     }
-    
+  };
+
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
@@ -223,93 +197,82 @@ export default function DeliveryHistoryNew() {
           </TableRow>
         </TableHead>
         <TableBody>
+          {dataGroup.map((item, index) => (
+            <React.Fragment key={item.deliveryId}>
+              <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
+                <TableCell>
+                  <IconButton
+                    aria-label="expand row"
+                    size="small"
+                    onClick={() => setOpen(!open)}
+                    // onClick={() => openColloapse(index)}
+                  >
+                    {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                  </IconButton>
+                </TableCell>
+                <TableCell component="th" scope="row">
+                  {item.deliveryId}
+                </TableCell>
+                <TableCell>{item.vehicleId}</TableCell>
+                <TableCell>{item.totalLoad}</TableCell>
+                <TableCell>
+                  {item.year} - {item.shortMonth} - {item.dateD}
+                </TableCell>
+                <TableCell>{item.deliveryFee}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell
+                  style={{ paddingBottom: 0, paddingTop: 0 }}
+                  colSpan={6}
+                >
+                  <Collapse in={open} timeout="auto" unmountOnExit>
+                    <Box sx={{ margin: 1 }}>
+                      <Typography variant="h6" gutterBottom component="div">
+                        Order Details
+                      </Typography>
+                      <Table size="small" aria-label="purchases">
+                        <TableHead>
+                          <TableRow>
+                            <TableCell>OrderId</TableCell>
+                            <TableCell>Address</TableCell>
+                            <TableCell>Load</TableCell>
+                            <TableCell>Quick</TableCell>
+                            <TableCell>Status</TableCell>
+                          </TableRow>
+                        </TableHead>
+                        <TableBody>
+                          {dataAll
+                            .filter(
+                              (data) => data.deliveryId === item.deliveryId
+                            )
+                            .map((newData) => (
+                              <TableRow key={newData.orderId}>
+                                <TableCell component="th" scope="row">
+                                  {newData.orderId}
+                                </TableCell>
+                                <TableCell>
+                                  {newData.houseNumber} {newData.streetName}{" "}
+                                  {newData.city}
+                                </TableCell>
+                                <TableCell> {newData.deliveryLoad}</TableCell>
+                                <TableCell>
+                                  {newData.quickFlag}
+                                  {/* {Math.round(historyRow.amount * row.price * 100) / 100} */}
+                                </TableCell>
+                                <TableCell> {newData.status}</TableCell>
+                              </TableRow>
+                            ))}
+                          {/* {row.history.map((historyRow) => ( */}
 
-
-{
-   
-    dataGroup.map((item,index)=>(
-    <React.Fragment key={item.deliveryId}>
-      <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
-        <TableCell>
-          <IconButton
-            aria-label="expand row"
-            size="small"
-            onClick={() => setOpen(!open)}
-           // onClick={() => openColloapse(index)}
-          >
-            {open  ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-          </IconButton>
-        </TableCell>
-        <TableCell component="th" scope="row">
-          {item.deliveryId}
-        </TableCell>
-        <TableCell>{item.vehicleId}</TableCell>
-        <TableCell>{item.totalLoad}</TableCell>
-        <TableCell>{item.year} - {item.shortMonth} - {item.dateD}</TableCell>
-        <TableCell>{item.deliveryFee}</TableCell>
-     
-     
-      </TableRow>
-      <TableRow>
-
-
-
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box sx={{ margin: 1 }}>
-              <Typography variant="h6" gutterBottom component="div">
-                Order Details
-              </Typography>
-              <Table size="small" aria-label="purchases">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>OrderId</TableCell>
-                    <TableCell>Address</TableCell>
-                    <TableCell>Load</TableCell>
-                    <TableCell>Quick</TableCell>
-                    <TableCell>Status</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                {
-                    dataAll.filter((data)=>(data.deliveryId===item.deliveryId)).map((newData)=>(
-                        <TableRow key={newData.orderId}>
-                      <TableCell component="th" scope="row">
-                        {newData.orderId}
-                      </TableCell>
-                      <TableCell>{newData.houseNumber} {newData.streetName} {newData.city}</TableCell>
-                      <TableCell>  {newData.deliveryLoad}</TableCell>
-                      <TableCell>
-                      {newData.quickFlag}
-                        {/* {Math.round(historyRow.amount * row.price * 100) / 100} */}
-                      </TableCell>
-                      <TableCell>  {newData.status}</TableCell>
-                    </TableRow>
-
-                    ))
-                }
-                  {/* {row.history.map((historyRow) => ( */}
-                   
-                  {/* ))} */}
-                </TableBody>
-              </Table>
-            </Box>
-          </Collapse>
-        </TableCell>
-      </TableRow>
-    </React.Fragment>
-
-    ))
-
-        
-
-
-
-
-
-
-}
-
+                          {/* ))} */}
+                        </TableBody>
+                      </Table>
+                    </Box>
+                  </Collapse>
+                </TableCell>
+              </TableRow>
+            </React.Fragment>
+          ))}
 
           {/* {rows.map((row) => (
             <Row key={row.name} row={row} />

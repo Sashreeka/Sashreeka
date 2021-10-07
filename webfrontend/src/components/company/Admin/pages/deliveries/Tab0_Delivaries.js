@@ -6,6 +6,7 @@ import {
   ArrowForward,
   ArrowForwardIos,
   BeenhereOutlined,
+  ErrorOutline,
   LocalShippingOutlined,
   LocalShippingRounded,
   Pageview,
@@ -13,6 +14,7 @@ import {
   Warning,
 } from "@material-ui/icons";
 import React from "react";
+import "./delivery.css";
 
 const useStyles = makeStyles((theme) => ({
   paperbox1: {
@@ -85,84 +87,92 @@ const useStyles = makeStyles((theme) => ({
 export default function Tab0_Delivaries() {
   const classes = useStyles();
   return (
-    <div>
-      <h2>Deliveries</h2>
-      <div style={{ display: "flex" }}>
-        <div style={{ flex: 1, marginTop: 110 }}>
-          <Paper elevation={0}>
-            <Grid container spacing={5}>
-              <Grid item xs={12}>
-                <Paper className={classes.links}>
-                  <ArrowForwardIos /> Assign
-                </Paper>
+    <div className="deliveryCon">
+      <div>
+        <h2>Deliveries</h2>
+        <div style={{ display: "flex" }}>
+          {/* <div style={{ flex: 1, marginTop: 110 }}>
+            <Paper elevation={0}>
+              <Grid container spacing={5}>
+                <Grid item xs={12}>
+                  <Paper className={classes.links}>
+                    <ArrowForwardIos /> Assign
+                  </Paper>
+                </Grid>
+                <Grid item xs={12}>
+                  <Paper className={classes.links}>
+                    {" "}
+                    <ArrowForwardIos />
+                    History
+                  </Paper>
+                </Grid>
+                <Grid item xs={12}>
+                  <Paper className={classes.links}>
+                    <ArrowForwardIos /> Agents
+                  </Paper>
+                </Grid>
               </Grid>
-              <Grid item xs={12}>
-                <Paper className={classes.links}>
-                  {" "}
-                  <ArrowForwardIos />
-                  History
-                </Paper>
+            </Paper>
+          </div> */}
+
+          <div style={{ flex: 2 }}>
+            <Paper
+              elevation={0}
+              style={{ margin: 40, marginLeft: 100, marginRight: 100 }}
+            >
+              <h2 style={{ alignSelf: "center", marginBottom: 20 }}>
+                Today Summary
+              </h2>
+              <Grid container spacing={5}>
+                <Grid item xs={12} lg={6}>
+                  <Paper className={classes.paperbox1}>
+                    <Avatar variant="square" className={classes.large1}>
+                      <AllInboxRounded style={{ fontSize: 60 }} />
+                    </Avatar>
+                    <div className={classes.box}>
+                      <div className={classes.boxnumber}>2</div>
+                      <div className={classes.boxtext}>New orders</div>
+                    </div>
+                  </Paper>
+                </Grid>
+                <Grid item xs={12} lg={6}>
+                  <Paper className={classes.paperbox1}>
+                    <Avatar variant="square" className={classes.large2}>
+                      <LocalShippingOutlined style={{ fontSize: 60 }} />
+                    </Avatar>
+                    <div className={classes.box}>
+                      <div className={classes.boxnumber}>0</div>
+                      <div className={classes.boxtext}>Delivered Orders</div>
+                    </div>
+                  </Paper>
+                </Grid>
+                <Grid item xs={12} lg={6}>
+                  <Paper className={classes.paperbox1}>
+                    <Avatar variant="square" className={classes.large3}>
+                      <ErrorOutline style={{ fontSize: 60 }} />
+                    </Avatar>
+                    <div className={classes.box}>
+                      <div className={classes.boxnumber}>8</div>
+                      <div className={classes.boxtext}>
+                        Unassigned Deliveries
+                      </div>
+                    </div>
+                  </Paper>
+                </Grid>
+                <Grid item xs={12} lg={6}>
+                  <Paper className={classes.paperbox1}>
+                    <Avatar variant="square" className={classes.large4}>
+                      <BeenhereOutlined style={{ fontSize: 60 }} />
+                    </Avatar>
+                    <div className={classes.box}>
+                      <div className={classes.boxnumber}>0</div>
+                      <div className={classes.boxtext}>Assigned deliveries</div>
+                    </div>
+                  </Paper>
+                </Grid>
               </Grid>
-              <Grid item xs={12}>
-                <Paper className={classes.links}>
-                  <ArrowForwardIos /> Agents
-                </Paper>
-              </Grid>
-            </Grid>
-          </Paper>
-        </div>
-        <div style={{ flex: 2 }}>
-          <Paper elevation={0} style={{ margin: 40 }}>
-            <h2 style={{ alignSelf: "center", marginBottom: 20 }}>
-              Today Summary
-            </h2>
-            <Grid container spacing={5}>
-              <Grid item xs={12} lg={6}>
-                <Paper className={classes.paperbox1}>
-                  <Avatar variant="square" className={classes.large1}>
-                    <AllInboxRounded style={{ fontSize: 60 }} />
-                  </Avatar>
-                  <div className={classes.box}>
-                    <div className={classes.boxnumber}>6</div>
-                    <div className={classes.boxtext}>New orders</div>
-                  </div>
-                </Paper>
-              </Grid>
-              <Grid item xs={12} lg={6}>
-                <Paper className={classes.paperbox1}>
-                  <Avatar variant="square" className={classes.large2}>
-                    <PeopleOutline style={{ fontSize: 60 }} />
-                  </Avatar>
-                  <div className={classes.box}>
-                    <div className={classes.boxnumber}>6</div>
-                    <div className={classes.boxtext}>Agents</div>
-                  </div>
-                </Paper>
-              </Grid>
-              <Grid item xs={12} lg={6}>
-                <Paper className={classes.paperbox1}>
-                  <Avatar variant="square" className={classes.large3}>
-                    <LocalShippingOutlined style={{ fontSize: 60 }} />
-                  </Avatar>
-                  <div className={classes.box}>
-                    <div className={classes.boxnumber}>6</div>
-                    <div className={classes.boxtext}>Unassigned Deliveries</div>
-                  </div>
-                </Paper>
-              </Grid>
-              <Grid item xs={12} lg={6}>
-                <Paper className={classes.paperbox1}>
-                  <Avatar variant="square" className={classes.large4}>
-                    <BeenhereOutlined style={{ fontSize: 60 }} />
-                  </Avatar>
-                  <div className={classes.box}>
-                    <div className={classes.boxnumber}>6</div>
-                    <div className={classes.boxtext}>Assigned deliveries</div>
-                  </div>
-                </Paper>
-              </Grid>
-            </Grid>
-          </Paper>
+            </Paper>
+          </div>
         </div>
       </div>
     </div>

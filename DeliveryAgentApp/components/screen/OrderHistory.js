@@ -31,12 +31,9 @@ export default function OrderHistory() {
     const deliveryAgentPhoneNumber = "+94768610084";
 
     axios
-      .get(
-        "http://192.168.1.12:4000/deliveryAgent/history/" +
-          deliveryAgentPhoneNumber
-      )
-      .then((response) => {
-        // if (response) {
+    .get("http://192.168.1.11:4000/deliveryAgent/history/"+deliveryAgentPhoneNumber)
+    .then((response) => {
+      // if (response) {
         // console.log(response.data);
         sethistoryDelivery(response.data);
         setSearchData(response.data);

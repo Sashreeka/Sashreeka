@@ -22,7 +22,7 @@ export default function DeliveryAgent() {
     axios
       .get("http://localhost:4000/admin/viewDAgentDetails")
       .then((response) => {
-       // console.log("hi", response.data);
+        // console.log("hi", response.data);
         setData(response.data);
 
         //  setData1(response.data);
@@ -77,15 +77,19 @@ export default function DeliveryAgent() {
   // ];
 
   const columns = [
-    { title: "Id", field: "userId",cellStyle:{width:"10%"} },
-    { title: "Name", field: "name" },
-    {title:"Email",field:"email"},
-   
-    { title: "Address", field: "address",cellStyle:{width:"40%"} },
+    { title: "Id", field: "userId", cellStyle: { width: "10%" } },
+    { title: "Name", field: "name", cellStyle: { width: "20%" } },
+    { title: "Email", field: "email" },
+
+    { title: "Address", field: "address", cellStyle: { width: "40%" } },
     // { title: "NAtional ID", field: "nic" },
     // { title: "Driving Licence", field: "drivingLicence" },
-    { title: "Phone Number", field: "phoneNumber",cellStyle:{width:"20%"} },
-    { title: "Status", field: "active" },
+    {
+      title: "Phone Number",
+      field: "phoneNumber",
+      cellStyle: { width: "20%" },
+    },
+    // { title: "Status", field: "active" },
   ];
 
   return (
@@ -102,7 +106,7 @@ export default function DeliveryAgent() {
           options={{
             search: true,
             paging: true,
-          //  filtering: true,
+            //  filtering: true,
             exportButton: true,
           }}
         />

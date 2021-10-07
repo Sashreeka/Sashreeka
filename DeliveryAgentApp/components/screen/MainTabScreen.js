@@ -12,6 +12,7 @@ import ProfileScreen from './ProfileScreen';
 import ExploreScreen from './ExploreScreen';
 import ModalScreen from './ModalScreen';
 
+import axios from 'axios';
 
 const HomeStack = createStackNavigator();
 const DetailsStack = createStackNavigator();
@@ -23,7 +24,20 @@ import {
   Button
 } from "react-native";
 
+
+// useEffect(()=>{
+//   const deliveryAgentPhoneNumber="+94768610084";
+//   axios.get("http://192.168.1.12:4000/deliveryAgent/newOrders/"+deliveryAgentPhoneNumber).then((response)=>{
+//    // console.log(response.data);
+//     setLen(response.data);
+//   })
+
+
+// },[])
+
 const MainTabScreen = ()=>(
+
+  
     <Tab.Navigator
       initialRouteName="Home"
       activeColor="#000"
@@ -48,6 +62,7 @@ const MainTabScreen = ()=>(
           tabBarLabel: 'New Orders',
           tabBarColor:'#fff',
           tabBarIcon: ({ color }) => (
+            
             <Entypo name="back-in-time" size={26} color="black" />
           ),
         }}

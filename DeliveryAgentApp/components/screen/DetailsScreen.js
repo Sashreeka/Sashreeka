@@ -52,7 +52,7 @@ import {HTTP_URL} from '../context/Common';
 
       const deliveryAgentPhoneNumber="+94768610084";
 
-      axios.get("http://192.168.1.12:4000/deliveryAgent/today/"+deliveryAgentPhoneNumber).then((response)=>{
+      axios.get("http://192.168.1.11:4000/deliveryAgent/today/"+deliveryAgentPhoneNumber).then((response)=>{
 
         setData(response.data);
        console.log("today",response.data);
@@ -61,7 +61,7 @@ import {HTTP_URL} from '../context/Common';
 
       })
 
-      axios.get("http://192.168.1.12:4000/deliveryAgent/todayItem").then((response)=>{
+      axios.get("http://192.168.1.11:4000/deliveryAgent/todayItem").then((response)=>{
 
         setfertilizer(response.data);
       //  console.log("today"+response.data);
@@ -70,7 +70,7 @@ import {HTTP_URL} from '../context/Common';
 
       })
 
-      axios.get('http://192.168.1.12:4000/deliveryAgent/displayMapLocation').then((response)=>{
+      axios.get('http://192.168.1.11:4000/deliveryAgent/displayMapLocation/'+deliveryAgentPhoneNumber).then((response)=>{
         setLocation(response.data);
       //  console.log(response.data);
 
@@ -104,7 +104,7 @@ import {HTTP_URL} from '../context/Common';
         [
           {text:'Yes',
          onPress:()=>{
-          axios.put("http://192.168.1.12:4000/deliveryAgent/confirmDeliverByDAgent/"+orderId).then((response)=>{
+          axios.put("http://192.168.1.11:4000/deliveryAgent/confirmDeliverByDAgent/"+orderId).then((response)=>{
 
             console.log("updated"+response);
             if(response)
@@ -147,10 +147,9 @@ import {HTTP_URL} from '../context/Common';
   height:deviceHeight*0.4,
  
 }} 
-
 initialRegion={{
-  latitude: 6.035258769989014,
-  longitude: 80.21302032470703,
+  latitude: 6.576251,
+  longitude: 79.966514,
   latitudeDelta: 0.0922,
   longitudeDelta: 0.0421,
 }}
@@ -236,8 +235,9 @@ initialRegion={{
             />
               <View style={styles.todaySecondRowNewText}>
                   <Text style={styles.todaySecondRowNewText1}>Colombo</Text>
-                  <Text style={styles.todaySecondRowNewText2}>Galle</Text>
-                   <Text style={styles.todaySecondRowNewText3}>Matara</Text>
+                  <Text style={styles.todaySecondRowNewText2}></Text>
+                   <Text style={styles.todaySecondRowNewText3}>Gampaha</Text>
+                   {/* {data[data.length-1].district} */}
               </View>
 
             </View>
@@ -326,7 +326,7 @@ initialRegion={{
                        {
                          fertilizer.filter((ffertilizer)=>(ffertilizer.orderId===item.orderId)).map((fertilizerItem)=>(
 
-                          <View style={styles.order} key={fertilizerItem.date}>
+                          <View style={styles.order} key={fertilizerItem.fertilizerId }>
                               <Text style={{color:'#000000',fontSize:13,marginLeft:5,marginTop:0,width:100}}>{fertilizerItem.fertilizerName}</Text>
                               <Text style={{color:'#000000',fontSize:13,marginLeft:5,marginTop:0,width:100}}>{fertilizerItem.quantity}</Text>
 

@@ -116,11 +116,11 @@ export default function Orders() {
               className={classes.tab}
             >
               <Tab
-                label="Order tab1"
+                label="Orders"
                 {...a11yProps(0)}
                 className={classes.tabtable}
               />
-              <Tab
+              {/* <Tab
                 label="Order tab2"
                 {...a11yProps(1)}
                 className={classes.tabtable}
@@ -129,7 +129,7 @@ export default function Orders() {
                 label="Order tab2"
                 {...a11yProps(2)}
                 className={classes.tabtable}
-              />
+              /> */}
             </Tabs>
           </AppBar>
           <SwipeableViews
@@ -140,12 +140,12 @@ export default function Orders() {
             <TabPanel value={value} index={0} dir={theme.direction}>
               <Tab_Orders />
             </TabPanel>
-            <TabPanel value={value} index={1} dir={theme.direction}>
+            {/* <TabPanel value={value} index={1} dir={theme.direction}>
               these are the main tabs of orders
             </TabPanel>
             <TabPanel value={value} index={2} dir={theme.direction}>
               these are the main tabs of orders
-            </TabPanel>
+            </TabPanel> */}
           </SwipeableViews>
         </div>
       </div>

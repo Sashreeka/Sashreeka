@@ -19,6 +19,7 @@ import Tab0_Delivaries from "./Tab0_Delivaries";
 import Tab1_DelivaryHistory from "./Tab1_DelivaryHistory";
 import Tab2_Agents from "./Tab2_Agents";
 import Tab3_AssignDelivaries from "./Tab3_AssignDelivaries";
+import Tabee from "./Tabee";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -119,7 +120,7 @@ export default function Delivery() {
             indicatorColor="primary"
             textColor="primary"
             //   variant="fullWidth"
-            aria-label="full width tabs example"
+            // aria-label="full width tabs example"
             className={classes.tab}
           >
             <Tab
@@ -150,7 +151,7 @@ export default function Delivery() {
           onChangeIndex={handleChangeIndex}
         >
           <TabPanel value={value} index={0} dir={theme.direction}>
-            <Tab0_Delivaries />
+            <Tabee />
           </TabPanel>
           <TabPanel value={value} index={1} dir={theme.direction}>
             <Tab3_AssignDelivaries />
