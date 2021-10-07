@@ -23,6 +23,7 @@ import colors from "../../assets/colors/colors";
 import Axios from "axios";
 
 // import Header from "../common/Header";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import Feather from "react-native-vector-icons/Feather";
 Feather.loadFont();
@@ -30,9 +31,25 @@ Feather.loadFont();
 export default function ProfileScreen({ navigation }) {
   const [userDetails, setUserDetails] = useState([]);
 
+  const [currentUser, setcurrentUser] = useState("");
+
+  setTimeout(async () => {
+    const currentUser = await AsyncStorage.getItem("phoneNumber");
+    console.log(currentUser);
+    setcurrentUser(currentUser);
+    //    setIsLoading(false);
+  }, 1000);
+
   // get profile databy an array
   useEffect(() => {
-    Axios.get("http://192.168.8.222:4000/farmer/getProfileDataById").then(
+    // Axios.get(
+    //   "http://192.168.8.222:4000/farmer/getProfileDataById" + currentUser
+    // ).then((response) => {
+    //   // console.log(response.data);
+    //   setUserDetails(response.data);
+    // });
+
+    Axios.get("http://192.168.8.222:4000/farmer/getProfileDataNew").then(
       (response) => {
         // console.log(response.data);
         setUserDetails(response.data);
@@ -88,14 +105,17 @@ export default function ProfileScreen({ navigation }) {
         contentInsetAdjustmentBehavior="automatic"
         showsVerticalScrollIndicator={false}
       >
+        <View style={{ alignItems: "center" }}>
+          <Image
+            source={require("../../assets/images/profileimg_girl.jpg")}
+            style={{ width: 100, height: 100 }}
+            // onPress={() => navigation.openDrawer()}
+          />
+        </View>
         {userDetails.map((item) => (
           <View key={item.userId} style={styles.inputs}>
             <View style={styles.userInfoSection}>
               <View style={{ flexDirection: "row", marginTop: 8 }}>
-                {/* <Avatar.Image
-                  source={require("../assets/images/profileimg_girl.jpg")}
-                  size={80}
-                /> */}
                 <View style={{ marginLeft: 20 }}>
                   <Title
                     style={[
@@ -135,7 +155,7 @@ export default function ProfileScreen({ navigation }) {
             </View>
 
             <View style={styles.infoBoxWrapper}>
-              <View
+              {/* <View
                 style={[
                   styles.infoBox,
                   {
@@ -146,10 +166,10 @@ export default function ProfileScreen({ navigation }) {
               >
                 <Title>{item.userId}</Title>
                 <Caption>User ID</Caption>
-              </View>
+              </View> */}
               <View style={styles.infoBox}>
                 <Title>{item.loyaltyPoints}</Title>
-                <Caption>Wallet</Caption>
+                <Caption>Loyalty Points</Caption>
               </View>
             </View>
 
@@ -172,7 +192,7 @@ export default function ProfileScreen({ navigation }) {
                   <Text style={styles.menuItemText}>Tell Your Friends</Text>
                 </View>
               </TouchableRipple>
-              <TouchableRipple>
+              {/* <TouchableRipple>
                 <View style={styles.menuItem}>
                   <Icon
                     name="account-check-outline"
@@ -181,7 +201,7 @@ export default function ProfileScreen({ navigation }) {
                   />
                   <Text style={styles.menuItemText}>Change Password</Text>
                 </View>
-              </TouchableRipple>
+              </TouchableRipple> */}
               {/* <TouchableRipple onPress={() => {}}>
                 <View style={styles.menuItem}>
                   <Icon
@@ -316,6 +336,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     flexDirection: "row",
     height: 75,
+    justifyContent: "center",
   },
   infoBox: {
     width: "50%",

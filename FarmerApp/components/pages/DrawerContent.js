@@ -12,18 +12,18 @@ import {
   Switch,
 } from "react-native-paper";
 
-import { AuthContext } from '../context/context';
+import { AuthContext } from "../context/context";
 //import { AuthContext } from '../context';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 export function DrawerContent(props) {
   const [isAvailable, setisAvailable] = useState(null);
 
-  const {signOut}=useContext(AuthContext);
+  const { signOut } = useContext(AuthContext);
   const toggleTheme = () => {
     setisAvailable("Not Available");
     console.log(isAvailable);
-  }
+  };
   return (
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView {...props}>
@@ -66,7 +66,7 @@ export function DrawerContent(props) {
                 props.navigation.navigate("ProfileScreen");
               }}
             />
-            <DrawerItem
+            {/* <DrawerItem
               icon={({ color, size }) => (
                 <Icon name="wallet" color={color} size={size} />
               )}
@@ -74,7 +74,7 @@ export function DrawerContent(props) {
               onPress={() => {
                 props.navigation.navigate("PaymentMethodsScreen");
               }}
-            />
+            /> */}
             <DrawerItem
               icon={({ color, size }) => (
                 <Icon name="history" color={color} size={size} />
@@ -85,16 +85,6 @@ export function DrawerContent(props) {
               }}
             />
 
-            {/* <DrawerItem
-              icon={({ color, size }) => (
-                <Icon name="account-outline" color={color} size={size} />
-              )}
-              label="Settings"
-              onPress={() => {
-                props.navigation.navigate("SettingsScreen");
-              }}
-            /> */}
-
             <DrawerItem
               icon={({ color, size }) => (
                 <Icon name="account-check-outline" color={color} size={size} />
@@ -102,6 +92,15 @@ export function DrawerContent(props) {
               label="Support"
               onPress={() => {
                 props.navigation.navigate("SupportScreen");
+              }}
+            />
+            <DrawerItem
+              icon={({ color, size }) => (
+                <Icon name="account-outline" color={color} size={size} />
+              )}
+              label="Settings"
+              onPress={() => {
+                props.navigation.navigate("SettingsScreen");
               }}
             />
           </Drawer.Section>

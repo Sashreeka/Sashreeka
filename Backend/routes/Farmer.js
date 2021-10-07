@@ -16,9 +16,26 @@ router.get("/farmer/getfertilizerall", (req, res) => {
 });
 
 // get profile data from farmer table
-router.get("/farmer/getProfileDataById", (req, res) => {
+router.get("/farmer/getProfileDataById:phoneNum", (req, res) => {
   console.log("farmer.js------->getProfileData");
-  const sqlget = "select * from farmer WHERE userId = '19'";
+  // const phoneNum = req.params.phoneNum;
+  const phoneNum = "+94713705751";
+
+  const sqlget = "select * from farmer WHERE phoneNumber = ? ";
+  db.query(sqlget, phoneNum, (err, result) => {
+    res.send(result);
+    console.log("/farmer/getProfileDataById");
+    if (err) {
+      console.log(err);
+    }
+  });
+});
+
+// get profile data from farmer table
+router.get("/farmer/getProfileDataNew", (req, res) => {
+  console.log("farmer.js------->getProfileDataNew");
+
+  const sqlget = "select * from farmer WHERE phoneNumber = '+94713705751' ";
   db.query(sqlget, (err, result) => {
     res.send(result);
     console.log("/farmer/getProfileDataById");
@@ -56,10 +73,26 @@ router.get("/farmer/getOrderHistoryById/:phoneNum", (req, res) => {
   });
 });
 
-router.get("/farmer/getOrderItemsById", (req, res) => {
+router.get("/farmer/getOrderItemsByIdNew", (req, res) => {
+  console.log("farmer.js------->getOrderHistoryById");
+  const phoneNum = req.params.phoneNum;
+  const sqlget =
+    // "SELECT orders.orderId, DATE_FORMAT(ordereddate, '%d %b %Y') as ordereddate  , amount, deliveryCharge, status from orders LEFT JOIN ordercontainsfertilizer ON orders.orderId = ordercontainsfertilizer.orderId WHERE farmerPhoneNumber = ? GROUP BY orders.orderId ORDER BY ordereddate DESC";
+    "select * from orders WHERE farmerPhoneNumber = '+94713705751' ORDER BY ordereddate DESC ";
+  db.query(sqlget, phoneNum, (err, result) => {
+    res.send(result);
+    console.log("/farmer/getOrderHistoryById");
+    console.log(result);
+    if (err) {
+      console.log(err);
+    }
+  });
+});
+
+router.get("/farmer/getOrderItemsByIdNew", (req, res) => {
   console.log("farmer.js------->getOrderItemsById");
   const sqlget =
-    "SELECT * from orders LEFT JOIN ordercontainsfertilizer ON orders.orderId = ordercontainsfertilizer.orderId WHERE farmerPhoneNumber = '0713705751' AND orders.orderId = 202100005";
+    "SELECT * from orders LEFT JOIN ordercontainsfertilizer ON orders.orderId = ordercontainsfertilizer.orderId WHERE farmerPhoneNumber = '+94713705751' AND orders.orderId = 202100005";
   db.query(sqlget, (err, result) => {
     res.send(result);
     console.log("/farmer/getOrderHistoryById");

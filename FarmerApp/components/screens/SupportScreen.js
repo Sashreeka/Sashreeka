@@ -26,9 +26,9 @@ export default function SupportScreen({navigation}) {
         </View>
       </SafeAreaView>
 
-      <View style={styles.titleView}>
+      {/* <View style={styles.titleView}>
         <Text style={styles.titlesTitle}>Support</Text>
-      </View>
+      </View> */}
     </View>
   );
 }

@@ -27,13 +27,21 @@ export default function OrderHistoryScreen({ navigation }) {
   const [currentUser, setcurrentUser] = useState("");
 
   useEffect(() => {
-    
     setTimeout(async () => {
       const currentUser = await AsyncStorage.getItem("phoneNumber");
       console.log(currentUser);
       setcurrentUser(currentUser);
       //    setIsLoading(false);
     }, 1000);
+
+    // Axios.get("http://192.168.8.222:4000/farmer/getOrderItemsByIdNew").then(
+    //   (response) => {
+    //     // console.log(response.data[0].famerPhoneNumber);
+    //     // console.log(response.data[0].confirmationFlag);
+    //     console.log(response.data[0]);
+    //     setHistoryList(response.data);
+    //   }
+    // );
 
     Axios.get(
       "http://192.168.8.222:4000/farmer/getOrderHistoryById/" + currentUser

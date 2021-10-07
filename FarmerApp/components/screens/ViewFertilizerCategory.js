@@ -372,6 +372,15 @@ export default function ViewFertilizerCategory({ route, navigation }) {
           {/* <Icon name="shopping-cart" size={28} /> */}
         </View>
 
+        <View style={{ marginTop: 10, flexDirection: "row" }}>
+          <View style={styles.searchContainer}>
+            <TextInput placeholder="Search Here" style={styles.inputNew} />
+          </View>
+          <View style={styles.sortBtn}>
+            <Icon name="search" size={30} color={COLORS.white} />
+          </View>
+        </View>
+
         <CategoryList />
         <FlatList
           columnWrapperStyle={{ justifyContent: "space-between" }}

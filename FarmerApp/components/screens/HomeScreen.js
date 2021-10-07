@@ -42,7 +42,7 @@ export default function HomeScreen({ navigation }) {
 
     Axios.get("http://192.168.8.222:4000/farmer/getproducts5").then(
       (response) => {
-        console.log(response.data);
+        // console.log(response.data);
       }
     );
   }, []);

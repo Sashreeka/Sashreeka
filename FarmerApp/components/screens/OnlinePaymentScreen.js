@@ -133,7 +133,7 @@ export default function OnlinePaymentScreen({ navigation }) {
         style={[styles.card, { backgroundColor: "#000", alignSelf: "center" }]}
       >
         <Text style={{ fontSize: 18, fontWeight: "bold", color: "#fff" }}>
-          BOC
+          (Bank Name)
         </Text>
         <Text
           style={{
@@ -143,7 +143,7 @@ export default function OnlinePaymentScreen({ navigation }) {
             marginVertical: 20,
           }}
         >
-          1452 2695 3502
+          (Card Number)
         </Text>
         <View
           style={{
@@ -153,7 +153,7 @@ export default function OnlinePaymentScreen({ navigation }) {
           }}
         >
           <Text style={{ fontSize: 10, fontWeight: "bold", color: "#fff" }}>
-            SANDUNI FERNANDO
+            (Name)
           </Text>
           <Image
             source={require("../../assets/visa.png")}

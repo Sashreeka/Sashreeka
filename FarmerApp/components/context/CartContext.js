@@ -9,7 +9,6 @@ import { getProduct } from "../screens/services/ProductsService";
 export function CartProvider(props) {
   const [items, setItems] = useState([]);
 
-
   function addItemToCart(id) {
     const product = getProduct(id);
     setItems((prevItems) => {
@@ -90,6 +89,10 @@ export function CartProvider(props) {
     return items.reduce((sum, item) => sum + item.totalPrice, 0);
   }
 
+  function emptymyCart() {
+    setItems([]);
+  }
+
   const createTwoButtonAlert = (id) =>
     Alert.alert(
       "Alert",
@@ -115,6 +118,7 @@ export function CartProvider(props) {
         removeItem,
         decrementQty,
         incrementQty,
+        emptymyCart,
       }}
     >
       {props.children}

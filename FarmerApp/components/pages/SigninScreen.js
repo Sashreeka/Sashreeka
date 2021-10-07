@@ -89,7 +89,7 @@ export default function SigninScreen({ navigation }) {
         <View style={styles.action}>
           <FontAwesome name="mobile" color="#05375a" size={25} />
           <TextInput
-            placeholder="0768610084"
+            placeholder="+94768610084"
             style={styles.textInput}
             autoCapitalize="none"
             onChangeText={(val) => textInputChange(val)}
@@ -126,7 +126,6 @@ export default function SigninScreen({ navigation }) {
             style={styles.signIn}
             //  onPress={()=>{loginHandle(data.username,data.password)}}
             onPress={() => {
-              
               signIn(data.telephone, data.password);
             }}
           >

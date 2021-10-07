@@ -51,25 +51,33 @@ export default OrderDetailsScreen = ({ navigation, route }) => {
     <View style={styles.container}>
       <StatusBar backgroundColor={colors.primary} />
       <SafeAreaView>
-        <View style={styles.headerWrapper}>
+        <View style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            paddingHorizontal: 20,
+            paddingTop: 15,
+            alignItems: "center",
+            backgroundColor: colors.secondary,
+            padding: 8,
+          }}>
           <Feather
             name="menu"
             size={24}
             color={colors.textDark}
             onPress={() => navigation.openDrawer()}
           ></Feather>
-          {/* <Image
+          <Image
             source={require("../../assets/images/profileimg_girl.jpg")}
             style={styles.profileImage}
-          /> */}
+          />
           {/* style={styles.profileImage} */}
         </View>
       </SafeAreaView>
 
       {/* titles */}
-      <View style={styles.titleView}>
+      {/* <View style={styles.titleView}>
         <Text style={styles.titlesTitle}>Organic Fertilizer</Text>
-      </View>
+      </View> */}
 
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
@@ -87,10 +95,10 @@ export default OrderDetailsScreen = ({ navigation, route }) => {
                 <Text>Summary</Text>
               </View>
               <View>
-                <Text style={styles.topicBold}>Order ID: 202100005</Text>
+                <Text style={styles.topicBold}>Order ID: 127</Text>
               </View>
               <View style={styles.center}>
-                <Text style={styles.textRegular}>Date: 2021-06-21</Text>
+                <Text style={styles.textRegular}>Date: 2021-09-13</Text>
                 <Text style={styles.textRegular}>Payment Method: cash</Text>
                 <Text style={styles.textRegular}>
                   Order Status:{orderstatus(1)}{" "}

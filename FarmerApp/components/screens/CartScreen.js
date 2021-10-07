@@ -50,17 +50,50 @@ export default function CartScreen({ navigation }) {
             style={{
               flexDirection: "row",
               justifyContent: "space-between",
-              marginVertical: 15,
+              marginTop: 15,
+              marginHorizontal: 50,
+            }}
+          >
+            <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+              Total Price
+            </Text>
+            <Text style={{ fontSize: 16, fontWeight: "bold", marginRight: 10 }}>
+              Rs. {total}
+            </Text>
+          </View>
+
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginVertical: 5,
+              marginHorizontal: 50,
+            }}
+          >
+            <Text style={{ fontSize: 14, fontWeight: "bold" }}>
+              Delivery Charge (5%)
+            </Text>
+            <Text style={{ fontSize: 14, fontWeight: "bold", marginRight: 10 }}>
+              Rs. 310
+            </Text>
+          </View>
+
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginVertical: 10,
               marginHorizontal: 50,
             }}
           >
             <Text style={{ fontSize: 18, fontWeight: "bold" }}>
-              Total Price
+              Total payment
             </Text>
             <Text style={{ fontSize: 18, fontWeight: "bold", marginRight: 10 }}>
-              Rs. {total}
+              Rs. 6515
             </Text>
           </View>
+
           <View style={{ marginHorizontal: 30 }}>
             <TouchableOpacity
               activeOpacity={0.8}
@@ -96,8 +129,8 @@ export default function CartScreen({ navigation }) {
     return (
       <View style={styles.cartCard}>
         <Image
-          source={require("../../assets/consts/pictures/dummypic.png")}
-          // source={{ uri: item.photo }}
+          // source={require("../../assets/consts/pictures/dummypic.png")}
+          source={{ uri: item.product.photo }}
           style={{ height: 80, width: 80 }}
           resizeMode="contain"
         />
@@ -109,6 +142,9 @@ export default function CartScreen({ navigation }) {
             flex: 1,
           }}
         >
+          {/* <Text style={{ fontWeight: "bold", fontSize: 16 }}>
+            {item.product.photo}
+          </Text> */}
           <Text style={{ fontWeight: "bold", fontSize: 16 }}>
             {item.product.name}
           </Text>
@@ -209,11 +245,41 @@ export default function CartScreen({ navigation }) {
             size={28}
             onPress={() => navigation.goBack()}
           />
-          <Icon
+          {/* <Icon
             name="shopping-cart"
             size={28}
             onPress={() => navigation.navigate("CartScreen")}
-          />
+          /> */}
+          <Text
+            onPress={
+              // () => navigation.navigate("CartScreen")
+              () => navigation.navigate("CartScreen")
+              // navigation.navigate("Cart")
+            }
+          >
+            <Icon name="shopping-cart" size={28} />
+            <View>
+              <Text>
+                {getItemsCount() == 0 ? (
+                  ""
+                ) : (
+                  <Text
+                    style={{
+                      color: COLORS.white,
+                      fontSize: 14,
+                      fontWeight: "bold",
+                      backgroundColor: COLORS.green,
+                      borderRadius: 100,
+                      padding: 20,
+                    }}
+                  >
+                    {" "}
+                    {getItemsCount()}{" "}
+                  </Text>
+                )}
+              </Text>
+            </View>
+          </Text>
         </View>
       </View>
       <View style={styles.header}>
@@ -255,7 +321,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    paddingVertical: 20,
+    paddingVertical: 10,
     // flexDirection: "row",
     alignItems: "center",
     // marginHorizontal: 20,
@@ -265,7 +331,7 @@ const styles = StyleSheet.create({
     elevation: 15,
     borderRadius: 10,
     backgroundColor: COLORS.white,
-    marginVertical: 10,
+    marginVertical: 8,
     marginHorizontal: 20,
     paddingHorizontal: 10,
     flexDirection: "row",
